@@ -1,26 +1,20 @@
 using FishNet.Object;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-public class PlayerMovement : NetworkBehaviour
+public class PlayerManager : NetworkBehaviour
 {
-    // replace this with UnitStats later
-    [SerializeField]
-    private float _speed = 3f;
     private PlayerActions _playerActions;
     private Rigidbody2D _rigidBody;
-    private Vector2 _moveInput;
+    private PlayerMovement _movementHandler;
 
     private void Awake()
     {
         _playerActions = new PlayerActions();
-        _rigidBody = GetComponent<Rigidbody2D>();
-
+        _movementHandler = GetComponent<PlayerMovement>();
     }
-
+    // Update is called once per frame
     private void OnEnable()
     {
         _playerActions.PlayerInput.Enable();
@@ -31,9 +25,12 @@ public class PlayerMovement : NetworkBehaviour
         _playerActions.PlayerInput.Disable();
     }
 
+    // handle movement, spellcasting which in turn handle the animations?
     private void FixedUpdate()
     {
-        _moveInput = _playerActions.PlayerInput.Movement.ReadValue<Vector2>();
-        _rigidBody.velocity = _moveInput * _speed;
+        if (!base.IsOwner) return;
+        _movementHandler.movePlayer(_playerActions);
+        
+        // how to do the spell cast here otherwise its just checking every frame
     }
 }
