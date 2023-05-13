@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 2747690628134850419, guid: b670ab75dde984907b8570040daa08c5, type: 3}
-  m_Color: {r: 0.49261305, g: 0.8490566, b: 0.7573173, a: 1}
+  m_Color: {r: 0.8867924, g: 0.48104307, b: 0.48104307, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -180,11 +180,10 @@ GameObject:
   - component: {fileID: 933609652824942408}
   - component: {fileID: -2564277016632147628}
   - component: {fileID: 8302944292573092573}
-  - component: {fileID: 2934993575975475628}
   - component: {fileID: 1172006343598844436}
   - component: {fileID: 716281723751957937}
   m_Layer: 0
-  m_Name: Player2
+  m_Name: Character1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -270,22 +269,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f621cb01bc490b140a0c4a50acf5612a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 5
---- !u!114 &2934993575975475628
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8735874033422930139}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ae0b01acd3da4264aafb5c8938a36a3d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
   _componentIndexCache: 0
   _addedNetworkObject: {fileID: 1172006343598844436}
   _networkObjectCache: {fileID: 1172006343598844436}
+  _speed: 5
 --- !u!114 &1172006343598844436
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -302,7 +289,7 @@ MonoBehaviour:
   <ComponentIndex>k__BackingField: 0
   <PredictedSpawn>k__BackingField: {fileID: 0}
   _networkBehaviours:
-  - {fileID: 2934993575975475628}
+  - {fileID: 8302944292573092573}
   - {fileID: 716281723751957937}
   <ParentNetworkObject>k__BackingField: {fileID: 0}
   <ChildNetworkObjects>k__BackingField: []
@@ -311,11 +298,11 @@ MonoBehaviour:
   _initializeOrder: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 7
+  <PrefabId>k__BackingField: 3
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 0
   <SceneId>k__BackingField: 0
-  <AssetPathHash>k__BackingField: 7554693771170998867
+  <AssetPathHash>k__BackingField: 242474274894625367
   _sceneNetworkObjects:
   - {fileID: 1172006343598844436}
 --- !u!114 &716281723751957937
