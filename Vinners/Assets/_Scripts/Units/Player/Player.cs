@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using FishNet.Object;
 using FishNet.Object.Synchronizing;
+using FishNet.Connection;
 
 public class Player : NetworkBehaviour
 {
+    // player should be localInstance
+    public static Player LocalInstance { get; private set; }
+    
     [SyncVar] public string username;
-    [SyncVar] public bool isReady;
-    [SerializeField] private GameObject canvasObject;
+    [SyncVar] public bool isLockedIn;
+    
     // every player has a reference to their controller character and vice versa
     // [SyncVar] public Character controlledCharacter;
     
@@ -20,7 +24,12 @@ public class Player : NetworkBehaviour
         base.OnStartClient();
 
         if (!base.IsOwner)
-            canvasObject.SetActive(false);
+            return;
+
+        LocalInstance = this;
+
+        UIManager.Instance.Initialise();
+        UIManager.Instance.Show<CharacterSelect>();
     }
 
     public override void OnStartServer()
@@ -41,26 +50,31 @@ public class Player : NetworkBehaviour
     }
 
     [ServerRpc]
-    public void IsReadyServer(bool ready)
+    public void ChooseCharacter(GameObject character)
     {
-        isReady = ready;
+        this.characterPrefab = character;
     }
-
-    // Want to have a ready system where can only start if host && if everyone is ready
-    public void ToggleReady()
-    {
-        IsReadyServer(!isReady);
-    }
-
     
+    [ServerRpc(RequireOwnership =false)]
+    public void ServerSetLockIn(bool value)
+    {
+        isLockedIn = value;
+    }
+
     // this is attached to player for testing purposes. 
     // change to lobby later? where the buttons instead call the game manager's methods?
     public void StartGame()
     {
         GameObject instance = Instantiate(characterPrefab);
         Spawn(instance, Owner);
-        canvasObject.SetActive(false);
+        TargetCharacterSpawned(Owner);
+        
         // controlledCharacter = instance.GetComponent<Character>();
     }
 
+    [TargetRpc]
+    private void TargetCharacterSpawned(NetworkConnection conn)
+    {
+        UIManager.Instance.Show<GameInfo>();
+    }
 }

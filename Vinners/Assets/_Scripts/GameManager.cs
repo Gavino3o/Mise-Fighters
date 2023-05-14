@@ -28,7 +28,7 @@ public sealed class GameManager : NetworkBehaviour
     {
         if (!IsServer) return;
 
-        canStart = players.All(player => player.isReady);
+        canStart = players.All(player => player.isLockedIn);
         Debug.Log(canStart);
     }
 
