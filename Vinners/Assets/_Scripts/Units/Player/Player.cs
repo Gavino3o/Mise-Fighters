@@ -62,15 +62,16 @@ public class Player : NetworkBehaviour
     /*
      * Assigns the player's chosen Character.
      */
+    [ServerRpc] 
     public void ChooseCharacter(GameObject character)
     {
-        this.characterPrefab = character;
+        characterPrefab = character;
     }
     
     /*
      * Informs the server that this player has locked in. This function is called from the Ready Button.
      */
-    [ServerRpc(RequireOwnership =false)]
+    [ServerRpc(RequireOwnership = false)]
     public void ServerSetLockIn(bool value)
     {
         isLockedIn = value;

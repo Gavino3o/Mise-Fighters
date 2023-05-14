@@ -30,13 +30,15 @@ public class CharacterSelect : View
     //temp
     [SerializeField] private List<GameObject> characterList;
 
-    private int currCharacterIndex;
+    // just to monitor in inspector
+    [SerializeField] private int currCharacterIndex;
 
     public override void Initialise()
     {
         nextCharacterButton.onClick.AddListener(() =>
         {
             currCharacterIndex = (currCharacterIndex + 1) % characterList.Count;
+            Player.LocalInstance.ChooseCharacter(characterList[currCharacterIndex]);
             // characterDisplayPanel = characterList[currCharacterIndex].characterSprite
         });
 
@@ -44,6 +46,7 @@ public class CharacterSelect : View
         {
             // math here might be wrong
             currCharacterIndex = (currCharacterIndex + characterList.Count - 1) % characterList.Count;
+            Player.LocalInstance.ChooseCharacter(characterList[currCharacterIndex]);
             // characterDisplayPanel = characterList[currCharacterIndex].characterSprite
         });
 
@@ -53,8 +56,6 @@ public class CharacterSelect : View
         lockInButton.onClick.AddListener(() => 
         {
             Player.LocalInstance.ServerSetLockIn(!Player.LocalInstance.isLockedIn);
-            Player.LocalInstance.ChooseCharacter(characterList[currCharacterIndex]);
-            
                      
         });
 
@@ -71,6 +72,7 @@ public class CharacterSelect : View
             {
                 InstanceFinder.ServerManager.StopConnection(true);
                 InstanceFinder.ClientManager.StopConnection();
+                // Destroy(InstanceFinder.NetworkManager);
             });
 
             startGameButton.gameObject.SetActive(true);
@@ -78,7 +80,11 @@ public class CharacterSelect : View
         {
             startGameButton.gameObject.SetActive(false);
 
-            leaveButton.onClick.AddListener(() => InstanceFinder.ClientManager.StopConnection());
+            leaveButton.onClick.AddListener(() => {
+                InstanceFinder.ClientManager.StopConnection();
+                // Destroy(InstanceFinder.NetworkManager);
+            });
+            
         }
 
         base.Initialise();

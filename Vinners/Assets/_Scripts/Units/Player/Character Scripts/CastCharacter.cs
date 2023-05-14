@@ -28,10 +28,21 @@ public sealed class CastCharacter : NetworkBehaviour
 
         if (input.skillPressed)
         {
-            // check for cooldown, still need to think of how to organise this information
-            Debug.Log($"{gameObject} casted Skill");
+            CastSpell();
         }
     }
 
+    [ServerRpc]
+    public void CastSpell()
+    {
+        // lets the server know that this player has case a spell.
+        Debug.Log($"{gameObject} belonging to {Owner} casted Skill");
+    }
+
+    [ObserversRpc]
+    public void HandleSpellCast()
+    {
+        // after casting spell what to do
+    }
 
 }
