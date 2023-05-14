@@ -5,6 +5,9 @@ using UnityEngine;
 using UnityEngine.UI;
 using FishNet;
 
+/*
+ * Contains all functionalities related to the character select lobby. 
+ */
 public class CharacterSelect : View
 {
     
@@ -42,16 +45,21 @@ public class CharacterSelect : View
             currCharacterIndex = (currCharacterIndex + characterList.Count - 1) % characterList.Count;
             // characterDisplayPanel = characterList[currCharacterIndex].characterSprite
         });
+
+        /*
+         * Assigns the currently hovered character to the player and locks in for the player.
+         */
         lockInButton.onClick.AddListener(() => 
         {
             Player.LocalInstance.ServerSetLockIn(!Player.LocalInstance.isLockedIn);
-            // assign the currently hovered character to the player
             Player.LocalInstance.ChooseCharacter(characterList[currCharacterIndex]);
             
                      
         });
 
-
+        /*
+         * Only the Host should have access to the start button
+         */
         if (InstanceFinder.IsHost)
         {
             startGameButton.onClick.AddListener(() => {
@@ -74,6 +82,8 @@ public class CharacterSelect : View
         if (!Initialised) return;
 
         lockInButtonText.color = Player.LocalInstance.isLockedIn ? Color.green : Color.red;
+
+        // Should only be able to start game if all players in the lobby are ready.
         startGameButton.interactable = GameManager.Instance.canStart;
     }
 

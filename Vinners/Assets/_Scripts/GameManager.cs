@@ -14,16 +14,21 @@ public sealed class GameManager : NetworkBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    // list of players currently in the game
+    // List of players currently in the game
     [SyncObject] public readonly SyncList<Player> players = new();
+ 
     [SyncVar] public bool canStart;
-
+    
     private void Awake()
     {
         Instance = this;
 
     }
 
+    /*
+     * Track if all Players are locked in.
+     * TODO: Likely just for current build, might have more update functions that could be acstracted out in the future.
+     */
     private void Update()
     {
         if (!IsServer) return;
@@ -32,6 +37,10 @@ public sealed class GameManager : NetworkBehaviour
         Debug.Log(canStart);
     }
 
+    /*
+     * Starts the Game for all Players.
+     * TODO: Likely just for current build, have to do proper state/scene change logic in the future.
+     */
     [Server]
     public void StartGame()
     {
@@ -47,6 +56,6 @@ public sealed class GameManager : NetworkBehaviour
     [Server]
     public void ChangeScene()
     {
-        
+        // No Implementation yet
     }
 }

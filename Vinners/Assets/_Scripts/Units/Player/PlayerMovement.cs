@@ -13,6 +13,7 @@ public class PlayerMovement : NetworkBehaviour
     private PlayerActions _playerActions;
     private Rigidbody2D _rigidBody;
     private Vector2 _moveInput;
+    private Vector3 _mousePos;
 
     private void Awake()
     {
@@ -39,16 +40,16 @@ public class PlayerMovement : NetworkBehaviour
         // Handle Movement
         _moveInput = _playerActions.PlayerInput.Movement.ReadValue<Vector2>();
         _rigidBody.velocity = _moveInput * _speed;
-
-        // maybe make this less bandaidy
-        Vector3 mousePos = _playerActions.PlayerInput.Aim.ReadValue<Vector2>();
-        Vector3 targetDirection = Camera.main.ScreenToWorldPoint(mousePos) - transform.position;
-        float angle = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg - 90; //-90 coz its facing left for some reason...
+        
+        _mousePos = Camera.main.ScreenToWorldPoint(_playerActions.PlayerInput.Aim.ReadValue<Vector2>());
+        Vector3 targetDirection = _mousePos - transform.position;
+        float angle = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg - 90;
         transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
 
-        //todo for anim: if the z rotation is <0 should faceright, elsee faceleft
-
-        // how to do the spell cast here otherwise its just checking every frame
+        /* TODO: if the z rotation is <0 should faceright, elsee faceleft
+         * Keeping track of direction faced is good.
+         * Should also keep track of mousePosition
+         */
     }
 
 

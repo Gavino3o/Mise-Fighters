@@ -5,18 +5,22 @@ using FishNet.Object;
 using FishNet.Object.Synchronizing;
 using FishNet.Connection;
 
+/*
+ * The Player class is responsible for information relating to a player's account (their username, connection status
+ * to host, controlled character etc.)
+ */
 public class Player : NetworkBehaviour
 {
-    // player should be localInstance
+    // Local Instance of Player (per Owner)
     public static Player LocalInstance { get; private set; }
     
     [SyncVar] public string username;
     [SyncVar] public bool isLockedIn;
     
-    // every player has a reference to their controller character and vice versa
+    // Every player has a reference to their controlled character and vice versa
     // [SyncVar] public Character controlledCharacter;
     
-    //just temporary
+    // just temporary until Characters get implemented
     [SerializeField] private GameObject characterPrefab;
 
     public override void OnStartClient()
@@ -38,6 +42,9 @@ public class Player : NetworkBehaviour
         GameManager.Instance.players.Add(this);
     }
 
+    /*
+     * Called when player disconnects from server.
+     */
     public override void OnStopServer()
     {
         base.OnStopServer();
@@ -49,20 +56,26 @@ public class Player : NetworkBehaviour
         if (!base.IsOwner) return;
     }
 
-    [ServerRpc]
+    /*
+     * Assigns the player's chosen Character.
+     */
     public void ChooseCharacter(GameObject character)
     {
         this.characterPrefab = character;
     }
     
+    /*
+     * Informs the server that this player has locked in. This function is called from the Ready Button.
+     */
     [ServerRpc(RequireOwnership =false)]
     public void ServerSetLockIn(bool value)
     {
         isLockedIn = value;
     }
 
-    // this is attached to player for testing purposes. 
-    // change to lobby later? where the buttons instead call the game manager's methods?
+    /*
+     * Upon game start, spawns the Player Object and handles the UI changes
+     */
     public void StartGame()
     {
         GameObject instance = Instantiate(characterPrefab);
@@ -72,6 +85,9 @@ public class Player : NetworkBehaviour
         // controlledCharacter = instance.GetComponent<Character>();
     }
 
+    /*
+     * Shows the UI for GameInfo, has to be chain invoked (?) by the GameManager.
+     */
     [TargetRpc]
     private void TargetCharacterSpawned(NetworkConnection conn)
     {
