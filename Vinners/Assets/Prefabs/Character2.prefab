@@ -179,7 +179,10 @@ GameObject:
   - component: {fileID: 7526849378730878645}
   - component: {fileID: 933609652824942408}
   - component: {fileID: -2564277016632147628}
+  - component: {fileID: 1961037721474852110}
+  - component: {fileID: 1705328312430460625}
   - component: {fileID: 8302944292573092573}
+  - component: {fileID: 980857921476991205}
   - component: {fileID: 1172006343598844436}
   - component: {fileID: 716281723751957937}
   m_Layer: 0
@@ -257,6 +260,47 @@ MonoBehaviour:
   m_DefaultActionMap: PlayerInput
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &1961037721474852110
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8735874033422930139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fd1a4f905b5f5d448b0b0c1d66f827f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _componentIndexCache: 255
+  _addedNetworkObject: {fileID: 1172006343598844436}
+  _networkObjectCache: {fileID: 0}
+  characterSplash: {fileID: 0}
+  baseStats: {fileID: 0}
+  controllingPlayer: {fileID: 0}
+  health: 25
+  attack: 4
+  attackFreqSeconds: 1.7
+  moveSpeed: 1
+--- !u!114 &1705328312430460625
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8735874033422930139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9d9d77db8a526746870c217e8a2bafd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _componentIndexCache: 255
+  _addedNetworkObject: {fileID: 1172006343598844436}
+  _networkObjectCache: {fileID: 0}
+  funFactor: 5
+  moveInput: {x: 0, y: 0}
+  mousePos: {x: 0, y: 0, z: 0}
+  skillPressed: 0
 --- !u!114 &8302944292573092573
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -272,7 +316,21 @@ MonoBehaviour:
   _componentIndexCache: 0
   _addedNetworkObject: {fileID: 1172006343598844436}
   _networkObjectCache: {fileID: 1172006343598844436}
-  _speed: 5
+--- !u!114 &980857921476991205
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8735874033422930139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc6fb0a613e4f534cb40092ef651e755, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _componentIndexCache: 255
+  _addedNetworkObject: {fileID: 1172006343598844436}
+  _networkObjectCache: {fileID: 0}
 --- !u!114 &1172006343598844436
 MonoBehaviour:
   m_ObjectHideFlags: 0

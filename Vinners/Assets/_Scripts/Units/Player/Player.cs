@@ -8,7 +8,10 @@ using FishNet.Connection;
 /*
  * The Player class is responsible for information relating to a player's account (their username, connection status
  * to host, controlled character etc.)
+ * 
+ * TODO: remove the many dependencies present
  */
+
 public class Player : NetworkBehaviour
 {
     // Local Instance of Player (per Owner)
@@ -18,7 +21,7 @@ public class Player : NetworkBehaviour
     [SyncVar] public bool isLockedIn;
     
     // Every player has a reference to their controlled character and vice versa
-    // [SyncVar] public Character controlledCharacter;
+    [SyncVar] public Character controlledCharacter;
     
     // just temporary until Characters get implemented
     [SerializeField] private GameObject characterPrefab;

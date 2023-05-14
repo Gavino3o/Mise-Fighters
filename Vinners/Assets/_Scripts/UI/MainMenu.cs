@@ -1,24 +1,34 @@
 using FishNet;
-using FishNet.Managing.Scened;
-using System.Collections;
-using System.Collections.Generic;
+using FishNet.Managing;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class MainMenu : MonoBehaviour
+public sealed class MainMenu : MonoBehaviour
 {
     // host and join both have to load the character select lobby scene
     // options to change keybinds
     // quit game
-    [SerializeField] private const string nextScene = "CharacterSelect";
+    [SerializeField] private Button hostButton;
+    [SerializeField] private Button joinButton;
+    [SerializeField] private Button optionsButton;
+    [SerializeField] private Button quitButton;
+    [SerializeField] private NetworkManager manager;
 
-    public void StartHost()
+    private void Start()
     {
-        InstanceFinder.ServerManager.StartConnection();
-        InstanceFinder.ClientManager.StartConnection();
-    }
+        Instantiate(manager);
 
-    public void StartClient()
-    {
-        InstanceFinder.ClientManager.StartConnection();
+        hostButton.onClick.AddListener(() =>
+        {
+            InstanceFinder.ServerManager.StartConnection();
+            InstanceFinder.ClientManager.StartConnection();
+        });
+
+        joinButton.onClick.AddListener(() => InstanceFinder.ClientManager.StartConnection());
+
+        optionsButton.onClick.AddListener(() => Debug.Log("Options Menu Opened"));
+
+        quitButton.onClick.AddListener(() => Application.Quit());
     }
 }
+    

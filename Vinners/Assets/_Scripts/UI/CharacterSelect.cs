@@ -19,6 +19,7 @@ public class CharacterSelect : View
     [SerializeField] private Button startGameButton;
 
     [SerializeField] private Image characterDisplayPanel;
+    [SerializeField] private Button leaveButton;
     /* figure out how to get the character sprites from this later
      * [SerializeField] List<Character> characterList;
      * OR
@@ -66,10 +67,18 @@ public class CharacterSelect : View
                 GameManager.Instance.StartGame();
             });
 
+            leaveButton.onClick.AddListener(() =>
+            {
+                InstanceFinder.ServerManager.StopConnection(true);
+                InstanceFinder.ClientManager.StopConnection();
+            });
+
             startGameButton.gameObject.SetActive(true);
         } else
         {
             startGameButton.gameObject.SetActive(false);
+
+            leaveButton.onClick.AddListener(() => InstanceFinder.ClientManager.StopConnection());
         }
 
         base.Initialise();
