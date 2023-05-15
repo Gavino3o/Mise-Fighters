@@ -20,6 +20,8 @@ public class CharacterSelect : View
 
     [SerializeField] private Image characterDisplayPanel;
     [SerializeField] private Button leaveButton;
+    [SerializeField] private TMP_InputField inputUsernameField;
+
     /* figure out how to get the character sprites from this later
      * [SerializeField] List<Character> characterList;
      * OR
@@ -53,12 +55,13 @@ public class CharacterSelect : View
         /*
          * Assigns the currently hovered character to the player and locks in for the player.
          */
-        lockInButton.onClick.AddListener(() => 
+        lockInButton.onClick.AddListener(() =>
         {
             Player.LocalInstance.ServerSetLockIn(!Player.LocalInstance.isLockedIn);
-                     
+
         });
 
+        inputUsernameField.onEndEdit.AddListener(playerInput => Player.LocalInstance.SetUsername(playerInput));
         /*
          * Only the Host should have access to the start button
          */

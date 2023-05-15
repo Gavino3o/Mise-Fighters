@@ -5,10 +5,9 @@ using FishNet.Object;
 
 public sealed class CastCharacter : NetworkBehaviour
 {
+    private Character character; 
     private Rigidbody2D rigidBody;
     private InputCharacter input;
-
-
 
     // TODO: implement spell functionality
     // [SerializeField] private Spell skill;
@@ -20,6 +19,7 @@ public sealed class CastCharacter : NetworkBehaviour
         base.OnStartNetwork();
         input = GetComponent<InputCharacter>();
         rigidBody = GetComponent<Rigidbody2D>();
+        character = GetComponent<Character>();
     }
   
     private void Update()

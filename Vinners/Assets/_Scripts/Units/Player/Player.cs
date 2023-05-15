@@ -17,7 +17,7 @@ public class Player : NetworkBehaviour
     // Local Instance of Player (per Owner)
     public static Player LocalInstance { get; private set; }
     
-    [SyncVar] public string username;
+    [SyncVar] public string username = "unset";
     [SyncVar] public bool isLockedIn;
     
     // Every player has a reference to their controlled character and vice versa
@@ -77,6 +77,16 @@ public class Player : NetworkBehaviour
         isLockedIn = value;
     }
 
+    // TODO: instead of this one serverrpc call, we should use a usename manager so that all usernames are synced across all clients.
+    // currently players can only see their own username and client only knows its own username. Not that important right now.
+    [ServerRpc(RequireOwnership = true)]
+    public void SetUsername(string s)
+    {
+        if (s != null)
+        {
+            username = s;
+        }
+    }
     /*
      * Upon game start, spawns the Player Object and handles the UI changes
      */

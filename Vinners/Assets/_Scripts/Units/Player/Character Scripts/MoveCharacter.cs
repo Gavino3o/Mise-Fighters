@@ -3,7 +3,7 @@ using FishNet.Object;
 
 public sealed class MoveCharacter : NetworkBehaviour
 {
-
+    private Character character;
     private Rigidbody2D rigidBody;
     private InputCharacter input;
 
@@ -12,6 +12,7 @@ public sealed class MoveCharacter : NetworkBehaviour
         base.OnStartNetwork();
         input = GetComponent<InputCharacter>();
         rigidBody = GetComponent<Rigidbody2D>();
+        character = GetComponent<Character>();
     }
 
     // handle movement, spellcasting which in turn handle the animations?
@@ -20,7 +21,7 @@ public sealed class MoveCharacter : NetworkBehaviour
         if (!IsOwner) return;
 
         // Handle Movement
-        rigidBody.velocity = input.moveInput;
+        rigidBody.velocity = input.moveInput * character.moveSpeed;
         
         // Handle Direction Faced
         Vector3 targetDirection = input.mousePos - transform.position;

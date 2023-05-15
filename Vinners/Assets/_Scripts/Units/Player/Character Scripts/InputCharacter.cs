@@ -7,7 +7,7 @@ using FishNet.Object;
 public sealed class InputCharacter : NetworkBehaviour
 {
     [SerializeField] private float funFactor = 5f; 
-    private Character _character;
+    
     private PlayerActions _playerActions;
 
     // all information required by external input handling classes
@@ -20,7 +20,6 @@ public sealed class InputCharacter : NetworkBehaviour
     {
         base.OnStartNetwork();
 
-        _character = GetComponent<Character>();
         _playerActions = new PlayerActions();
         _playerActions.PlayerInput.Enable();
 
@@ -37,7 +36,7 @@ public sealed class InputCharacter : NetworkBehaviour
     {
         if (!IsOwner) return;
 
-        moveInput = _playerActions.PlayerInput.Movement.ReadValue<Vector2>() * _character.moveSpeed * funFactor;
+        moveInput = _playerActions.PlayerInput.Movement.ReadValue<Vector2>() * funFactor;
         mousePos = Camera.main.ScreenToWorldPoint(_playerActions.PlayerInput.Aim.ReadValue<Vector2>());
         skillPressed = _playerActions.PlayerInput.Skill.triggered;
     }

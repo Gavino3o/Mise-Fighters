@@ -2,6 +2,7 @@ using UnityEngine;
 using FishNet.Object;
 using FishNet.Object.Synchronizing;
 using UnityEngine.UI;
+using TMPro; 
 
 public class Character : NetworkBehaviour
 {
@@ -15,6 +16,15 @@ public class Character : NetworkBehaviour
     [SyncVar] public float attackFreqSeconds;
     [SyncVar] public float moveSpeed;
 
+    [SerializeField] private TextMeshPro usernameDisplay;
+
+    public override void OnStartClient()
+    {
+        base.OnStartClient();
+        if(!IsOwner) return;
+        usernameDisplay.GetComponent<TMP_Text>().text = Player.LocalInstance.username;
+
+    }
     public void takeDamage(float n)
     {
         float next = health -= n;
