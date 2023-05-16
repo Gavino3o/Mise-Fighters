@@ -2,21 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyManager : MonoBehaviour
+public sealed class EnemyManager : MonoBehaviour
 {
     [SerializeField]
-    private GameObject _commonEnemy;
-    [SerializeField]
-    private GameObject _enemyContainer;
+    private int enemyCount = 1;
 
-    private int _enemyCount;
-    public float spawnRangeAbsolute = 8f;
+    //TODO: Find uses for tracking active enemies
+    private List<Enemy> activeEnemies = new List<Enemy>();
 
-    public void SpawnEnemy(Vector3 spawnPosition)
+    public static EnemyManager Instance { get; private set; }
+
+    private void Awake()
     {
-        GameObject newEnemy = Instantiate(_commonEnemy, spawnPosition, Quaternion.identity);
-        newEnemy.transform.parent = _enemyContainer.transform;
-        _enemyCount++;
+        Instance = this;
     }
 
+    public static void IncrementCounter()
+    {
+        EnemyManager.Instance.enemyCount++;
+    }
+    public static void DecrementCounter()
+    {
+        EnemyManager.Instance.enemyCount--;
+    }
+    public static int GetEnemyCount()
+    {
+        return EnemyManager.Instance.enemyCount;
+    }
 }
