@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2932383944441884169}
   - component: {fileID: 2932383944441884174}
   - component: {fileID: 2932383944441884175}
+  - component: {fileID: 7547328074729920902}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -50,7 +51,7 @@ MonoBehaviour:
   _networkObjectCache: {fileID: 2932383944441884175}
   username: 
   isLockedIn: 0
-  canvasObject: {fileID: 0}
+  controlledCharacter: {fileID: 0}
   characterPrefab: {fileID: 8735874033422930139, guid: b53d8daf1daa37f4aa37bd1967eaa20d, type: 3}
 --- !u!114 &2932383944441884175
 MonoBehaviour:
@@ -84,3 +85,19 @@ MonoBehaviour:
   _sceneNetworkObjects:
   - {fileID: 2932383944441884175}
   - {fileID: 0}
+--- !u!114 &7547328074729920902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2932383944441884172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c71fd7f855ec523429999fc4e14a1928, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _overrideType: 3
+  _updateHostVisibility: 1
+  _observerConditions:
+  - {fileID: 11400000, guid: 2033f54fd2794464bae08fa5a55c8996, type: 2}

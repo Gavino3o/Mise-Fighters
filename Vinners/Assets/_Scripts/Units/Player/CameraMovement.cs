@@ -2,25 +2,31 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using FishNet.Object;
+using FishNet.Managing.Scened;
 
 public class CameraMovement : NetworkBehaviour 
 {
     private Vector3 velocity = Vector3.zero;
     // maybe store this somewhere so its not hardcoded
-    private float smoothTime = 0.50f;
+    private readonly float smoothTime = 0.50f;
     
     private Camera playerCamera;
     public override void OnStartClient()
     {
         base.OnStartClient();
+        SceneManager.OnLoadEnd += AssignCamera;
+    }
+
+    private void AssignCamera(FishNet.Managing.Scened.SceneLoadEndEventArgs obj)
+    {
         if (base.IsOwner)
         {
             playerCamera = Camera.main;
-        } else
+        }
+        else
         {
             return;
         }
-
     }
 
     private void Update()

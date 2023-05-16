@@ -21,7 +21,7 @@ public sealed class MoveCharacter : NetworkBehaviour
         if (!IsOwner) return;
 
         // Handle Movement
-        rigidBody.velocity = input.moveInput * character.moveSpeed;
+        rigidBody.velocity = input.moveInput * character.currMoveSpeed;
         
         // Handle Direction Faced
         Vector3 targetDirection = input.mousePos - transform.position;

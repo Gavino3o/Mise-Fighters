@@ -397,7 +397,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7291644955440109863}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.39, z: 0}
+  m_LocalPosition: {x: 0, y: 0.39, z: 1}
   m_LocalScale: {x: 0.3746, y: 0.3746, z: 0.3746}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -475,6 +475,7 @@ GameObject:
   - component: {fileID: 716281723751957937}
   - component: {fileID: 5376647301302664577}
   - component: {fileID: 7143522996336301811}
+  - component: {fileID: 8302210857773574313}
   m_Layer: 0
   m_Name: Character2
   m_TagString: Untagged
@@ -566,13 +567,13 @@ MonoBehaviour:
   _componentIndexCache: 0
   _addedNetworkObject: {fileID: 1172006343598844436}
   _networkObjectCache: {fileID: 1172006343598844436}
+  currHealth: 0
+  currAttack: 0
+  currAttackSpeed: 0
+  currMoveSpeed: 0
+  baseStats: {fileID: 11400000, guid: bfffa5faa8ed94148a2bc8b5a7488f20, type: 2}
   characterSplash: {fileID: 0}
-  baseStats: {fileID: 0}
   controllingPlayer: {fileID: 0}
-  health: 25
-  attack: 4
-  attackFreqSeconds: 1.7
-  moveSpeed: 1
   usernameDisplay: {fileID: 6935388049523391863}
 --- !u!114 &1705328312430460625
 MonoBehaviour:
@@ -645,6 +646,7 @@ MonoBehaviour:
   - {fileID: 980857921476991205}
   - {fileID: 716281723751957937}
   - {fileID: 5376647301302664577}
+  - {fileID: 7143522996336301811}
   <ParentNetworkObject>k__BackingField: {fileID: 0}
   <ChildNetworkObjects>k__BackingField: []
   _isNetworked: 1
@@ -728,6 +730,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e34939c63e48e0b4092218cda3079d96, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 255
+  _componentIndexCache: 6
   _addedNetworkObject: {fileID: 1172006343598844436}
-  _networkObjectCache: {fileID: 0}
+  _networkObjectCache: {fileID: 1172006343598844436}
+--- !u!58 &8302210857773574313
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8735874033422930139}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5

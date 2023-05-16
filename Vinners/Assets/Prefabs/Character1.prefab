@@ -397,7 +397,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7291644955440109863}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.39, z: 0}
+  m_LocalPosition: {x: 0, y: 0.39, z: 1}
   m_LocalScale: {x: 0.3746, y: 0.3746, z: 0.3746}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -475,6 +475,7 @@ GameObject:
   - component: {fileID: 716281723751957937}
   - component: {fileID: 4414647984169859242}
   - component: {fileID: 2420685106880469003}
+  - component: {fileID: 1644733848970717618}
   m_Layer: 0
   m_Name: Character1
   m_TagString: Untagged
@@ -566,13 +567,13 @@ MonoBehaviour:
   _componentIndexCache: 0
   _addedNetworkObject: {fileID: 1172006343598844436}
   _networkObjectCache: {fileID: 1172006343598844436}
+  currHealth: 0
+  currAttack: 0
+  currAttackSpeed: 0
+  currMoveSpeed: 0
+  baseStats: {fileID: 11400000, guid: e0474f370e814a94bb53361c62251371, type: 2}
   characterSplash: {fileID: 0}
-  baseStats: {fileID: 0}
   controllingPlayer: {fileID: 0}
-  health: 35
-  attack: 3
-  attackFreqSeconds: 1.1
-  moveSpeed: 0.9
   usernameDisplay: {fileID: 7911271535273823007}
 --- !u!114 &2670663749148832099
 MonoBehaviour:
@@ -653,7 +654,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 3
+  <PrefabId>k__BackingField: 1
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 0
   <SceneId>k__BackingField: 0
@@ -732,3 +733,19 @@ MonoBehaviour:
   _componentIndexCache: 6
   _addedNetworkObject: {fileID: 1172006343598844436}
   _networkObjectCache: {fileID: 1172006343598844436}
+--- !u!58 &1644733848970717618
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8735874033422930139}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5

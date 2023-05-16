@@ -23,7 +23,7 @@ public class AttackCharacter : NetworkBehaviour
     {
         if (!IsOwner) return;
 
-        if (Time.time - lastAttacked < character.attackFreqSeconds) return;
+        if (Time.time - lastAttacked < character.currAttackSpeed) return;
         lastAttacked = Time.time;
         AutoAttack();
         

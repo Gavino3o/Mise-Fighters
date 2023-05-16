@@ -22,7 +22,7 @@ public class UIManager : MonoBehaviour
     {
         foreach (View v in views)
         {
-            v.gameObject.SetActive(v is T);
+            if (v.gameObject != null) v.gameObject.SetActive(v is T);
         }
     }
 

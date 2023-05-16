@@ -1,9 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FishNet;
 using FishNet.Object;
 using System.Linq;
 using FishNet.Object.Synchronizing;
+using FishNet.Managing.Scened;
+using FishNet.Connection;
 
 
 /* 
@@ -34,7 +37,7 @@ public sealed class GameManager : NetworkBehaviour
         if (!IsServer) return;
 
         canStart = players.All(player => player.isLockedIn);
-        Debug.Log(canStart);
+        
     }
 
     /*
@@ -49,13 +52,25 @@ public sealed class GameManager : NetworkBehaviour
         // then we just use those player objects to spawn their characters
         for (int i = 0; i < players.Count; i++)
         {
-            players[i].StartGame();
+            players[i].SpawnCharacter();
         }
+        ChangeScene("AlvinScene");
     }
 
+    
     [Server]
-    public void ChangeScene()
+    public void ChangeScene(string sceneName)
     {
-        // No Implementation yet
+        SceneLoadData sld = new (sceneName);
+        List<NetworkObject> movedObjects = new List<NetworkObject>();
+        foreach (NetworkConnection item in InstanceFinder.ServerManager.Clients.Values)
+        {
+            foreach (NetworkObject nob in item.Objects)
+                movedObjects.Add(nob);
+        }
+        sld.MovedNetworkObjects = movedObjects.ToArray();
+        sld.ReplaceScenes = ReplaceOption.All;
+        InstanceFinder.SceneManager.LoadGlobalScenes(sld);
+        
     }
 }

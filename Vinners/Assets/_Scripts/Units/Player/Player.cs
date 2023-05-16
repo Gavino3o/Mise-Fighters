@@ -26,11 +26,11 @@ public class Player : NetworkBehaviour
     // just temporary until Characters get implemented
     [SerializeField] private GameObject characterPrefab;
 
-    public override void OnStartClient()
+    public override void OnStartNetwork()
     {
-        base.OnStartClient();
+        base.OnStartNetwork();
 
-        if (!base.IsOwner)
+        if (!base.Owner.IsLocalClient)
             return;
 
         LocalInstance = this;
@@ -90,13 +90,11 @@ public class Player : NetworkBehaviour
     /*
      * Upon game start, spawns the Player Object and handles the UI changes
      */
-    public void StartGame()
+    public void SpawnCharacter()
     {
         GameObject instance = Instantiate(characterPrefab);
         Spawn(instance, Owner);
         TargetCharacterSpawned(Owner);
-        
-        // controlledCharacter = instance.GetComponent<Character>();
     }
 
     /*
@@ -104,7 +102,8 @@ public class Player : NetworkBehaviour
      */
     [TargetRpc]
     private void TargetCharacterSpawned(NetworkConnection conn)
-    {
+    {   
         UIManager.Instance.Show<GameInfo>();
+        
     }
 }

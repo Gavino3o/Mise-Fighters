@@ -36,6 +36,8 @@ public sealed class InputCharacter : NetworkBehaviour
     {
         if (!IsOwner) return;
 
+        if (_playerActions == null || Camera.main == null) return;
+
         moveInput = _playerActions.PlayerInput.Movement.ReadValue<Vector2>() * funFactor;
         mousePos = Camera.main.ScreenToWorldPoint(_playerActions.PlayerInput.Aim.ReadValue<Vector2>());
         skillPressed = _playerActions.PlayerInput.Skill.triggered;
