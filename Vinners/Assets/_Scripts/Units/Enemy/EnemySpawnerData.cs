@@ -7,7 +7,6 @@ public class EnemySpawnerData : ScriptableObject
 {
     public GameObject[] enemyPrefabs;
     public float spawnRate = 2.0f;
-    public Transform[] spawnLocations;
+    public Vector3[] spawnLocations;
     public int maxEnemies;
-
 }
