@@ -733,6 +733,7 @@ MonoBehaviour:
   _componentIndexCache: 6
   _addedNetworkObject: {fileID: 1172006343598844436}
   _networkObjectCache: {fileID: 1172006343598844436}
+  projectile: {fileID: 8791335468521538598, guid: a6a510987340e9b46aeb18a606847f80, type: 3}
 --- !u!58 &8302210857773574313
 CircleCollider2D:
   m_ObjectHideFlags: 0

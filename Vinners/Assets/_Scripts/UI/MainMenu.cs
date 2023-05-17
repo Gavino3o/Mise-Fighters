@@ -12,11 +12,9 @@ public sealed class MainMenu : MonoBehaviour
     [SerializeField] private Button joinButton;
     [SerializeField] private Button optionsButton;
     [SerializeField] private Button quitButton;
-    // [SerializeField] private NetworkManager manager;
 
     private void Start()
     {
-        // Instantiate(manager);
 
         hostButton.onClick.AddListener(() =>
         {

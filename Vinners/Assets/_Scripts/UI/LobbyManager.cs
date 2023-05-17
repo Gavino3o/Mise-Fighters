@@ -13,19 +13,21 @@ using FishNet.Connection;
  * Right now this class is just for managing lobbies, keeping track of players currently connected and in charge of starting the game
  * or changing scenes?
  */
-public sealed class GameManager : NetworkBehaviour
+public sealed class LobbyManager : NetworkBehaviour
 {
-    public static GameManager Instance { get; private set; }
+    public static LobbyManager Instance { get; private set; }
 
     // List of players currently in the game
     [SyncObject] public readonly SyncList<Player> players = new();
  
     [SyncVar] public bool canStart;
+
+    // just for debugging purposes
+    [SyncVar] public int playerCount;
     
     private void Awake()
     {
         Instance = this;
-
     }
 
     /*
@@ -50,27 +52,23 @@ public sealed class GameManager : NetworkBehaviour
         if (!canStart) return;
         // change scene maybe change scene global should bring all players with it.
         // then we just use those player objects to spawn their characters
-        for (int i = 0; i < players.Count; i++)
-        {
-            players[i].SpawnCharacter();
-        }
-        ChangeScene("AlvinScene");
-    }
 
-    
-    [Server]
-    public void ChangeScene(string sceneName)
-    {
-        SceneLoadData sld = new (sceneName);
-        List<NetworkObject> movedObjects = new List<NetworkObject>();
+        SceneLoadData sld = new("AlvinScene");
+        List<NetworkObject> movedObjects = new();
         foreach (NetworkConnection item in InstanceFinder.ServerManager.Clients.Values)
         {
             foreach (NetworkObject nob in item.Objects)
                 movedObjects.Add(nob);
         }
+
         sld.MovedNetworkObjects = movedObjects.ToArray();
         sld.ReplaceScenes = ReplaceOption.All;
         InstanceFinder.SceneManager.LoadGlobalScenes(sld);
-        
+
+        for (int i = 0; i < players.Count; i++)
+        {
+            players[i].SpawnCharacter();
+        }
     }
+
 }

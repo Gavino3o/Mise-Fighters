@@ -62,30 +62,31 @@ public class CharacterSelect : View
         });
 
         inputUsernameField.onEndEdit.AddListener(playerInput => Player.LocalInstance.SetUsername(playerInput));
+        
         /*
          * Only the Host should have access to the start button
          */
         if (InstanceFinder.IsHost)
         {
+            if (startGameButton != null) startGameButton.gameObject.SetActive(true);
+
             startGameButton.onClick.AddListener(() => {
-                GameManager.Instance.StartGame();
+                LobbyManager.Instance.StartGame();
             });
 
             leaveButton.onClick.AddListener(() =>
             {
-                InstanceFinder.ServerManager.StopConnection(true);
+                InstanceFinder.ServerManager.StopConnection(false);
                 InstanceFinder.ClientManager.StopConnection();
-                // Destroy(InstanceFinder.NetworkManager);
+               
             });
 
-            startGameButton.gameObject.SetActive(true);
         } else
         {
-            startGameButton.gameObject.SetActive(false);
+            if (startGameButton != null) startGameButton.gameObject.SetActive(false);
 
             leaveButton.onClick.AddListener(() => {
                 InstanceFinder.ClientManager.StopConnection();
-                // Destroy(InstanceFinder.NetworkManager);
             });
             
         }
@@ -102,7 +103,7 @@ public class CharacterSelect : View
         lockInButtonText.color = Player.LocalInstance.isLockedIn ? Color.green : Color.red;
 
         // Should only be able to start game if all players in the lobby are ready.
-        startGameButton.interactable = GameManager.Instance.canStart;
+        startGameButton.interactable = LobbyManager.Instance.canStart;
     }
 
 

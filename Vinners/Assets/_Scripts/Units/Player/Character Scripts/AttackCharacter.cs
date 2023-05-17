@@ -9,6 +9,8 @@ public class AttackCharacter : NetworkBehaviour
     private Rigidbody2D rigidBody;
     private InputCharacter input;
 
+    [SerializeField] private GameObject projectile;
+
     private float lastAttacked;
 
     public override void OnStartNetwork()
@@ -33,5 +35,9 @@ public class AttackCharacter : NetworkBehaviour
     public void AutoAttack()
     {
         Debug.Log($"{gameObject} controlled by {Owner} attacks!");
+        GameObject obj = Instantiate(projectile, gameObject.transform);
+        ServerManager.Spawn(obj, Owner);       
     }
+
+
 }

@@ -15,6 +15,8 @@ public class UIManager : MonoBehaviour
 
     public void Initialise()
     {
+        Debug.Log("The UI Manager in this scene has been Initialised");
+        // prevent double initialisation
         foreach (View v in views) v.Initialise();
     }
 
@@ -22,7 +24,7 @@ public class UIManager : MonoBehaviour
     {
         foreach (View v in views)
         {
-            if (v.gameObject != null) v.gameObject.SetActive(v is T);
+            if (v != null) v.gameObject.SetActive(v is T);
         }
     }
 

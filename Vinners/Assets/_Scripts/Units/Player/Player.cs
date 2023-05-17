@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using FishNet.Object;
 using FishNet.Object.Synchronizing;
+using FishNet.Managing.Scened;
 using FishNet.Connection;
+using System;
 
 /*
  * The Player class is responsible for information relating to a player's account (their username, connection status
@@ -26,23 +28,35 @@ public class Player : NetworkBehaviour
     // just temporary until Characters get implemented
     [SerializeField] private GameObject characterPrefab;
 
-    public override void OnStartNetwork()
-    {
-        base.OnStartNetwork();
 
-        if (!base.Owner.IsLocalClient)
+    // TODO: Redistribute responsibility? or is this fine...coz this is pretty much the only network object going between scenes
+    public override void OnStartClient()
+    {
+        base.OnStartClient();
+
+        if (!base.IsOwner)
             return;
 
         LocalInstance = this;
 
         UIManager.Instance.Initialise();
         UIManager.Instance.Show<CharacterSelect>();
+       
+    }
+
+    // TERRIBLE BUT WORKS FOR NOW, surely i will fix this later 
+    // somehow causes network manager to no longer recognise that i am host 
+    // details: characterselect ui initialises with the new network manager that gets deleted instantly, so ishost is defaulted false
+    public void ReinitialiseUI()
+    {
+        UIManager.Instance.Initialise();
     }
 
     public override void OnStartServer()
     {
         base.OnStartServer();
-        GameManager.Instance.players.Add(this);
+        LobbyManager.Instance.players.Add(this);
+        LobbyManager.Instance.playerCount++;
     }
 
     /*
@@ -51,7 +65,8 @@ public class Player : NetworkBehaviour
     public override void OnStopServer()
     {
         base.OnStopServer();
-        GameManager.Instance.players.Remove(this);
+        LobbyManager.Instance.players.Remove(this);
+        LobbyManager.Instance.playerCount--;
     }
 
     private void FixedUpdate()
@@ -94,6 +109,7 @@ public class Player : NetworkBehaviour
     {
         GameObject instance = Instantiate(characterPrefab);
         Spawn(instance, Owner);
+        controlledCharacter = instance.GetComponent<Character>();
         TargetCharacterSpawned(Owner);
     }
 
@@ -102,8 +118,7 @@ public class Player : NetworkBehaviour
      */
     [TargetRpc]
     private void TargetCharacterSpawned(NetworkConnection conn)
-    {   
-        UIManager.Instance.Show<GameInfo>();
-        
+    {
+        //do nothing    
     }
 }

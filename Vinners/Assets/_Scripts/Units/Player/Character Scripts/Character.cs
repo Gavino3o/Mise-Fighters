@@ -16,7 +16,7 @@ public class Character : Unit
     {
         base.OnStartClient();
         if(!IsOwner) return;
-        usernameDisplay.GetComponent<TMP_Text>().text = Player.LocalInstance.username;
+        usernameDisplay.text = Player.LocalInstance.username;
 
     }
     // TODO: Alterations to other stats and handling of status effects
