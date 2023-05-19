@@ -6,7 +6,8 @@ using UnityEngine;
 public class EnemySpawnerData : ScriptableObject
 {
     public GameObject[] enemyPrefabs;
-    public float spawnRate = 2.0f;
+    public GameObject[] bossPrefabs;
+    public float spawnRate;
     public Vector3[] spawnLocations;
     public int maxEnemies;
 }

@@ -171,6 +171,8 @@ MonoBehaviour:
   <SceneId>k__BackingField: 17906053944654178759
   <AssetPathHash>k__BackingField: 0
   _sceneNetworkObjects:
+  - {fileID: 551020698}
+  - {fileID: 1302136804}
   - {fileID: 304352630}
   - {fileID: 456943929}
   - {fileID: 657885003}
@@ -226,6 +228,7 @@ GameObject:
   m_Component:
   - component: {fileID: 551020697}
   - component: {fileID: 551020696}
+  - component: {fileID: 551020698}
   m_Layer: 0
   m_Name: Enemy Spawner 2
   m_TagString: Untagged
@@ -245,7 +248,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97ef19520e4f5f24bb703738dd9fb9b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _componentIndexCache: 0
+  _addedNetworkObject: {fileID: 551020698}
+  _networkObjectCache: {fileID: 551020698}
   _enemySpawnerData: {fileID: 0}
+  _spawningComplete: 0
 --- !u!4 &551020697
 Transform:
   m_ObjectHideFlags: 0
@@ -261,6 +268,41 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &551020698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 551020695}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26b716c41e9b56b4baafaf13a523ba2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <IsNested>k__BackingField: 0
+  <ComponentIndex>k__BackingField: 0
+  <PredictedSpawn>k__BackingField: {fileID: 0}
+  _networkBehaviours:
+  - {fileID: 551020696}
+  <ParentNetworkObject>k__BackingField: {fileID: 0}
+  <ChildNetworkObjects>k__BackingField: []
+  _isNetworked: 1
+  _isGlobal: 0
+  _initializeOrder: 0
+  _defaultDespawnType: 0
+  NetworkObserver: {fileID: 0}
+  <PrefabId>k__BackingField: 0
+  <SpawnableCollectionId>k__BackingField: 0
+  _scenePathHash: 4169078065
+  <SceneId>k__BackingField: 17906053943739769602
+  <AssetPathHash>k__BackingField: 0
+  _sceneNetworkObjects:
+  - {fileID: 551020698}
+  - {fileID: 1302136804}
+  - {fileID: 304352630}
+  - {fileID: 456943929}
+  - {fileID: 657885003}
 --- !u!114 &657885003 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6241059911164357684, guid: 437a666811a9f2b4b85c90b2320944e8, type: 3}
@@ -292,6 +334,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1302136803}
   - component: {fileID: 1302136802}
+  - component: {fileID: 1302136804}
   m_Layer: 0
   m_Name: Enemy Spawner 1
   m_TagString: Untagged
@@ -311,7 +354,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97ef19520e4f5f24bb703738dd9fb9b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _componentIndexCache: 0
+  _addedNetworkObject: {fileID: 1302136804}
+  _networkObjectCache: {fileID: 1302136804}
   _enemySpawnerData: {fileID: 11400000, guid: 929ea4bb521fec748bf49d74490b1793, type: 2}
+  _spawningComplete: 0
 --- !u!4 &1302136803
 Transform:
   m_ObjectHideFlags: 0
@@ -327,6 +374,41 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1302136804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1302136801}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26b716c41e9b56b4baafaf13a523ba2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <IsNested>k__BackingField: 0
+  <ComponentIndex>k__BackingField: 0
+  <PredictedSpawn>k__BackingField: {fileID: 0}
+  _networkBehaviours:
+  - {fileID: 1302136802}
+  <ParentNetworkObject>k__BackingField: {fileID: 0}
+  <ChildNetworkObjects>k__BackingField: []
+  _isNetworked: 1
+  _isGlobal: 0
+  _initializeOrder: 0
+  _defaultDespawnType: 0
+  NetworkObserver: {fileID: 0}
+  <PrefabId>k__BackingField: 0
+  <SpawnableCollectionId>k__BackingField: 0
+  _scenePathHash: 4169078065
+  <SceneId>k__BackingField: 17906053947090147882
+  <AssetPathHash>k__BackingField: 0
+  _sceneNetworkObjects:
+  - {fileID: 551020698}
+  - {fileID: 1302136804}
+  - {fileID: 304352630}
+  - {fileID: 456943929}
+  - {fileID: 657885003}
 --- !u!1 &2086744853
 GameObject:
   m_ObjectHideFlags: 0

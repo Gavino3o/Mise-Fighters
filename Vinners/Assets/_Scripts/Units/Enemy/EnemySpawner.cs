@@ -1,18 +1,38 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FishNet.Object;
+using FishNet.Object.Synchronizing;
 
-public class EnemySpawner : MonoBehaviour
+public class EnemySpawner : NetworkBehaviour 
 {
     [SerializeField] private EnemySpawnerData _enemySpawnerData;
-    [SerializeField] public bool _isActive { get; private set; } = false;
+    [SerializeField] private bool _isActive { get; set; } = false;
 
     private float _timeSinceLastSpawn; // The time elapsed since the last enemy was spawned
     private int _spawnCount = 0;
+    private List<GameObject> _currentActiveEnemies;
 
-    private void Start()
+    [SyncVar] private bool _spawningComplete = false;
+
+    AutoTimer countdownTimer;
+
+    public override void OnStartServer()
     {
+        base.OnStartServer();
+
         StartCoroutine(SpawnEnemiesRoutine());
+    }
+
+    public override void OnStartClient()
+    {
+        base.OnStartClient();
+        if (IsServer)
+            return;
+        foreach (AutoTimer time in GetComponents<AutoTimer>())
+        {
+            time.StopTimer();
+        }
     }
 
     IEnumerator SpawnEnemiesRoutine()
@@ -31,15 +51,14 @@ public class EnemySpawner : MonoBehaviour
             int randomSpawnIndex = Random.Range(0, _enemySpawnerData.spawnLocations.Length);
             Vector3 spawnPosition = _enemySpawnerData.spawnLocations[randomSpawnIndex];
 
-            Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+            var newEnemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+            Spawn(newEnemy);
             EnemyManager.IncrementCounter();
 
             _spawnCount++;
             yield return new WaitForSeconds(_enemySpawnerData.spawnRate);
         }
     }
-    
-
 
     public void ActivateSpawnner()
     {

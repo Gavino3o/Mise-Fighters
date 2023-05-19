@@ -94,7 +94,8 @@ public class Enemy : NetworkBehaviour
     {
         if (!IsServer) return;
 
-        GameObject instance = Instantiate(_scorePopUp, transform.position, Quaternion.identity);
+        GameObject scorePopUp = Instantiate(_scorePopUp, transform.position, Quaternion.identity);
+        Spawn(scorePopUp);
 
         int randScoreBonus = Random.Range(1, 6);
         //Add Score Bonus to Team Score.
@@ -105,7 +106,6 @@ public class Enemy : NetworkBehaviour
         EnemyManager.RemoveActiveEnemy(this);
         EnemyManager.DecrementCounter();
 
-        //Destroy(gameObject);
         this.Despawn();
     }
 }
