@@ -31,12 +31,21 @@ public class AttackCharacter : NetworkBehaviour
         
     }
 
+
+    /*
+     * Performs an attack over the server
+     * 
+     * Notes: Instantiate with transform will parent object (the damager will follow player movement) (for melee attacks) but
+     * Instantiate with position and rotation just spawns it from the player position (for projectiles i guess)
+     * 
+     * Or should there be no distinction for both?
+     */
     [ServerRpc]
     public void AutoAttack()
     {
         Debug.Log($"{gameObject} controlled by {Owner} attacks!");
-        GameObject obj = Instantiate(projectile, gameObject.transform);
-        ServerManager.Spawn(obj, Owner);       
+        GameObject obj = Instantiate(projectile, gameObject.transform.position, gameObject.transform.rotation);
+        ServerManager.Spawn(obj);       
     }
 
 

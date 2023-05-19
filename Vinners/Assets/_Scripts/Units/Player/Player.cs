@@ -78,11 +78,11 @@ public class Player : NetworkBehaviour
      * Assigns the player's chosen Character.
      */
     [ServerRpc] 
-    public void ChooseCharacter(GameObject character)
+    public void ServerChooseCharacter(GameObject character)
     {
         characterPrefab = character;
     }
-    
+
     /*
      * Informs the server that this player has locked in. This function is called from the Ready Button.
      */
@@ -92,16 +92,12 @@ public class Player : NetworkBehaviour
         isLockedIn = value;
     }
 
-    // TODO: instead of this one serverrpc call, we should use a usename manager so that all usernames are synced across all clients.
-    // currently players can only see their own username and client only knows its own username. Not that important right now.
-    [ServerRpc(RequireOwnership = true)]
-    public void SetUsername(string s)
+    [ServerRpc]
+    public void ServerSetUsername(string s)
     {
-        if (s != null)
-        {
-            username = s;
-        }
+        if (s != null) username = s;
     }
+
     /*
      * Upon game start, spawns the Player Object and handles the UI changes
      */
@@ -119,6 +115,6 @@ public class Player : NetworkBehaviour
     [TargetRpc]
     private void TargetCharacterSpawned(NetworkConnection conn)
     {
-        //do nothing    
+        UIManager.Instance.Show<GameInfo>();   
     }
 }

@@ -20,8 +20,15 @@ public class GameInfo : View
      */
     [SerializeField] private TextMeshProUGUI HP;
 
+    private void Start()
+    {
+        UIManager.Instance.Initialise();
+    }
+
     private void Update()
     {
+        if (!Initialised) return;
+
         Player player = Player.LocalInstance;
 
         if (player == null || player.controlledCharacter == null) return;

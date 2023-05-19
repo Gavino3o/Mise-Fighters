@@ -592,7 +592,7 @@ MonoBehaviour:
   _networkObjectCache: {fileID: 1172006343598844436}
   funFactor: 5
   moveInput: {x: 0, y: 0}
-  mousePos: {x: 0, y: 0, z: 0}
+  mousePos: {x: 0, y: 0}
   skillPressed: 0
 --- !u!114 &8302944292573092573
 MonoBehaviour:
@@ -624,6 +624,7 @@ MonoBehaviour:
   _componentIndexCache: 3
   _addedNetworkObject: {fileID: 1172006343598844436}
   _networkObjectCache: {fileID: 1172006343598844436}
+  skill: {fileID: 4409608183563506044, guid: a380ff20a3f3bb548b809ff8173a85ee, type: 3}
 --- !u!114 &1172006343598844436
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -654,11 +655,11 @@ MonoBehaviour:
   _initializeOrder: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 2
+  <PrefabId>k__BackingField: 1
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 0
   <SceneId>k__BackingField: 0
-  <AssetPathHash>k__BackingField: 2283981698956871545
+  <AssetPathHash>k__BackingField: 2873558306986322834
   _sceneNetworkObjects:
   - {fileID: 1172006343598844436}
 --- !u!114 &716281723751957937

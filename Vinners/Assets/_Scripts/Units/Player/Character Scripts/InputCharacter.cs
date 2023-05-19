@@ -7,12 +7,14 @@ using FishNet.Object;
 public sealed class InputCharacter : NetworkBehaviour
 {
     [SerializeField] private float funFactor = 5f; 
+
+    
     
     private PlayerActions _playerActions;
 
     // all information required by external input handling classes
     public Vector2 moveInput;
-    public Vector3 mousePos;
+    public Vector2 mousePos;
     public bool skillPressed;
 
     // reading local playerinput and updating this information inside itself

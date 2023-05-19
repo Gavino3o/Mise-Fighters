@@ -468,14 +468,15 @@ GameObject:
   - component: {fileID: 933609652824942408}
   - component: {fileID: -2564277016632147628}
   - component: {fileID: 6967667816943390858}
+  - component: {fileID: 2420685106880469003}
   - component: {fileID: 2670663749148832099}
   - component: {fileID: 8302944292573092573}
   - component: {fileID: 4783936835329862994}
   - component: {fileID: 1172006343598844436}
   - component: {fileID: 716281723751957937}
   - component: {fileID: 4414647984169859242}
-  - component: {fileID: 2420685106880469003}
   - component: {fileID: 1644733848970717618}
+  - component: {fileID: -3211121199138992066}
   m_Layer: 0
   m_Name: Character1
   m_TagString: Untagged
@@ -575,6 +576,22 @@ MonoBehaviour:
   characterSplash: {fileID: 0}
   controllingPlayer: {fileID: 0}
   usernameDisplay: {fileID: 7911271535273823007}
+--- !u!114 &2420685106880469003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8735874033422930139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e34939c63e48e0b4092218cda3079d96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _componentIndexCache: 6
+  _addedNetworkObject: {fileID: 1172006343598844436}
+  _networkObjectCache: {fileID: 1172006343598844436}
+  projectile: {fileID: 8791335468521538598, guid: a6a510987340e9b46aeb18a606847f80, type: 3}
 --- !u!114 &2670663749148832099
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -624,6 +641,7 @@ MonoBehaviour:
   _componentIndexCache: 3
   _addedNetworkObject: {fileID: 1172006343598844436}
   _networkObjectCache: {fileID: 1172006343598844436}
+  skill: {fileID: 4409608183563506044, guid: a380ff20a3f3bb548b809ff8173a85ee, type: 3}
 --- !u!114 &1172006343598844436
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -654,11 +672,11 @@ MonoBehaviour:
   _initializeOrder: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 1
+  <PrefabId>k__BackingField: 6
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 0
   <SceneId>k__BackingField: 0
-  <AssetPathHash>k__BackingField: 242474274894625367
+  <AssetPathHash>k__BackingField: 10734519225755665672
   _sceneNetworkObjects:
   - {fileID: 1172006343598844436}
 --- !u!114 &716281723751957937
@@ -718,22 +736,6 @@ MonoBehaviour:
   _componentIndexCache: 5
   _addedNetworkObject: {fileID: 1172006343598844436}
   _networkObjectCache: {fileID: 1172006343598844436}
---- !u!114 &2420685106880469003
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8735874033422930139}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e34939c63e48e0b4092218cda3079d96, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _componentIndexCache: 6
-  _addedNetworkObject: {fileID: 1172006343598844436}
-  _networkObjectCache: {fileID: 1172006343598844436}
-  projectile: {fileID: 8791335468521538598, guid: a6a510987340e9b46aeb18a606847f80, type: 3}
 --- !u!58 &1644733848970717618
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -750,3 +752,21 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &-3211121199138992066
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8735874033422930139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 924daf11c712f1c46944b92e38608c7a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _componentIndexCache: 255
+  _addedNetworkObject: {fileID: 1172006343598844436}
+  _networkObjectCache: {fileID: 0}
+  cooldown: 3
+  projectile: {fileID: 2311875031635309704, guid: 69d3dc39f4cce7b408691ba5d0d13e12, type: 3}
+  canCast: 1

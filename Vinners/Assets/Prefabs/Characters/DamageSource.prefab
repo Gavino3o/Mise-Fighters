@@ -96,6 +96,7 @@ GameObject:
   - component: {fileID: 1458824468658621045}
   - component: {fileID: 4248350075133188711}
   - component: {fileID: 6702416488658299097}
+  - component: {fileID: -821421582914272815}
   m_Layer: 0
   m_Name: DamageSource
   m_TagString: Untagged
@@ -132,7 +133,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 5
-  lifetime: 0.3
+  lifetime: 0.1
+  projectileSpeed: 0
 --- !u!114 &4248350075133188711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -156,11 +158,11 @@ MonoBehaviour:
   _initializeOrder: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 6
+  <PrefabId>k__BackingField: 5
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 0
   <SceneId>k__BackingField: 0
-  <AssetPathHash>k__BackingField: 8487177380513949955
+  <AssetPathHash>k__BackingField: 10256580649182472808
   _sceneNetworkObjects:
   - {fileID: 4248350075133188711}
   - {fileID: 0}
@@ -194,3 +196,24 @@ PolygonCollider2D:
       - {x: -2.8377852, y: -0.059017062}
       - {x: 2.8377852, y: -0.059016943}
       - {x: 2.2010565, y: 1.8090172}
+--- !u!50 &-821421582914272815
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8791335468521538598}
+  m_BodyType: 0
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 0
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0

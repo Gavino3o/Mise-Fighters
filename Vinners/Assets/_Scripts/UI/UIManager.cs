@@ -15,8 +15,6 @@ public class UIManager : MonoBehaviour
 
     public void Initialise()
     {
-        Debug.Log("The UI Manager in this scene has been Initialised");
-        // prevent double initialisation
         foreach (View v in views) v.Initialise();
     }
 

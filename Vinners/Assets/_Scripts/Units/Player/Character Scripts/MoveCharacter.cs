@@ -24,7 +24,7 @@ public sealed class MoveCharacter : NetworkBehaviour
         rigidBody.velocity = input.moveInput * character.currMoveSpeed;
         
         // Handle Direction Faced
-        Vector3 targetDirection = input.mousePos - transform.position;
+        Vector2 targetDirection = input.mousePos - new Vector2(transform.position.x, transform.position.y);
         float angle = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg - 90;
         transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
 

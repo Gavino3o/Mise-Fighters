@@ -40,7 +40,7 @@ public class CharacterSelect : View
         nextCharacterButton.onClick.AddListener(() =>
         {
             currCharacterIndex = (currCharacterIndex + 1) % characterList.Count;
-            Player.LocalInstance.ChooseCharacter(characterList[currCharacterIndex]);
+            Player.LocalInstance.ServerChooseCharacter(characterList[currCharacterIndex]);
             // characterDisplayPanel = characterList[currCharacterIndex].characterSprite
         });
 
@@ -48,7 +48,7 @@ public class CharacterSelect : View
         {
             // math here might be wrong
             currCharacterIndex = (currCharacterIndex + characterList.Count - 1) % characterList.Count;
-            Player.LocalInstance.ChooseCharacter(characterList[currCharacterIndex]);
+            Player.LocalInstance.ServerChooseCharacter(characterList[currCharacterIndex]);
             // characterDisplayPanel = characterList[currCharacterIndex].characterSprite
         });
 
@@ -61,7 +61,7 @@ public class CharacterSelect : View
 
         });
 
-        inputUsernameField.onEndEdit.AddListener(playerInput => Player.LocalInstance.SetUsername(playerInput));
+        inputUsernameField.onEndEdit.AddListener(playerInput => Player.LocalInstance.ServerSetUsername(playerInput));
         
         /*
          * Only the Host should have access to the start button
