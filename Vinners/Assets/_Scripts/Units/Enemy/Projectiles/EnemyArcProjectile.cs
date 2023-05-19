@@ -2,16 +2,13 @@ using FishNet.Example.Scened;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using FishNet.Object;
-using FishNet.Object.Synchronizing;
 using UnityEditor;
 
-public class EnemyArcProjectile : MonoBehaviour
+public class EnemyArcProjectile : EnemyProjectile
 {
      public Vector3 _startPosition;
      public Vector3 _targetPosition;
      public float arcHeight;
-     public float _speed;
 
     
     void Start()
@@ -22,6 +19,7 @@ public class EnemyArcProjectile : MonoBehaviour
 
     void Update()
     {
+        if (!IsServer) return;
         MoveToTargetLocation();
     }
 
@@ -49,8 +47,8 @@ public class EnemyArcProjectile : MonoBehaviour
     private void Arrived()
     {
         // TODO: Call methods/scripts to handle when a projectile lands on target position.
-        // 1. Create an area that damages the player consistenly over a period of time
-        // 2. A chuck of AOE Damage
+        // 1. Create an area that damages the player consistently over a period of time.
+        // 2. A chuck of AOE Damage, like a bomb
         Destroy(gameObject);
     }
 

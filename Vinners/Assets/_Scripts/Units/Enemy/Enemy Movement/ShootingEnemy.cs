@@ -1,8 +1,10 @@
+using FishNet.Object;
+using FishNet.Object.Synchronizing;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShootingEnemy : MonoBehaviour
+public class ShootingEnemy : NetworkBehaviour
 {
     public float _speed;
     public Transform _player;
@@ -21,6 +23,7 @@ public class ShootingEnemy : MonoBehaviour
 
     void Update()
     {
+        if (!IsServer) return;
         MoveToAttackRange();
         ShootProjectile();
         RetreatFromPlayer();
@@ -45,9 +48,16 @@ public class ShootingEnemy : MonoBehaviour
 
     private void MoveToAttackRange()
     {
-        if  (Vector2.Distance(transform.position, _player.position) > _attackRange)
+        if  (!IsInRange())
         {
             transform.position = Vector2.MoveTowards(transform.position, _player.position, _speed * Time.deltaTime);
         }
     }
+
+    private bool IsInRange()
+    {
+        return Vector2.Distance(transform.position, _player.position) < _attackRange;
+    }
+
+
 }

@@ -4,53 +4,55 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static UnityEngine.GraphicsBuffer;
+using FishNet.Object.Synchronizing;
+using System.IO;
 
 public class Enemy : NetworkBehaviour
 {
-    [SerializeField] private GameObject _enemyPrefab;
 
-    public float _speed;
-    private Transform _target;
-
+    [SyncVar] protected double _currentHealth;
+    [SyncVar] private Transform _target;
+    [SerializeField] public double _maxHealth;
+    [SerializeField] public float _speed;
+    
     public int _damage;
-    public int _health;
+    public bool _isBoss;
+    public bool _canTeleport;
+
+    protected Rigidbody2D _rigidBody;
+    //protected AIPathFinder _pathFinder;
     public GameObject _deathEffect;
-
-    public float minX;
-    public float maxX;
-    public float minY;
-    public float maxY;
-
     public GameObject _scorePopUp;
+    
 
     private void Start()
     {
         _target = GameObject.FindGameObjectWithTag("Player").transform;
+        _rigidBody = GetComponent<Rigidbody2D>();
+        _currentHealth = _maxHealth;
+        //_pathFinder = GetComponent<AIPathFinder>();
+
+        if (!IsServer)
+        {
+            GetComponent<Rigidbody2D>().isKinematic = true;
+            GetComponentInChildren<Collider2D>().isTrigger = true;
+            //_pathFinder.canMove = false;
+            //_pathFinder.isStopped = true;
+            //GetComponent<AIDestinationSetter>().enabled = false;
+            //GetComponent<Seeker>().enabled = false;
+            //_pathFinder.enabled = false;
+
+        }
     }
 
     private void Update()
     {
         transform.position = Vector2.MoveTowards(transform.position, _target.position, _speed * Time.deltaTime);
 
-        if(_health <= 0)
+        if(_currentHealth <= 0)
         {
             OnDeath();
         }
-    }
-
-    private void OnDeath()
-    {
-        GameObject instance = Instantiate(_scorePopUp, transform.position, Quaternion.identity);
-
-        int randScoreBonus = Random.Range(1, 6);
-        //target.GetComponent<Player>().score += randScoreBonus;
-
-        Instantiate(_deathEffect, transform.position, Quaternion.identity);
-        
-        EnemyManager.RemoveActiveEnemy(this);
-        EnemyManager.DecrementCounter();
-
-        Destroy(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -73,5 +75,37 @@ public class Enemy : NetworkBehaviour
         EnemyManager.RemoveActiveEnemy(this);
     }
 
-    
+    public double GetCurrentHeath()
+    {
+        return _currentHealth;
+    }
+
+    public virtual void takeDamage(double dmg)
+    {
+        _currentHealth -= dmg;
+
+        if (_currentHealth <= 0)
+        {
+            OnDeath();
+        }
+    }
+
+    private void OnDeath()
+    {
+        if (!IsServer) return;
+
+        GameObject instance = Instantiate(_scorePopUp, transform.position, Quaternion.identity);
+
+        int randScoreBonus = Random.Range(1, 6);
+        //Add Score Bonus to Team Score.
+
+        var deathEffect = Instantiate(_deathEffect, transform.position, Quaternion.identity);
+        Spawn(deathEffect);
+
+        EnemyManager.RemoveActiveEnemy(this);
+        EnemyManager.DecrementCounter();
+
+        //Destroy(gameObject);
+        this.Despawn();
+    }
 }
