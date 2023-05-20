@@ -13,7 +13,7 @@ public class EnemySpawner : NetworkBehaviour
     private int _spawnCount = 0;
     private List<GameObject> _currentActiveEnemies;
 
-    [SyncVar] private bool _spawningComplete = false;
+    //[SyncVar] private bool _spawningComplete = false;
 
     AutoTimer countdownTimer;
 

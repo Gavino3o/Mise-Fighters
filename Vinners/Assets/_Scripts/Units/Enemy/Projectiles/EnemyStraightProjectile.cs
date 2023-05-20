@@ -5,14 +5,17 @@ using UnityEngine;
 
 public class EnemyStraightProjectile : EnemyProjectile
 {
-    private Transform _playerPosition;
-    private Vector2 _target;
+    private Transform _targetPosition;
+    private Vector2 _endPosition;
     //public GameObject _effect;
 
     void Start()
     {
         //_playerPosition = GameObject.GetComponent<Player>().transform;
-        _target = _playerPosition.position;
+        if (!IsServer) return;
+        _targetPosition = GameObject.FindGameObjectWithTag("Player").transform;
+        _endPosition = _targetPosition.position;
+
     }
 
     void Update()
@@ -23,8 +26,8 @@ public class EnemyStraightProjectile : EnemyProjectile
 
     public void MoveToTargetLocation()
     {
-        transform.position = Vector2.MoveTowards(transform.position, _target, _speed * Time.deltaTime);
-        if (Vector2.Distance(transform.position, _target) < 0.1f)
+        transform.position = Vector2.MoveTowards(transform.position, _endPosition, _speed * Time.deltaTime);
+        if (Vector2.Distance(transform.position, _endPosition) < 10f)
         {
             OnHit();
         }
