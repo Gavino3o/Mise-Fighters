@@ -14,13 +14,17 @@ using UnityEngine;
  * 
  * Ultimates should be separate classes entirely.
  */
-public class Spell : NetworkBehaviour
+public abstract class Spell : NetworkBehaviour
 {
 
     [SerializeField] private float cooldown;
-    [SerializeField] private GameObject projectile;
-    public bool canCast;
-    private float lastCast;
+    protected bool canCast;
+    protected float lastCast;
+
+    private void Start()
+    {
+        canCast = true;
+    }
 
     private void Update()
     {
@@ -31,24 +35,7 @@ public class Spell : NetworkBehaviour
         canCast = true;
     }
 
-    public void Cast(Vector2 castDirection)
-    {
-        if (canCast)
-        {
-            GameObject obj = Instantiate(projectile, transform.position, transform.rotation);
-            obj.GetComponent<CharacterDamager>().SetDirection(castDirection);
-            ServerManager.Spawn(obj);
-            canCast = false;
-            lastCast = Time.time;
-            Debug.Log("Spell casted");
-        } else
-        {
-            Debug.Log("Spell is on cooldown");
-        }
-    }
-
-    public void CastOn(GameObject obj)
-    {
-        // to implement (for movement spell/ targetted spell  maybe?)
-    }
+    // refactor to public void Cast(Character character)
+    public abstract void Cast(Character character);
+    
 }

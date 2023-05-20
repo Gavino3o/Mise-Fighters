@@ -5,26 +5,16 @@ using FishNet.Object;
 using FishNet.Object.Synchronizing;
 using FishNet;
 
-public class CharacterDamager : NetworkBehaviour
+public class CharacterDamager : MonoBehaviour
 { 
     [SerializeField] private float damage;
     [SerializeField] private float lifetime;
-    [SerializeField] private float projectileSpeed;
-    [SyncVar] private Vector2 movementDirection = Vector2.zero;
-
-
-    public void SetDirection(Vector2 dir)
-    {
-        movementDirection = dir.normalized;
-    }
 
     private void Update()
     {
         if (lifetime <= 0) Destroy(gameObject);
         
         lifetime -= Time.deltaTime;
-        GetComponent<Rigidbody2D>().velocity = movementDirection * projectileSpeed;
-        
     }
 
     private void OnTriggerEnter2D(Collider2D other)

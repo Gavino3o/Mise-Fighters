@@ -132,9 +132,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f6e04cc97e1bbd4e878bd63c8baadc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
+  damage: 3
   lifetime: 0.1
-  projectileSpeed: 0
 --- !u!114 &4248350075133188711
 MonoBehaviour:
   m_ObjectHideFlags: 0

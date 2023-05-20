@@ -42,15 +42,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 1781735608142337153}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 924daf11c712f1c46944b92e38608c7a, type: 3}
+  m_Script: {fileID: 11500000, guid: 1b630c78393f90c4092b2fec1290af59, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 0
+  _componentIndexCache: 255
   _addedNetworkObject: {fileID: 5768151945229400135}
-  _networkObjectCache: {fileID: 5768151945229400135}
-  cooldown: 3
+  _networkObjectCache: {fileID: 0}
+  cooldown: 4
   projectile: {fileID: 2311875031635309704, guid: 69d3dc39f4cce7b408691ba5d0d13e12, type: 3}
-  canCast: 1
 --- !u!114 &5768151945229400135
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67,7 +66,7 @@ MonoBehaviour:
   <ComponentIndex>k__BackingField: 0
   <PredictedSpawn>k__BackingField: {fileID: 0}
   _networkBehaviours:
-  - {fileID: 4409608183563506044}
+  - {fileID: 0}
   <ParentNetworkObject>k__BackingField: {fileID: 0}
   <ChildNetworkObjects>k__BackingField: []
   _isNetworked: 1
