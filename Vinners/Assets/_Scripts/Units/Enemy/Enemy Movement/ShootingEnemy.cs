@@ -24,6 +24,7 @@ public class ShootingEnemy : NetworkBehaviour
     void Update()
     {
         if (!IsServer) return;
+        _player = GameObject.FindGameObjectWithTag("Player").transform;
         MoveToAttackRange();
         ShootProjectile();
         RetreatFromPlayer();
@@ -31,9 +32,11 @@ public class ShootingEnemy : NetworkBehaviour
 
     private void ShootProjectile()
     {
-        if (Time.time > _nextShotTime)
+        
+        if (Time.time > _nextShotTime && IsInRange())
         {
-            Instantiate(_projectile, transform.position, Quaternion.identity);
+            var projectile = Instantiate(_projectile, transform.position, Quaternion.identity);
+            Spawn(projectile);
             _nextShotTime = Time.time + _timeBetweenShots;
         }
     }

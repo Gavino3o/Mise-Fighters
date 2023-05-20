@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 137df97faff98b0468632a8dfaa49c60, type: 3}
-  m_Name: EnemySpawnerData 2
+  m_Name: EnemySpawnerDataTest
   m_EditorClassIdentifier: 
   enemyPrefabs: []
-  spawnRate: 2
+  bossPrefabs: []
+  spawnRate: 0
   spawnLocations: []
   maxEnemies: 0

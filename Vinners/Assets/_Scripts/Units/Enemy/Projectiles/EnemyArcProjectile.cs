@@ -40,7 +40,10 @@ public class EnemyArcProjectile : EnemyProjectile
         transform.position = nextPosition;
 
         // Do something when we reach the target
-        if (nextPosition == _targetPosition) Arrived();
+        if (nextPosition == _targetPosition)
+        {
+            Arrived();
+        }
     }
 
     //[ServerRpc(RequireOwnership = false)]
@@ -49,7 +52,7 @@ public class EnemyArcProjectile : EnemyProjectile
         // TODO: Call methods/scripts to handle when a projectile lands on target position.
         // 1. Create an area that damages the player consistently over a period of time.
         // 2. A chuck of AOE Damage, like a bomb
-        Destroy(gameObject);
+        Despawn(gameObject);
     }
 
     public Quaternion LookAt2D(Vector2 forward)
@@ -61,7 +64,7 @@ public class EnemyArcProjectile : EnemyProjectile
     {
         if (collision.CompareTag("Player"))
         {
-            Destroy(gameObject);
+            Despawn(gameObject);
         }
     }
 }
