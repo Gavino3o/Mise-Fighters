@@ -34,8 +34,8 @@ public class Player : NetworkBehaviour
 
         LocalInstance = this;
 
-        UIManager.Instance.Initialise();
-        UIManager.Instance.Show<CharacterSelect>();
+        UIManager.LocalInstance.Initialise();
+        UIManager.LocalInstance.Show<CharacterSelect>();
        
     }
 
@@ -102,6 +102,6 @@ public class Player : NetworkBehaviour
     [TargetRpc]
     private void TargetCharacterSpawned(NetworkConnection conn)
     {
-        UIManager.Instance.Show<GameInfo>();   
+        UIManager.LocalInstance.Show<GameInfo>();   
     }
 }

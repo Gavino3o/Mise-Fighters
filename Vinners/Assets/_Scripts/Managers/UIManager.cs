@@ -5,20 +5,13 @@ using FishNet.Object;
 
 public class UIManager : NetworkBehaviour
 {
-    public static UIManager Instance { get; private set; }
+    public static UIManager LocalInstance { get; private set; }
 
     [SerializeField] private View[] views;
 
     private void Awake()
     {
-        if (Instance != null)
-        {
-            Destroy(this);
-        }
-        else
-        {
-            Instance = this;
-        }
+        LocalInstance = this;  
     }
     public void Initialise()
     {

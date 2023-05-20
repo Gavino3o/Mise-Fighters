@@ -10,7 +10,7 @@ public sealed class CastCharacter : NetworkBehaviour
     private InputCharacter input;
 
     // TODO: implement spell functionality
-    [SerializeField] private Spell skill;
+    [SerializeField] public Spell skill;
     // [SerializeField] private Spell dash;
     // [SerializeField] private Spell ultimate;
 
@@ -62,6 +62,11 @@ public sealed class CastCharacter : NetworkBehaviour
     public void HandleSpellCast()
     {
         // after casting spell what to do
+    }
+
+    public bool SkillCastable()
+    {
+        return skill.canCast;
     }
 
 }

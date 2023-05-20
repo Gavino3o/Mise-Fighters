@@ -18,7 +18,7 @@ public abstract class Spell : NetworkBehaviour
 {
 
     [SerializeField] private float cooldown;
-    protected bool canCast;
+    public bool canCast;
     protected float lastCast;
 
     private void Start()

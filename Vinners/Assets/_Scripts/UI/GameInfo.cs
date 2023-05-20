@@ -19,6 +19,7 @@ public class GameInfo : View
      * Current Wave
      */
     [SerializeField] private TextMeshProUGUI HP;
+    [SerializeField] private TextMeshProUGUI SkillReady;
 
     private void Update()
     {
@@ -29,5 +30,6 @@ public class GameInfo : View
         if (player == null || player.controlledCharacter == null) return;
        
         HP.text = $"HP: {player.controlledCharacter.currHealth}";
+        SkillReady.text = $"Skill Ready: {player.controlledCharacter.GetComponent<CastCharacter>().skill.canCast}";
     }
 }
