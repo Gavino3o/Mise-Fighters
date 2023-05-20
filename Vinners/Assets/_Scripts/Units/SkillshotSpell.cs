@@ -6,12 +6,12 @@ public class SkillshotSpell : Spell
 {
     [SerializeField] private GameObject projectile;
 
-    public override void Cast(Character character)
+    public override void Cast(Vector2 mousePos)
     {
         if (canCast)
         {
             GameObject obj = Instantiate(projectile, transform.position, transform.rotation);
-            Vector2 targetDir = character.gameObject.GetComponent<InputCharacter>().mousePos - new Vector2(transform.position.x, transform.position.y);
+            Vector2 targetDir = mousePos - new Vector2(transform.position.x, transform.position.y);
             obj.GetComponent<SkillshotMotion>().SetDirection(targetDir);
             ServerManager.Spawn(obj);
             canCast = false;

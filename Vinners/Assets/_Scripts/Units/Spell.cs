@@ -36,6 +36,6 @@ public abstract class Spell : NetworkBehaviour
     }
 
     // refactor to public void Cast(Character character)
-    public abstract void Cast(Character character);
+    public abstract void Cast(Vector2 v);
     
 }

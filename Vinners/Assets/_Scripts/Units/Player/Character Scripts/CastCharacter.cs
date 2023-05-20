@@ -49,15 +49,15 @@ public sealed class CastCharacter : NetworkBehaviour
 
         if (input.skillPressed)
         {
-            CastSkill();
+            CastSkill(input.mousePos);
         }
     }
 
     [ServerRpc]
     // maybe should pass the spell the character instead
-    public void CastSkill()
+    public void CastSkill(Vector2 mousePos)
     {
-        skill.Cast(GetComponent<Character>());
+        skill.Cast(mousePos);
     }
 
     [ObserversRpc]
