@@ -71,7 +71,7 @@ public class CharacterSelect : View
             if (startGameButton != null) startGameButton.gameObject.SetActive(true);
 
             startGameButton.onClick.AddListener(() => {
-                LobbyManager.Instance.StartGame();
+                GameManager.Instance.StartGame();
             });
 
             leaveButton.onClick.AddListener(() =>
@@ -103,7 +103,7 @@ public class CharacterSelect : View
         lockInButtonText.color = Player.LocalInstance.isLockedIn ? Color.green : Color.red;
 
         // Should only be able to start game if all players in the lobby are ready.
-        startGameButton.interactable = LobbyManager.Instance.canStart;
+        startGameButton.interactable = GameManager.Instance.canStart;
     }
 
 

@@ -1,8 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FishNet.Object;
 
-public class UIManager : MonoBehaviour
+public class UIManager : NetworkBehaviour
 {
     public static UIManager Instance { get; private set; }
 
@@ -10,9 +11,15 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
-        Instance = this;
+        if (Instance != null)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
     }
-
     public void Initialise()
     {
         foreach (View v in views) v.Initialise();
@@ -25,6 +32,4 @@ public class UIManager : MonoBehaviour
             if (v != null) v.gameObject.SetActive(v is T);
         }
     }
-
-    
 }

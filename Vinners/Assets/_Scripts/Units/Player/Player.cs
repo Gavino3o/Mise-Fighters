@@ -16,20 +16,15 @@ using System;
 
 public class Player : NetworkBehaviour
 {
-    // Local Instance of Player (per Owner)
     public static Player LocalInstance { get; private set; }
     
     [SyncVar] public string username = "unset";
     [SyncVar] public bool isLockedIn;
-    
-    // Every player has a reference to their controlled character and vice versa
     [SyncVar] public Character controlledCharacter;
     
     // just temporary until Characters get implemented
     [SerializeField] private GameObject characterPrefab;
 
-
-    // TODO: Redistribute responsibility? or is this fine...coz this is pretty much the only network object going between scenes
     public override void OnStartClient()
     {
         base.OnStartClient();
@@ -44,19 +39,11 @@ public class Player : NetworkBehaviour
        
     }
 
-    // TERRIBLE BUT WORKS FOR NOW, surely i will fix this later 
-    // somehow causes network manager to no longer recognise that i am host 
-    // details: characterselect ui initialises with the new network manager that gets deleted instantly, so ishost is defaulted false
-    public void ReinitialiseUI()
-    {
-        UIManager.Instance.Initialise();
-    }
-
     public override void OnStartServer()
     {
         base.OnStartServer();
-        LobbyManager.Instance.players.Add(this);
-        LobbyManager.Instance.playerCount++;
+        GameManager.Instance.players.Add(this);
+        GameManager.Instance.playerCount++;
     }
 
     /*
@@ -65,8 +52,8 @@ public class Player : NetworkBehaviour
     public override void OnStopServer()
     {
         base.OnStopServer();
-        LobbyManager.Instance.players.Remove(this);
-        LobbyManager.Instance.playerCount--;
+        GameManager.Instance.players.Remove(this);
+        GameManager.Instance.playerCount--;
     }
 
     private void FixedUpdate()

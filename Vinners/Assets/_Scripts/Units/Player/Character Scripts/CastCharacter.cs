@@ -24,8 +24,6 @@ public sealed class CastCharacter : NetworkBehaviour
         input = GetComponent<InputCharacter>();
         rigidBody = GetComponent<Rigidbody2D>();
         character = GetComponent<Character>();
-        
-        
     }
 
     public override void OnStartClient()
