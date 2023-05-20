@@ -14,12 +14,14 @@ public class MoveTowardsPlayer : NetworkBehaviour
     void Start()
     {
         if (!IsServer) return;
-        _player = GameObject.FindGameObjectWithTag("Player");
+
+        _player = GameObject.FindGameObjectWithTag("Player"); 
     }
 
     void Update()
     {
         if (!IsServer) return;
+
         _distanceFromPlayer = Vector2.Distance(transform.position, _player.transform.position);
         _direction = _player.transform.position - transform.position;
         transform.position = Vector2.MoveTowards(this.transform.position, _player.transform.position, _movementSpeed * Time.deltaTime);

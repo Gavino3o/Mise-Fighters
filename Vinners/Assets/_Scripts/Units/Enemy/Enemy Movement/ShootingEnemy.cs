@@ -15,9 +15,10 @@ public class ShootingEnemy : NetworkBehaviour
     public float _timeBetweenShots;
     public float _nextShotTime;
 
-    private void Start()
-    {
-        
+    public override void OnStartServer()
+    { 
+        base.OnStartServer();
+        _player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
 
