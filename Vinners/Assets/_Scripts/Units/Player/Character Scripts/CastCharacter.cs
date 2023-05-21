@@ -18,20 +18,16 @@ public sealed class CastCharacter : NetworkBehaviour
      * [SerializeField] private Spell[] spellList;
      */
 
-    public override void OnStartNetwork()
-    {
-        base.OnStartNetwork();
-        input = GetComponent<InputCharacter>();
-        rigidBody = GetComponent<Rigidbody2D>();
-        character = GetComponent<Character>();
-    }
-
     public override void OnStartClient()
     {
         base.OnStartClient();
         // have to spawn a dummy spellcaster object
         skill = Instantiate(skill, transform);
         ServerManager.Spawn(skill.gameObject, Owner);
+
+        input = GetComponent<InputCharacter>();
+        rigidBody = GetComponent<Rigidbody2D>();
+        character = GetComponent<Character>();
 
         /*
         * foreach (Spell spell in spellList) {
@@ -41,15 +37,12 @@ public sealed class CastCharacter : NetworkBehaviour
         */
     }
 
-    private void Update()
+    public void OnSkill()
     {
         if (!IsOwner) return;
-
-        if (input.skillPressed)
-        {
-            CastSkill(input.mousePos);
-        }
+        CastSkill(input.mousePos);
     }
+    
 
     [ServerRpc]
     // maybe should pass the spell the character instead
@@ -63,10 +56,4 @@ public sealed class CastCharacter : NetworkBehaviour
     {
         // after casting spell what to do
     }
-
-    public bool SkillCastable()
-    {
-        return skill.canCast;
-    }
-
 }

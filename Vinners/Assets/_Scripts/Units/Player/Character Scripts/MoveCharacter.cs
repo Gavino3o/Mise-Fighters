@@ -1,5 +1,6 @@
 using UnityEngine;
 using FishNet.Object;
+using UnityEngine.InputSystem;
 
 public sealed class MoveCharacter : NetworkBehaviour
 {
@@ -7,34 +8,24 @@ public sealed class MoveCharacter : NetworkBehaviour
     private Rigidbody2D rigidBody;
     private InputCharacter input;
 
-    public override void OnStartNetwork()
+    public override void OnStartClient()
     {
-        base.OnStartNetwork();
-        input = GetComponent<InputCharacter>();
-        rigidBody = GetComponent<Rigidbody2D>();
+        base.OnStartClient();
         character = GetComponent<Character>();
+        input = character.inputCharacter;
+        rigidBody = character.rb;
     }
 
     // handle movement, spellcasting which in turn handle the animations?
     private void Update()
     {
         if (!IsOwner) return;
+        if (Camera.main == null) return;
 
-        // Handle Movement
-        rigidBody.velocity = input.moveInput * character.currMoveSpeed;
-        
-        // Handle Direction Faced
+        rigidBody.velocity = 5f * character.currMoveSpeed * input.velocity;
+
         Vector2 targetDirection = input.mousePos - new Vector2(transform.position.x, transform.position.y);
         float angle = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg - 90;
         transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
-
-        /* TODO: if the z rotation is <0 should faceright, elsee faceleft
-         * Keeping track of direction faced is good.
-         * Should also keep track of mousePosition
-         */
     }
-
-
 }
-
-
