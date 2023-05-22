@@ -6,14 +6,19 @@ using UnityEditor;
 
 public class EnemyArcProjectile : EnemyProjectile
 {
-     public Vector3 _startPosition;
-     public Vector3 _targetPosition;
-     public float arcHeight;
+    public Vector3 _startPosition;
+    public Vector3 _targetPosition;
+    public float arcHeight;
+    public AutoTimer _timer;
+    [SerializeField] double _maxTimeActive;
 
     
-    void Start()
+    public override void OnStartServer()
     {
+        base.OnStartServer();
+
         _startPosition = transform.position;
+        _startPosition.z = 0;
         _targetPosition = GameObject.FindGameObjectWithTag("Player").transform.position;
     }
 
@@ -39,8 +44,7 @@ public class EnemyArcProjectile : EnemyProjectile
         transform.rotation = LookAt2D(nextPosition - transform.position);
         transform.position = nextPosition;
 
-        // Do something when we reach the target
-        if (nextPosition == _targetPosition)
+        if (Vector3.Distance(transform.position, _targetPosition) < 1f)
         {
             Arrived();
         }
@@ -52,7 +56,7 @@ public class EnemyArcProjectile : EnemyProjectile
         // TODO: Call methods/scripts to handle when a projectile lands on target position.
         // 1. Create an area that damages the player consistently over a period of time.
         // 2. A chuck of AOE Damage, like a bomb
-        Despawn(gameObject);
+        this.Despawn();
     }
 
     public Quaternion LookAt2D(Vector2 forward)
@@ -64,7 +68,7 @@ public class EnemyArcProjectile : EnemyProjectile
     {
         if (collision.CompareTag("Player"))
         {
-            Despawn(gameObject);
+            Arrived();
         }
     }
 }

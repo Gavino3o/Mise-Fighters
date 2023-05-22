@@ -8,8 +8,8 @@ using FishNet.Object.Synchronizing;
 public sealed class EnemyManager : NetworkBehaviour
 {
 
-    [SerializeField] private int enemyCount = 1;
-    private List<Enemy> activeEnemies = new List<Enemy>();
+    [SyncVar] private int enemyCount = 0;
+    private List<EnemyAI> activeEnemies = new List<EnemyAI>();
 
     public static EnemyManager Instance { get; private set; }
 
@@ -24,24 +24,33 @@ public sealed class EnemyManager : NetworkBehaviour
         EnemyManager.Instance = this;
     }
 
-    public static void AddActiveEnemy(Enemy enemy)
+    public static void AddActiveEnemy(EnemyAI enemy)
     {
         EnemyManager.Instance.activeEnemies.Add(enemy);
         IncrementCounter();
     }
-    public static void RemoveActiveEnemy(Enemy enemy)
+
+    public static void RemoveActiveEnemy(EnemyAI enemy)
     {
         EnemyManager.Instance.activeEnemies.Remove(enemy);
         DecrementCounter(); 
     }
+
+    public static void IncrementCounter(int increment)
+    {
+        EnemyManager.Instance.enemyCount += increment;
+    }
+
     public static void IncrementCounter()
     {
-        EnemyManager.Instance.enemyCount++;
+        EnemyManager.IncrementCounter(1);
     }
+
     public static void DecrementCounter()
     {
         EnemyManager.Instance.enemyCount--;
     }
+
     public static int GetEnemyCount()
     {
         return EnemyManager.Instance.enemyCount;

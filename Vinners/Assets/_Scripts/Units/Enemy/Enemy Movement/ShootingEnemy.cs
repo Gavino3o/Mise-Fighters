@@ -63,5 +63,4 @@ public class ShootingEnemy : NetworkBehaviour
         return Vector2.Distance(transform.position, _player.position) < _attackRange;
     }
 
-
 }

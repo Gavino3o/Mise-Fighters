@@ -7,12 +7,13 @@ using static UnityEngine.GraphicsBuffer;
 using FishNet.Object.Synchronizing;
 using System.IO;
 
-public class Enemy : NetworkBehaviour
+public class EnemyAI : NetworkBehaviour
 {
 
     [SyncVar] protected double _currentHealth;
-    [SyncVar] private Transform _target;
     [SerializeField] public double _maxHealth;
+
+    [SyncVar] private Transform _target;
     [SerializeField] public float _speed;
     
     public int _damage;
@@ -41,7 +42,6 @@ public class Enemy : NetworkBehaviour
             //GetComponent<AIDestinationSetter>().enabled = false;
             //GetComponent<Seeker>().enabled = false;
             //_pathFinder.enabled = false;
-
         }
     }
 
@@ -55,6 +55,7 @@ public class Enemy : NetworkBehaviour
         }
     }
 
+    // TODO: Take damage from player projectile or melee attacks
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))

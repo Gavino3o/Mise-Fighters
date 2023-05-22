@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 137df97faff98b0468632a8dfaa49c60, type: 3}
-  m_Name: EnemySpawnerDataTest
+  m_Name: EnemySpawnerDataTest2
   m_EditorClassIdentifier: 
   enemyPrefabs:
-  - {fileID: 919057367800708675, guid: 437a666811a9f2b4b85c90b2320944e8, type: 3}
   - {fileID: 8277693815982834789, guid: 8bcf44a1585ea004a939904348a2fb6c, type: 3}
+  - {fileID: 919057367800708675, guid: 437a666811a9f2b4b85c90b2320944e8, type: 3}
   - {fileID: 682901249522065329, guid: 84ecbdd684cfc2048862f7a65539233d, type: 3}
   bossPrefabs: []
   spawnRate: 2
   spawnLocations:
-  - {fileID: 8380763354853290554, guid: d9053e8eabbd09b47818c4d21b165ef0, type: 3}
-  - {fileID: 7770532008321653625, guid: 575e43eaf662fc54f8a899b59751a860, type: 3}
+  - {fileID: 7399066991784619726, guid: 743e656f0986ff941b9fa6a23fc609c0, type: 3}
+  - {fileID: 8258968739456964765, guid: 1e25a2325547b5147b551a5c15265ef5, type: 3}
   maxEnemies: 10

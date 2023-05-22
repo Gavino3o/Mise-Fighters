@@ -26,4 +26,5 @@ public class MoveTowardsPlayer : NetworkBehaviour
         _direction = _player.transform.position - transform.position;
         transform.position = Vector2.MoveTowards(this.transform.position, _player.transform.position, _movementSpeed * Time.deltaTime);
     }
+
 }

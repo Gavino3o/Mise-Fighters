@@ -29,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6489842854619905979}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.583948, y: 0.20488533, z: -0.1901465}
+  m_LocalPosition: {x: 3.583948, y: 0.20488533, z: 0}
   m_LocalScale: {x: 300, y: 300, z: 300}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -72,7 +72,9 @@ MonoBehaviour:
   _speed: 500
   _startPosition: {x: 0, y: 0, z: 0}
   _targetPosition: {x: 0, y: 0, z: 0}
-  arcHeight: 250
+  arcHeight: 100
+  _timer: {fileID: 0}
+  _maxTimeActive: 0
 --- !u!114 &2945851674530158077
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -98,7 +100,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 11
+  <PrefabId>k__BackingField: 12
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 4169078065
   <SceneId>k__BackingField: 0

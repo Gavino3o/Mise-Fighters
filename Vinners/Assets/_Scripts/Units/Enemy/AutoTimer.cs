@@ -83,4 +83,9 @@ public class AutoTimer : MonoBehaviour
     {
         _isActive = true;
     }
+
+    public bool IsOver()
+    {
+        return _isActive;
+    }
 }
