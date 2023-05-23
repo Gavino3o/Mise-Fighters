@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 137df97faff98b0468632a8dfaa49c60, type: 3}
+  m_Name: EnemySpawnerDataTest2
+  m_EditorClassIdentifier: 
+  enemyPrefabs:
+  - {fileID: 8277693815982834789, guid: 8bcf44a1585ea004a939904348a2fb6c, type: 3}
+  - {fileID: 919057367800708675, guid: 437a666811a9f2b4b85c90b2320944e8, type: 3}
+  - {fileID: 682901249522065329, guid: 84ecbdd684cfc2048862f7a65539233d, type: 3}
+  bossPrefabs: []
+  spawnRate: 2
+  spawnLocations:
+  - {fileID: 7399066991784619726, guid: 743e656f0986ff941b9fa6a23fc609c0, type: 3}
+  - {fileID: 8258968739456964765, guid: 1e25a2325547b5147b551a5c15265ef5, type: 3}
+  maxEnemies: 10

@@ -1,14 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using FishNet.Object;
+using FishNet.Connection;
+using FishNet.Object.Synchronizing;
 
-public sealed class EnemyManager : MonoBehaviour
+public sealed class EnemyManager : NetworkBehaviour
 {
-    [SerializeField]
-    private int enemyCount = 1;
 
-    //TODO: Find uses for tracking active enemies
-    private List<Enemy> activeEnemies = new List<Enemy>();
+    [SyncVar] private int enemyCount = 0;
+    private List<EnemyAI> activeEnemies = new List<EnemyAI>();
 
     public static EnemyManager Instance { get; private set; }
 
@@ -17,14 +18,39 @@ public sealed class EnemyManager : MonoBehaviour
         Instance = this;
     }
 
+    public override void OnStartServer()
+    {
+        base.OnStartServer();
+        EnemyManager.Instance = this;
+    }
+
+    public static void AddActiveEnemy(EnemyAI enemy)
+    {
+        EnemyManager.Instance.activeEnemies.Add(enemy);
+        IncrementCounter();
+    }
+
+    public static void RemoveActiveEnemy(EnemyAI enemy)
+    {
+        EnemyManager.Instance.activeEnemies.Remove(enemy);
+        DecrementCounter(); 
+    }
+
+    public static void IncrementCounter(int increment)
+    {
+        EnemyManager.Instance.enemyCount += increment;
+    }
+
     public static void IncrementCounter()
     {
-        EnemyManager.Instance.enemyCount++;
+        EnemyManager.IncrementCounter(1);
     }
+
     public static void DecrementCounter()
     {
         EnemyManager.Instance.enemyCount--;
     }
+
     public static int GetEnemyCount()
     {
         return EnemyManager.Instance.enemyCount;
