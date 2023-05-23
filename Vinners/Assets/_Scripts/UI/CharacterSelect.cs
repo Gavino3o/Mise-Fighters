@@ -40,7 +40,7 @@ public class CharacterSelect : View
         nextCharacterButton.onClick.AddListener(() =>
         {
             currCharacterIndex = (currCharacterIndex + 1) % characterList.Count;
-            Player.LocalInstance.ChooseCharacter(characterList[currCharacterIndex]);
+            Player.LocalInstance.ServerChooseCharacter(characterList[currCharacterIndex]);
             // characterDisplayPanel = characterList[currCharacterIndex].characterSprite
         });
 
@@ -48,7 +48,7 @@ public class CharacterSelect : View
         {
             // math here might be wrong
             currCharacterIndex = (currCharacterIndex + characterList.Count - 1) % characterList.Count;
-            Player.LocalInstance.ChooseCharacter(characterList[currCharacterIndex]);
+            Player.LocalInstance.ServerChooseCharacter(characterList[currCharacterIndex]);
             // characterDisplayPanel = characterList[currCharacterIndex].characterSprite
         });
 
@@ -61,31 +61,32 @@ public class CharacterSelect : View
 
         });
 
-        inputUsernameField.onEndEdit.AddListener(playerInput => Player.LocalInstance.SetUsername(playerInput));
+        inputUsernameField.onEndEdit.AddListener(playerInput => Player.LocalInstance.ServerSetUsername(playerInput));
+        
         /*
          * Only the Host should have access to the start button
          */
         if (InstanceFinder.IsHost)
         {
+            if (startGameButton != null) startGameButton.gameObject.SetActive(true);
+
             startGameButton.onClick.AddListener(() => {
                 GameManager.Instance.StartGame();
             });
 
             leaveButton.onClick.AddListener(() =>
             {
-                InstanceFinder.ServerManager.StopConnection(true);
+                InstanceFinder.ServerManager.StopConnection(false);
                 InstanceFinder.ClientManager.StopConnection();
-                // Destroy(InstanceFinder.NetworkManager);
+               
             });
 
-            startGameButton.gameObject.SetActive(true);
         } else
         {
-            startGameButton.gameObject.SetActive(false);
+            if (startGameButton != null) startGameButton.gameObject.SetActive(false);
 
             leaveButton.onClick.AddListener(() => {
                 InstanceFinder.ClientManager.StopConnection();
-                // Destroy(InstanceFinder.NetworkManager);
             });
             
         }

@@ -21,11 +21,20 @@ public sealed class GameManager : NetworkBehaviour
     [SyncObject] public readonly SyncList<Player> players = new();
  
     [SyncVar] public bool canStart;
+
+    // just for debugging purposes
+    [SyncVar] public int playerCount;
     
     private void Awake()
     {
-        Instance = this;
-
+        
+        if (Instance != null)
+        {
+            Destroy(this);
+        } else
+        {
+            Instance = this;
+        }
     }
 
     /*
@@ -50,27 +59,29 @@ public sealed class GameManager : NetworkBehaviour
         if (!canStart) return;
         // change scene maybe change scene global should bring all players with it.
         // then we just use those player objects to spawn their characters
+
+        ChangeScene("AlvinScene");
+
         for (int i = 0; i < players.Count; i++)
         {
             players[i].SpawnCharacter();
         }
-        ChangeScene("AlvinScene");
     }
 
-    
     [Server]
     public void ChangeScene(string sceneName)
     {
-        SceneLoadData sld = new (sceneName);
-        List<NetworkObject> movedObjects = new List<NetworkObject>();
+        SceneLoadData sld = new(sceneName);
+        List<NetworkObject> movedObjects = new();
         foreach (NetworkConnection item in InstanceFinder.ServerManager.Clients.Values)
         {
             foreach (NetworkObject nob in item.Objects)
                 movedObjects.Add(nob);
         }
+
         sld.MovedNetworkObjects = movedObjects.ToArray();
         sld.ReplaceScenes = ReplaceOption.All;
         InstanceFinder.SceneManager.LoadGlobalScenes(sld);
-        
     }
+
 }

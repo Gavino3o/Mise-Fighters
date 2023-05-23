@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using FishNet.Object;
 using FishNet.Object.Synchronizing;
+using FishNet.Managing.Scened;
 using FishNet.Connection;
+using System;
 
 /*
  * The Player class is responsible for information relating to a player's account (their username, connection status
@@ -14,35 +16,34 @@ using FishNet.Connection;
 
 public class Player : NetworkBehaviour
 {
-    // Local Instance of Player (per Owner)
     public static Player LocalInstance { get; private set; }
     
     [SyncVar] public string username = "unset";
     [SyncVar] public bool isLockedIn;
-    
-    // Every player has a reference to their controlled character and vice versa
     [SyncVar] public Character controlledCharacter;
     
     // just temporary until Characters get implemented
     [SerializeField] private GameObject characterPrefab;
 
-    public override void OnStartNetwork()
+    public override void OnStartClient()
     {
-        base.OnStartNetwork();
+        base.OnStartClient();
 
-        if (!base.Owner.IsLocalClient)
+        if (!base.IsOwner)
             return;
 
         LocalInstance = this;
 
-        UIManager.Instance.Initialise();
-        UIManager.Instance.Show<CharacterSelect>();
+        UIManager.LocalInstance.Initialise();
+        UIManager.LocalInstance.Show<CharacterSelect>();
+       
     }
 
     public override void OnStartServer()
     {
         base.OnStartServer();
         GameManager.Instance.players.Add(this);
+        GameManager.Instance.playerCount++;
     }
 
     /*
@@ -52,6 +53,7 @@ public class Player : NetworkBehaviour
     {
         base.OnStopServer();
         GameManager.Instance.players.Remove(this);
+        GameManager.Instance.playerCount--;
     }
 
     private void FixedUpdate()
@@ -63,11 +65,11 @@ public class Player : NetworkBehaviour
      * Assigns the player's chosen Character.
      */
     [ServerRpc] 
-    public void ChooseCharacter(GameObject character)
+    public void ServerChooseCharacter(GameObject character)
     {
         characterPrefab = character;
     }
-    
+
     /*
      * Informs the server that this player has locked in. This function is called from the Ready Button.
      */
@@ -77,16 +79,12 @@ public class Player : NetworkBehaviour
         isLockedIn = value;
     }
 
-    // TODO: instead of this one serverrpc call, we should use a usename manager so that all usernames are synced across all clients.
-    // currently players can only see their own username and client only knows its own username. Not that important right now.
-    [ServerRpc(RequireOwnership = true)]
-    public void SetUsername(string s)
+    [ServerRpc]
+    public void ServerSetUsername(string s)
     {
-        if (s != null)
-        {
-            username = s;
-        }
+        if (s != null) username = s;
     }
+
     /*
      * Upon game start, spawns the Player Object and handles the UI changes
      */
@@ -94,6 +92,7 @@ public class Player : NetworkBehaviour
     {
         GameObject instance = Instantiate(characterPrefab);
         Spawn(instance, Owner);
+        controlledCharacter = instance.GetComponent<Character>();
         TargetCharacterSpawned(Owner);
     }
 
@@ -102,8 +101,7 @@ public class Player : NetworkBehaviour
      */
     [TargetRpc]
     private void TargetCharacterSpawned(NetworkConnection conn)
-    {   
-        UIManager.Instance.Show<GameInfo>();
-        
+    {
+        UIManager.LocalInstance.Show<GameInfo>();   
     }
 }

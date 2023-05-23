@@ -3,7 +3,7 @@ using FishNet.Managing;
 using UnityEngine;
 using UnityEngine.UI;
 
-public sealed class MainMenu : MonoBehaviour
+public sealed class MainMenu : View
 {
     // host and join both have to load the character select lobby scene
     // options to change keybinds
@@ -12,11 +12,9 @@ public sealed class MainMenu : MonoBehaviour
     [SerializeField] private Button joinButton;
     [SerializeField] private Button optionsButton;
     [SerializeField] private Button quitButton;
-    // [SerializeField] private NetworkManager manager;
 
     private void Start()
     {
-        // Instantiate(manager);
 
         hostButton.onClick.AddListener(() =>
         {

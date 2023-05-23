@@ -2,44 +2,37 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using FishNet.Object;
+using UnityEngine.InputSystem;
 
-
-public sealed class InputCharacter : NetworkBehaviour
+public sealed class InputCharacter : MonoBehaviour
 {
-    [SerializeField] private float funFactor = 5f; 
-    
+
     private PlayerActions _playerActions;
 
-    // all information required by external input handling classes
-    public Vector2 moveInput;
-    public Vector3 mousePos;
-    public bool skillPressed;
+    public Vector2 velocity;
+    public Vector2 mousePos;
 
     // reading local playerinput and updating this information inside itself
-    public override void OnStartNetwork()
+    private void OnEnable()
     {
-        base.OnStartNetwork();
-
         _playerActions = new PlayerActions();
         _playerActions.PlayerInput.Enable();
-
-        
     }
 
-    public override void OnStopNetwork()
+    private void OnDisable()
     {
-        base.OnStopNetwork();
         _playerActions.PlayerInput.Disable();
     }
-
-    private void Update()
+    public void OnMovement(InputValue value)
     {
-        if (!IsOwner) return;
+        velocity = value.Get<Vector2>();
 
-        if (_playerActions == null || Camera.main == null) return;
-
-        moveInput = _playerActions.PlayerInput.Movement.ReadValue<Vector2>() * funFactor;
-        mousePos = Camera.main.ScreenToWorldPoint(_playerActions.PlayerInput.Aim.ReadValue<Vector2>());
-        skillPressed = _playerActions.PlayerInput.Skill.triggered;
     }
+
+    public void OnAim(InputValue value)
+    {
+        if (Camera.main == null) return;
+        mousePos = Camera.main.ScreenToWorldPoint(value.Get<Vector2>());
+    }
+
 }
