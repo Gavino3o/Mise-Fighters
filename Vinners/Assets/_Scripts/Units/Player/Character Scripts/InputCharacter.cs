@@ -6,11 +6,11 @@ using UnityEngine.InputSystem;
 
 public sealed class InputCharacter : MonoBehaviour
 {
-
     private PlayerActions _playerActions;
 
     public Vector2 velocity;
     public Vector2 mousePos;
+    public Vector2 targetDirection;
 
     // reading local playerinput and updating this information inside itself
     private void OnEnable()
@@ -33,6 +33,7 @@ public sealed class InputCharacter : MonoBehaviour
     {
         if (Camera.main == null) return;
         mousePos = Camera.main.ScreenToWorldPoint(value.Get<Vector2>());
+        targetDirection = (mousePos - new Vector2(transform.position.x, transform.position.y)).normalized;
     }
 
 }

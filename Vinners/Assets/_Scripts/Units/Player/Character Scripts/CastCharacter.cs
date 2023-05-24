@@ -2,58 +2,35 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using FishNet.Object;
+using UnityEngine.InputSystem;
+using System;
 
-public sealed class CastCharacter : NetworkBehaviour
+public class CastCharacter : NetworkBehaviour
 {
-    private Character character; 
-    private Rigidbody2D rigidBody;
-    private InputCharacter input;
+    protected InputCharacter input;
+    protected Character character;
+    protected Rigidbody2D rigidBody;
+    protected MoveCharacter movement;
 
-    // TODO: implement spell functionality
-    [SerializeField] public Spell skill;
-    // [SerializeField] private Spell dash;
-    // [SerializeField] private Spell ultimate;
-
-    /*
-     * [SerializeField] private Spell[] spellList;
-     */
+    public SpellData[] spellData = new SpellData[3];
+    public readonly bool[] canCast = new bool[3];
 
     public override void OnStartClient()
     {
         base.OnStartClient();
-        // have to spawn a dummy spellcaster object
-        skill = Instantiate(skill, transform);
-        ServerManager.Spawn(skill.gameObject, Owner);
-
+        character = GetComponent<Character>();
         input = GetComponent<InputCharacter>();
         rigidBody = GetComponent<Rigidbody2D>();
-        character = GetComponent<Character>();
+        movement = GetComponent<MoveCharacter>();
 
-        /*
-        * foreach (Spell spell in spellList) {
-        *   spell = Instantiate(spell, transform);
-        *   Spawn(spell.gameObject, Owner);
-        * }
-        */
+        Array.Fill(canCast, true);
     }
 
-    public void OnSkill()
+    // for now just a dummy class so that the Gameinfo can access it
+    public IEnumerator Cooldown(int id)
     {
-        if (!IsOwner) return;
-        CastSkill(input.mousePos);
-    }
-    
-
-    [ServerRpc]
-    // maybe should pass the spell the character instead
-    public void CastSkill(Vector2 mousePos)
-    {
-        skill.Cast(mousePos);
-    }
-
-    [ObserversRpc]
-    public void HandleSpellCast()
-    {
-        // after casting spell what to do
+        canCast[id] = false;
+        yield return new WaitForSeconds(spellData[id].cooldown);
+        canCast[id] = true;
     }
 }

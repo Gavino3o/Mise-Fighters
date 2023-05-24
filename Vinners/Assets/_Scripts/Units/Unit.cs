@@ -35,16 +35,40 @@ public abstract class Unit : NetworkBehaviour
         }
     }
 
-    public void InflictStatus()
+    public void ApplyStatusEffect(StatusEffectData sed)
     {
-
+        StartCoroutine(Cripple(sed.attackMultiplier, sed.durationSeconds));
+        StartCoroutine(Slow(sed.moveSpeedMultiplier, sed.durationSeconds));
+        StartCoroutine(Dot(sed.damageOverTime, sed.durationSeconds));
     }
 
-    public void HandleStatus()
+    #region Status Effect Coroutines
+    public IEnumerator Cripple(float multiplier, float duration)
     {
-
+        float original = currAttack;
+        currAttack *= multiplier;
+        yield return new WaitForSeconds(duration);
+        currAttack = original;
     }
 
+    public IEnumerator Slow(float multiplier, float duration)
+    {
+        float original = currMoveSpeed;
+        currMoveSpeed *= multiplier;
+        yield return new WaitForSeconds(duration);
+        currMoveSpeed = original;
+    }
 
+    public IEnumerator Dot(float dmg, float duration)
+    {
+        float endTime = Time.time + duration;
+        while (Time.time < endTime)
+        {
+            TakeDamage(dmg);
+            yield return new WaitForSeconds(0.5f);
+        }
+    }
+
+    #endregion
 
 }

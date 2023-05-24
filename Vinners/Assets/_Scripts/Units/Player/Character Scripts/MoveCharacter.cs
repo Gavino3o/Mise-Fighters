@@ -4,16 +4,18 @@ using UnityEngine.InputSystem;
 
 public sealed class MoveCharacter : NetworkBehaviour
 {
-    private Character character;
+    public Character character;
     private Rigidbody2D rigidBody;
-    private InputCharacter input;
+    public InputCharacter input;
+
+    public bool interrupted;
 
     public override void OnStartClient()
     {
         base.OnStartClient();
         character = GetComponent<Character>();
-        input = character.inputCharacter;
-        rigidBody = character.rb;
+        input = GetComponent<InputCharacter>();
+        rigidBody = GetComponent<Rigidbody2D>();
     }
 
     // handle movement, spellcasting which in turn handle the animations?
@@ -21,11 +23,11 @@ public sealed class MoveCharacter : NetworkBehaviour
     {
         if (!IsOwner) return;
         if (Camera.main == null) return;
+        if (interrupted) return;
 
         rigidBody.velocity = 5f * character.currMoveSpeed * input.velocity;
-
-        Vector2 targetDirection = input.mousePos - new Vector2(transform.position.x, transform.position.y);
-        float angle = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg - 90;
+ 
+        float angle = Mathf.Atan2(input.targetDirection.y, input.targetDirection.x) * Mathf.Rad2Deg - 90;
         transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
     }
 }

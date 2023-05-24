@@ -93,6 +93,7 @@ public class Player : NetworkBehaviour
         GameObject instance = Instantiate(characterPrefab);
         Spawn(instance, Owner);
         controlledCharacter = instance.GetComponent<Character>();
+        controlledCharacter.controllingPlayer = this;
         TargetCharacterSpawned(Owner);
     }
 

@@ -15,7 +15,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &8042651700065389809
 Transform:
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 2747690628134850419, guid: b670ab75dde984907b8570040daa08c5, type: 3}
-  m_Color: {r: 0.48235294, g: 0.8862745, b: 0.63555145, a: 1}
+  m_Color: {r: 0.6886792, g: 0.26962438, b: 0.37190393, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -102,7 +102,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!224 &8486591343061734130
 RectTransform:
@@ -216,7 +216,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!224 &2213509280642668296
 RectTransform:
@@ -387,7 +387,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &2433320975050064457
 Transform:
@@ -468,10 +468,10 @@ GameObject:
   - component: {fileID: 933609652824942408}
   - component: {fileID: -2564277016632147628}
   - component: {fileID: 1961037721474852110}
-  - component: {fileID: 7143522996336301811}
   - component: {fileID: 1705328312430460625}
+  - component: {fileID: 7143522996336301811}
+  - component: {fileID: 4222959443470227111}
   - component: {fileID: 8302944292573092573}
-  - component: {fileID: 980857921476991205}
   - component: {fileID: 1172006343598844436}
   - component: {fileID: 716281723751957937}
   - component: {fileID: 5376647301302664577}
@@ -481,7 +481,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!4 &7526849378730878645
 Transform:
@@ -535,7 +535,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Actions: {fileID: -944628639613478452, guid: 8003e28abd2680f4b981a12c00eba2ee, type: 3}
-  m_NotificationBehavior: 1
+  m_NotificationBehavior: 0
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -546,7 +546,31 @@ MonoBehaviour:
   m_ControlsChangedEvent:
     m_PersistentCalls:
       m_Calls: []
-  m_ActionEvents: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ac5b748f-ad58-456f-9e9d-7495fc02f737
+    m_ActionName: PlayerInput/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 112ee557-d260-401d-8daf-fd7004914242
+    m_ActionName: PlayerInput/Aim[/Mouse/position]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9f790cc8-f07a-4f48-b65c-f619a366a248
+    m_ActionName: PlayerInput/Skill[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ed4c5cd5-60ae-4808-a377-a4120e79c3f1
+    m_ActionName: PlayerInput/Dash[/Keyboard/leftShift]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d2ebb6fd-96e6-47d8-81fd-1817bdcb3133
+    m_ActionName: PlayerInput/Ultimate[/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 137e9fee-1b33-4b45-8ebb-eb65d05ee98b
+    m_ActionName: PlayerInput/Revive[/Keyboard/f]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: PlayerInput
@@ -575,27 +599,6 @@ MonoBehaviour:
   characterSplash: {fileID: 0}
   controllingPlayer: {fileID: 0}
   usernameDisplay: {fileID: 6935388049523391863}
-  inputCharacter: {fileID: 0}
-  attackCharacter: {fileID: 0}
-  moveCharacter: {fileID: 0}
-  castCharacter: {fileID: 0}
-  rb: {fileID: 0}
---- !u!114 &7143522996336301811
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8735874033422930139}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e34939c63e48e0b4092218cda3079d96, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _componentIndexCache: 5
-  _addedNetworkObject: {fileID: 1172006343598844436}
-  _networkObjectCache: {fileID: 1172006343598844436}
-  projectile: {fileID: 8791335468521538598, guid: a6a510987340e9b46aeb18a606847f80, type: 3}
 --- !u!114 &1705328312430460625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -610,6 +613,47 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocity: {x: 0, y: 0}
   mousePos: {x: 0, y: 0}
+  targetDirection: {x: 0, y: 0}
+--- !u!114 &7143522996336301811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8735874033422930139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e34939c63e48e0b4092218cda3079d96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _componentIndexCache: 1
+  _addedNetworkObject: {fileID: 1172006343598844436}
+  _networkObjectCache: {fileID: 1172006343598844436}
+  character: {fileID: 0}
+  input: {fileID: 0}
+  projectile: {fileID: 2311875031635309704, guid: 69d3dc39f4cce7b408691ba5d0d13e12, type: 3}
+--- !u!114 &4222959443470227111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8735874033422930139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2110108bcdcc79478ae4e21f9ca3e2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _componentIndexCache: 2
+  _addedNetworkObject: {fileID: 1172006343598844436}
+  _networkObjectCache: {fileID: 1172006343598844436}
+  spellData:
+  - {fileID: 11400000, guid: 65354cbbedc72ce4f842f5fad2fb9334, type: 2}
+  - {fileID: 11400000, guid: 55b93550f7c19e947831928b2292f59d, type: 2}
+  - {fileID: 0}
+  bombSpellPrefab: {fileID: 6848911510146320331, guid: be3491550470a5045bc42785cbb39c08, type: 3}
+  dashSpeed: 5
+  chargeTime: 0.3
 --- !u!114 &8302944292573092573
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -622,25 +666,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f621cb01bc490b140a0c4a50acf5612a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 1
+  _componentIndexCache: 3
   _addedNetworkObject: {fileID: 1172006343598844436}
   _networkObjectCache: {fileID: 1172006343598844436}
---- !u!114 &980857921476991205
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8735874033422930139}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc6fb0a613e4f534cb40092ef651e755, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _componentIndexCache: 2
-  _addedNetworkObject: {fileID: 1172006343598844436}
-  _networkObjectCache: {fileID: 1172006343598844436}
-  skill: {fileID: 4409608183563506044, guid: a380ff20a3f3bb548b809ff8173a85ee, type: 3}
+  character: {fileID: 0}
+  input: {fileID: 0}
+  interrupted: 0
 --- !u!114 &1172006343598844436
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -658,11 +689,11 @@ MonoBehaviour:
   <PredictedSpawn>k__BackingField: {fileID: 0}
   _networkBehaviours:
   - {fileID: 1961037721474852110}
+  - {fileID: 7143522996336301811}
+  - {fileID: 4222959443470227111}
   - {fileID: 8302944292573092573}
-  - {fileID: 980857921476991205}
   - {fileID: 716281723751957937}
   - {fileID: 5376647301302664577}
-  - {fileID: 7143522996336301811}
   <ParentNetworkObject>k__BackingField: {fileID: 0}
   <ChildNetworkObjects>k__BackingField: []
   _isNetworked: 1
@@ -670,7 +701,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 1
+  <PrefabId>k__BackingField: 2
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 0
   <SceneId>k__BackingField: 0
@@ -689,7 +720,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2836e36774ca1c4bbbee976e17b649c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 3
+  _componentIndexCache: 4
   _addedNetworkObject: {fileID: 1172006343598844436}
   _networkObjectCache: {fileID: 1172006343598844436}
   _componentConfiguration: 0
@@ -731,7 +762,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57e463bf38363f7419b66e610f08406a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 4
+  _componentIndexCache: 5
   _addedNetworkObject: {fileID: 1172006343598844436}
   _networkObjectCache: {fileID: 1172006343598844436}
 --- !u!58 &8302210857773574313

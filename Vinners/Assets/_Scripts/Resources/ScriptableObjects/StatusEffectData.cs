@@ -5,10 +5,11 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "GameData/StatusEffectData")]
 public class StatusEffectData : ScriptableObject
 {
-    public float durationSeconds;
-    public float damageOverTime;
-    public float attackDecrease;
-    public float movementDecrease;
+    public string effectName;
+    public float durationSeconds = 0;
+    public float damageOverTime = 0;
+    public float attackMultiplier = 1;
+    public float moveSpeedMultiplier = 1;
     // public VisualEffect visualEffect;
 
 }
