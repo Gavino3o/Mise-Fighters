@@ -21,18 +21,14 @@ public class AttackCharacter : NetworkBehaviour
         rigidBody = GetComponent<Rigidbody2D>();
     }
 
-    private void Start()
-    {
-        
-    }
-
     private void Update()
     {
         if (!IsOwner) return;
 
         if (Time.time - lastAttacked < character.currAttackSpeed) return;
         lastAttacked = Time.time;
-        AutoAttack();
+        // Values have to be passed outside the serverrpc call!
+        if (input.targetDirection != Vector2.zero) AutoAttack(input.targetDirection);
         
     }
 
@@ -41,7 +37,7 @@ public class AttackCharacter : NetworkBehaviour
      * Instantiates the prefab at the current position and sets its parameters.
      */
     [ServerRpc]
-    public void AutoAttack()
+    public void AutoAttack(Vector2 targetDirection)
     {
         GameObject obj = Instantiate(projectile, transform.position, transform.rotation);
         CharacterDamager dmger = obj.GetComponent<CharacterDamager>();
@@ -53,8 +49,8 @@ public class AttackCharacter : NetworkBehaviour
         SkillshotMotion motion = obj.GetComponent<SkillshotMotion>();
         if (motion != null)
         {
-            motion.movementDirection = input.targetDirection;
-            Debug.Log($"direction assigned to {input.targetDirection.x}, {input.targetDirection.y}");
+            motion.movementDirection = targetDirection;
+            Debug.Log($"direction assigned to {targetDirection.x}, {targetDirection.y}");
         }
         ServerManager.Spawn(obj);
         Debug.Log($"{gameObject} controlled by {Owner} attacks!");

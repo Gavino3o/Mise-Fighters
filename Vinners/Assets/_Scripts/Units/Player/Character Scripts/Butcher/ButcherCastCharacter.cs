@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using FishNet.Object;
 using System;
+using UnityEngine.InputSystem;
 
 public class ButcherCastCharacter : NetworkBehaviour
 {

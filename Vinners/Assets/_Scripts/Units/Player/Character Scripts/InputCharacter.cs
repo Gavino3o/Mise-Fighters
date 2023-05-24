@@ -6,7 +6,6 @@ using UnityEngine.InputSystem;
 
 public sealed class InputCharacter : MonoBehaviour
 {
-
     private PlayerActions _playerActions;
 
     public Vector2 velocity;

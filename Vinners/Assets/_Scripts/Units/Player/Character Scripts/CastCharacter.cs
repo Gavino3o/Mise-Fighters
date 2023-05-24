@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using FishNet.Object;
+using UnityEngine.InputSystem;
 
 public sealed class CastCharacter : NetworkBehaviour
 {

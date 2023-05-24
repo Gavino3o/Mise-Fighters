@@ -546,7 +546,31 @@ MonoBehaviour:
   m_ControlsChangedEvent:
     m_PersistentCalls:
       m_Calls: []
-  m_ActionEvents: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ac5b748f-ad58-456f-9e9d-7495fc02f737
+    m_ActionName: PlayerInput/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 112ee557-d260-401d-8daf-fd7004914242
+    m_ActionName: PlayerInput/Aim[/Mouse/position]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 9f790cc8-f07a-4f48-b65c-f619a366a248
+    m_ActionName: PlayerInput/Skill[/Keyboard/e]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: ed4c5cd5-60ae-4808-a377-a4120e79c3f1
+    m_ActionName: PlayerInput/Dash[/Keyboard/leftShift]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d2ebb6fd-96e6-47d8-81fd-1817bdcb3133
+    m_ActionName: PlayerInput/Ultimate[/Keyboard/q]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 137e9fee-1b33-4b45-8ebb-eb65d05ee98b
+    m_ActionName: PlayerInput/Revive[/Keyboard/f]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: PlayerInput
@@ -605,6 +629,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b9d9d77db8a526746870c217e8a2bafd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _componentIndexCache: 2
+  _addedNetworkObject: {fileID: 1172006343598844436}
+  _networkObjectCache: {fileID: 1172006343598844436}
   velocity: {x: 0, y: 0}
   mousePos: {x: 0, y: 0}
   targetDirection: {x: 0, y: 0}
@@ -620,7 +647,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f621cb01bc490b140a0c4a50acf5612a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 2
+  _componentIndexCache: 3
   _addedNetworkObject: {fileID: 1172006343598844436}
   _networkObjectCache: {fileID: 1172006343598844436}
   character: {fileID: 0}
@@ -638,7 +665,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ce43baeefdd47da45b064c39a0d24476, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 3
+  _componentIndexCache: 4
   _addedNetworkObject: {fileID: 1172006343598844436}
   _networkObjectCache: {fileID: 1172006343598844436}
   spellData:
@@ -667,6 +694,7 @@ MonoBehaviour:
   _networkBehaviours:
   - {fileID: 6967667816943390858}
   - {fileID: 2420685106880469003}
+  - {fileID: 2670663749148832099}
   - {fileID: 8302944292573092573}
   - {fileID: -4938459271400517951}
   - {fileID: 716281723751957937}
@@ -697,7 +725,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2836e36774ca1c4bbbee976e17b649c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 4
+  _componentIndexCache: 5
   _addedNetworkObject: {fileID: 1172006343598844436}
   _networkObjectCache: {fileID: 1172006343598844436}
   _componentConfiguration: 0
@@ -739,7 +767,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57e463bf38363f7419b66e610f08406a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 5
+  _componentIndexCache: 6
   _addedNetworkObject: {fileID: 1172006343598844436}
   _networkObjectCache: {fileID: 1172006343598844436}
 --- !u!58 &1644733848970717618
