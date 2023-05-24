@@ -4,19 +4,19 @@ using UnityEngine;
 using FishNet.Object;
 using System;
 using UnityEngine.InputSystem;
-
-public class ButcherCastCharacter : CastCharacter
+public class BartenderCastCharacter : CastCharacter
 {
-    # region Taunt skill
-    [Header("Taunt Skill")]
-    [SerializeField] private GameObject tauntSpellPrefab;
+    #region Bomb skill
+    [Header("Bomb Skill")]
+    [SerializeField] private GameObject bombSpellPrefab;
+
     public void OnSkill()
     {
         if (!IsOwner) return;
         if (base.canCast[0])
         {
             StartCoroutine(Cooldown(0));
-            CastTauntSkill();
+            CastBombSkill();
             Debug.Log("Spell casted");
         }
         else
@@ -26,9 +26,9 @@ public class ButcherCastCharacter : CastCharacter
     }
 
     [ServerRpc]
-    public void CastTauntSkill()
+    public void CastBombSkill()
     {
-        GameObject obj = Instantiate(tauntSpellPrefab, transform);
+        GameObject obj = Instantiate(bombSpellPrefab, new Vector3(input.mousePos.x, input.mousePos.y, 0f), transform.rotation);
         obj.GetComponent<CharacterDamager>().lifetime = spellData[0].lifetime;
         obj.GetComponent<CharacterDamager>().damage = spellData[0].damage * character.currAttack;
         ServerManager.Spawn(obj);
@@ -37,10 +37,10 @@ public class ButcherCastCharacter : CastCharacter
 
     #endregion
 
-    # region Charge skill
-    [Header("Charge Skill")]
-    public float chargeSpeed = 3f;
-    public float windUp = 0.3f;
+    #region Backstep skill
+    [Header("Backstep Skill")]
+    public float dashSpeed = 5f;
+    public float chargeTime = 0.3f;
     public void OnDash()
     {
         if (!IsOwner) return;
@@ -56,24 +56,12 @@ public class ButcherCastCharacter : CastCharacter
             Debug.Log("Spell is on cooldown");
         }
     }
-
-    [ServerRpc]
-    public void CastChargeSkill()
-    {
-        // spawn a damager on the player to do the aoe for windup + lifetime duration + 0.2 (satisfaction time)
-
-    }
-
     public IEnumerator Charge()
     {
         movement.interrupted = true;
-        yield return new WaitForSeconds(windUp);
-        rigidBody.velocity = 3 * chargeSpeed * input.targetDirection;
-        yield return new WaitForSeconds(spellData[1].lifetime);
+        rigidBody.velocity = -3 * dashSpeed * input.targetDirection;
+        yield return new WaitForSeconds(chargeTime);
         movement.interrupted = false;
     }
-
     #endregion
-
-
 }

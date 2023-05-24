@@ -9,6 +9,5 @@ public class SpellData : ScriptableObject
     public string description;
     public float cooldown;
     public float damage;
-    public StatusEffectData sed;
     public float lifetime;
 }
