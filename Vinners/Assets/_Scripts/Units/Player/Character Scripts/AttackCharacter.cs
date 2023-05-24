@@ -28,7 +28,7 @@ public class AttackCharacter : NetworkBehaviour
         if (Time.time - lastAttacked < character.currAttackSpeed) return;
         lastAttacked = Time.time;
         // Values have to be passed outside the serverrpc call!
-        if (input.targetDirection != Vector2.zero) AutoAttack(input.targetDirection);
+        if (input.targetDirection != null) AutoAttack(input.targetDirection);
         
     }
 

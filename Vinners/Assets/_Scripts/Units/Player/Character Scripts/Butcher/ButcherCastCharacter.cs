@@ -5,52 +5,35 @@ using FishNet.Object;
 using System;
 using UnityEngine.InputSystem;
 
-public class ButcherCastCharacter : NetworkBehaviour
+public class ButcherCastCharacter : CastCharacter
 {
-    private InputCharacter input;
-    private Character character;
-    private Rigidbody2D rigidBody;
-    private MoveCharacter movement;
-
-    public SpellData[] spellData = new SpellData[3];
-    private readonly bool[] canCast = new bool[3];
-
-    public override void OnStartClient()
-    {
-        base.OnStartClient();
-        character = GetComponent<Character>();
-        input = GetComponent<InputCharacter>();
-        rigidBody = GetComponent<Rigidbody2D>();
-        movement = GetComponent<MoveCharacter>();
-
-        Array.Fill(canCast, true);
-    }
-
     # region Taunt skill
     [Header("Taunt Skill")]
     [SerializeField] private GameObject tauntSpellPrefab;
     public void OnSkill()
     {
         if (!IsOwner) return;
-        CastTauntSkill();
-    }
-
-    [ServerRpc]
-    public void CastTauntSkill()
-    {
-        if (canCast[0])
+        if (base.canCast[0])
         {
             StartCoroutine(Cooldown(0));
-            GameObject obj = Instantiate(tauntSpellPrefab, transform);
-            obj.GetComponent<CharacterDamager>().lifetime = spellData[0].lifetime;
-            obj.GetComponent<CharacterDamager>().damage = spellData[0].damage * character.currAttack;
-            ServerManager.Spawn(obj);
+            CastTauntSkill();
             Debug.Log("Spell casted");
         }
         else
         {
             Debug.Log("Spell is on cooldown");
         }
+        
+    }
+
+    [ServerRpc]
+    public void CastTauntSkill()
+    {
+        GameObject obj = Instantiate(tauntSpellPrefab, transform);
+        obj.GetComponent<CharacterDamager>().lifetime = spellData[0].lifetime;
+        obj.GetComponent<CharacterDamager>().damage = spellData[0].damage * character.currAttack;
+        ServerManager.Spawn(obj);
+        Debug.Log("Spell casted");
     }
 
     #endregion
@@ -63,16 +46,11 @@ public class ButcherCastCharacter : NetworkBehaviour
     public void OnDash()
     {
         if (!IsOwner) return;
-        CastChargeSkill();
-    }
-
-    [ServerRpc]
-    public void CastChargeSkill()
-    {
         if (canCast[1])
         {
             StartCoroutine(Cooldown(1));
-            ObserverCastCharge();
+            // CastChargeSkill();
+            StartCoroutine(Charge());
             Debug.Log("Charge spell casted");
         }
         else
@@ -81,15 +59,15 @@ public class ButcherCastCharacter : NetworkBehaviour
         }
     }
 
-    [ObserversRpc]
-    private void ObserverCastCharge()
+    [ServerRpc]
+    public void CastChargeSkill()
     {
-        StartCoroutine(Charge());
+        // spawn a damager on the player to do the aoe
+
     }
 
     public IEnumerator Charge()
     {
-        
         movement.interrupted = true;
         yield return new WaitForSeconds(windUp);
         rigidBody.velocity = 3 * chargeSpeed * input.targetDirection;
@@ -98,13 +76,6 @@ public class ButcherCastCharacter : NetworkBehaviour
     }
 
     #endregion
-
-    IEnumerator Cooldown(int id)
-    {
-        canCast[id] = false;
-        yield return new WaitForSeconds(spellData[id].cooldown);
-        canCast[id] = true;
-    }
 
 
 }

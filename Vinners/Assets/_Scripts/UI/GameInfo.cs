@@ -20,6 +20,7 @@ public class GameInfo : View
      */
     [SerializeField] private TextMeshProUGUI HP;
     [SerializeField] private TextMeshProUGUI SkillReady;
+    [SerializeField] private TextMeshProUGUI DashReady;
 
     private void Update()
     {
@@ -30,6 +31,7 @@ public class GameInfo : View
         if (player == null || player.controlledCharacter == null) return;
        
         HP.text = $"HP: {player.controlledCharacter.currHealth}";
-        // SkillReady.text = $"Skill Ready: {player.controlledCharacter.GetComponent<CastCharacter>().skill.canCast}";
+        SkillReady.text = $"Skill Ready: {player.controlledCharacter.GetComponent<CastCharacter>().canCast[0]}";
+        DashReady.text = $"Dash Ready: {player.controlledCharacter.GetComponent<CastCharacter>().canCast[1]}";
     }
 }
