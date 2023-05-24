@@ -10,7 +10,6 @@ public sealed class CastCharacter : NetworkBehaviour
     private InputCharacter input;
 
     // TODO: implement spell functionality
-    [SerializeField] public Spell skill;
     // [SerializeField] private Spell dash;
     // [SerializeField] private Spell ultimate;
 
@@ -22,8 +21,6 @@ public sealed class CastCharacter : NetworkBehaviour
     {
         base.OnStartClient();
         // have to spawn a dummy spellcaster object
-        skill = Instantiate(skill, transform);
-        ServerManager.Spawn(skill.gameObject, Owner);
 
         input = GetComponent<InputCharacter>();
         rigidBody = GetComponent<Rigidbody2D>();
@@ -48,7 +45,6 @@ public sealed class CastCharacter : NetworkBehaviour
     // maybe should pass the spell the character instead
     public void CastSkill(Vector2 mousePos)
     {
-        skill.Cast(mousePos);
     }
 
     [ObserversRpc]

@@ -7,8 +7,8 @@ using FishNet;
 
 public class CharacterDamager : MonoBehaviour
 { 
-    [SerializeField] private float damage;
-    [SerializeField] private float lifetime;
+    public float damage;
+    public float lifetime;
 
     private void Update()
     {

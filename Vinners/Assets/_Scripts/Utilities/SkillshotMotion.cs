@@ -7,15 +7,11 @@ using UnityEngine;
 public class SkillshotMotion : NetworkBehaviour
 {
     [SerializeField] private float projectileSpeed;
-    private Vector2 movementDirection = Vector2.zero;
+    public Vector2 movementDirection;
 
     private void Update()
     {
-        transform.position += (Vector3)movementDirection * Time.deltaTime * projectileSpeed;
+        transform.position += projectileSpeed * Time.deltaTime * (Vector3)movementDirection;
     }
 
-    public void SetDirection(Vector2 dir)
-    {
-        movementDirection = dir.normalized;
-    }
 }

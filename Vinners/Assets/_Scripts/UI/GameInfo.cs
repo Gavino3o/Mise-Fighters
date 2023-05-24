@@ -30,6 +30,6 @@ public class GameInfo : View
         if (player == null || player.controlledCharacter == null) return;
        
         HP.text = $"HP: {player.controlledCharacter.currHealth}";
-        SkillReady.text = $"Skill Ready: {player.controlledCharacter.GetComponent<CastCharacter>().skill.canCast}";
+        // SkillReady.text = $"Skill Ready: {player.controlledCharacter.GetComponent<CastCharacter>().skill.canCast}";
     }
 }
