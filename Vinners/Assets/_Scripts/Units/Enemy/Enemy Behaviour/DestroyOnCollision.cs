@@ -14,18 +14,22 @@ public class DestroyOnCollision : NetworkBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         Debug.Log("CollisionEnter");
-        if (collision.collider.CompareTag("Player"))
+        if (collision.collider.CompareTag("Enemy"))
         {
-            Despawn(collision.gameObject);
+            //EnemyManager.RemoveActiveEnemy(collision.gameObject);
+            EnemyManager.DecrementCounter();
+            ServerManager.Despawn(collision.gameObject);
         }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         Debug.Log("TriggerEnter");
-        if (other.CompareTag("Enemy"))
+        if (other.CompareTag("Player"))
         {
-            Despawn(other.gameObject);
+            //EnemyManager.RemoveActiveEnemy(other.gameObject);
+            EnemyManager.DecrementCounter();
+            ServerManager.Despawn(gameObject);
         }
     }
 }

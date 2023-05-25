@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 1121593201791564068}
   - component: {fileID: 1121593201791564067}
   - component: {fileID: 8589071022760739731}
-  - component: {fileID: -9096666028970214374}
   - component: {fileID: -817880369007299593}
   m_Layer: 0
   m_Name: MeleeWorkingEnemy
@@ -105,8 +104,8 @@ MonoBehaviour:
   _componentIndexCache: 0
   _addedNetworkObject: {fileID: 1121593201791564067}
   _networkObjectCache: {fileID: 1121593201791564067}
-  _player: {fileID: 4398141431795839089, guid: 139903e2023a9c74f83319f34e35a649, type: 3}
-  _movementSpeed: 150
+  player: {fileID: 2743692090432342152, guid: 139903e2023a9c74f83319f34e35a649, type: 3}
+  movementSpeed: 100
 --- !u!114 &1121593201791564068
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -167,7 +166,6 @@ MonoBehaviour:
   _networkBehaviours:
   - {fileID: 3281774588331019007}
   - {fileID: 1121593201791564068}
-  - {fileID: -9096666028970214374}
   <ParentNetworkObject>k__BackingField: {fileID: 0}
   <ChildNetworkObjects>k__BackingField: []
   _isNetworked: 1
@@ -175,7 +173,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 2
+  <PrefabId>k__BackingField: 3
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 0
   <SceneId>k__BackingField: 0
@@ -208,21 +206,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &-9096666028970214374
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 682901249522065329}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da6df04dd83aca0488a794bc7abded8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _componentIndexCache: 2
-  _addedNetworkObject: {fileID: 1121593201791564067}
-  _networkObjectCache: {fileID: 1121593201791564067}
 --- !u!58 &-817880369007299593
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -233,7 +216,7 @@ CircleCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}

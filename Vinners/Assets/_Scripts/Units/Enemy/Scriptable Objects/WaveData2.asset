@@ -16,5 +16,5 @@ MonoBehaviour:
   totalEnemies: 0
   waveDelay: 5
   isLastWave: 1
-  enemySpawners:
-  - {fileID: 7606038741221892567, guid: 2fc440be355f02143afa2bce8be3d502, type: 3}
+  enemySpawnerPrefabs:
+  - {fileID: 3618075676154465572, guid: 2fc440be355f02143afa2bce8be3d502, type: 3}

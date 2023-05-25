@@ -8,30 +8,29 @@ using Unity.VisualScripting;
 public class MeleeEnemyMovementNetwork : NetworkBehaviour
 {
 
-    [SerializeField] private float _minumumDistance;
-    [SerializeField] private float _speed;
-    private Transform _target;
-    [SerializeField] private GameObject _players;
+    [SerializeField] private float minumumDistance;
+    [SerializeField] private float speed;
+    [SerializeField] private GameObject players;
+    private Transform target;
 
     // DO A* STAR PATHFINDING.
-    private void Update()
+    private void Start()
     {
-        if (Vector2.Distance(transform.position, _target.position) > _minumumDistance)
-        {
-            transform.position = Vector2.MoveTowards(transform.position, _target.position, _speed * Time.deltaTime);
-        }
+        target = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
-    public override void OnStartServer()
+    private void Update()
     {
-        base.OnStartServer();
-
+        MoveTowardsPlayer();
     }
 
     [ObserversRpc]
     public void MoveTowardsPlayer()
     {
-
+        if (Vector2.Distance(transform.position, target.position) > minumumDistance)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
+        }
     }
 
     [ServerRpc]

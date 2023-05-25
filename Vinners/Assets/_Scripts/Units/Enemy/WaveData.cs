@@ -9,5 +9,5 @@ public class WaveData : ScriptableObject
     public int totalEnemies;
     public float waveDelay;
     public bool isLastWave;
-    public EnemySpawner[] enemySpawners;
+    public GameObject[] enemySpawnerPrefabs;
 }

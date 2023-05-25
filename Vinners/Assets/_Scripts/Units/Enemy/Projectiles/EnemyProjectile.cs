@@ -6,7 +6,7 @@ using FishNet.Connection;
 
 public abstract class EnemyProjectile : NetworkBehaviour
 {
-    public double _damage;
-    public double _maxLifeTime;
-    public float _speed;
+    public double damage;
+    public double maxLifeTime;
+    public float speed;
 }

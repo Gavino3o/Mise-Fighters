@@ -7,19 +7,25 @@ using Unity.VisualScripting;
 
 public class EnemySpawner : NetworkBehaviour 
 {
-    [SerializeField] private EnemySpawnerData _enemySpawnerData;
-    [SerializeField] private GameObject[] _bossPrefabs;
-    [SerializeField] private bool _isActive = false;
- 
-    [SyncVar] private int _spawnCount = 0;
-    private int _maxSpawnCount;
+    [SerializeField] public EnemySpawnerData enemySpawnerData;
+    [SerializeField] private bool isActive = false;
+    [SyncVar] private int spawnCount = 0;
+    private int maxSpawnCount;
     
     public override void OnStartServer()
     {
         base.OnStartServer();
 
-        _maxSpawnCount = _enemySpawnerData.maxEnemies;
-        StartCoroutine(SpawnEnemiesRoutine());
+        maxSpawnCount = enemySpawnerData.maxEnemies;
+
+        if (enemySpawnerData.isBossSpawner)
+        {
+            SpawnBosses();
+        } 
+        else
+        {
+            StartCoroutine(SpawnEnemiesRoutine());
+        }
     }
 
     public override void OnStartClient()
@@ -33,48 +39,68 @@ public class EnemySpawner : NetworkBehaviour
     {
         if (!IsServer) yield break;
 
-        while (_isActive)
+        while (isActive)
         {
-            // Notify Wave Manager this spawner has completed spawnning its enemies.
-            if (_spawnCount >= _enemySpawnerData.maxEnemies)
+            if (spawnCount >= enemySpawnerData.maxEnemies)
             {
                 DeactivateSpawnner();
-                WaveManager.Instance.SpawnerComplete(this);
-                yield break;
+                WaveManager.Instance.SpawnerComplete(gameObject);
             }
 
-            int randomIndex = Random.Range(0, _enemySpawnerData.enemyPrefabs.Length);
-            int randomSpawnIndex = Random.Range(0, _enemySpawnerData.spawnLocations.Length);
-            GameObject enemyPrefab = _enemySpawnerData.enemyPrefabs[randomIndex];
-            Transform spawnPosition = _enemySpawnerData.spawnLocations[randomSpawnIndex];
-
-            // Consider letting EnemyManager spawn enemies. Include Object Pooling.
-            var newEnemy = Instantiate(enemyPrefab, spawnPosition.position, Quaternion.identity);
+            int randomIndex = Random.Range(0, enemySpawnerData.enemyPrefabs.Length);
+            int randomSpawnIndex = Random.Range(0, enemySpawnerData.spawnLocations.Length);
+            GameObject enemyPrefab = enemySpawnerData.enemyPrefabs[randomIndex];
+            Vector3 spawnPosition = enemySpawnerData.spawnLocations[randomSpawnIndex].position;
+     
+            var newEnemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
             Spawn(newEnemy);
+            spawnCount++;
             EnemyManager.IncrementCounter();
 
-            _spawnCount++;
-            yield return new WaitForSeconds(_enemySpawnerData.spawnRate);
+            yield return new WaitForSeconds(enemySpawnerData.spawnRate);
         }
     }
 
     public void SpawnBosses()
     {
+        int noOfBosses = enemySpawnerData.bossPrefabs.Length;
 
+        for (int i = 0; i < noOfBosses; i++)
+        {
+            Transform bossSpawnPoint = enemySpawnerData.spawnLocations[i];
+            GameObject bossPrefab = enemySpawnerData.bossPrefabs[i];
+
+            var newBoss = Instantiate(bossPrefab, bossSpawnPoint);
+            Spawn(newBoss);
+            spawnCount++;
+        }
     }
 
     public void ActivateSpawnner()
     {
-        this._isActive = true;
+        this.isActive = true;
+        if (enemySpawnerData.isBossSpawner)
+        {
+            SpawnBosses();
+        }
+        else
+        {
+            StartCoroutine(SpawnEnemiesRoutine());
+        }
     }
 
     public void DeactivateSpawnner()
     {
-        this._isActive = false;
+        this.isActive = false;
     }
 
     public int GetMaxEnemyCount()
     {
-        return _maxSpawnCount;
+        return maxSpawnCount;
+    }
+
+    public void UpdatepawnerData(EnemySpawnerData data)
+    {
+        enemySpawnerData = data;
     }
 }

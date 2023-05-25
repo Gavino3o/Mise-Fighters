@@ -10,4 +10,5 @@ public class EnemySpawnerData : ScriptableObject
     public float spawnRate;
     public Transform[] spawnLocations;
     public int maxEnemies;
+    public bool isBossSpawner;
 }

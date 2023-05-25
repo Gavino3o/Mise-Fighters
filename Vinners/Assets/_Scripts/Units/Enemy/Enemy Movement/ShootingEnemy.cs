@@ -6,26 +6,26 @@ using UnityEngine;
 
 public class ShootingEnemy : NetworkBehaviour
 {
-    public float _speed;
-    public Transform _player;
-    public float _minimumDistance;
-    public float _attackRange;
+    public Transform player;
+    public float speed;
+    public float minimumDistance;
+    public float attackRange;
 
-    public GameObject _projectile;
-    public float _timeBetweenShots;
-    public float _nextShotTime;
+    public GameObject projectile;
+    public float timeBetweenShots;
+    public float nextShotTime;
 
     public override void OnStartServer()
     { 
         base.OnStartServer();
-        _player = GameObject.FindGameObjectWithTag("Player").transform;
+        //player = GameObject.FindGameObjectWithTag("Player").transform;
     }
 
 
     void Update()
     {
         if (!IsServer) return;
-        _player = GameObject.FindGameObjectWithTag("Player").transform;
+        player = GameObject.FindGameObjectWithTag("Player").transform;
         MoveToAttackRange();
         ShootProjectile();
         RetreatFromPlayer();
@@ -34,19 +34,19 @@ public class ShootingEnemy : NetworkBehaviour
     private void ShootProjectile()
     {
         
-        if (Time.time > _nextShotTime && IsInRange())
+        if (Time.time > nextShotTime && IsInRange())
         {
-            var projectile = Instantiate(_projectile, transform.position, Quaternion.identity);
+            var projectile = Instantiate(this.projectile, transform.position, Quaternion.identity);
             Spawn(projectile);
-            _nextShotTime = Time.time + _timeBetweenShots;
+            nextShotTime = Time.time + timeBetweenShots;
         }
     }
 
     private void RetreatFromPlayer()
     {
-        if (Vector2.Distance(transform.position, _player.position) < _minimumDistance)
+        if (Vector2.Distance(transform.position, player.position) < minimumDistance)
         {
-            transform.position = Vector2.MoveTowards(transform.position, _player.position, -_speed * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, player.position, -speed * Time.deltaTime);
         }
     }
 
@@ -54,13 +54,21 @@ public class ShootingEnemy : NetworkBehaviour
     {
         if  (!IsInRange())
         {
-            transform.position = Vector2.MoveTowards(transform.position, _player.position, _speed * Time.deltaTime);
+            transform.position = Vector2.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
         }
     }
 
     private bool IsInRange()
     {
-        return Vector2.Distance(transform.position, _player.position) < _attackRange;
+        return Vector2.Distance(transform.position, player.position) < attackRange;
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            EnemyManager.DecrementCounter();
+            this.Despawn();
+        }
+    }
 }
