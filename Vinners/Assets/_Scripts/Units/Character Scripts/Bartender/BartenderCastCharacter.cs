@@ -13,7 +13,7 @@ public class BartenderCastCharacter : CastCharacter
         if (base.canCast[0])
         {
             StartCoroutine(Cooldown(0));
-            CastBombSkill();
+            CastBombSkill(spellData[0].duration, spellData[0].damage * character.currAttack, new Vector3(input.mousePos.x, input.mousePos.y, 0f));
             Debug.Log("Spell casted");
         }
         else
@@ -23,11 +23,11 @@ public class BartenderCastCharacter : CastCharacter
     }
 
     [ServerRpc]
-    public void CastBombSkill()
+    public void CastBombSkill(float duration, float dmg, Vector3 position)
     {
-        GameObject obj = Instantiate(bombSpellPrefab, new Vector3(input.mousePos.x, input.mousePos.y, 0f), transform.rotation);
-        obj.GetComponent<Lifetime>().lifetime = spellData[0].duration;
-        obj.GetComponent<EnemyDamager>().damage = spellData[0].damage * character.currAttack;
+        GameObject obj = Instantiate(bombSpellPrefab, position, transform.rotation);
+        obj.GetComponent<Lifetime>().lifetime = duration;
+        obj.GetComponent<EnemyDamager>().damage = dmg;
         ServerManager.Spawn(obj);
         Debug.Log($"{spellData[0].spellName} casted");
     }
@@ -44,7 +44,7 @@ public class BartenderCastCharacter : CastCharacter
         if (!IsOwner) return;
         if (canCast[1])
         {
-            DropLure();
+            DropLure(lureDuration);
             StartCoroutine(Cooldown(1));
             
             StartCoroutine(Charge());
@@ -57,7 +57,7 @@ public class BartenderCastCharacter : CastCharacter
     }
 
     [ServerRpc]
-    public void DropLure()
+    public void DropLure(float lureDuration)
     {
         GameObject obj = Instantiate(lurePrefab, transform.position, transform.rotation);
         obj.GetComponent<Lifetime>().lifetime = lureDuration;
