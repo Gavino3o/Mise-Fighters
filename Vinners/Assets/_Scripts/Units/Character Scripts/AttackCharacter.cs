@@ -20,11 +20,12 @@ public class AttackCharacter : NetworkBehaviour
     private void Update()
     {
         if (!IsOwner) return;
+        if (character == null || input == null) return;
 
         if (Time.time - lastAttacked < character.currAttackSpeed) return;
         lastAttacked = Time.time;
         // Values have to be calculated/accessed outside the serverrpc call
-        if (input.targetDirection != null && input.targetDirection != Vector2.zero) AutoAttack(input.targetDirection);
+        AutoAttack(input.targetDirection);
         
     }
 

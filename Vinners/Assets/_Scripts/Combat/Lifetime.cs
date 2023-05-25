@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Lifetime : MonoBehaviour
 {
-    public float lifetime;
+    public float lifetime = 1f;
 
     private void Update()
     {

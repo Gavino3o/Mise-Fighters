@@ -17,4 +17,4 @@ MonoBehaviour:
     in a large AOE, dealing (75%ATK) damage, SLOWING them slightly.
   cooldown: 5
   damage: 0.75
-  duration: 1
+  duration: 1.5
