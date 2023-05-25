@@ -27,16 +27,16 @@ public class BartenderCastCharacter : CastCharacter
     {
         GameObject obj = Instantiate(bombSpellPrefab, new Vector3(input.mousePos.x, input.mousePos.y, 0f), transform.rotation);
         obj.GetComponent<Lifetime>().lifetime = spellData[0].duration;
-        obj.GetComponent<CharacterDamager>().damage = spellData[0].damage * character.currAttack;
+        obj.GetComponent<EnemyDamager>().damage = spellData[0].damage * character.currAttack;
         ServerManager.Spawn(obj);
-        Debug.Log("Spell casted");
+        Debug.Log($"{spellData[0].spellName} casted");
     }
 
     #endregion
 
     #region Backstep skill
     [Header("Backstep Skill")]
-    public float dashSpeed = 5f;
+    public float dashSpeed = 6f;
     [SerializeField] private GameObject lurePrefab;
     public float lureDuration = 2f;
     public void OnDash()
@@ -48,7 +48,7 @@ public class BartenderCastCharacter : CastCharacter
             StartCoroutine(Cooldown(1));
             
             StartCoroutine(Charge());
-            Debug.Log("Charge spell casted");
+            Debug.Log($"{spellData[1].spellName} casted");
         }
         else
         {
@@ -59,7 +59,7 @@ public class BartenderCastCharacter : CastCharacter
     [ServerRpc]
     public void DropLure()
     {
-        GameObject obj = Instantiate(lurePrefab, new Vector3(input.mousePos.x, input.mousePos.y, 0f), transform.rotation);
+        GameObject obj = Instantiate(lurePrefab, transform.position, transform.rotation);
         obj.GetComponent<Lifetime>().lifetime = lureDuration;
         ServerManager.Spawn(obj);
         Debug.Log("Lure dropped");

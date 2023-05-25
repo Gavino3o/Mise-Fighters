@@ -27,9 +27,9 @@ public class ButcherCastCharacter : CastCharacter
     {
         GameObject obj = Instantiate(tauntSpellPrefab, transform);
         obj.GetComponent<Lifetime>().lifetime = spellData[0].duration;
-        obj.GetComponent<CharacterDamager>().damage = spellData[0].damage * character.currAttack;
+        obj.GetComponent<EnemyDamager>().damage = spellData[0].damage * character.currAttack;
         ServerManager.Spawn(obj);
-        Debug.Log("Spell casted");
+        Debug.Log($"{spellData[0].spellName} casted");
     }
 
     #endregion
@@ -46,7 +46,7 @@ public class ButcherCastCharacter : CastCharacter
             StartCoroutine(Cooldown(1));
             // CastChargeSkill();
             StartCoroutine(Charge());
-            Debug.Log("Charge spell casted");
+            Debug.Log($"{spellData[1].spellName} casted");
         }
         else
         {

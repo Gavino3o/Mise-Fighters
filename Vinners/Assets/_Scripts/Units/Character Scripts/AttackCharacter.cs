@@ -36,7 +36,7 @@ public class AttackCharacter : NetworkBehaviour
     public void AutoAttack(Vector2 targetDirection)
     {
         GameObject obj = Instantiate(projectile, transform.position, transform.rotation);
-        CharacterDamager dmger = obj.GetComponent<CharacterDamager>();
+        EnemyDamager dmger = obj.GetComponent<EnemyDamager>();
         if (dmger != null)
         {
             dmger.damage = character.currAttack;

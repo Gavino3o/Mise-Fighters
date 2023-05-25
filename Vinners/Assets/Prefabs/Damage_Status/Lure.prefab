@@ -95,10 +95,9 @@ GameObject:
   - component: {fileID: 6853187515346777717}
   - component: {fileID: 8761145880978186852}
   - component: {fileID: 5681926344258742825}
-  - component: {fileID: -5830823701377233399}
-  - component: {fileID: 5006168440814640059}
   - component: {fileID: 5268666267829379887}
   - component: {fileID: 7060475180936071515}
+  - component: {fileID: -3035421113775085332}
   m_Layer: 0
   m_Name: Lure
   m_TagString: Untagged
@@ -167,33 +166,6 @@ MonoBehaviour:
   <SceneId>k__BackingField: 0
   <AssetPathHash>k__BackingField: 13961644926110569194
   _sceneNetworkObjects: []
---- !u!114 &-5830823701377233399
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6848911510146320331}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abdc099b4b88e404ab54d2f1bf147a97, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sed:
-  - {fileID: 11400000, guid: 2c9cc8f9028ec3e46afcd121577eb42b, type: 2}
---- !u!114 &5006168440814640059
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6848911510146320331}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f6e04cc97e1bbd4e878bd63c8baadc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 0
 --- !u!114 &5268666267829379887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -220,3 +192,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 6848911510146320331}
+--- !u!114 &-3035421113775085332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6848911510146320331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a324950df97b65e4c8f43edd5cf96dde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sed:
+  - {fileID: 11400000, guid: 2c9cc8f9028ec3e46afcd121577eb42b, type: 2}

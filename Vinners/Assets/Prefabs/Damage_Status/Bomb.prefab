@@ -95,11 +95,11 @@ GameObject:
   - component: {fileID: 6853187515346777717}
   - component: {fileID: 8761145880978186852}
   - component: {fileID: 5681926344258742825}
-  - component: {fileID: -5830823701377233399}
-  - component: {fileID: 5006168440814640059}
   - component: {fileID: 5268666267829379887}
+  - component: {fileID: -6029480087865222614}
+  - component: {fileID: -8903695721614164821}
   m_Layer: 0
-  m_Name: SlowStatus 1
+  m_Name: Bomb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -164,36 +164,8 @@ MonoBehaviour:
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 0
   <SceneId>k__BackingField: 0
-  <AssetPathHash>k__BackingField: 9348009030929080102
+  <AssetPathHash>k__BackingField: 11240409090848623390
   _sceneNetworkObjects: []
---- !u!114 &-5830823701377233399
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6848911510146320331}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abdc099b4b88e404ab54d2f1bf147a97, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sed:
-  - {fileID: 11400000, guid: 2c9cc8f9028ec3e46afcd121577eb42b, type: 2}
-  - {fileID: 11400000, guid: 532713dbe22142448bb0dc5654cd1bf2, type: 2}
---- !u!114 &5006168440814640059
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6848911510146320331}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f6e04cc97e1bbd4e878bd63c8baadc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 0
 --- !u!114 &5268666267829379887
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,3 +179,31 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifetime: 0
+--- !u!114 &-6029480087865222614
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6848911510146320331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e85af9278efd0ba41a378bc96abdccb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 0
+--- !u!114 &-8903695721614164821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6848911510146320331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a324950df97b65e4c8f43edd5cf96dde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sed:
+  - {fileID: 11400000, guid: 2c9cc8f9028ec3e46afcd121577eb42b, type: 2}
+  - {fileID: 11400000, guid: 532713dbe22142448bb0dc5654cd1bf2, type: 2}

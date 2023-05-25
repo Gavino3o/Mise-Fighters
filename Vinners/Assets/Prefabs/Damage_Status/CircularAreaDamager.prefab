@@ -94,9 +94,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6853187515346777717}
   - component: {fileID: 8761145880978186852}
-  - component: {fileID: 1821194723915182832}
   - component: {fileID: 5681926344258742825}
   - component: {fileID: -3039632337467576896}
+  - component: {fileID: 5889363550730292998}
   m_Layer: 0
   m_Name: CircularAreaDamager
   m_TagString: Untagged
@@ -136,19 +136,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &1821194723915182832
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6848911510146320331}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f6e04cc97e1bbd4e878bd63c8baadc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 0
 --- !u!114 &5681926344258742825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -191,3 +178,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifetime: 0
+--- !u!114 &5889363550730292998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6848911510146320331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e85af9278efd0ba41a378bc96abdccb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 0

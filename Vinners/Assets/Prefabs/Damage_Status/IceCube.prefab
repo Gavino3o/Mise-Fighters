@@ -9,14 +9,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7350194126047866371}
-  - component: {fileID: 6339477267727055091}
   - component: {fileID: 672623468881827836}
   - component: {fileID: -4370717562600256644}
   - component: {fileID: 1702591734149675099}
   - component: {fileID: 8975904372090833277}
   - component: {fileID: 7775526261064005761}
   - component: {fileID: 7509222689734377249}
-  - component: {fileID: -6875921961405611238}
+  - component: {fileID: -3697913265258033151}
+  - component: {fileID: 6082361945765402036}
   m_Layer: 0
   m_Name: IceCube
   m_TagString: Untagged
@@ -40,19 +40,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6339477267727055091
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2311875031635309704}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f6e04cc97e1bbd4e878bd63c8baadc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 0
 --- !u!114 &672623468881827836
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -195,7 +182,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifetime: 5
---- !u!114 &-6875921961405611238
+--- !u!114 &-3697913265258033151
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -204,7 +191,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 2311875031635309704}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abdc099b4b88e404ab54d2f1bf147a97, type: 3}
+  m_Script: {fileID: 11500000, guid: e85af9278efd0ba41a378bc96abdccb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 0
+--- !u!114 &6082361945765402036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2311875031635309704}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a324950df97b65e4c8f43edd5cf96dde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   sed:
