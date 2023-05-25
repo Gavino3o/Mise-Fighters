@@ -13,7 +13,7 @@ public class ButcherCastCharacter : CastCharacter
         if (base.canCast[0])
         {
             StartCoroutine(Cooldown(0));
-            tauntSpellPrefab.GetComponent<Lifetime>().lifetime = spellData[0].duration;
+            
             CastTauntSkill();
             Debug.Log("Spell casted");
         }
@@ -28,6 +28,8 @@ public class ButcherCastCharacter : CastCharacter
     {
         GameObject obj = Instantiate(tauntSpellPrefab, transform);
         obj.GetComponent<EnemyDamager>().damage = spellData[0].damage * character.currAttack;
+        obj.GetComponent<Lifetime>().lifetime = spellData[0].duration;
+        obj.GetComponent<Taunter>().target = NetworkObject;
         ServerManager.Spawn(obj);
         Debug.Log($"{spellData[0].spellName} casted");
     }

@@ -15,13 +15,12 @@ public class CastCharacter : NetworkBehaviour
     public SpellData[] spellData = new SpellData[3];
     public readonly bool[] canCast = new bool[3];
 
-    public override void OnStartClient()
+    private void Awake()
     {
-        base.OnStartClient();
         character = GetComponent<Character>();
-        input = GetComponent<InputCharacter>();
-        rigidBody = GetComponent<Rigidbody2D>();
-        movement = GetComponent<MoveCharacter>();
+        input = character.input; 
+        rigidBody = character.rb;
+        movement = character.movement;
 
         Array.Fill(canCast, true);
     }

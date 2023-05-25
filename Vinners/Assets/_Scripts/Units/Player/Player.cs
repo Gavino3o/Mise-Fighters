@@ -97,6 +97,12 @@ public class Player : NetworkBehaviour
         TargetCharacterSpawned(Owner);
     }
 
+    public void CharacterDeath()
+    {
+        // do animations or something
+        TargetCharacterDied(Owner);
+    }
+
     /*
      * Shows the UI for GameInfo, has to be chain invoked (?) by the GameManager.
      */
@@ -108,7 +114,7 @@ public class Player : NetworkBehaviour
     }
 
     [TargetRpc]
-    private void TargetNextStage(NetworkConnection conn)
+    private void TargetStageClear(NetworkConnection conn)
     {
         UIManager.LocalInstance.Show<ReadyScreen>();
     }
@@ -116,6 +122,8 @@ public class Player : NetworkBehaviour
     [TargetRpc]
     private void TargetCharacterDied(NetworkConnection conn)
     {
+        Debug.Log("You died bozo");
+        // disable player input
         // UIManager.LocalInstance.Show<Respawn>();
     }
 }

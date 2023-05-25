@@ -6,7 +6,7 @@ using UnityEngine.InputSystem;
 
 public sealed class InputCharacter : MonoBehaviour
 {
-    private PlayerActions _playerActions;
+    private PlayerActions playerActions;
 
     public Vector2 velocity;
     public Vector2 mousePos;
@@ -15,13 +15,13 @@ public sealed class InputCharacter : MonoBehaviour
     // reading local playerinput and updating this information inside itself
     private void OnEnable()
     {
-        _playerActions = new PlayerActions();
-        _playerActions.PlayerInput.Enable();
+        playerActions = new PlayerActions();
+        playerActions.PlayerInput.Enable();
     }
 
     private void OnDisable()
     {
-        _playerActions.PlayerInput.Disable();
+        playerActions.PlayerInput.Disable();
     }
     public void OnMovement(InputValue value)
     {

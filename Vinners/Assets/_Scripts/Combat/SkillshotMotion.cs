@@ -9,7 +9,7 @@ public class SkillshotMotion : NetworkBehaviour
     [SerializeField] private float projectileSpeed;
     public Vector2 movementDirection;
 
-    private void Update()
+    private void FixedUpdate()
     {
         transform.position += projectileSpeed * Time.deltaTime * (Vector3)movementDirection;
     }

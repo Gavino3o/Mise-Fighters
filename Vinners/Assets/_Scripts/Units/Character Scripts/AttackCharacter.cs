@@ -10,17 +10,16 @@ public class AttackCharacter : NetworkBehaviour
 
     private float lastAttacked;
 
-    public override void OnStartClient()
+    private void Awake()
     {
-        base.OnStartClient();
         character = GetComponent<Character>();
-        input = GetComponent<InputCharacter>();
+        input = character.input;
     }
 
     private void Update()
     {
         if (!IsOwner) return;
-        if (character == null || input == null) return;
+        if (character == null || input == null || input.targetDirection == null) return;
 
         if (Time.time - lastAttacked < character.currAttackSpeed) return;
         lastAttacked = Time.time;

@@ -7,7 +7,7 @@ public class InitialiseManagers : MonoBehaviour
 {
     [SerializeField] GameObject[] managerList;
 
-    public void Awake()
+    private void Start()
     {
         foreach (GameObject obj in managerList)
         {

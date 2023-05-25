@@ -1,13 +1,20 @@
+using System.Collections;
 using UnityEngine;
+using FishNet.Object;
 
-public class Lifetime : MonoBehaviour
+public class Lifetime : NetworkBehaviour
 {
-    public float lifetime = 1f;
+    public float lifetime;
 
-    private void Update()
+    public override void OnStartServer()
     {
-        if (lifetime <= 0) Destroy(gameObject);
+        base.OnStartServer();
+        StartCoroutine(Lifespan());
+    }
 
-        lifetime -= Time.deltaTime;
+    public IEnumerator Lifespan()
+    {
+        yield return new WaitForSeconds(lifetime);
+        Despawn(gameObject);
     }
 }

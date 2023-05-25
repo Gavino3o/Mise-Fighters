@@ -13,8 +13,8 @@ public sealed class MoveCharacter : NetworkBehaviour
     {
         base.OnStartClient();
         character = GetComponent<Character>();
-        input = GetComponent<InputCharacter>();
-        rigidBody = GetComponent<Rigidbody2D>();
+        input = character.input;
+        rigidBody = character.rb;
     }
 
     // handle movement, spellcasting which in turn handle the animations?

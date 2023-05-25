@@ -27,6 +27,7 @@ public abstract class Unit : NetworkBehaviour
         currMoveSpeed = baseStats.moveSpeed;
     }
 
+    // This should be the only way a unit's health is changed
     public void TakeDamage(float dmg)
     {
         float next = currHealth -= dmg;
@@ -38,7 +39,14 @@ public abstract class Unit : NetworkBehaviour
         {
             currHealth = Mathf.Max(next, 0f);
         }
+        
+        if (currHealth <= 0)
+        {
+            Die();
+        }
     }
+
+    public abstract void Die();
 
     // Stacking status effects breaks this, have to rewrite.
     public void ApplyStatusEffect(StatusEffectData sed)

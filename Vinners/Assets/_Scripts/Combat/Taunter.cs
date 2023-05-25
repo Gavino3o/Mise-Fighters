@@ -1,8 +1,9 @@
 using UnityEngine;
+using FishNet.Object;
 
-public class Taunter : MonoBehaviour
+public class Taunter : NetworkBehaviour
 {
-    public GameObject target;
+    public NetworkObject target;
     private void OnTriggerEnter2D(Collider2D other)
     {
         EnemyAI enemy = other.gameObject.GetComponent<EnemyAI>();

@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 5681926344258742825}
   - component: {fileID: -3039632337467576896}
   - component: {fileID: 5889363550730292998}
+  - component: {fileID: 1926722233354095623}
   m_Layer: 0
   m_Name: CircularAreaDamager
   m_TagString: Untagged
@@ -151,7 +152,8 @@ MonoBehaviour:
   <IsNested>k__BackingField: 0
   <ComponentIndex>k__BackingField: 0
   <PredictedSpawn>k__BackingField: {fileID: 0}
-  _networkBehaviours: []
+  _networkBehaviours:
+  - {fileID: -3039632337467576896}
   <ParentNetworkObject>k__BackingField: {fileID: 0}
   <ChildNetworkObjects>k__BackingField: []
   _isNetworked: 1
@@ -177,6 +179,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e5531d819eef9d4e994c10a36eda5f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _componentIndexCache: 0
+  _addedNetworkObject: {fileID: 5681926344258742825}
+  _networkObjectCache: {fileID: 5681926344258742825}
   lifetime: 0
 --- !u!114 &5889363550730292998
 MonoBehaviour:
@@ -191,3 +196,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0
+--- !u!114 &1926722233354095623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6848911510146320331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7e57ca8e9ce45c42b55749515d482bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
