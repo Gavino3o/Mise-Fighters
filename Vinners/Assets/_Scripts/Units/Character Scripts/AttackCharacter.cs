@@ -1,12 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using FishNet.Object;
 
 public class AttackCharacter : NetworkBehaviour
 {
     public Character character;
-    private Rigidbody2D rigidBody;
     public InputCharacter input;
 
     public GameObject projectile;
@@ -18,7 +15,6 @@ public class AttackCharacter : NetworkBehaviour
         base.OnStartClient();
         character = GetComponent<Character>();
         input = GetComponent<InputCharacter>();
-        rigidBody = GetComponent<Rigidbody2D>();
     }
 
     private void Update()
@@ -27,8 +23,8 @@ public class AttackCharacter : NetworkBehaviour
 
         if (Time.time - lastAttacked < character.currAttackSpeed) return;
         lastAttacked = Time.time;
-        // Values have to be passed outside the serverrpc call!
-        if (input.targetDirection != null) AutoAttack(input.targetDirection);
+        // Values have to be calculated/accessed outside the serverrpc call
+        if (input.targetDirection != null && input.targetDirection != Vector2.zero) AutoAttack(input.targetDirection);
         
     }
 
@@ -50,7 +46,6 @@ public class AttackCharacter : NetworkBehaviour
         if (motion != null)
         {
             motion.movementDirection = targetDirection;
-            Debug.Log($"direction assigned to {targetDirection.x}, {targetDirection.y}");
         }
         ServerManager.Spawn(obj);
         Debug.Log($"{gameObject} controlled by {Owner} attacks!");

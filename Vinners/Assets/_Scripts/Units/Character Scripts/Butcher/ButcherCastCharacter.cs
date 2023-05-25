@@ -1,9 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using FishNet.Object;
-using System;
-using UnityEngine.InputSystem;
 
 public class ButcherCastCharacter : CastCharacter
 {
@@ -29,7 +26,7 @@ public class ButcherCastCharacter : CastCharacter
     public void CastTauntSkill()
     {
         GameObject obj = Instantiate(tauntSpellPrefab, transform);
-        obj.GetComponent<CharacterDamager>().lifetime = spellData[0].lifetime;
+        obj.GetComponent<Lifetime>().lifetime = spellData[0].duration;
         obj.GetComponent<CharacterDamager>().damage = spellData[0].damage * character.currAttack;
         ServerManager.Spawn(obj);
         Debug.Log("Spell casted");
@@ -69,7 +66,7 @@ public class ButcherCastCharacter : CastCharacter
         movement.interrupted = true;
         yield return new WaitForSeconds(windUp);
         rigidBody.velocity = 3 * chargeSpeed * input.targetDirection;
-        yield return new WaitForSeconds(spellData[1].lifetime);
+        yield return new WaitForSeconds(spellData[1].duration);
         movement.interrupted = false;
     }
 

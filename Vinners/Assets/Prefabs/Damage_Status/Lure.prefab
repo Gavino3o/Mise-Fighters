@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 2178413791162040748}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5.19, y: 5.19, z: 5.19}
+  m_LocalScale: {x: 6.04, y: 6.04, z: 6.04}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 6853187515346777717}
@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.7783019, g: 0.8127095, b: 1, a: 1}
+  m_Color: {r: 0.9433962, g: 0.493948, b: 0.62331027, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -98,8 +98,9 @@ GameObject:
   - component: {fileID: -5830823701377233399}
   - component: {fileID: 5006168440814640059}
   - component: {fileID: 5268666267829379887}
+  - component: {fileID: 7060475180936071515}
   m_Layer: 0
-  m_Name: SlowStatus 1
+  m_Name: Lure
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -164,7 +165,7 @@ MonoBehaviour:
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 0
   <SceneId>k__BackingField: 0
-  <AssetPathHash>k__BackingField: 9348009030929080102
+  <AssetPathHash>k__BackingField: 13961644926110569194
   _sceneNetworkObjects: []
 --- !u!114 &-5830823701377233399
 MonoBehaviour:
@@ -180,7 +181,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sed:
   - {fileID: 11400000, guid: 2c9cc8f9028ec3e46afcd121577eb42b, type: 2}
-  - {fileID: 11400000, guid: 532713dbe22142448bb0dc5654cd1bf2, type: 2}
 --- !u!114 &5006168440814640059
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -207,3 +207,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifetime: 0
+--- !u!114 &7060475180936071515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6848911510146320331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7e57ca8e9ce45c42b55749515d482bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 6848911510146320331}

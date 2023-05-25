@@ -9,7 +9,7 @@ using TMPro;
  */
 public class Character : Unit
 {
-    [SerializeField] Image characterSplash;
+    public Image characterSplash;
 
     [SyncVar] public Player controllingPlayer;
 

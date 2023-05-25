@@ -477,7 +477,7 @@ GameObject:
   - component: {fileID: 5376647301302664577}
   - component: {fileID: 8302210857773574313}
   m_Layer: 0
-  m_Name: Character2
+  m_Name: Bartender
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -631,7 +631,7 @@ MonoBehaviour:
   _networkObjectCache: {fileID: 1172006343598844436}
   character: {fileID: 0}
   input: {fileID: 0}
-  projectile: {fileID: 2311875031635309704, guid: 69d3dc39f4cce7b408691ba5d0d13e12, type: 3}
+  projectile: {fileID: 2311875031635309704, guid: e8e4a964c4249b442a98a45097eb8e43, type: 3}
 --- !u!114 &4222959443470227111
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -653,7 +653,8 @@ MonoBehaviour:
   - {fileID: 0}
   bombSpellPrefab: {fileID: 6848911510146320331, guid: be3491550470a5045bc42785cbb39c08, type: 3}
   dashSpeed: 5
-  chargeTime: 0.3
+  lurePrefab: {fileID: 6848911510146320331, guid: 58ce1d0403ceb3b47b8eef26dda66f5a, type: 3}
+  lureDuration: 2
 --- !u!114 &8302944292573092573
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -701,11 +702,11 @@ MonoBehaviour:
   _initializeOrder: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 2
+  <PrefabId>k__BackingField: 23
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 0
   <SceneId>k__BackingField: 0
-  <AssetPathHash>k__BackingField: 2873558306986322834
+  <AssetPathHash>k__BackingField: 16117861867527122388
   _sceneNetworkObjects:
   - {fileID: 1172006343598844436}
 --- !u!114 &716281723751957937

@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 4248350075133188711}
   - component: {fileID: 6702416488658299097}
   - component: {fileID: -821421582914272815}
+  - component: {fileID: 6339174855686625755}
   m_Layer: 0
   m_Name: DamageSource
   m_TagString: Untagged
@@ -133,7 +134,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 0
-  lifetime: 0.1
 --- !u!114 &4248350075133188711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -216,3 +216,16 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &6339174855686625755
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8791335468521538598}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e5531d819eef9d4e994c10a36eda5f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lifetime: 0.1

@@ -103,6 +103,19 @@ public class Player : NetworkBehaviour
     [TargetRpc]
     private void TargetCharacterSpawned(NetworkConnection conn)
     {
-        UIManager.LocalInstance.Show<GameInfo>();   
+        UIManager.LocalInstance.Show<GameInfo>();
+        ServerSetLockIn(false);
+    }
+
+    [TargetRpc]
+    private void TargetNextStage(NetworkConnection conn)
+    {
+        UIManager.LocalInstance.Show<ReadyScreen>();
+    }
+
+    [TargetRpc]
+    private void TargetCharacterDied(NetworkConnection conn)
+    {
+        // UIManager.LocalInstance.Show<Respawn>();
     }
 }

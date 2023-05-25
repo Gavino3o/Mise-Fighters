@@ -1,6 +1,5 @@
 using UnityEngine;
 using FishNet.Object;
-using UnityEngine.InputSystem;
 
 public sealed class MoveCharacter : NetworkBehaviour
 {

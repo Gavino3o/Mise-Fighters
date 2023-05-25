@@ -10,12 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ad7733e8510838847a89fbb9c2a609f4, type: 3}
-  m_Name: ButcherTaunt
+  m_Name: ButcherCharge
   m_EditorClassIdentifier: 
-  spellName: Taunt
-  description: 'Stomps the ground while TAUNTING all enemies within a medium range
-    and dealing (130%ATK) damage in an AOE. '
-  cooldown: 5
-  damage: 1.3
-  sed: {fileID: 0}
-  lifetime: 0.2
+  spellName: Reckless Charge
+  description: 'Charges forward, pushing all enemies in his path and dealing (50%ATK)
+    damage to all enemies hit. '
+  cooldown: 2
+  damage: 0.5
+  duration: 0.8
