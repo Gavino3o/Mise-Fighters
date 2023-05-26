@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(menuName = "GameData/StatusEffectData")]
+/*
+ * Store data about status effects. Units will use this data to apply effects on themselves.
+ */
 public class StatusEffectData : ScriptableObject
 {
     public string effectName;
@@ -10,6 +13,6 @@ public class StatusEffectData : ScriptableObject
     public float damageOverTime = 0;
     public float attackMultiplier = 1;
     public float moveSpeedMultiplier = 1;
-    // public VisualEffect visualEffect;
-
+    public bool douser;
+    public bool igniter;
 }
