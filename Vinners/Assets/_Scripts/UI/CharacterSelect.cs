@@ -28,8 +28,6 @@ public class CharacterSelect : View
      * we can have character splash arts
      * [SerializeField] List<Image> characterSprites;
      */
-
-    //temp
     [SerializeField] private List<GameObject> characterList;
 
     // just to monitor in inspector
@@ -37,19 +35,21 @@ public class CharacterSelect : View
 
     public override void Initialise()
     {
+        currCharacterIndex = 0;
+        // DisplayCurrentCharacter();
+        
         nextCharacterButton.onClick.AddListener(() =>
         {
             currCharacterIndex = (currCharacterIndex + 1) % characterList.Count;
+            // DisplayCurrentCharacter();
             Player.LocalInstance.ServerChooseCharacter(characterList[currCharacterIndex]);
-            // characterDisplayPanel = characterList[currCharacterIndex].characterSprite
         });
 
         prevCharacterButton.onClick.AddListener(() =>
-        {
-            // math here might be wrong
+        { 
             currCharacterIndex = (currCharacterIndex + characterList.Count - 1) % characterList.Count;
+            // DisplayCurrentCharacter();
             Player.LocalInstance.ServerChooseCharacter(characterList[currCharacterIndex]);
-            // characterDisplayPanel = characterList[currCharacterIndex].characterSprite
         });
 
         /*
@@ -106,7 +106,10 @@ public class CharacterSelect : View
         startGameButton.interactable = GameManager.Instance.canStart;
     }
 
-
+    private void DisplayCurrentCharacter()
+    {
+        characterDisplayPanel = characterList[currCharacterIndex].GetComponent<Character>().characterSplash;
+    }
 
 
 

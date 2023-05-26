@@ -93,7 +93,14 @@ public class Player : NetworkBehaviour
         GameObject instance = Instantiate(characterPrefab);
         Spawn(instance, Owner);
         controlledCharacter = instance.GetComponent<Character>();
+        controlledCharacter.controllingPlayer = this;
         TargetCharacterSpawned(Owner);
+    }
+
+    public void CharacterDeath()
+    {
+        // do animations or something
+        TargetCharacterDied(Owner);
     }
 
     /*
@@ -102,6 +109,21 @@ public class Player : NetworkBehaviour
     [TargetRpc]
     private void TargetCharacterSpawned(NetworkConnection conn)
     {
-        UIManager.LocalInstance.Show<GameInfo>();   
+        UIManager.LocalInstance.Show<GameInfo>();
+        ServerSetLockIn(false);
+    }
+
+    [TargetRpc]
+    private void TargetStageClear(NetworkConnection conn)
+    {
+        UIManager.LocalInstance.Show<ReadyScreen>();
+    }
+
+    [TargetRpc]
+    private void TargetCharacterDied(NetworkConnection conn)
+    {
+        Debug.Log("You died bozo");
+        // disable player input
+        // UIManager.LocalInstance.Show<Respawn>();
     }
 }

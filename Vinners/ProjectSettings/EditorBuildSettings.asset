@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/GavinTestScene.unity
-    guid: 80c48d2453e4ce146ae4be0febfafced
+    path: Assets/Scenes/MainMenu.unity
+    guid: a8b87000f0ebedb4f907b1a714009903
+  - enabled: 1
+    path: Assets/Scenes/CharacterSelect.unity
+    guid: 51b08ee6f337daf46a9ec1fb8db1f63d
+  - enabled: 1
+    path: Assets/Scenes/AlvinScene.unity
+    guid: 08ce493374d2a384cb2c1ee5a0445d70
   m_configObjects: {}
