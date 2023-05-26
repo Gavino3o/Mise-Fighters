@@ -11,8 +11,7 @@ public class EnemyArcProjectile : EnemyProjectile
     public float arcHeight;
     public AutoTimer _timer;
     [SerializeField] double _maxTimeActive;
-
-    
+   
     public override void OnStartServer()
     {
         base.OnStartServer();
@@ -28,14 +27,12 @@ public class EnemyArcProjectile : EnemyProjectile
         MoveToTargetLocation();
     }
 
-
-    //[ServerRpc(RequireOwnership = false)]
     public void MoveToTargetLocation()
     {
         float x1 = _startPosition.x;
         float x2 = _targetPosition.x;
         float distance = x2 - x1;
-        float nextX = Mathf.MoveTowards(transform.position.x, x2, _speed * Time.deltaTime);
+        float nextX = Mathf.MoveTowards(transform.position.x, x2, speed * Time.deltaTime);
         float baseY = Mathf.Lerp(_startPosition.y, _targetPosition.y, (nextX - x1) / distance);
         float arc = arcHeight * (nextX - x1) * (nextX - x2) / (-0.25f * distance * distance);
         Vector3 nextPosition = new Vector3(nextX, baseY + arc, transform.position.z);
@@ -50,12 +47,12 @@ public class EnemyArcProjectile : EnemyProjectile
         }
     }
 
-    //[ServerRpc(RequireOwnership = false)]
+    // TODO: 
+    // Implement events to handle when a projectile lands on target position.
+    // 1. Create an area that damages the player consistently over a period of time.
+    // 2. A chuck of AOE Damage, like a bomb.
     private void Arrived()
     {
-        // TODO: Call methods/scripts to handle when a projectile lands on target position.
-        // 1. Create an area that damages the player consistently over a period of time.
-        // 2. A chuck of AOE Damage, like a bomb
         this.Despawn();
     }
 

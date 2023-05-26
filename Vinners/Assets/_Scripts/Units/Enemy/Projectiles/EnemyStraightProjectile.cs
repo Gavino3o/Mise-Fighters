@@ -11,11 +11,9 @@ public class EnemyStraightProjectile : EnemyProjectile
 
     void Start()
     {
-        //_playerPosition = GameObject.GetComponent<Player>().transform;
         if (!IsServer) return;
         _targetPosition = GameObject.FindGameObjectWithTag("Player").transform;
         _endPosition = _targetPosition.position;
-
     }
 
     void Update()
@@ -26,7 +24,7 @@ public class EnemyStraightProjectile : EnemyProjectile
 
     public void MoveToTargetLocation()
     {
-        transform.position = Vector2.MoveTowards(transform.position, _endPosition, _speed * Time.deltaTime);
+        transform.position = Vector2.MoveTowards(transform.position, _endPosition, speed * Time.deltaTime);
         if (Vector2.Distance(transform.position, _endPosition) < 10f)
         {
             OnHit();
@@ -54,7 +52,7 @@ public class EnemyStraightProjectile : EnemyProjectile
     private void OnTimeOut()
     {
         if(!IsServer) return;
-        Despawn(gameObject);
+        this.Despawn();
     }
     
 }

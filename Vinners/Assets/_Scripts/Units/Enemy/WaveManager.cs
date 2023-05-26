@@ -7,10 +7,10 @@ using FishNet.Object;
 public sealed class WaveManager : NetworkBehaviour
 {
     // Reference to the WaveData scriptable objects for the current wave
-    public WaveData[] _waveDatas;
-    private WaveData _currentWaveData;
-    private int _currentWaveIndex;
-    private List<EnemySpawner> _activeSpawners = new List<EnemySpawner>();
+    public WaveData[] waveDatas;
+    private WaveData currentWaveData;
+    private int currentWaveIndex;
+    private List<GameObject> activeSpawners = new List<GameObject>();
 
     public static WaveManager Instance { get; private set; }
 
@@ -19,32 +19,36 @@ public sealed class WaveManager : NetworkBehaviour
         Instance = this;
     }
 
-    // Called when the wave manager is started
-    private void Start()
+    public override void OnStartServer()
+    {
+        base.OnStartServer();
+
+        if (waveDatas != null && waveDatas.Length >= 1)
+        {
+            Debug.Log("Activate Spawners");
+            currentWaveData = waveDatas[0];
+            ActivateAllSpawners();
+        }        
+    }
+
+    private void Update()
     {
         if (!IsServer) return;
-
-        if (_waveDatas != null && _waveDatas.Length > 1)
-        {
-            _currentWaveData = _waveDatas[0];
-            ActivateAllSpawners();
-        }
-          
     }
 
     private void StartNextWave()
     {
         if (!IsServer) return;
 
-        _currentWaveIndex++;
+        currentWaveIndex++;
 
-        if (_currentWaveIndex < _waveDatas.Length && !_currentWaveData.isLastWave)
+        if (currentWaveIndex < waveDatas.Length && !currentWaveData.isLastWave)
         {
             // Set the current wave to the next wave in the list
-            _currentWaveData = _waveDatas[_currentWaveIndex];
+            currentWaveData = waveDatas[currentWaveIndex];
 
-            //Delay according to delay in current wave Data.
-            Invoke(nameof(ActivateAllSpawners), _currentWaveData.waveDelay);
+            //Delay according to delay in current wave data.
+            Invoke(nameof(ActivateAllSpawners), currentWaveData.waveDelay);
 
         }
         else
@@ -59,28 +63,29 @@ public sealed class WaveManager : NetworkBehaviour
     {
         if (!IsServer) return;
 
-        foreach (EnemySpawner enemySpawner in _currentWaveData.enemySpawners)
+        Debug.Log("Instantiate Spawners");
+        foreach (GameObject enemySpawner in currentWaveData.enemySpawnerPrefabs)
         {
-            
-            EnemyManager.IncrementCounter(enemySpawner.GetMaxEnemyCount());
-            Instantiate(enemySpawner, enemySpawner.transform.position, Quaternion.identity);
-            enemySpawner.ActivateSpawnner();
-            _activeSpawners.Add(enemySpawner);
+            var newSpawner = Instantiate(enemySpawner, enemySpawner.transform.position, Quaternion.identity);
+            ServerManager.Spawn(newSpawner);
+            newSpawner.GetComponent<EnemySpawner>().ActivateSpawnner();
+            activeSpawners.Add(newSpawner);
+            Debug.Log("SpawnSpawners");
         }
     }
 
-    public void SpawnerComplete(EnemySpawner spawner)
+    public void SpawnerComplete(GameObject spawner)
     {
         if (!IsServer) return;
 
-        // Remove the completed spawner from the list of active spawners
-        _activeSpawners.Remove(spawner);
-
-        // Check if all spawners have completed
-        if (_activeSpawners.Count <= 0 && EnemyManager.GetEnemyCount() <= 0)
+        if (spawner.GetComponent<EnemySpawner>() != null)
         {
-            // Start the next wave
-            StartNextWave();
+            activeSpawners.Remove(spawner);
+
+            if (activeSpawners.Count <= 0 && EnemyManager.GetEnemyCount() <= 0)
+            {
+                StartNextWave();
+            }
         }
     }
 

@@ -48,10 +48,9 @@ MonoBehaviour:
   _componentIndexCache: 0
   _addedNetworkObject: {fileID: 301107563926818356}
   _networkObjectCache: {fileID: 301107563926818356}
-  _enemySpawnerData: {fileID: 11400000, guid: cff652697e8e8a34fb341c113b2fad15, type: 2}
-  _bossPrefabs: []
-  _isActive: 0
-  _spawnCount: 0
+  enemySpawnerData: {fileID: 11400000, guid: cff652697e8e8a34fb341c113b2fad15, type: 2}
+  isActive: 0
+  spawnCount: 0
 --- !u!114 &301107563926818356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -76,7 +75,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 15
+  <PrefabId>k__BackingField: 23
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 4169078065
   <SceneId>k__BackingField: 0

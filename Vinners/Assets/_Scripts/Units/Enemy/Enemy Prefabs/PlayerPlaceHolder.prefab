@@ -14,7 +14,6 @@ GameObject:
   - component: {fileID: 2434811104071018135}
   - component: {fileID: 2917108123935355383}
   - component: {fileID: 2917108123935355380}
-  - component: {fileID: -3184548362725326979}
   m_Layer: 0
   m_Name: PlayerPlaceHolder
   m_TagString: Player
@@ -143,6 +142,7 @@ MonoBehaviour:
   <PredictedSpawn>k__BackingField: {fileID: 0}
   _networkBehaviours:
   - {fileID: 2917108123935355380}
+  - {fileID: 0}
   <ParentNetworkObject>k__BackingField: {fileID: 0}
   <ChildNetworkObjects>k__BackingField: []
   _isNetworked: 1
@@ -150,7 +150,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 6
+  <PrefabId>k__BackingField: 7
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 4169078065
   <SceneId>k__BackingField: 0
@@ -204,18 +204,3 @@ MonoBehaviour:
     X: 0
     Y: 0
     Z: 0
---- !u!114 &-3184548362725326979
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2743692090432342152}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: da6df04dd83aca0488a794bc7abded8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _componentIndexCache: 255
-  _addedNetworkObject: {fileID: 2917108123935355383}
-  _networkObjectCache: {fileID: 0}

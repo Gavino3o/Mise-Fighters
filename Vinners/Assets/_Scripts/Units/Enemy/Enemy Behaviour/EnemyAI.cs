@@ -7,106 +7,64 @@ using static UnityEngine.GraphicsBuffer;
 using FishNet.Object.Synchronizing;
 using System.IO;
 
-public class EnemyAI : NetworkBehaviour
+public class EnemyAI : Unit
 {
+    [SerializeField] public float maxHealth;
+    [SyncVar] private Transform target; //Replace with player targetter
 
-    [SyncVar] protected double _currentHealth;
-    [SerializeField] public double _maxHealth;
+    public bool isBoss;
+    public bool canTeleport;
 
-    [SyncVar] private Transform _target;
-    [SerializeField] public float _speed;
+    protected Rigidbody2D rigidBody;
+    public GameObject deathEffect;
+    public GameObject scorePopUp;
     
-    public int _damage;
-    public bool _isBoss;
-    public bool _canTeleport;
-
-    protected Rigidbody2D _rigidBody;
-    //protected AIPathFinder _pathFinder;
-    public GameObject _deathEffect;
-    public GameObject _scorePopUp;
-    
+    //TODO: Enemy Astar Pathfinding
 
     private void Start()
-    {
-        _target = GameObject.FindGameObjectWithTag("Player").transform;
-        _rigidBody = GetComponent<Rigidbody2D>();
-        _currentHealth = _maxHealth;
-        //_pathFinder = GetComponent<AIPathFinder>();
+    { 
+        target = GameObject.FindGameObjectWithTag("Player").transform;
+        rigidBody = GetComponent<Rigidbody2D>();
+        currHealth = maxHealth;
 
         if (!IsServer)
         {
             GetComponent<Rigidbody2D>().isKinematic = true;
             GetComponentInChildren<Collider2D>().isTrigger = true;
-            //_pathFinder.canMove = false;
-            //_pathFinder.isStopped = true;
-            //GetComponent<AIDestinationSetter>().enabled = false;
-            //GetComponent<Seeker>().enabled = false;
-            //_pathFinder.enabled = false;
         }
     }
 
     private void Update()
     {
-        transform.position = Vector2.MoveTowards(transform.position, _target.position, _speed * Time.deltaTime);
+        if (!IsServer) return;
 
-        if(_currentHealth <= 0)
+        if(currHealth <= 0)
         {
             OnDeath();
         }
-    }
-
-    // TODO: Take damage from player projectile or melee attacks
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            
-        }
-    }
-
-    public override void OnStartServer()
-    {
-        base.OnStartServer();
-        EnemyManager.AddActiveEnemy(this);
-    }
-
-    public override void OnStopServer()
-    {
-        base.OnStopServer();
-        EnemyManager.RemoveActiveEnemy(this);
     }
 
     public double GetCurrentHeath()
     {
-        return _currentHealth;
+        return currHealth;
     }
 
-    public virtual void takeDamage(double dmg)
-    {
-        _currentHealth -= dmg;
 
-        if (_currentHealth <= 0)
-        {
-            OnDeath();
-        }
-    }
-
+    // TODO: Implement Score Pop Up and Death Effect
     private void OnDeath()
     {
         if (!IsServer) return;
 
-        GameObject scorePopUp = Instantiate(_scorePopUp, transform.position, Quaternion.identity);
-        Spawn(scorePopUp);
-
-        int randScoreBonus = Random.Range(1, 6);
+        //GameObject newPopUp = Instantiate(scorePopUp, transform.position, Quaternion.identity);
+        //Spawn(newPopUp);
+        //int randScoreBonus = Random.Range(1, 6);
         //Add Score Bonus to Team Score.
 
-        var deathEffect = Instantiate(_deathEffect, transform.position, Quaternion.identity);
-        Spawn(deathEffect);
+        //var newDeathEffect = Instantiate(deathEffect, transform.position, Quaternion.identity);
+        //Spawn(newDeathEffect);
 
-        EnemyManager.RemoveActiveEnemy(this);
         EnemyManager.DecrementCounter();
 
-        this.Despawn();
+        Despawn(gameObject);
     }
 }

@@ -67,14 +67,14 @@ MonoBehaviour:
   _componentIndexCache: 0
   _addedNetworkObject: {fileID: 2945851674530158077}
   _networkObjectCache: {fileID: 2945851674530158077}
-  _damage: 2
-  _maxLifeTime: 10
-  _speed: 500
+  damage: 100
+  maxLifeTime: 100
+  speed: 100
   _startPosition: {x: 0, y: 0, z: 0}
   _targetPosition: {x: 0, y: 0, z: 0}
   arcHeight: 100
   _timer: {fileID: 0}
-  _maxTimeActive: 0
+  _maxTimeActive: 100
 --- !u!114 &2945851674530158077
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -100,7 +100,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 12
+  <PrefabId>k__BackingField: 16
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 4169078065
   <SceneId>k__BackingField: 0
