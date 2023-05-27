@@ -40,7 +40,7 @@ public class EnemyAI : Unit
 
         if(currHealth <= 0)
         {
-            OnDeath();
+            Die();
         }
     }
 
@@ -51,7 +51,7 @@ public class EnemyAI : Unit
 
 
     // TODO: Implement Score Pop Up and Death Effect
-    private void OnDeath()
+    public override void Die()
     {
         if (!IsServer) return;
 
