@@ -13,45 +13,54 @@ public class EnemyMovementController : NetworkBehaviour
 
     void Start()
     {
-        Setup();
+        if (movementScript == null)
+        {
+            Setup();
+        }
     }
 
     private void Setup()
     {
-        if (movementScript == null)
-        {
-            movementScript = gameObject.GetComponent<AIPath>();
-        }
+        movementScript = gameObject.GetComponent<AIPath>();
         movementScript.orientation = OrientationMode.YAxisForward;
         movementScript.gravity = new Vector3(0, 0, 0);
         movementScript.enableRotation = false;
-    }
-
-    protected void StartAstarMovement()
-    {
-        Setup();
         movementScript.canMove = true;
         movementScript.isStopped = false;
     }
 
-    protected void StopAstarMovement()
+    public void StartAstarMovement()
     {
         if (movementScript == null)
         {
-            movementScript = gameObject.GetComponent<AIPath>();
+            Setup();
+        }
+        movementScript.canMove = true;
+        movementScript.isStopped = false;
+    }
+
+    public void StopAstarMovement()
+    {
+        if (movementScript == null)
+        {
+            Setup();
         }
         movementScript.canMove = false;
         movementScript.isStopped = true;
     }
 
-    protected void SetMaxMovementSpeed(float speed)
+    public void SetMaxMovementSpeed(float speed)
     {
         if (movementScript == null)
         {
-            movementScript = gameObject.GetComponent<AIPath>();
+            Setup();
         }
 
         movementScript.maxSpeed = speed;
     }
 
+    public bool IsActive()
+    {
+        return movementScript.canMove && movementScript.isStopped;
+    }
 }

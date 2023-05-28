@@ -9,62 +9,60 @@ using System.IO;
 
 public class EnemyAI : Unit
 {
-    [SerializeField] public float maxHealth;
-    [SyncVar] private Transform target; //Replace with player targetter
-
+    [SerializeField] 
+    public float maxHealth;
+    [SerializeField]
+    public float maxScoreBonus;
     public bool isBoss;
     public bool canTeleport;
-
     protected Rigidbody2D rigidBody;
     public GameObject deathEffect;
     public GameObject scorePopUp;
-    
-    //TODO: Enemy Astar Pathfinding
+    private EnemyMovementController enemyMovementController;
+    private PlayerTargeter playerTargeter;
+
 
     private void Start()
-    { 
-        target = GameObject.FindGameObjectWithTag("Player").transform;
-        rigidBody = GetComponent<Rigidbody2D>();
+    {
         currHealth = maxHealth;
+        enemyMovementController = GetComponent<EnemyMovementController>();
+        playerTargeter = GetComponent<PlayerTargeter>();
+        rigidBody = GetComponent<Rigidbody2D>();
 
         if (!IsServer)
         {
-            GetComponent<Rigidbody2D>().isKinematic = true;
+            rigidBody.isKinematic = true;
             GetComponentInChildren<Collider2D>().isTrigger = true;
+            enemyMovementController.StartAstarMovement();
         }
     }
 
     private void Update()
     {
         if (!IsServer) return;
-
-        if(currHealth <= 0)
-        {
-            Die();
-        }
     }
 
-    public double GetCurrentHeath()
+    public void EnemyTakeDamage(float dmg, GameObject player)
     {
-        return currHealth;
-    }
+        base.TakeDamage(dmg);
 
+        playerTargeter.ChangeTargetPlayer(player);
+    }
 
     // TODO: Implement Score Pop Up and Death Effect
     public override void Die()
     {
         if (!IsServer) return;
-
         //GameObject newPopUp = Instantiate(scorePopUp, transform.position, Quaternion.identity);
         //Spawn(newPopUp);
-        //int randScoreBonus = Random.Range(1, 6);
-        //Add Score Bonus to Team Score.
+        //int randScoreBonus = Random.Range(1, maxScoreBonus);
+        //ScoreManager.IncreaseScore(randScoreBonus);
 
         //var newDeathEffect = Instantiate(deathEffect, transform.position, Quaternion.identity);
         //Spawn(newDeathEffect);
 
+        enemyMovementController.StopAstarMovement();
         EnemyManager.DecrementCounter();
-
         Despawn(gameObject);
     }
 }
