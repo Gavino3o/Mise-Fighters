@@ -63,4 +63,5 @@ public class EnemyMovementController : NetworkBehaviour
     {
         return movementScript.canMove && movementScript.isStopped;
     }
+
 }

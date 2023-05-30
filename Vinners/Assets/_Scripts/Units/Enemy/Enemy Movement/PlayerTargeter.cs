@@ -4,18 +4,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using static Pathfinding.AIDestinationSetter;
+using FishNet.Object;
 
 public class PlayerTargeter : MonoBehaviour
 {
     private AIDestinationSetter destinationSetter;
     private GameObject targetPlayer;
 
-    private void Start()
+    public void Start()
     {
         Setup();
     }
 
-    private void Setup()
+    public void Setup()
     {
         destinationSetter = gameObject.GetComponent<AIDestinationSetter>();
         var players = GameObject.FindGameObjectsWithTag("Player");
@@ -34,6 +35,10 @@ public class PlayerTargeter : MonoBehaviour
 
     public GameObject GetCurrentTargetPlayer()
     {
+        if (destinationSetter == null)
+        {
+            Setup();
+        }
         return targetPlayer;
     }
 }

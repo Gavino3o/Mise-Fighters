@@ -33,6 +33,7 @@ public class EnemyAI : Unit
         {
             rigidBody.isKinematic = true;
             GetComponentInChildren<Collider2D>().isTrigger = true;
+            enemyMovementController.SetMaxMovementSpeed(currMoveSpeed);
             enemyMovementController.StartAstarMovement();
         }
     }

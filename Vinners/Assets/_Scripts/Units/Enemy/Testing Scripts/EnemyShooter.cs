@@ -7,25 +7,19 @@ using UnityEngine;
 
 public class EnemyShooter : NetworkBehaviour
 {
-    public float speed;
-    public float minimumDistance;
-    public float attackRange;
-    public float movementUpdateTime;
-
     public GameObject projectile;
+    public float speed;
+    public float attackRange;
     public float timeBetweenShots;
     public float nextShotTime;
+    public float minDistanceFromPlayer;
 
-    public EnemyMovementController enemyMovementController;
     public PlayerTargeter playerTargeter;
-    public Transform playerTransform;
 
-    private void Start()
+    public void Start()
     {
+        if (!IsServer) return;
         playerTargeter = gameObject.GetComponent<PlayerTargeter>();
-        playerTransform = playerTargeter.GetCurrentTargetPlayer().transform;
-        enemyMovementController = gameObject.GetComponent<EnemyMovementController>();
-        StartCoroutine(nameof(MovementSwitchCoroutine));
     }
 
 
@@ -38,7 +32,7 @@ public class EnemyShooter : NetworkBehaviour
 
     private void ShootProjectile()
     {
-        if (Time.time > nextShotTime && IsInRange())
+        if (Time.time > nextShotTime && IsInAttackRange())
         {
             var projectile = Instantiate(this.projectile, transform.position, Quaternion.identity);
             Spawn(projectile);
@@ -48,32 +42,18 @@ public class EnemyShooter : NetworkBehaviour
 
     private void RetreatFromPlayer()
     {
-        if (Vector2.Distance(transform.position, playerTransform.position) < minimumDistance)
+        var playerTransform = playerTargeter.GetCurrentTargetPlayer().transform.position;
+        if (Vector2.Distance(transform.position, playerTransform) < minDistanceFromPlayer)
         {
-            transform.position = Vector2.MoveTowards(transform.position, playerTransform.position, -speed * Time.deltaTime);
+            gameObject.transform.position = Vector2.MoveTowards(transform.position, playerTransform, -speed * Time.deltaTime);
         }
     }
 
-    public IEnumerable MovementSwitchCoroutine()
+    public bool IsInAttackRange()
     {
-        if (!IsInRange() && !enemyMovementController.IsActive())
-        {
-            enemyMovementController.StartAstarMovement();
-        }
-        else if (IsInRange() && enemyMovementController.IsActive())
-        {
-            enemyMovementController.StopAstarMovement();
-        }
-        else { }
-
-        yield return new WaitForSeconds(movementUpdateTime);
+        var playerTransform = playerTargeter.GetCurrentTargetPlayer().transform.position;
+        return Vector2.Distance(transform.position, playerTransform) < attackRange;
     }
-
-    private bool IsInRange()
-    {
-        return Vector2.Distance(transform.position, playerTransform.position) < attackRange;
-    }
-
 
     // The following methods are kept for testing purposes only.
     private void OnTriggerEnter2D(Collider2D collision)
@@ -85,11 +65,13 @@ public class EnemyShooter : NetworkBehaviour
         }
     }
 
-    private void MoveToAttackRange()
-    {
-        if (!IsInRange())
+    /*    private void MoveToAttackRange()
         {
-            transform.position = Vector2.MoveTowards(transform.position, playerTransform.position, speed * Time.deltaTime);
-        }
-    }
+            if (!IsInRange())
+            {
+                transform.position = Vector2.MoveTowards(transform.position, playerTransform.position, speed * Time.deltaTime);
+            }
+        }*/
+
+
 }
