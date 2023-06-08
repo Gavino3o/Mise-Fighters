@@ -34,12 +34,12 @@ public class PatissierCastCharacter : CastCharacter
         if (direction.x < transform.position.x)
         {
             // If mouse input is on the left
-            obj = Instantiate(burnSpellPrefab, transform.right, Quaternion.Euler(90, 0, 0));
+            obj = Instantiate(burnSpellPrefab, transform.right, Quaternion.Euler(0, 0, 90));
         }
         else 
         {
             // If mouse input is on the right, exact above or exact below
-            obj = Instantiate(burnSpellPrefab, -transform.right, Quaternion.Euler(-90, 0, 0));
+            obj = Instantiate(burnSpellPrefab, -transform.right, Quaternion.Euler(0, 0, -90));
         }
 
         obj.GetComponent<EnemyDamager>().damage = spellData[0].damage * character.currAttack;
