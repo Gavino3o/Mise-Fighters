@@ -51,7 +51,7 @@ public class EnemyAI : Unit
 
 
     // TODO: Implement Score Pop Up and Death Effect
-    private void OnDeath()
+    public override void OnDeath()
     {
         if (!IsServer) return;
 

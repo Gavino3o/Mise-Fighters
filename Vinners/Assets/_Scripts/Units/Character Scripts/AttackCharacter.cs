@@ -9,16 +9,19 @@ public class AttackCharacter : NetworkBehaviour
     public GameObject projectile;
 
     private float lastAttacked;
+    public bool canAttack;
 
     private void Awake()
     {
         character = GetComponent<Character>();
         input = character.input;
+        canAttack = true;
     }
 
     private void Update()
     {
         if (!IsOwner) return;
+        if (!canAttack) return;
         if (character == null || input == null || input.targetDirection == null) return;
 
         if (Time.time - lastAttacked < character.currAttackSpeed) return;

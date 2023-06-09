@@ -8,6 +8,8 @@ using UnityEngine;
  */
 public class StatusEffectData : ScriptableObject
 {
+    public static float IGNITION_DMG = 7f;
+    
     public string effectName;
     public float durationSeconds = 0;
     public float damageOverTime = 0;

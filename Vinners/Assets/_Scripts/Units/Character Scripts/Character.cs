@@ -3,6 +3,7 @@ using FishNet.Object;
 using FishNet.Object.Synchronizing;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.InputSystem;
 
 /*
  * Should contain centralised references to all other components;
@@ -34,16 +35,20 @@ public class Character : Unit
     {
         base.OnStartNetwork();
         if (!base.Owner.IsLocalClient) return;
-        usernameDisplay.text = Player.LocalInstance.username;
+        // usernameDisplay.text = Player.LocalInstance.username;
     }
 
-    public override void Die()
+    public override void OnDeath()
     {
-        controllingPlayer.CharacterDeath();
+        GetComponent<PlayerInput>().actions.Disable();
+        attacker.canAttack = false;
+        Player.LocalInstance.CharacterDeath();
     }
 
     public void Revive()
     {
+        GetComponent<PlayerInput>().actions.Enable();
+        attacker.canAttack = true;
         currHealth = baseStats.maxHealth;
     }
 

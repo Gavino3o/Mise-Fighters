@@ -16,17 +16,27 @@ public sealed class InputCharacter : MonoBehaviour
     private void OnEnable()
     {
         playerActions = new PlayerActions();
-        playerActions.PlayerInput.Enable();
+        EnableActions();
     }
 
     private void OnDisable()
     {
-        playerActions.PlayerInput.Disable();
+        DisableActions();
     }
     public void OnMovement(InputValue value)
     {
         velocity = value.Get<Vector2>();
 
+    }
+
+    public void EnableActions()
+    {
+        playerActions.PlayerInput.Enable();
+    }
+
+    public void DisableActions()
+    {
+        playerActions.PlayerInput.Disable();
     }
 
     public void OnAim(InputValue value)
