@@ -28,14 +28,11 @@ public class EnemyAI : Unit
         enemyMovementController = GetComponent<EnemyMovementController>();
         playerTargeter = GetComponent<PlayerTargeter>();
         rigidBody = GetComponent<Rigidbody2D>();
+        rigidBody.isKinematic = true;
+        GetComponentInChildren<Collider2D>().isTrigger = true;
+        enemyMovementController.SetMaxMovementSpeed(currMoveSpeed);
 
-        if (!IsServer)
-        {
-            rigidBody.isKinematic = true;
-            GetComponentInChildren<Collider2D>().isTrigger = true;
-            enemyMovementController.SetMaxMovementSpeed(currMoveSpeed);
-            enemyMovementController.StartAstarMovement();
-        }
+        enemyMovementController.StartAstarMovement();
     }
 
     private void Update()
