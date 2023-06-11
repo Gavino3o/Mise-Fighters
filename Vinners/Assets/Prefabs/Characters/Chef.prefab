@@ -674,7 +674,6 @@ MonoBehaviour:
   - {fileID: 6967667816943390858}
   - {fileID: 2420685106880469003}
   - {fileID: 8302944292573092573}
-  - {fileID: 0}
   - {fileID: 716281723751957937}
   - {fileID: 4414647984169859242}
   - {fileID: 1201508549497567103}
@@ -704,7 +703,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2836e36774ca1c4bbbee976e17b649c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 4
+  _componentIndexCache: 3
   _addedNetworkObject: {fileID: 1172006343598844436}
   _networkObjectCache: {fileID: 1172006343598844436}
   _componentConfiguration: 0
@@ -746,7 +745,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57e463bf38363f7419b66e610f08406a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 5
+  _componentIndexCache: 4
   _addedNetworkObject: {fileID: 1172006343598844436}
   _networkObjectCache: {fileID: 1172006343598844436}
 --- !u!58 &1644733848970717618
@@ -777,13 +776,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3adf5028de5a50c4b818e46cf3be8f3b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 6
+  _componentIndexCache: 5
   _addedNetworkObject: {fileID: 1172006343598844436}
   _networkObjectCache: {fileID: 1172006343598844436}
   spellData:
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 633a01b2c5ea3724db4bf647ba1479ba, type: 2}
+  - {fileID: 11400000, guid: 0c3df33242cbc894dbe1a9ff1a09cbfc, type: 2}
   - {fileID: 0}
   sliceSpellPrefab: {fileID: 6511293688210343933, guid: ac265388abee5094282273584dec6d77, type: 3}
   sliceAngle: 30
-  blinkDistance: 2.5
+  blinkDistance: 10

@@ -9,7 +9,7 @@ public class ChefCastCharacter : CastCharacter
     [Header("Slice skill")]
     [SerializeField] private GameObject sliceSpellPrefab;
     [SerializeField] private float sliceAngle = 30;
-    public void onSkill()
+    public void OnSkill()
     {
         if (!IsOwner) return;
 
@@ -29,8 +29,8 @@ public class ChefCastCharacter : CastCharacter
     public void CastSliceSkill()
     {
         // Consider implementing using one slice and using animation destroy.
-        Quaternion rotationOffset1 = Quaternion.Euler(0, sliceAngle, 0);
-        Quaternion rotationOffset2 = Quaternion.Euler(0, -sliceAngle, 0);
+        Quaternion rotationOffset1 = Quaternion.Euler(0, 0, sliceAngle);
+        Quaternion rotationOffset2 = Quaternion.Euler(0, 0 , -sliceAngle);
         GameObject firstSlice = Instantiate(sliceSpellPrefab, transform.position + transform.up, transform.rotation * rotationOffset1);
         GameObject secondSlice = Instantiate(sliceSpellPrefab, transform.position + transform.up, transform.rotation * rotationOffset2);
 
@@ -48,7 +48,7 @@ public class ChefCastCharacter : CastCharacter
     #region Chef Blink
     [Header("Blink Skill")]
 
-    public float blinkDistance = 2.5f;
+    public float blinkDistance = 10f;
     public void OnDash()
     {
         if (!IsOwner) return;
@@ -67,20 +67,33 @@ public class ChefCastCharacter : CastCharacter
     public IEnumerator Blink()
     {
         Vector2 blinkDirection = input.targetDirection;
+        Vector2 rayOffset = blinkDirection * 1.5f; //Origin of ray cannot be within a collider.
 
         // TODO: Add layering for obstacle layer.
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, blinkDirection, blinkDistance);
+        RaycastHit2D hit = Physics2D.Raycast((Vector2) transform.position + rayOffset, blinkDirection);
         movement.interrupted = true;
         if (hit.collider == null)
         {
             Vector2 newPosition = (Vector2) transform.position + blinkDirection * blinkDistance;
             transform.position = newPosition;
+            Debug.Log("C1");
         } 
         else
         {
             float obstacleDistance = hit.distance;
-            Vector2 newPosition = (Vector2) transform.position + blinkDirection * (obstacleDistance - 0.5f);
-            transform.position = newPosition;
+            if (obstacleDistance > blinkDistance)
+            {
+                Vector2 newPosition = (Vector2) transform.position + blinkDirection * blinkDistance;
+                transform.position = newPosition;
+                Debug.Log("C2");
+            }
+            else
+            {
+                Vector2 newPosition = (Vector2) transform.position + blinkDirection * (obstacleDistance - 1f);
+                transform.position = newPosition;
+                Debug.Log(obstacleDistance.ToString());
+                Debug.Log("C3");
+            }
         }
         yield return new WaitForSeconds(spellData[1].duration);
         movement.interrupted = false;
