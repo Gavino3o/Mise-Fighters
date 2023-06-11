@@ -18,7 +18,8 @@ public class Respawn : View
 
         dummyRespawnButton.onClick.AddListener(() =>
         {
-            Player.LocalInstance.RespawnCharacter();
+            Player.LocalInstance.ServerRespawnCharacter(); // this updates the gameview
+            Player.LocalInstance.RespawnCharacter(); // this enables the input...not sure why i cant do it any other way. 
         });
     }
 }

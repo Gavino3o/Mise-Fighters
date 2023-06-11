@@ -94,9 +94,15 @@ public class Player : NetworkBehaviour
         TargetCharacterSpawned(Owner);
     }
 
-    public void RespawnCharacter()
+    [ServerRpc]
+    public void ServerRespawnCharacter()
     {
         TargetCharacterSpawned(Owner);
+    }
+
+    public void RespawnCharacter()
+    {
+        
         controlledCharacter.Revive();
     }
 

@@ -46,19 +46,22 @@ public abstract class Unit : NetworkBehaviour
     public abstract void OnDeath();
 
     // Stacking status effects breaks this, have to rewrite.
-
-    private bool isDoused;
+    // public for debugging purposes
+    public float crippledUntil;
+    public float slowedUntil;
+    public float dousedUntil;
+    public bool isDoused;
 
     public void ApplyStatusEffect(StatusEffectData sed)
     {
         if (sed.attackMultiplier != 1)
         {
-            StartCoroutine(Cripple(sed.attackMultiplier, sed.durationSeconds));
+            Cripple(sed.attackMultiplier, sed.durationSeconds);
         }
 
         if (sed.moveSpeedMultiplier != 1)
         {
-            StartCoroutine(Slow(sed.moveSpeedMultiplier, sed.durationSeconds));
+            Slow(sed.moveSpeedMultiplier, sed.durationSeconds);
         }
 
 
@@ -69,63 +72,52 @@ public abstract class Unit : NetworkBehaviour
 
         if (sed.douser)
         {
-            StartCoroutine(Douse(sed.durationSeconds));
+           Douse(sed.durationSeconds);
 
         }
 
         if (sed.igniter && isDoused)
         {
             TakeDamage(StatusEffectData.IGNITION_DMG);
-            isDoused = false;
+            dousedUntil = Time.time;
         }
     }
 
-    #region Status Effect Coroutines
-    public IEnumerator Douse(float duration)
+
+    private void Update()
     {
-        if (!isDoused)
-        {
-            isDoused = true;
-            yield return new WaitForSeconds(duration);
-            isDoused = false;
-        }
-        else
-        {
-            yield return null;
-        }
+        if (crippledUntil <= Time.time) currAttack = baseStats.attack;
+        if (slowedUntil <= Time.time) currMoveSpeed = baseStats.moveSpeed;
+        if (dousedUntil <= Time.time) isDoused = false;
+    }
+    #region Status Effect Methods
+    public void Douse(float duration)
+    {
+        dousedUntil = Time.time + duration;
+        isDoused = true;
     }
 
-    public IEnumerator Cripple(float multiplier, float duration)
+    public void Cripple(float multiplier, float duration)
     {
         float next = multiplier * baseStats.attack;
         if (next < currAttack)
         {
             currAttack = next;
-            yield return new WaitForSeconds(duration);
-            currAttack = baseStats.attack;
-        } else
-        {
-            yield return null;
         }
 
+        crippledUntil = Time.time + duration;
     }
 
     // Just temporary to make sure slows don't stack and never revert. Need to rewrite to make sure
     // status stacking lengthens duration + overwrites current multiplier iff it's a stronger variant.
-    public IEnumerator Slow(float multiplier, float duration)
+    public void Slow(float multiplier, float duration)
     {
         float next = multiplier * baseStats.moveSpeed;
-        if (next < currAttack)
+        if (next < currMoveSpeed)
         {
-            currMoveSpeed= next;
-            yield return new WaitForSeconds(duration);
-            currMoveSpeed = baseStats.moveSpeed;
+            currMoveSpeed = next;
         }
-        else
-        {
-            yield return null;
-        }
-
+        slowedUntil = Time.time + duration;
     }
 
     // DoTs are rare and should be stackable?

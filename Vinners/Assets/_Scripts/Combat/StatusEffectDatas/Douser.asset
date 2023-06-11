@@ -15,7 +15,7 @@ MonoBehaviour:
   effectName: Douser
   durationSeconds: 10
   damageOverTime: 0
-  attackMultiplier: 1
+  attackMultiplier: 0.75
   moveSpeedMultiplier: 1
   douser: 1
   igniter: 0

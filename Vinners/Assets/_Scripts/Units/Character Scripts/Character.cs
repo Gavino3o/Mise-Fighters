@@ -4,6 +4,7 @@ using FishNet.Object.Synchronizing;
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine.InputSystem;
+using System;
 
 /*
  * Should contain centralised references to all other components;
@@ -23,6 +24,13 @@ public class Character : Unit
     public AttackCharacter attacker;
     public Rigidbody2D rb;
 
+    public Action HitEnemy;
+
+    public void HitSuccess()
+    {
+        HitEnemy?.Invoke();
+    }
+
     private void Awake()
     {
         input = GetComponent<InputCharacter>();
@@ -31,25 +39,19 @@ public class Character : Unit
         attacker = GetComponent<AttackCharacter>();
         rb = GetComponent<Rigidbody2D>();
     }
-    public override void OnStartNetwork()
-    {
-        base.OnStartNetwork();
-        if (!base.Owner.IsLocalClient) return;
-        // usernameDisplay.text = Player.LocalInstance.username;
-    }
 
     public override void OnDeath()
     {
         GetComponent<PlayerInput>().actions.Disable();
         attacker.canAttack = false;
-        Player.LocalInstance.CharacterDeath();
+        controllingPlayer.CharacterDeath();
     }
 
     public void Revive()
     {
         GetComponent<PlayerInput>().actions.Enable();
         attacker.canAttack = true;
-        currHealth = baseStats.maxHealth;
+        TakeDamage(baseStats.maxHealth * -1);    
     }
 
 }

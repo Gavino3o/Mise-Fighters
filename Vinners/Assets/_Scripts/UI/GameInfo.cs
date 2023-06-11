@@ -21,17 +21,32 @@ public class GameInfo : View
     [SerializeField] private TextMeshProUGUI HP;
     [SerializeField] private TextMeshProUGUI SkillReady;
     [SerializeField] private TextMeshProUGUI DashReady;
+    [SerializeField] private TextMeshProUGUI UltiReady;
+
+    private Player player;
+    private Character character;
+
+    private void Awake()
+    {
+        player = Player.LocalInstance;
+        character = player.controlledCharacter;
+    }
 
     private void Update()
     {
         if (!Initialised) return;
 
-        Player player = Player.LocalInstance;
-
         if (player == null || player.controlledCharacter == null) return;
        
         HP.text = $"HP: {player.controlledCharacter.currHealth}";
-        SkillReady.text = $"Skill Ready: {player.controlledCharacter.GetComponent<CastCharacter>().canCast[0]}";
-        DashReady.text = $"Dash Ready: {player.controlledCharacter.GetComponent<CastCharacter>().canCast[1]}";
+        SkillReady.text = $"Skill Ready: {player.controlledCharacter.caster.canCast[0]}";
+        DashReady.text = $"Dash Ready: {player.controlledCharacter.caster.canCast[1]}";
+        UpdateUltText();
+       
+    }
+
+    private void UpdateUltText()
+    {
+       UltiReady.text = $"Charge: {player.controlledCharacter.caster.ultimate}/50 Ulti Ready:{player.controlledCharacter.caster.canCast[2]}";
     }
 }
