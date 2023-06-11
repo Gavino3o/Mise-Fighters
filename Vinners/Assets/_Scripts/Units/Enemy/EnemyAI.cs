@@ -48,7 +48,7 @@ public class EnemyAI : Unit
     }
 
     // TODO: Implement Score Pop Up and Death Effect
-    public override void Die()
+    public override void OnDeath()
     {
         if (!IsServer) return;
         //GameObject newPopUp = Instantiate(scorePopUp, transform.position, Quaternion.identity);

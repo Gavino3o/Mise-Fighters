@@ -10,8 +10,6 @@ using System;
 /*
  * The Player class is responsible for information relating to a player's account (their username, connection status
  * to host, controlled character etc.)
- * 
- * TODO: remove the many dependencies present
  */
 
 public class Player : NetworkBehaviour
@@ -22,7 +20,6 @@ public class Player : NetworkBehaviour
     [SyncVar] public bool isLockedIn;
     [SyncVar] public Character controlledCharacter;
     
-    // just temporary until Characters get implemented
     [SerializeField] private GameObject characterPrefab;
 
     public override void OnStartClient()
@@ -97,9 +94,20 @@ public class Player : NetworkBehaviour
         TargetCharacterSpawned(Owner);
     }
 
+    [ServerRpc]
+    public void ServerRespawnCharacter()
+    {
+        TargetCharacterSpawned(Owner);
+    }
+
+    public void RespawnCharacter()
+    {
+        
+        controlledCharacter.Revive();
+    }
+
     public void CharacterDeath()
     {
-        // do animations or something
         TargetCharacterDied(Owner);
     }
 
@@ -123,7 +131,6 @@ public class Player : NetworkBehaviour
     private void TargetCharacterDied(NetworkConnection conn)
     {
         Debug.Log("You died bozo");
-        // disable player input
-        // UIManager.LocalInstance.Show<Respawn>();
+        UIManager.LocalInstance.Show<Respawn>();
     }
 }
