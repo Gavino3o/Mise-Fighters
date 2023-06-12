@@ -26,7 +26,7 @@ Transform:
   m_GameObject: {fileID: 2178413791162040748}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5.19, y: 5.19, z: 5.19}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 6853187515346777717}
@@ -99,7 +99,7 @@ GameObject:
   - component: {fileID: -8903695721614164821}
   - component: {fileID: 2983890739566527849}
   m_Layer: 0
-  m_Name: Bomb
+  m_Name: BartenderBomb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -114,7 +114,7 @@ Transform:
   m_GameObject: {fileID: 6848911510146320331}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 5, y: 5, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 909448301764112696}
@@ -161,11 +161,11 @@ MonoBehaviour:
   _initializeOrder: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 16
+  <PrefabId>k__BackingField: 8
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 0
   <SceneId>k__BackingField: 0
-  <AssetPathHash>k__BackingField: 11240409090848623390
+  <AssetPathHash>k__BackingField: 597595084023592805
   _sceneNetworkObjects: []
 --- !u!114 &-6029480087865222614
 MonoBehaviour:
@@ -179,6 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e85af9278efd0ba41a378bc96abdccb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  source: {fileID: 0}
   damage: 0
 --- !u!114 &-8903695721614164821
 MonoBehaviour:

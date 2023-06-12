@@ -41,16 +41,11 @@ public class AttackCharacter : NetworkBehaviour
     {
         GameObject obj = Instantiate(projectile.gameObject, transform.position, transform.rotation);
         EnemyDamager dmger = obj.GetComponent<EnemyDamager>();
-        if (dmger != null)
-        {
-            dmger.damage = attack;
-        }
+        if (dmger != null) dmger.damage = attack;
 
         SkillshotMotion motion = obj.GetComponent<SkillshotMotion>();
-        if (motion != null)
-        {
-            motion.movementDirection = targetDirection;
-        }
+        if (motion != null) motion.movementDirection = targetDirection;
+        
         ServerManager.Spawn(obj);
         Debug.Log($"{gameObject} controlled by {Owner} attacks!");
     }

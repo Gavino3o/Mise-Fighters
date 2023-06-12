@@ -27,14 +27,7 @@ public sealed class GameManager : NetworkBehaviour
     
     private void Awake()
     {
-        
-        if (Instance != null)
-        {
-            Destroy(this);
-        } else
-        {
             Instance = this;
-        }
     }
 
     /*
