@@ -6,7 +6,7 @@ public class ButcherCastCharacter : CastCharacter
 {
     # region Taunt skill
     [Header("Taunt Skill")]
-    [SerializeField] private GameObject tauntSpellPrefab;
+    [SerializeField] private NetworkObject tauntSpellPrefab;
     public void OnSkill()
     {
         if (!IsOwner) return;
@@ -15,7 +15,6 @@ public class ButcherCastCharacter : CastCharacter
             StartCoroutine(Cooldown(0));
             
             CastTauntSkill();
-            Debug.Log("Spell casted");
         }
         else
         {
@@ -26,8 +25,8 @@ public class ButcherCastCharacter : CastCharacter
     [ServerRpc]
     public void CastTauntSkill()
     {
-        GameObject obj = Instantiate(tauntSpellPrefab, transform);
-        obj.GetComponent<EnemyDamager>().damage = spellData[0].damage * character.currAttack;
+        NetworkObject obj = Instantiate(tauntSpellPrefab, transform);
+        SetupDamager(obj.GetComponent<EnemyDamager>(), 0);
         obj.GetComponent<Lifetime>().lifetime = spellData[0].duration;
         obj.GetComponent<Taunter>().target = NetworkObject;
         ServerManager.Spawn(obj);
@@ -40,6 +39,8 @@ public class ButcherCastCharacter : CastCharacter
     [Header("Charge Skill")]
     public float chargeSpeed = 3f;
     public float windUp = 0.3f;
+    [SerializeField] private NetworkObject chargeSpellPrefab;
+
     public void OnDash()
     {
         if (!IsOwner) return;
@@ -48,7 +49,6 @@ public class ButcherCastCharacter : CastCharacter
             StartCoroutine(Cooldown(1));
             // CastChargeSkill();
             StartCoroutine(Charge());
-            Debug.Log($"{spellData[1].spellName} casted");
         }
         else
         {
@@ -56,10 +56,15 @@ public class ButcherCastCharacter : CastCharacter
         }
     }
 
+    // spawn a damager on the player to do the aoe for windup + lifetime duration + 0.2 (satisfaction time)
     [ServerRpc]
     public void CastChargeSkill()
     {
-        // spawn a damager on the player to do the aoe for windup + lifetime duration + 0.2 (satisfaction time)
+        NetworkObject obj = Instantiate(chargeSpellPrefab, transform);
+        SetupDamager(obj.GetComponent<EnemyDamager>(), 1);
+        obj.GetComponent<Lifetime>().lifetime = spellData[1].duration;
+        ServerManager.Spawn(obj);
+        Debug.Log($"{spellData[1].spellName} casted");
     }
 
     public IEnumerator Charge()
@@ -74,17 +79,43 @@ public class ButcherCastCharacter : CastCharacter
     #endregion
 
     #region Ultimate skill
+
+    [Header("Ultimate Skill")]
+    public int noSpins = 5;
+    public float spinInterval = 0.5f;
+    [SerializeField] private NetworkObject spinSpellPrefab;
     public void OnUltimate()
     {
         if (!IsOwner) return;
         if (canCast[2])
         {
-            Debug.Log($"Ultimate casted");
+            StartCoroutine(Pirouette());
             SpendUltimate(ULT_METER);
         }
         else
         {
             Debug.Log("Not enough charge");
+        }
+    }
+
+    [ServerRpc]
+    public void CastUltimateSkill()
+    {
+        NetworkObject obj = Instantiate(spinSpellPrefab, transform);
+        SetupDamager(obj.GetComponent<EnemyDamager>(), 2);
+        obj.GetComponent<Lifetime>().lifetime = spellData[2].duration;
+        ServerManager.Spawn(obj);
+        Debug.Log($"{spellData[2].spellName} casted");
+    }
+
+    public IEnumerator Pirouette()
+    {
+        int n = 0;
+        while (n < noSpins)
+        {
+            CastUltimateSkill();
+            n++;
+            yield return new WaitForSeconds(spinInterval);
         }
     }
     #endregion
