@@ -596,6 +596,10 @@ MonoBehaviour:
   currAttackSpeed: 0
   currMoveSpeed: 0
   baseStats: {fileID: 11400000, guid: bfffa5faa8ed94148a2bc8b5a7488f20, type: 2}
+  crippledUntil: 0
+  slowedUntil: 0
+  dousedUntil: 0
+  isDoused: 0
   characterSplash: {fileID: 0}
   controllingPlayer: {fileID: 0}
   usernameDisplay: {fileID: 6935388049523391863}
@@ -656,12 +660,13 @@ MonoBehaviour:
   spellData:
   - {fileID: 11400000, guid: 65354cbbedc72ce4f842f5fad2fb9334, type: 2}
   - {fileID: 11400000, guid: 55b93550f7c19e947831928b2292f59d, type: 2}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 49dd30dd861b7774a9ea36b9a07c0c1d, type: 2}
   ultimate: 0
-  bombSpellPrefab: {fileID: 6848911510146320331, guid: be3491550470a5045bc42785cbb39c08, type: 3}
+  bombSpellPrefab: {fileID: 5681926344258742825, guid: be3491550470a5045bc42785cbb39c08, type: 3}
   dashSpeed: 5
-  lurePrefab: {fileID: 6848911510146320331, guid: 58ce1d0403ceb3b47b8eef26dda66f5a, type: 3}
+  lurePrefab: {fileID: 5681926344258742825, guid: 58ce1d0403ceb3b47b8eef26dda66f5a, type: 3}
   lureDuration: 2
+  iceSpellPrefab: {fileID: 5681926344258742825, guid: fda7ad45dd5c7f54a9f176ca50df5c6e, type: 3}
 --- !u!114 &8302944292573092573
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -709,7 +714,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 24
+  <PrefabId>k__BackingField: 29
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 0
   <SceneId>k__BackingField: 0

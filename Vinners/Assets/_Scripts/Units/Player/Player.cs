@@ -43,9 +43,6 @@ public class Player : NetworkBehaviour
         GameManager.Instance.playerCount++;
     }
 
-    /*
-     * Called when player disconnects from server.
-     */
     public override void OnStopServer()
     {
         base.OnStopServer();
@@ -68,7 +65,7 @@ public class Player : NetworkBehaviour
     }
 
     /*
-     * Informs the server that this player has locked in. This function is called from the Ready Button.
+     * Informs the server that this player has locked in.
      */
     [ServerRpc(RequireOwnership = false)]
     public void ServerSetLockIn(bool value)
@@ -83,7 +80,7 @@ public class Player : NetworkBehaviour
     }
 
     /*
-     * Upon game start, spawns the Player Object and handles the UI changes
+     * Upon game start, spawns the Character Object and handles the UI changes
      */
     public void SpawnCharacter()
     {

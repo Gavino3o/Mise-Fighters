@@ -5,7 +5,7 @@ public class BartenderCastCharacter : CastCharacter
 {
     #region Bomb skill
     [Header("Bomb Skill")]
-    [SerializeField] private GameObject bombSpellPrefab;
+    [SerializeField] private NetworkObject bombSpellPrefab;
 
     public void OnSkill()
     {
@@ -14,7 +14,7 @@ public class BartenderCastCharacter : CastCharacter
         {
             StartCoroutine(Cooldown(0));
             
-            CastBombSkill(spellData[0].duration, spellData[0].damage * character.currAttack, new Vector3(input.mousePos.x, input.mousePos.y, 0f));
+            CastBombSkill(input.mousePos);
             Debug.Log("Spell casted");
         }
         else
@@ -24,11 +24,11 @@ public class BartenderCastCharacter : CastCharacter
     }
 
     [ServerRpc]
-    public void CastBombSkill(float duration, float dmg, Vector3 position)
+    public void CastBombSkill(Vector2 mousePos)
     {
-        GameObject obj = Instantiate(bombSpellPrefab, position, transform.rotation);
-        obj.GetComponent<EnemyDamager>().damage = dmg;
-        obj.GetComponent<Lifetime>().lifetime = duration;
+        NetworkObject obj = Instantiate(bombSpellPrefab, mousePos, transform.rotation);
+        SetupDamager(obj.GetComponent<EnemyDamager>(), 0);
+        obj.GetComponent<Lifetime>().lifetime = spellData[0].duration;
         ServerManager.Spawn(obj);
         Debug.Log($"{spellData[0].spellName} casted");
     }
@@ -38,7 +38,7 @@ public class BartenderCastCharacter : CastCharacter
     #region Backstep skill
     [Header("Backstep Skill")]
     public float dashSpeed = 6f;
-    [SerializeField] private GameObject lurePrefab;
+    [SerializeField] private NetworkObject lurePrefab;
     public float lureDuration = 2f;
     public void OnDash()
     {
@@ -61,8 +61,9 @@ public class BartenderCastCharacter : CastCharacter
     [ServerRpc]
     public void DropLure()
     {
-        GameObject obj = Instantiate(lurePrefab, transform.position, transform.rotation);
+        NetworkObject obj = Instantiate(lurePrefab, transform.position, transform.rotation);
         obj.GetComponent<Lifetime>().lifetime = lureDuration;
+        obj.GetComponent<Taunter>().target = obj;
         ServerManager.Spawn(obj);
         Debug.Log("Lure dropped");
     }
@@ -74,5 +75,35 @@ public class BartenderCastCharacter : CastCharacter
         yield return new WaitForSeconds(spellData[1].duration);
         movement.interrupted = false;
     }
+    #endregion
+
+    #region Ultimate skill
+
+    [Header("Ultimate Skill")]
+    [SerializeField] private NetworkObject iceSpellPrefab;
+    public void OnUltimate()
+    {
+        if (!IsOwner) return;
+        if (canCast[2])
+        {
+            CastUltimateSkill();
+            SpendUltimate(ULT_METER);
+        }
+        else
+        {
+            Debug.Log("Not enough charge");
+        }
+    }
+
+    [ServerRpc]
+    public void CastUltimateSkill()
+    {
+        NetworkObject obj = Instantiate(iceSpellPrefab, transform.position, transform.rotation);
+        SetupDamager(obj.GetComponent<EnemyDamager>(), 2);
+        obj.GetComponent<Lifetime>().lifetime = spellData[2].duration;
+        ServerManager.Spawn(obj);
+        Debug.Log($"{spellData[2].spellName} casted");
+    }
+
     #endregion
 }

@@ -45,7 +45,6 @@ public abstract class Unit : NetworkBehaviour
 
     public abstract void OnDeath();
 
-    // Stacking status effects breaks this, have to rewrite.
     // public for debugging purposes
     public float crippledUntil;
     public float slowedUntil;
@@ -108,8 +107,6 @@ public abstract class Unit : NetworkBehaviour
         crippledUntil = Time.time + duration;
     }
 
-    // Just temporary to make sure slows don't stack and never revert. Need to rewrite to make sure
-    // status stacking lengthens duration + overwrites current multiplier iff it's a stronger variant.
     public void Slow(float multiplier, float duration)
     {
         float next = multiplier * baseStats.moveSpeed;
@@ -120,7 +117,6 @@ public abstract class Unit : NetworkBehaviour
         slowedUntil = Time.time + duration;
     }
 
-    // DoTs are rare and should be stackable?
     public IEnumerator Dot(float dmg, float duration)
     {
         float endTime = Time.time + duration;

@@ -48,8 +48,8 @@ public class CastCharacter : NetworkBehaviour
 
     private void CharacterHitEnemy()
     {
-        // value is 10 for testing purposes
-        ChargeUltimate(10);
+        // value is 1 for testing purposes
+        ChargeUltimate(1);
     }
 
     public void ChargeUltimate(float amt)
@@ -76,4 +76,15 @@ public class CastCharacter : NetworkBehaviour
         }
 
     }
+
+    #region Helper methods
+    protected void SetupDamager(EnemyDamager dmger, int n)
+    {
+        if (dmger != null)
+        {
+            dmger.damage = spellData[n].damage * character.currAttack;
+            dmger.source = character;
+        }
+    }
+    #endregion
 }
