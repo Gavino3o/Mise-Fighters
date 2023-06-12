@@ -9,11 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ad7733e8510838847a89fbb9c2a609f4, type: 3}
-  m_Name: PatissierBurn
+  m_Script: {fileID: 11500000, guid: 99e2519ac92139f4f84b4d0b6dfd7782, type: 3}
+  m_Name: PatissierStats
   m_EditorClassIdentifier: 
-  spellName: Toasted Meringue
-  description: Continuously ignites her enemies in a hortizontal direction.
-  cooldown: 5
-  damage: 1
-  duration: 5
+  maxHealth: 25
+  attack: 4
+  attackFreqSeconds: 0.7
+  moveSpeed: 1

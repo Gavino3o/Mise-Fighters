@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 2747690628134850419, guid: b670ab75dde984907b8570040daa08c5, type: 3}
-  m_Color: {r: 0.9528302, g: 0.9022432, b: 0.63372195, a: 1}
+  m_Color: {r: 0.8679245, g: 0.50356, b: 0.8095218, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -468,13 +468,14 @@ GameObject:
   - component: {fileID: 933609652824942408}
   - component: {fileID: -2564277016632147628}
   - component: {fileID: 6967667816943390858}
-  - component: {fileID: 2420685106880469003}
   - component: {fileID: 2670663749148832099}
   - component: {fileID: 8302944292573092573}
   - component: {fileID: 1172006343598844436}
   - component: {fileID: 716281723751957937}
   - component: {fileID: 4414647984169859242}
   - component: {fileID: 1644733848970717618}
+  - component: {fileID: -595177013496435579}
+  - component: {fileID: -7564451973442373784}
   m_Layer: 3
   m_Name: Patissier
   m_TagString: Untagged
@@ -594,7 +595,7 @@ MonoBehaviour:
   currAttack: 0
   currAttackSpeed: 0
   currMoveSpeed: 0
-  baseStats: {fileID: 11400000, guid: e0474f370e814a94bb53361c62251371, type: 2}
+  baseStats: {fileID: 11400000, guid: 2e451125e1043ff40ab2f416915b1ead, type: 2}
   crippledUntil: 0
   slowedUntil: 0
   dousedUntil: 0
@@ -607,25 +608,6 @@ MonoBehaviour:
   movement: {fileID: 0}
   attacker: {fileID: 0}
   rb: {fileID: 0}
---- !u!114 &2420685106880469003
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8735874033422930139}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e34939c63e48e0b4092218cda3079d96, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _componentIndexCache: 1
-  _addedNetworkObject: {fileID: 1172006343598844436}
-  _networkObjectCache: {fileID: 1172006343598844436}
-  character: {fileID: 0}
-  input: {fileID: 0}
-  projectile: {fileID: 8791335468521538598, guid: a6a510987340e9b46aeb18a606847f80, type: 3}
-  canAttack: 0
 --- !u!114 &2670663749148832099
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -676,9 +658,8 @@ MonoBehaviour:
   <PredictedSpawn>k__BackingField: {fileID: 0}
   _networkBehaviours:
   - {fileID: 6967667816943390858}
-  - {fileID: 2420685106880469003}
-  - {fileID: 8302944292573092573}
   - {fileID: 0}
+  - {fileID: 8302944292573092573}
   - {fileID: 716281723751957937}
   - {fileID: 4414647984169859242}
   <ParentNetworkObject>k__BackingField: {fileID: 0}
@@ -707,7 +688,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2836e36774ca1c4bbbee976e17b649c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 4
+  _componentIndexCache: 3
   _addedNetworkObject: {fileID: 1172006343598844436}
   _networkObjectCache: {fileID: 1172006343598844436}
   _componentConfiguration: 0
@@ -749,7 +730,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57e463bf38363f7419b66e610f08406a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 5
+  _componentIndexCache: 4
   _addedNetworkObject: {fileID: 1172006343598844436}
   _networkObjectCache: {fileID: 1172006343598844436}
 --- !u!58 &1644733848970717618
@@ -768,3 +749,44 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &-595177013496435579
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8735874033422930139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 153e949482a04cf438944bb82780b0f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _componentIndexCache: 255
+  _addedNetworkObject: {fileID: 1172006343598844436}
+  _networkObjectCache: {fileID: 0}
+  spellData:
+  - {fileID: 11400000, guid: 7946abca81e3c694197a93ffa64f270e, type: 2}
+  - {fileID: 11400000, guid: 1994b6283c26c3549afa045a7fd1e741, type: 2}
+  - {fileID: 0}
+  ultimate: 0
+  burnSpellPrefab: {fileID: 5573050333223222883, guid: c203d78f488b8f34c8a96e2acdef8dda, type: 3}
+  scrambleSpeed: 8
+--- !u!114 &-7564451973442373784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8735874033422930139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0613b6a4e1ccf844da44ca8664ec9793, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _componentIndexCache: 255
+  _addedNetworkObject: {fileID: 1172006343598844436}
+  _networkObjectCache: {fileID: 0}
+  character: {fileID: 0}
+  input: {fileID: 0}
+  projectile: {fileID: 4279149033440265247, guid: fe23b3dfd0d788f458c4b7a103bd5028, type: 3}
+  canAttack: 0

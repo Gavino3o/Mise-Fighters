@@ -596,6 +596,10 @@ MonoBehaviour:
   currAttackSpeed: 0
   currMoveSpeed: 0
   baseStats: {fileID: 11400000, guid: f5fb05d0cca8201498bc47f1cb401d51, type: 2}
+  crippledUntil: 0
+  slowedUntil: 0
+  dousedUntil: 0
+  isDoused: 0
   characterSplash: {fileID: 0}
   controllingPlayer: {fileID: 0}
   usernameDisplay: {fileID: 7911271535273823007}
@@ -621,7 +625,8 @@ MonoBehaviour:
   _networkObjectCache: {fileID: 1172006343598844436}
   character: {fileID: 0}
   input: {fileID: 0}
-  projectile: {fileID: 8791335468521538598, guid: a6a510987340e9b46aeb18a606847f80, type: 3}
+  projectile: {fileID: -7984758693773651456, guid: a6a510987340e9b46aeb18a606847f80, type: 3}
+  canAttack: 0
 --- !u!114 &2670663749148832099
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -783,6 +788,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 633a01b2c5ea3724db4bf647ba1479ba, type: 2}
   - {fileID: 11400000, guid: 0c3df33242cbc894dbe1a9ff1a09cbfc, type: 2}
   - {fileID: 0}
+  ultimate: 0
   sliceSpellPrefab: {fileID: 6511293688210343933, guid: ac265388abee5094282273584dec6d77, type: 3}
   sliceAngle: 30
   blinkDistance: 10

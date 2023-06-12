@@ -6,9 +6,9 @@ public class AttackCharacter : NetworkBehaviour
     public Character character;
     public InputCharacter input;
 
-    [SerializeField] private EnemyDamager projectile;
+    [SerializeField] protected EnemyDamager projectile;
 
-    private float lastAttacked;
+    protected float lastAttacked;
     public bool canAttack;
 
     private void Awake()
@@ -37,7 +37,7 @@ public class AttackCharacter : NetworkBehaviour
      * Instantiates the prefab at the current position and sets its parameters.
      */
     [ServerRpc]
-    public void AutoAttack(float attack, Vector2 targetDirection)
+    public virtual void AutoAttack(float attack, Vector2 targetDirection)
     {
         GameObject obj = Instantiate(projectile.gameObject, transform.position, transform.rotation);
         EnemyDamager dmger = obj.GetComponent<EnemyDamager>();

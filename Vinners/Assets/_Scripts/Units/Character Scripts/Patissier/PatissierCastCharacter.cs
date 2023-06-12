@@ -35,13 +35,16 @@ public class PatissierCastCharacter : CastCharacter
         {
             // If mouse input is on the left
             obj = Instantiate(burnSpellPrefab, transform.right, Quaternion.Euler(0, 0, 90));
+            obj.GetComponent<SkillFollowPlayer>().direction = 3;
         }
         else 
         {
             // If mouse input is on the right, exact above or exact below
             obj = Instantiate(burnSpellPrefab, -transform.right, Quaternion.Euler(0, 0, -90));
+            obj.GetComponent<SkillFollowPlayer>().direction = 1;
         }
 
+        obj.GetComponent<SkillFollowPlayer>().player = gameObject;
         obj.GetComponent<EnemyDamager>().damage = spellData[0].damage * character.currAttack;
         obj.GetComponent<Lifetime>().lifetime = spellData[0].duration;
         ServerManager.Spawn(obj);
