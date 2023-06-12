@@ -43,12 +43,10 @@ public class EnemyAI : Unit
     public void EnemyTakeDamage(float dmg, GameObject player)
     {
         base.TakeDamage(dmg);
-        if(currHealth <= 0)
+        if (currHealth <= 0)
         {
             OnDeath();
         }
-    }
-
         playerTargeter.ChangeTargetPlayer(player);
     }
 
