@@ -60,7 +60,6 @@ public class ButcherCastCharacter : CastCharacter
     public void CastChargeSkill()
     {
         // spawn a damager on the player to do the aoe for windup + lifetime duration + 0.2 (satisfaction time)
-
     }
 
     public IEnumerator Charge()
@@ -74,5 +73,19 @@ public class ButcherCastCharacter : CastCharacter
 
     #endregion
 
-
+    #region Ultimate skill
+    public void OnUltimate()
+    {
+        if (!IsOwner) return;
+        if (canCast[2])
+        {
+            Debug.Log($"Ultimate casted");
+            SpendUltimate(ULT_METER);
+        }
+        else
+        {
+            Debug.Log("Not enough charge");
+        }
+    }
+    #endregion
 }

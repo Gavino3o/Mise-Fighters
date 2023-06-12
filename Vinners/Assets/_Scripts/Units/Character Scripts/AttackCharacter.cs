@@ -6,25 +6,29 @@ public class AttackCharacter : NetworkBehaviour
     public Character character;
     public InputCharacter input;
 
-    public GameObject projectile;
+    [SerializeField] private EnemyDamager projectile;
 
     private float lastAttacked;
+    public bool canAttack;
 
     private void Awake()
     {
         character = GetComponent<Character>();
         input = character.input;
+        canAttack = true;
+        projectile.source = character;
     }
 
     private void Update()
     {
         if (!IsOwner) return;
+        if (!canAttack) return;
         if (character == null || input == null || input.targetDirection == null) return;
 
         if (Time.time - lastAttacked < character.currAttackSpeed) return;
         lastAttacked = Time.time;
         // Values have to be calculated/accessed outside the serverrpc call
-        AutoAttack(input.targetDirection);
+        AutoAttack(character.currAttack, input.targetDirection);
         
     }
 
@@ -33,13 +37,13 @@ public class AttackCharacter : NetworkBehaviour
      * Instantiates the prefab at the current position and sets its parameters.
      */
     [ServerRpc]
-    public void AutoAttack(Vector2 targetDirection)
+    public void AutoAttack(float attack, Vector2 targetDirection)
     {
-        GameObject obj = Instantiate(projectile, transform.position, transform.rotation);
+        GameObject obj = Instantiate(projectile.gameObject, transform.position, transform.rotation);
         EnemyDamager dmger = obj.GetComponent<EnemyDamager>();
         if (dmger != null)
         {
-            dmger.damage = character.currAttack;
+            dmger.damage = attack;
         }
 
         SkillshotMotion motion = obj.GetComponent<SkillshotMotion>();

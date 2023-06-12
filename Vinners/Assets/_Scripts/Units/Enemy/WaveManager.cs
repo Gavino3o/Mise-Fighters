@@ -26,6 +26,7 @@ public sealed class WaveManager : NetworkBehaviour
         if (waveDatas != null && waveDatas.Length >= 1)
         {
             Debug.Log("Activate Spawners");
+            currentWaveIndex = 0;
             currentWaveData = waveDatas[0];
             ActivateAllSpawners();
         }        

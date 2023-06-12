@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4de1ab2434fece4cb230aab18203183, type: 3}
   m_Name: StunShort
   m_EditorClassIdentifier: 
-  effectName: StunShort
+  effectName: Stun
   durationSeconds: 1
   damageOverTime: 0
   attackMultiplier: 1
