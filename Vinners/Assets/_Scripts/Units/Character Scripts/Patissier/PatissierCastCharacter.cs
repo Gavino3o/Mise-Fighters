@@ -62,7 +62,7 @@ public class PatissierCastCharacter : CastCharacter
 
 
     #region Scramble skill
-    [Header("Charge Skill")]
+    [Header("Scramble Skill")]
     public float scrambleSpeed = 8f;
     public void OnDash()
     {
@@ -70,8 +70,7 @@ public class PatissierCastCharacter : CastCharacter
         if (canCast[1])
         {
             StartCoroutine(Cooldown(1));
-            // CastChargeSkill();
-            StartCoroutine(Scramble());
+            StartCoroutine(CastScrambleSkill());
             Debug.Log($"{spellData[1].spellName} casted");
         }
         else
@@ -80,7 +79,7 @@ public class PatissierCastCharacter : CastCharacter
         }
     }
 
-    public IEnumerator Scramble()
+    public IEnumerator CastScrambleSkill()
     {
         movement.interrupted = true;
         rigidBody.velocity = scrambleSpeed * input.targetDirection;
