@@ -9,6 +9,7 @@ public class PatissierCastCharacter : CastCharacter
     #region Burn skill
     [Header("Burn Skill")]
     [SerializeField] private GameObject burnSpellPrefab;
+    [SerializeField] private float offSet = 1.5f;
     public void OnSkill()
     {
         if (!IsOwner) return;
@@ -28,26 +29,32 @@ public class PatissierCastCharacter : CastCharacter
     [ServerRpc]
     public void CastBurnSkill()
     {
-        var direction = input.targetDirection;
-        GameObject obj = null;
+        var mousePosition = input.mousePos;
         
-        if (direction.x < transform.position.x)
+        if (mousePosition.x < transform.position.x)
         {
             // If mouse input is on the left
-            obj = Instantiate(burnSpellPrefab, transform.right, Quaternion.Euler(0, 0, 90));
-            obj.GetComponent<SkillFollowPlayer>().direction = 3;
+            GameObject obj = Instantiate(burnSpellPrefab, transform.right, Quaternion.Euler(0, 0, 90));
+            Debug.Log("Left");
+            var skillFollowPlayer = obj.GetComponent<SkillFollowPlayer>();
+            skillFollowPlayer.player = gameObject;
+            skillFollowPlayer.xOffset = -offSet;
+            obj.GetComponent<EnemyDamager>().damage = spellData[0].damage * character.currAttack;
+            obj.GetComponent<Lifetime>().lifetime = spellData[0].duration;
+            ServerManager.Spawn(obj);
         }
         else 
         {
             // If mouse input is on the right, exact above or exact below
-            obj = Instantiate(burnSpellPrefab, -transform.right, Quaternion.Euler(0, 0, -90));
-            obj.GetComponent<SkillFollowPlayer>().direction = 1;
+            GameObject obj = Instantiate(burnSpellPrefab, -transform.right, Quaternion.Euler(0, 0, -90));
+            Debug.Log("Right");
+            var skillFollowPlayer = obj.GetComponent<SkillFollowPlayer>();
+            skillFollowPlayer.player = gameObject;
+            skillFollowPlayer.xOffset = offSet;
+            obj.GetComponent<EnemyDamager>().damage = spellData[0].damage * character.currAttack;
+            obj.GetComponent<Lifetime>().lifetime = spellData[0].duration;
+            ServerManager.Spawn(obj);    
         }
-
-        obj.GetComponent<SkillFollowPlayer>().player = gameObject;
-        obj.GetComponent<EnemyDamager>().damage = spellData[0].damage * character.currAttack;
-        obj.GetComponent<Lifetime>().lifetime = spellData[0].duration;
-        ServerManager.Spawn(obj);
         Debug.Log($"{spellData[0].spellName} casted");
     }
 
