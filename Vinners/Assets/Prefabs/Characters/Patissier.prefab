@@ -635,7 +635,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f621cb01bc490b140a0c4a50acf5612a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 2
+  _componentIndexCache: 1
   _addedNetworkObject: {fileID: 1172006343598844436}
   _networkObjectCache: {fileID: 1172006343598844436}
   character: {fileID: 0}
@@ -658,10 +658,11 @@ MonoBehaviour:
   <PredictedSpawn>k__BackingField: {fileID: 0}
   _networkBehaviours:
   - {fileID: 6967667816943390858}
-  - {fileID: 0}
   - {fileID: 8302944292573092573}
   - {fileID: 716281723751957937}
   - {fileID: 4414647984169859242}
+  - {fileID: -595177013496435579}
+  - {fileID: -7564451973442373784}
   <ParentNetworkObject>k__BackingField: {fileID: 0}
   <ChildNetworkObjects>k__BackingField: []
   _isNetworked: 1
@@ -669,7 +670,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 4
+  <PrefabId>k__BackingField: 38
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 0
   <SceneId>k__BackingField: 0
@@ -688,7 +689,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2836e36774ca1c4bbbee976e17b649c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 3
+  _componentIndexCache: 2
   _addedNetworkObject: {fileID: 1172006343598844436}
   _networkObjectCache: {fileID: 1172006343598844436}
   _componentConfiguration: 0
@@ -730,7 +731,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57e463bf38363f7419b66e610f08406a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 4
+  _componentIndexCache: 3
   _addedNetworkObject: {fileID: 1172006343598844436}
   _networkObjectCache: {fileID: 1172006343598844436}
 --- !u!58 &1644733848970717618
@@ -761,16 +762,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 153e949482a04cf438944bb82780b0f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 255
+  _componentIndexCache: 4
   _addedNetworkObject: {fileID: 1172006343598844436}
-  _networkObjectCache: {fileID: 0}
+  _networkObjectCache: {fileID: 1172006343598844436}
   spellData:
   - {fileID: 11400000, guid: 7946abca81e3c694197a93ffa64f270e, type: 2}
   - {fileID: 11400000, guid: 1994b6283c26c3549afa045a7fd1e741, type: 2}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 4fe3ba38411a6c14db7cf6f93583fbad, type: 2}
   ultimate: 0
   burnSpellPrefab: {fileID: 5573050333223222883, guid: c203d78f488b8f34c8a96e2acdef8dda, type: 3}
+  offSet: 1.5
   scrambleSpeed: 8
+  pinSpellPrefab: {fileID: 5592945174258440837, guid: b7901280ec29cca46b2d2771089e67f0, type: 3}
 --- !u!114 &-7564451973442373784
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -783,9 +786,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0613b6a4e1ccf844da44ca8664ec9793, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 255
+  _componentIndexCache: 5
   _addedNetworkObject: {fileID: 1172006343598844436}
-  _networkObjectCache: {fileID: 0}
+  _networkObjectCache: {fileID: 1172006343598844436}
   character: {fileID: 0}
   input: {fileID: 0}
   projectile: {fileID: 4279149033440265247, guid: fe23b3dfd0d788f458c4b7a103bd5028, type: 3}

@@ -34,24 +34,24 @@ public class PatissierCastCharacter : CastCharacter
         if (mousePosition.x < transform.position.x)
         {
             // If mouse input is on the left
-            GameObject obj = Instantiate(burnSpellPrefab, transform.right, Quaternion.Euler(0, 0, 90));
+            GameObject obj = Instantiate(burnSpellPrefab, transform.right, Quaternion.Euler(0, 0, 270));
             Debug.Log("Left");
             var skillFollowPlayer = obj.GetComponent<SkillFollowPlayer>();
             skillFollowPlayer.player = gameObject;
             skillFollowPlayer.xOffset = -offSet;
-            obj.GetComponent<EnemyDamager>().damage = spellData[0].damage * character.currAttack;
+            obj.GetComponent<EnemyDamager>().damage = spellData[0].damage * character.currAttack * 0.5f * 8;
             obj.GetComponent<Lifetime>().lifetime = spellData[0].duration;
             ServerManager.Spawn(obj);
         }
         else 
         {
             // If mouse input is on the right, exact above or exact below
-            GameObject obj = Instantiate(burnSpellPrefab, -transform.right, Quaternion.Euler(0, 0, -90));
+            GameObject obj = Instantiate(burnSpellPrefab, -transform.right, Quaternion.Euler(0, 0, -270));
             Debug.Log("Right");
             var skillFollowPlayer = obj.GetComponent<SkillFollowPlayer>();
             skillFollowPlayer.player = gameObject;
             skillFollowPlayer.xOffset = offSet;
-            obj.GetComponent<EnemyDamager>().damage = spellData[0].damage * character.currAttack;
+            obj.GetComponent<EnemyDamager>().damage = spellData[0].damage * character.currAttack * 0.5f * 8;
             obj.GetComponent<Lifetime>().lifetime = spellData[0].duration;
             ServerManager.Spawn(obj);    
         }
@@ -59,7 +59,6 @@ public class PatissierCastCharacter : CastCharacter
     }
 
     #endregion
-
 
     #region Scramble skill
     [Header("Scramble Skill")]
@@ -87,5 +86,35 @@ public class PatissierCastCharacter : CastCharacter
         movement.interrupted = false;
     }
 
+    #endregion
+
+    #region Ultimate skill
+    [Header("Ultimate skill")]
+    [SerializeField] private NetworkObject pinSpellPrefab;
+    public void OnUltimate()
+    {
+        if (!IsOwner) return;
+        if (canCast[2])
+        {
+            CastUltimateSkill();
+            SpendUltimate(ULT_METER);
+        }
+        else
+        {
+            Debug.Log("Not enough charge");
+        }
+    }
+
+    [ServerRpc]
+    public void CastUltimateSkill()
+    {
+        NetworkObject obj = Instantiate(pinSpellPrefab, transform.position, transform.rotation);
+        SkillshotMotion motion = obj.GetComponent<SkillshotMotion>();
+        if (motion != null) motion.movementDirection = input.targetDirection;
+        SetupDamager(obj.GetComponent<EnemyDamager>(), 2);
+        obj.GetComponent<Lifetime>().lifetime = spellData[2].duration;
+        ServerManager.Spawn(obj);
+        Debug.Log($"{spellData[2].spellName} casted");
+    }
     #endregion
 }

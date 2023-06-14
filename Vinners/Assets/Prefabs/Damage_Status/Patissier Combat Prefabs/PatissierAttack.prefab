@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 3188260082321371685}
   - component: {fileID: 4467782615910205017}
   - component: {fileID: 5391405848033123519}
+  - component: {fileID: 6065863120923766994}
   m_Layer: 0
   m_Name: PatissierAttack
   m_TagString: Untagged
@@ -155,6 +156,7 @@ MonoBehaviour:
   _networkBehaviours:
   - {fileID: 7471162492131646481}
   - {fileID: 3188260082321371685}
+  - {fileID: 5391405848033123519}
   <ParentNetworkObject>k__BackingField: {fileID: 0}
   <ChildNetworkObjects>k__BackingField: []
   _isNetworked: 1
@@ -236,8 +238,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: df84c59609d09f84e9338ac9a43cd9a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 255
+  _componentIndexCache: 2
   _addedNetworkObject: {fileID: 5570169295091342332}
-  _networkObjectCache: {fileID: 0}
+  _networkObjectCache: {fileID: 5570169295091342332}
   projectileSpeed: 8
   movementDirection: {x: 0, y: 0}
+--- !u!114 &6065863120923766994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1071578125239900988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abdc099b4b88e404ab54d2f1bf147a97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sed: []
