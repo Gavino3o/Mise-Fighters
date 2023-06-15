@@ -136,7 +136,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 2.58
+  m_Radius: 0.5
 --- !u!114 &5681926344258742825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,7 +154,6 @@ MonoBehaviour:
   <PredictedSpawn>k__BackingField: {fileID: 0}
   _networkBehaviours:
   - {fileID: -3039632337467576896}
-  - {fileID: 1926722233354095623}
   <ParentNetworkObject>k__BackingField: {fileID: 0}
   <ChildNetworkObjects>k__BackingField: []
   _isNetworked: 1
@@ -210,7 +209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7e57ca8e9ce45c42b55749515d482bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 1
+  _componentIndexCache: 255
   _addedNetworkObject: {fileID: 5681926344258742825}
-  _networkObjectCache: {fileID: 5681926344258742825}
+  _networkObjectCache: {fileID: 0}
   target: {fileID: 0}

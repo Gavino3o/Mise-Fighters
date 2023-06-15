@@ -136,7 +136,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 3.06
+  m_Radius: 0.5
 --- !u!114 &5681926344258742825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,9 +152,7 @@ MonoBehaviour:
   <IsNested>k__BackingField: 0
   <ComponentIndex>k__BackingField: 0
   <PredictedSpawn>k__BackingField: {fileID: 0}
-  _networkBehaviours:
-  - {fileID: 5268666267829379887}
-  - {fileID: 7060475180936071515}
+  _networkBehaviours: []
   <ParentNetworkObject>k__BackingField: {fileID: 0}
   <ChildNetworkObjects>k__BackingField: []
   _isNetworked: 1
@@ -162,7 +160,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 10
+  <PrefabId>k__BackingField: 19
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 0
   <SceneId>k__BackingField: 0
@@ -180,9 +178,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e5531d819eef9d4e994c10a36eda5f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 0
+  _componentIndexCache: 255
   _addedNetworkObject: {fileID: 5681926344258742825}
-  _networkObjectCache: {fileID: 5681926344258742825}
+  _networkObjectCache: {fileID: 0}
   lifetime: 0
 --- !u!114 &7060475180936071515
 MonoBehaviour:
@@ -196,9 +194,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c7e57ca8e9ce45c42b55749515d482bd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 1
+  _componentIndexCache: 255
   _addedNetworkObject: {fileID: 5681926344258742825}
-  _networkObjectCache: {fileID: 5681926344258742825}
+  _networkObjectCache: {fileID: 0}
   target: {fileID: 6848911510146320331}
 --- !u!114 &-3035421113775085332
 MonoBehaviour:
