@@ -36,8 +36,8 @@ public class ChefCastCharacter : CastCharacter
 
         firstSlice.GetComponent<Lifetime>().lifetime = spellData[0].duration;
         secondSlice.GetComponent<Lifetime>().lifetime = spellData[0].duration;
-        firstSlice.GetComponent<EnemyDamager>().damage = spellData[0].damage * character.currAttack;
-        secondSlice.GetComponent<EnemyDamager>().damage = spellData[0].damage * character.currAttack;
+        SetupDamager(firstSlice.GetComponent<EnemyDamager>(), 0);
+        SetupDamager(secondSlice.GetComponent<EnemyDamager>(), 0);
         ServerManager.Spawn(firstSlice);
         ServerManager.Spawn(secondSlice);
         Debug.Log($"{spellData[0].spellName} casted");
@@ -97,7 +97,7 @@ public class ChefCastCharacter : CastCharacter
             }
         }
         GameObject stunCircle = Instantiate(stunPrefab, transform.position, Quaternion.identity);
-        stunCircle.GetComponent<EnemyDamager>().damage = spellData[1].damage * character.currAttack;
+        SetupDamager(stunCircle.GetComponent<EnemyDamager>(), 1);
         stunCircle.GetComponent<Lifetime>().lifetime = spellData[1].duration;
         ServerManager.Spawn(stunCircle);
         yield return new WaitForSeconds(spellData[1].duration);
@@ -128,7 +128,7 @@ public class ChefCastCharacter : CastCharacter
     public void CastUltimateSkill()
     {
         Vector3 direction = new Vector3(input.targetDirection.x, input.targetDirection.y, 0);
-        NetworkObject obj = Instantiate(julienneSpellPrefab, transform.position + direction * 1.5f, transform.rotation);
+        NetworkObject obj = Instantiate(julienneSpellPrefab, transform.position + direction * 5f, transform.rotation);
         SetupDamager(obj.GetComponent<EnemyDamager>(), 2);
         obj.GetComponent<Lifetime>().lifetime = spellData[2].duration;
         ServerManager.Spawn(obj);

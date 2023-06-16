@@ -29,7 +29,7 @@ public class ChefAttackCharacter : AttackCharacter
     public override void AutoAttack(float attack, Vector2 targetDirection)
     {
         Vector3 offset = new Vector3(input.targetDirection.x, input.targetDirection.y, 0);
-        GameObject obj = Instantiate(projectile.gameObject, transform.position + offset, transform.rotation * Quaternion.Euler(0, 0, 90));
+        GameObject obj = Instantiate(projectile.gameObject, transform.position + offset * 1.2F, transform.rotation * Quaternion.Euler(0, 0, 90));
         EnemyDamager dmger = obj.GetComponent<EnemyDamager>();
         if (dmger != null) dmger.damage = attack;
 
