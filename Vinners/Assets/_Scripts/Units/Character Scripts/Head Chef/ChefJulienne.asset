@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ad7733e8510838847a89fbb9c2a609f4, type: 3}
-  m_Name: ChefBlink
+  m_Name: ChefJulienne
   m_EditorClassIdentifier: 
-  spellName: Nothing Personal
-  description: Blinks in front for a set distance.
-  cooldown: 5
-  damage: 0.1
-  duration: 0.3
+  spellName: Julienne
+  description: "Using his trusty (and meticulously sharpened) chef\u2019s knife,
+    the Head Chef decimates everything in a rectangular area in front of him,"
+  cooldown: 0
+  damage: 1
+  duration: 3
