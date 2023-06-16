@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 2747690628134850419, guid: b670ab75dde984907b8570040daa08c5, type: 3}
-  m_Color: {r: 0.9528302, g: 0.9022432, b: 0.63372195, a: 1}
+  m_Color: {r: 0.8679245, g: 0.50356, b: 0.8095218, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -474,10 +474,10 @@ GameObject:
   - component: {fileID: 716281723751957937}
   - component: {fileID: 4414647984169859242}
   - component: {fileID: 1644733848970717618}
-  - component: {fileID: 1201508549497567103}
-  - component: {fileID: 4319138583678300156}
+  - component: {fileID: -595177013496435579}
+  - component: {fileID: -7564451973442373784}
   m_Layer: 3
-  m_Name: Chef
+  m_Name: Patissier
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -595,7 +595,7 @@ MonoBehaviour:
   currAttack: 0
   currAttackSpeed: 0
   currMoveSpeed: 0
-  baseStats: {fileID: 11400000, guid: f5fb05d0cca8201498bc47f1cb401d51, type: 2}
+  baseStats: {fileID: 11400000, guid: 2e451125e1043ff40ab2f416915b1ead, type: 2}
   crippledUntil: 0
   slowedUntil: 0
   dousedUntil: 0
@@ -661,9 +661,8 @@ MonoBehaviour:
   - {fileID: 8302944292573092573}
   - {fileID: 716281723751957937}
   - {fileID: 4414647984169859242}
-  - {fileID: 1201508549497567103}
-  - {fileID: 4319138583678300156}
-  - {fileID: 0}
+  - {fileID: -595177013496435579}
+  - {fileID: -7564451973442373784}
   <ParentNetworkObject>k__BackingField: {fileID: 0}
   <ChildNetworkObjects>k__BackingField: []
   _isNetworked: 1
@@ -671,11 +670,11 @@ MonoBehaviour:
   _initializeOrder: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 6
+  <PrefabId>k__BackingField: 38
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 0
   <SceneId>k__BackingField: 0
-  <AssetPathHash>k__BackingField: 2789241964231705840
+  <AssetPathHash>k__BackingField: 17180496140836642104
   _sceneNetworkObjects:
   - {fileID: 1172006343598844436}
 --- !u!114 &716281723751957937
@@ -751,7 +750,7 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &1201508549497567103
+--- !u!114 &-595177013496435579
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -760,23 +759,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 8735874033422930139}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3adf5028de5a50c4b818e46cf3be8f3b, type: 3}
+  m_Script: {fileID: 11500000, guid: 153e949482a04cf438944bb82780b0f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _componentIndexCache: 4
   _addedNetworkObject: {fileID: 1172006343598844436}
   _networkObjectCache: {fileID: 1172006343598844436}
   spellData:
-  - {fileID: 11400000, guid: 633a01b2c5ea3724db4bf647ba1479ba, type: 2}
-  - {fileID: 11400000, guid: 0c3df33242cbc894dbe1a9ff1a09cbfc, type: 2}
-  - {fileID: 11400000, guid: e76f728daa0e79c47bf114ae5448b51f, type: 2}
+  - {fileID: 11400000, guid: 7946abca81e3c694197a93ffa64f270e, type: 2}
+  - {fileID: 11400000, guid: 1994b6283c26c3549afa045a7fd1e741, type: 2}
+  - {fileID: 11400000, guid: 4fe3ba38411a6c14db7cf6f93583fbad, type: 2}
   ultimate: 0
-  sliceSpellPrefab: {fileID: 6511293688210343933, guid: ac265388abee5094282273584dec6d77, type: 3}
-  sliceAngle: 30
-  blinkDistance: 10
-  stunPrefab: {fileID: 1170894984324905884, guid: 03c4974e59697ac4ca3a3fcf4a5ead70, type: 3}
-  julienneSpellPrefab: {fileID: 1327810909067165929, guid: 49bfb66a079275245b01fcb558a09df0, type: 3}
---- !u!114 &4319138583678300156
+  burnSpellPrefab: {fileID: 5573050333223222883, guid: c203d78f488b8f34c8a96e2acdef8dda, type: 3}
+  offSet: 1.5
+  scrambleSpeed: 8
+  pinSpellPrefab: {fileID: 5592945174258440837, guid: b7901280ec29cca46b2d2771089e67f0, type: 3}
+--- !u!114 &-7564451973442373784
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -785,7 +783,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8735874033422930139}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d617422fd7435dc489f6446e9306a10c, type: 3}
+  m_Script: {fileID: 11500000, guid: 0613b6a4e1ccf844da44ca8664ec9793, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _componentIndexCache: 5
@@ -793,5 +791,5 @@ MonoBehaviour:
   _networkObjectCache: {fileID: 1172006343598844436}
   character: {fileID: 0}
   input: {fileID: 0}
-  projectile: {fileID: 4972985306315519815, guid: 33acc3a7d6250f3468c0bf32f395bd9c, type: 3}
+  projectile: {fileID: 4279149033440265247, guid: fe23b3dfd0d788f458c4b7a103bd5028, type: 3}
   canAttack: 0

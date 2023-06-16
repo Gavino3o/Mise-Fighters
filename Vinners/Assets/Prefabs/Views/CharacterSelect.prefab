@@ -779,6 +779,7 @@ MonoBehaviour:
   - {fileID: 8735874033422930139, guid: b53d8daf1daa37f4aa37bd1967eaa20d, type: 3}
   - {fileID: 8735874033422930139, guid: f6bf71941ea389543b30362d3f911743, type: 3}
   - {fileID: 8735874033422930139, guid: 1fb7a0bca3218a44cbc2a6bbcdae2e49, type: 3}
+  - {fileID: 8735874033422930139, guid: 7ebbe3b3ca589694587fd2d77b1fb776, type: 3}
   currCharacterIndex: 0
 --- !u!1 &5930879151041248658
 GameObject:
