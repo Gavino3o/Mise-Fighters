@@ -468,7 +468,6 @@ GameObject:
   - component: {fileID: 933609652824942408}
   - component: {fileID: -2564277016632147628}
   - component: {fileID: 6967667816943390858}
-  - component: {fileID: 2420685106880469003}
   - component: {fileID: 2670663749148832099}
   - component: {fileID: 8302944292573092573}
   - component: {fileID: 1172006343598844436}
@@ -476,6 +475,7 @@ GameObject:
   - component: {fileID: 4414647984169859242}
   - component: {fileID: 1644733848970717618}
   - component: {fileID: 1201508549497567103}
+  - component: {fileID: 4319138583678300156}
   m_Layer: 3
   m_Name: Chef
   m_TagString: Untagged
@@ -588,7 +588,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fd1a4f905b5f5d448b0b0c1d66f827f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 0
+  _componentIndexCache: 1
   _addedNetworkObject: {fileID: 1172006343598844436}
   _networkObjectCache: {fileID: 1172006343598844436}
   currHealth: 0
@@ -676,12 +676,13 @@ MonoBehaviour:
   <ComponentIndex>k__BackingField: 0
   <PredictedSpawn>k__BackingField: {fileID: 0}
   _networkBehaviours:
+  - {fileID: 0}
   - {fileID: 6967667816943390858}
-  - {fileID: 2420685106880469003}
   - {fileID: 8302944292573092573}
   - {fileID: 716281723751957937}
   - {fileID: 4414647984169859242}
   - {fileID: 1201508549497567103}
+  - {fileID: 4319138583678300156}
   <ParentNetworkObject>k__BackingField: {fileID: 0}
   <ChildNetworkObjects>k__BackingField: []
   _isNetworked: 1
@@ -689,7 +690,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 3
+  <PrefabId>k__BackingField: 6
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 0
   <SceneId>k__BackingField: 0
@@ -787,8 +788,29 @@ MonoBehaviour:
   spellData:
   - {fileID: 11400000, guid: 633a01b2c5ea3724db4bf647ba1479ba, type: 2}
   - {fileID: 11400000, guid: 0c3df33242cbc894dbe1a9ff1a09cbfc, type: 2}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: e76f728daa0e79c47bf114ae5448b51f, type: 2}
   ultimate: 0
   sliceSpellPrefab: {fileID: 6511293688210343933, guid: ac265388abee5094282273584dec6d77, type: 3}
   sliceAngle: 30
   blinkDistance: 10
+  stunPrefab: {fileID: 1170894984324905884, guid: 03c4974e59697ac4ca3a3fcf4a5ead70, type: 3}
+  julienneSpellPrefab: {fileID: 1327810909067165929, guid: 49bfb66a079275245b01fcb558a09df0, type: 3}
+--- !u!114 &4319138583678300156
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8735874033422930139}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d617422fd7435dc489f6446e9306a10c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _componentIndexCache: 6
+  _addedNetworkObject: {fileID: 1172006343598844436}
+  _networkObjectCache: {fileID: 1172006343598844436}
+  character: {fileID: 0}
+  input: {fileID: 0}
+  projectile: {fileID: 4972985306315519815, guid: 33acc3a7d6250f3468c0bf32f395bd9c, type: 3}
+  canAttack: 0

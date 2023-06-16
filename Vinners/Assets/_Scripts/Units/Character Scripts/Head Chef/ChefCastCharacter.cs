@@ -36,8 +36,8 @@ public class ChefCastCharacter : CastCharacter
 
         firstSlice.GetComponent<Lifetime>().lifetime = spellData[0].duration;
         secondSlice.GetComponent<Lifetime>().lifetime = spellData[0].duration;
-        firstSlice.GetComponent<EnemyDamager>().damage = spellData[0].damage * character.currAttack;
-        secondSlice.GetComponent<EnemyDamager>().damage = spellData[0].damage * character.currAttack;
+        SetupDamager(firstSlice.GetComponent<EnemyDamager>(), 0);
+        SetupDamager(secondSlice.GetComponent<EnemyDamager>(), 0);
         ServerManager.Spawn(firstSlice);
         ServerManager.Spawn(secondSlice);
         Debug.Log($"{spellData[0].spellName} casted");
@@ -49,6 +49,7 @@ public class ChefCastCharacter : CastCharacter
     [Header("Blink Skill")]
 
     public float blinkDistance = 10f;
+    [SerializeField] private GameObject stunPrefab;
     public void OnDash()
     {
         if (!IsOwner) return;
@@ -95,8 +96,53 @@ public class ChefCastCharacter : CastCharacter
                 Debug.Log("C3");
             }
         }
+        GameObject stunCircle = Instantiate(stunPrefab, transform.position, Quaternion.identity);
+        SetupDamager(stunCircle.GetComponent<EnemyDamager>(), 1);
+        stunCircle.GetComponent<Lifetime>().lifetime = spellData[1].duration;
+        ServerManager.Spawn(stunCircle);
         yield return new WaitForSeconds(spellData[1].duration);
         movement.interrupted = false;
     }
     #endregion
+
+    #region Ultimate skill
+
+    [Header("Ultimate Skill")]
+    [SerializeField] private NetworkObject julienneSpellPrefab;
+    public void OnUltimate()
+    {
+        if (!IsOwner) return;
+        if (canCast[2])
+        {
+            StartCoroutine(Cooldown(1));
+            StartCoroutine(Julienne());
+            SpendUltimate(ULT_METER);
+        }
+        else
+        {
+            Debug.Log("Not enough charge");
+        }
+    }
+
+    [ServerRpc]
+    public void CastUltimateSkill()
+    {
+        Vector3 direction = new Vector3(input.targetDirection.x, input.targetDirection.y, 0);
+        NetworkObject obj = Instantiate(julienneSpellPrefab, transform.position + direction * 5f, transform.rotation);
+        SetupDamager(obj.GetComponent<EnemyDamager>(), 2);
+        obj.GetComponent<Lifetime>().lifetime = spellData[2].duration;
+        ServerManager.Spawn(obj);
+        Debug.Log($"{spellData[2].spellName} casted");
+    }
+
+    public IEnumerator Julienne()
+    {
+        movement.interrupted = true;
+        CastUltimateSkill();
+        yield return new WaitForSeconds(spellData[2].duration);
+        movement.interrupted = false;
+    }
+
+    #endregion
+
 }
