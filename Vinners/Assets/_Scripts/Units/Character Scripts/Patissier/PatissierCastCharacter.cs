@@ -39,7 +39,7 @@ public class PatissierCastCharacter : CastCharacter
             var skillFollowPlayer = obj.GetComponent<SkillFollowPlayer>();
             skillFollowPlayer.player = gameObject;
             skillFollowPlayer.xOffset = -offSet;
-            obj.GetComponent<EnemyDamager>().damage = spellData[0].damage * character.currAttack * 0.5f * 8;
+            SetupDamager(obj.GetComponent<EnemyDamager>(), 0);
             obj.GetComponent<Lifetime>().lifetime = spellData[0].duration;
             ServerManager.Spawn(obj);
         }
@@ -51,7 +51,7 @@ public class PatissierCastCharacter : CastCharacter
             var skillFollowPlayer = obj.GetComponent<SkillFollowPlayer>();
             skillFollowPlayer.player = gameObject;
             skillFollowPlayer.xOffset = offSet;
-            obj.GetComponent<EnemyDamager>().damage = spellData[0].damage * character.currAttack * 0.5f * 8;
+            SetupDamager(obj.GetComponent<EnemyDamager>(), 0);
             obj.GetComponent<Lifetime>().lifetime = spellData[0].duration;
             ServerManager.Spawn(obj);    
         }
