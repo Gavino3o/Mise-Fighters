@@ -15,6 +15,10 @@ public abstract class Unit : NetworkBehaviour
 
     [SerializeField] protected UnitStats baseStats;
 
+    public event Action DamageTaken;
+    public event Action<float> HealthChanged;
+    public event Action<int> StatusApplied;
+    public event Action<int> StatusEnded;
 
     public override void OnStartNetwork()
     {
@@ -41,26 +45,32 @@ public abstract class Unit : NetworkBehaviour
         {
             OnDeath();
         }
+
+        DamageTaken?.Invoke();
+        HealthChanged?.Invoke(next);        
     }
 
     public abstract void OnDeath();
 
-    // public for debugging purposes
-    public float crippledUntil;
-    public float slowedUntil;
+    // Keeps track of changes to individual stats
+    public float attackChangeEndtime;
+    public float speedChangeEndtime;
     public float dousedUntil;
     public bool isDoused;
+
+    // Keeps track of StatusEffect endtimes for animation purposes
+    private readonly float[] statusEndtimes = new float[8];
 
     public void ApplyStatusEffect(StatusEffectData sed)
     {
         if (sed.attackMultiplier != 1)
         {
-            Cripple(sed.attackMultiplier, sed.durationSeconds);
+            AlterAttack(sed.attackMultiplier, sed.durationSeconds);
         }
 
         if (sed.moveSpeedMultiplier != 1)
         {
-            Slow(sed.moveSpeedMultiplier, sed.durationSeconds);
+            AlterSpeed(sed.moveSpeedMultiplier, sed.durationSeconds);
         }
 
 
@@ -80,15 +90,28 @@ public abstract class Unit : NetworkBehaviour
             TakeDamage(StatusEffectData.IGNITION_DMG);
             dousedUntil = Time.time;
         }
+
+        StatusApplied?.Invoke(sed.effectCode);
+        statusEndtimes[sed.effectCode] = Time.time + sed.durationSeconds;
     }
 
 
     private void Update()
     {
-        if (crippledUntil <= Time.time) currAttack = baseStats.attack;
-        if (slowedUntil <= Time.time) currMoveSpeed = baseStats.moveSpeed;
+        if (attackChangeEndtime <= Time.time) currAttack = baseStats.attack;
+        if (speedChangeEndtime <= Time.time) currMoveSpeed = baseStats.moveSpeed;
         if (dousedUntil <= Time.time) isDoused = false;
+
+        for (int n = 0; n < statusEndtimes.Length; n++)
+        {
+            if (statusEndtimes[n] <= Time.time) StatusEnded?.Invoke(n);
+        }
     }
+
+
+    /*
+     * TODO: Handle stacking of different calue stat changes that are tied into different status effects..
+     */
     #region Status Effect Methods
     public void Douse(float duration)
     {
@@ -96,7 +119,7 @@ public abstract class Unit : NetworkBehaviour
         isDoused = true;
     }
 
-    public void Cripple(float multiplier, float duration)
+    public void AlterAttack(float multiplier, float duration)
     {
         float next = multiplier * baseStats.attack;
         if (next < currAttack)
@@ -104,17 +127,17 @@ public abstract class Unit : NetworkBehaviour
             currAttack = next;
         }
 
-        crippledUntil = Time.time + duration;
+        attackChangeEndtime = Time.time + duration;
     }
 
-    public void Slow(float multiplier, float duration)
+    public void AlterSpeed(float multiplier, float duration)
     {
         float next = multiplier * baseStats.moveSpeed;
         if (next < currMoveSpeed)
         {
             currMoveSpeed = next;
         }
-        slowedUntil = Time.time + duration;
+        speedChangeEndtime = Time.time + duration;
     }
 
     public IEnumerator Dot(float dmg, float duration)

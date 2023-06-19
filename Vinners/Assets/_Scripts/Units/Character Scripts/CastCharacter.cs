@@ -23,6 +23,7 @@ public class CastCharacter : NetworkBehaviour
         character = GetComponent<Character>();
 
         character.HitEnemy += CharacterHitEnemy;
+        character.DamageTaken += CharacterTookDamage;
 
         input = character.input; 
         rigidBody = character.rb;
@@ -36,6 +37,7 @@ public class CastCharacter : NetworkBehaviour
     private void OnDestroy()
     {
         character.HitEnemy -= CharacterHitEnemy;
+        character.DamageTaken -= CharacterTookDamage;
     }
 
     // for now just a dummy class so that the Gameinfo can access it
@@ -48,8 +50,12 @@ public class CastCharacter : NetworkBehaviour
 
     private void CharacterHitEnemy()
     {
-        // value is 1 for testing purposes
         ChargeUltimate(1);
+    }
+
+    private void CharacterTookDamage()
+    {
+        ChargeUltimate(0.5f);
     }
 
     public void ChargeUltimate(float amt)

@@ -11,7 +11,6 @@ using System;
  * The Player class is responsible for information relating to a player's account (their username, connection status
  * to host, controlled character etc.)
  */
-
 public class Player : NetworkBehaviour
 {
     public static Player LocalInstance { get; private set; }

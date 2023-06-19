@@ -12,8 +12,7 @@ public class BartenderCastCharacter : CastCharacter
         if (!IsOwner) return;
         if (base.canCast[0])
         {
-            StartCoroutine(Cooldown(0));
-            
+            StartCoroutine(Cooldown(0));           
             CastBombSkill(input.mousePos);
             Debug.Log("Spell casted");
         }
@@ -44,8 +43,7 @@ public class BartenderCastCharacter : CastCharacter
     {
         if (!IsOwner) return;
         if (canCast[1])
-        {
-            
+        {           
             DropLure();
             StartCoroutine(Cooldown(1));
             

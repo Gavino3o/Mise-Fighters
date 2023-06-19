@@ -10,12 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a4de1ab2434fece4cb230aab18203183, type: 3}
-  m_Name: SlowMedium
+  m_Name: Freeze
   m_EditorClassIdentifier: 
-  effectName: Slow
-  durationSeconds: 3
+  effectName: Freeze
+  effectCode: 2
+  durationSeconds: 2
   damageOverTime: 0
   attackMultiplier: 1
-  moveSpeedMultiplier: 0.7
+  moveSpeedMultiplier: 0
   douser: 0
   igniter: 0

@@ -12,8 +12,7 @@ public class ButcherCastCharacter : CastCharacter
         if (!IsOwner) return;
         if (base.canCast[0])
         {
-            StartCoroutine(Cooldown(0));
-            
+            StartCoroutine(Cooldown(0));            
             CastTauntSkill();
         }
         else
@@ -47,7 +46,7 @@ public class ButcherCastCharacter : CastCharacter
         if (canCast[1])
         {
             StartCoroutine(Cooldown(1));
-            // CastChargeSkill();
+            CastChargeSkill();
             StartCoroutine(Charge());
         }
         else

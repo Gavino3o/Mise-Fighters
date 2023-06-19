@@ -12,7 +12,6 @@ public sealed class InputCharacter : MonoBehaviour
     public Vector2 mousePos;
     public Vector2 targetDirection;
 
-    // reading local playerinput and updating this information inside itself
     private void OnEnable()
     {
         playerActions = new PlayerActions();
@@ -23,11 +22,6 @@ public sealed class InputCharacter : MonoBehaviour
     {
         DisableActions();
     }
-    public void OnMovement(InputValue value)
-    {
-        velocity = value.Get<Vector2>();
-
-    }
 
     public void EnableActions()
     {
@@ -37,6 +31,12 @@ public sealed class InputCharacter : MonoBehaviour
     public void DisableActions()
     {
         playerActions.PlayerInput.Disable();
+    }
+
+    public void OnMovement(InputValue value)
+    {
+        velocity = value.Get<Vector2>();
+
     }
 
     public void OnAim(InputValue value)
