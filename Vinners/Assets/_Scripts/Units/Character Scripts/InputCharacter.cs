@@ -11,6 +11,7 @@ public sealed class InputCharacter : MonoBehaviour
     public Vector2 velocity;
     public Vector2 mousePos;
     public Vector2 targetDirection;
+    public Quaternion rotation;
 
     private void OnEnable()
     {
@@ -44,6 +45,9 @@ public sealed class InputCharacter : MonoBehaviour
         if (Camera.main == null) return;
         mousePos = Camera.main.ScreenToWorldPoint(value.Get<Vector2>());
         targetDirection = (mousePos - new Vector2(transform.position.x, transform.position.y)).normalized;
+
+        float angle = Mathf.Atan2(targetDirection.y, targetDirection.x) * Mathf.Rad2Deg - 90;
+        rotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
     }
 
 }

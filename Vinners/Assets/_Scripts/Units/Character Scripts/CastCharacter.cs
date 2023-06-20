@@ -11,11 +11,12 @@ public class CastCharacter : NetworkBehaviour
     protected Character character;
     protected Rigidbody2D rigidBody;
     protected MoveCharacter movement;
+    protected AnimatorCharacter characterAnimator;
 
     public SpellData[] spellData = new SpellData[3];
     public readonly bool[] canCast = new bool[3];
 
-    public static float ULT_METER = 50f;
+    public static float ULT_METER = 50f;   
     public float ultimate;
 
     private void Awake()
@@ -28,6 +29,7 @@ public class CastCharacter : NetworkBehaviour
         input = character.input; 
         rigidBody = character.rb;
         movement = character.movement;
+        characterAnimator = character.characterAnimator;
         ultimate = 0f;
 
         Array.Fill(canCast, true);

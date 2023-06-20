@@ -21,7 +21,10 @@ public class Character : Unit
     public CastCharacter caster;
     public MoveCharacter movement;
     public AttackCharacter attacker;
+    public Animator animator;
+    public AnimatorCharacter characterAnimator;
     public Rigidbody2D rb;
+    public SpriteRenderer sprite;
 
     public event Action HitEnemy;
 
@@ -36,7 +39,10 @@ public class Character : Unit
         caster = GetComponent<CastCharacter>();
         movement = GetComponent<MoveCharacter>();
         attacker = GetComponent<AttackCharacter>();
+        animator = GetComponent<Animator>();
+        characterAnimator = GetComponent<AnimatorCharacter>();
         rb = GetComponent<Rigidbody2D>();
+        sprite = GetComponent<SpriteRenderer>();
     }
 
     /*
@@ -56,7 +62,13 @@ public class Character : Unit
     {
         GetComponent<PlayerInput>().actions.Enable();
         attacker.canAttack = true;
-        TakeDamage(baseStats.maxHealth * -1);    
+        ServerRevive();
+    }
+
+    [ServerRpc]
+    private void ServerRevive()
+    {
+        TakeDamage(baseStats.maxHealth * -1);
     }
 
 }

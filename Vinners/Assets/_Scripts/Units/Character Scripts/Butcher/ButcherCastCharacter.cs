@@ -12,7 +12,8 @@ public class ButcherCastCharacter : CastCharacter
         if (!IsOwner) return;
         if (base.canCast[0])
         {
-            StartCoroutine(Cooldown(0));            
+            StartCoroutine(Cooldown(0));
+            characterAnimator.PlaySkill();
             CastTauntSkill();
         }
         else
@@ -46,6 +47,7 @@ public class ButcherCastCharacter : CastCharacter
         if (canCast[1])
         {
             StartCoroutine(Cooldown(1));
+            characterAnimator.PlayDash();
             CastChargeSkill();
             StartCoroutine(Charge());
         }
@@ -89,6 +91,7 @@ public class ButcherCastCharacter : CastCharacter
         if (canCast[2])
         {
             StartCoroutine(Pirouette());
+            characterAnimator.PlayUltimate();
             SpendUltimate(ULT_METER);
         }
         else

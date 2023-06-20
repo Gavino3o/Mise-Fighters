@@ -15,7 +15,13 @@ public class EnemyDamager : MonoBehaviour
 
         }
         // placed here for now, should be inside if bracket
-        if (source != null) source.HitSuccess();
+        if (source != null)
+        {
+            source.HitSuccess();
+        } else
+        {
+            Debug.Log("Source is null");
+        }
     }
 
 }

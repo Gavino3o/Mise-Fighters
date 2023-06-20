@@ -57,6 +57,7 @@ public abstract class Unit : NetworkBehaviour
     public float speedChangeEndtime;
     public float dousedUntil;
     public bool isDoused;
+    public bool isPoisoned;
 
     // Keeps track of StatusEffect endtimes for animation purposes
     private readonly float[] statusEndtimes = new float[8];
@@ -142,12 +143,15 @@ public abstract class Unit : NetworkBehaviour
 
     public IEnumerator Dot(float dmg, float duration)
     {
+        if (isPoisoned) yield return null;
+        isPoisoned = true;
         float endTime = Time.time + duration;
         while (Time.time < endTime)
         {
             TakeDamage(dmg);
             yield return new WaitForSeconds(0.5f);
         }
+        isPoisoned = false;
     }
 
     #endregion

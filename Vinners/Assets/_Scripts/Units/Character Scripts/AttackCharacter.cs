@@ -28,7 +28,7 @@ public class AttackCharacter : NetworkBehaviour
         if (Time.time - lastAttacked < character.currAttackSpeed) return;
         lastAttacked = Time.time;
         // Values have to be calculated/accessed outside the serverrpc call
-        AutoAttack(character.currAttack, input.targetDirection);
+        AutoAttack(character.currAttack, input.targetDirection, input.rotation);
         
     }
 
@@ -37,9 +37,9 @@ public class AttackCharacter : NetworkBehaviour
      * Instantiates the prefab at the current position and sets its parameters.
      */
     [ServerRpc]
-    public void AutoAttack(float attack, Vector2 targetDirection)
+    public void AutoAttack(float attack, Vector2 targetDirection, Quaternion rotation)
     {
-        GameObject obj = Instantiate(projectile.gameObject, transform.position, transform.rotation);
+        GameObject obj = Instantiate(projectile.gameObject, transform.position, rotation);
         EnemyDamager dmger = obj.GetComponent<EnemyDamager>();
         if (dmger != null) dmger.damage = attack;
 
