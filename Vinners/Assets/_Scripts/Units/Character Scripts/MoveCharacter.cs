@@ -39,15 +39,26 @@ public sealed class MoveCharacter : NetworkBehaviour
             SpriteFlip(true);
         }
     }
+
+    [Client]
     private void SpriteFlip(bool value)
+    {
+        if (!IsOwner) return;
+        sprite.flipX = value;
+        ServerFlipSprite(value);
+    }
+
+    [ObserversRpc(BufferLast = true, ExcludeOwner = true)]
+    private void ObserverSpriteFlip(bool value)
+    {
+        if (IsOwner) return;
+        sprite.flipX = value;
+    }
+
+    [ServerRpc]
+    private void ServerFlipSprite(bool value)
     {
         sprite.flipX = value;
         ObserverSpriteFlip(value);
-    }
-
-    [ObserversRpc(ExcludeOwner = true)]
-    private void ObserverSpriteFlip(bool value)
-    {
-        sprite.flipX = value;
     }
 }

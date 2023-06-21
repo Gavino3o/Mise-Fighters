@@ -12,7 +12,8 @@ public class BartenderCastCharacter : CastCharacter
         if (!IsOwner) return;
         if (base.canCast[0])
         {
-            StartCoroutine(Cooldown(0));           
+            StartCoroutine(Cooldown(0));
+            characterAnimator.PlaySkill();
             CastBombSkill(input.mousePos);
             Debug.Log("Spell casted");
         }
@@ -46,7 +47,7 @@ public class BartenderCastCharacter : CastCharacter
         {           
             DropLure();
             StartCoroutine(Cooldown(1));
-            
+            characterAnimator.PlayDash();
             StartCoroutine(Backstep());
             Debug.Log($"{spellData[1].spellName} casted");
         }
@@ -85,6 +86,7 @@ public class BartenderCastCharacter : CastCharacter
         if (canCast[2])
         {
             CastUltimateSkill();
+            characterAnimator.PlayUltimate();
             SpendUltimate(ULT_METER);
         }
         else

@@ -731,9 +731,9 @@ MonoBehaviour:
   input: {fileID: 0}
   idle: Bartender_Idle
   walk: Bartender_Walk
-  skill: 
-  dash: 
-  ultimate: 
+  skill: Bartender_Bomb
+  dash: Bartender_Dash
+  ultimate: Bartender_Ult
 --- !u!114 &6606701902620948633
 MonoBehaviour:
   m_ObjectHideFlags: 0
