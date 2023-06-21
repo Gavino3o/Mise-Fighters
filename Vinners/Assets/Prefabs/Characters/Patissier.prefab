@@ -671,7 +671,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 38
+  <PrefabId>k__BackingField: 39
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 0
   <SceneId>k__BackingField: 0
@@ -773,6 +773,7 @@ MonoBehaviour:
   ultimate: 0
   burnSpellPrefab: {fileID: 5573050333223222883, guid: c203d78f488b8f34c8a96e2acdef8dda, type: 3}
   offSet: 1.5
+  burnSpellSoundEffect: {fileID: 8300000, guid: 71fc52c98e9738e4ab51763e03b5be3c, type: 3}
   scrambleSpeed: 8
   pinSpellPrefab: {fileID: 5592945174258440837, guid: b7901280ec29cca46b2d2771089e67f0, type: 3}
 --- !u!114 &-7564451973442373784
