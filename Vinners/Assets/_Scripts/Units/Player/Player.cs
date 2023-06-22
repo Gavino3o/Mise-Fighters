@@ -107,9 +107,6 @@ public class Player : NetworkBehaviour
         TargetCharacterDied(Owner);
     }
 
-    /*
-     * Shows the UI for GameInfo, has to be chain invoked (?) by the GameManager.
-     */
     [TargetRpc]
     private void TargetCharacterSpawned(NetworkConnection conn)
     {

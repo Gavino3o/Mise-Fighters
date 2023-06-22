@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using FishNet.Object;
 using FishNet.Object.Synchronizing;
@@ -19,6 +18,13 @@ public abstract class Unit : NetworkBehaviour
     public event Action<float> HealthChanged;
     public event Action<int> StatusApplied;
     public event Action<int> StatusEnded;
+
+    public SpriteRenderer sprite;
+
+    private void Awake()
+    {
+        sprite = GetComponent<SpriteRenderer>();
+    }
 
     public override void OnStartNetwork()
     {
@@ -90,12 +96,47 @@ public abstract class Unit : NetworkBehaviour
         {
             TakeDamage(StatusEffectData.IGNITION_DMG);
             dousedUntil = Time.time;
+            statusEndtimes[(int) StatusEffectData.EFFECTCODES.DOUSE] = Time.time;
         }
 
         StatusApplied?.Invoke(sed.effectCode);
+        AnimateStatus(sed.effectCode);
         statusEndtimes[sed.effectCode] = Time.time + sed.durationSeconds;
     }
 
+    private void AnimateStatus(int effectcode)
+    {
+        switch (effectcode)
+        {
+            case (int) StatusEffectData.EFFECTCODES.SLOW:
+                sprite.color = Color.cyan;
+                break;
+            case (int)StatusEffectData.EFFECTCODES.FREEZE:
+                sprite.color = Color.blue;
+                break;
+            case (int)StatusEffectData.EFFECTCODES.DOUSE:
+                sprite.color = Color.gray;
+                break;
+            case (int)StatusEffectData.EFFECTCODES.BURN:
+                sprite.color = Color.red;
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void EndAnimateStatus()
+    {
+        for (int n = 0; n < statusEndtimes.Length; n++)
+        {
+            if (statusEndtimes[n] > Time.time)
+            {
+                AnimateStatus(n);
+                return;
+            }
+        }
+        sprite.color = Color.white;
+    }
 
     private void Update()
     {
@@ -105,13 +146,17 @@ public abstract class Unit : NetworkBehaviour
 
         for (int n = 0; n < statusEndtimes.Length; n++)
         {
-            if (statusEndtimes[n] <= Time.time) StatusEnded?.Invoke(n);
+            if (statusEndtimes[n] <= Time.time)
+            {
+                EndAnimateStatus();
+                StatusEnded?.Invoke(n);
+            }
         }
     }
 
 
     /*
-     * TODO: Handle stacking of different calue stat changes that are tied into different status effects..
+     * Current behaviour: Stat changes override any previous ones, DoT is stackable.
      */
     #region Status Effect Methods
     public void Douse(float duration)
@@ -123,10 +168,8 @@ public abstract class Unit : NetworkBehaviour
     public void AlterAttack(float multiplier, float duration)
     {
         float next = multiplier * baseStats.attack;
-        if (next < currAttack)
-        {
-            currAttack = next;
-        }
+        currAttack = next;
+        
 
         attackChangeEndtime = Time.time + duration;
     }
@@ -134,10 +177,8 @@ public abstract class Unit : NetworkBehaviour
     public void AlterSpeed(float multiplier, float duration)
     {
         float next = multiplier * baseStats.moveSpeed;
-        if (next < currMoveSpeed)
-        {
-            currMoveSpeed = next;
-        }
+        currMoveSpeed = next;
+
         speedChangeEndtime = Time.time + duration;
     }
 

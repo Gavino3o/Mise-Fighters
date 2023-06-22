@@ -1,8 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using FishNet.Object;
-using UnityEngine.InputSystem;
 using System;
 
 public class CastCharacter : NetworkBehaviour

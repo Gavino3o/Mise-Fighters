@@ -23,6 +23,12 @@ public sealed class GameManager : NetworkBehaviour
     [SyncVar] public bool canStart;
 
     [SyncVar] public int playerCount;
+
+    [Header("Scene Names")]
+    public string startScene;
+    public string stageOne;
+    public string stageTwo;
+    public string stageThree;
     
     private void Awake()
     {

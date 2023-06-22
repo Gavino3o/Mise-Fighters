@@ -30,8 +30,6 @@ public sealed class MoveCharacter : NetworkBehaviour
 
         rigidBody.velocity = 5f * character.currMoveSpeed * input.velocity;
  
-        // float angle = Mathf.Atan2(input.targetDirection.y, input.targetDirection.x) * Mathf.Rad2Deg - 90;
-        // transform.rotation = Quaternion.Euler(new Vector3(0f, 0f, angle));
         if (input.targetDirection.x > 0)
         {
             SpriteFlip(false);

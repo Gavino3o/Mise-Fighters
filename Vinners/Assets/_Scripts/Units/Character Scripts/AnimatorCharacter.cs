@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 using FishNet.Object;
 using FishNet.Component.Animating;
@@ -70,7 +69,6 @@ public class AnimatorCharacter : NetworkBehaviour
         PlayCastAnimation(ultimate);
     }
 
-    // need a better way of deciding animation length
     private void PlayCastAnimation(string name)
     {
         if (!IsOwner) return;

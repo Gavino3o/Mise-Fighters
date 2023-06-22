@@ -478,12 +478,13 @@ MonoBehaviour:
   currAttackSpeed: 0
   currMoveSpeed: 0
   baseStats: {fileID: 11400000, guid: e0474f370e814a94bb53361c62251371, type: 2}
+  sprite: {fileID: 4013661713497051279}
   attackChangeEndtime: 0
   speedChangeEndtime: 0
   dousedUntil: 0
   isDoused: 0
   isPoisoned: 0
-  characterSplash: {fileID: 0}
+  characterSplash: {fileID: 21300000, guid: d16a48c05ca0e474faedcaa70abde048, type: 3}
   controllingPlayer: {fileID: 0}
   usernameDisplay: {fileID: 7911271535273823007}
   input: {fileID: 0}
@@ -700,6 +701,7 @@ MonoBehaviour:
   _componentIndexCache: 6
   _addedNetworkObject: {fileID: 1172006343598844436}
   _networkObjectCache: {fileID: 1172006343598844436}
+  networkAnimator: {fileID: 0}
   animator: {fileID: 0}
   character: {fileID: 0}
   caster: {fileID: 0}

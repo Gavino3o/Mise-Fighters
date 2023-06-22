@@ -11,7 +11,7 @@ using System;
  */
 public class Character : Unit
 {
-    public Image characterSplash;
+    public Sprite characterSplash;
 
     [SyncVar] public Player controllingPlayer;
 
@@ -24,7 +24,6 @@ public class Character : Unit
     public Animator animator;
     public AnimatorCharacter characterAnimator;
     public Rigidbody2D rb;
-    public SpriteRenderer sprite;
 
     public event Action HitEnemy;
 
@@ -42,7 +41,6 @@ public class Character : Unit
         animator = GetComponent<Animator>();
         characterAnimator = GetComponent<AnimatorCharacter>();
         rb = GetComponent<Rigidbody2D>();
-        sprite = GetComponent<SpriteRenderer>();
     }
 
     /*
