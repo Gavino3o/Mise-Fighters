@@ -9,8 +9,10 @@ using UnityEngine;
 public class StatusEffectData : ScriptableObject
 {
     public static float IGNITION_DMG = 7f;
+    public enum EFFECTCODES { TAUNT, SLOW, FREEZE, STUN, FLATTEN, DOUSE, BURN, BUFF };
     
     public string effectName;
+    public int effectCode = -1;
     public float durationSeconds = 0;
     public float damageOverTime = 0;
     public float attackMultiplier = 1;

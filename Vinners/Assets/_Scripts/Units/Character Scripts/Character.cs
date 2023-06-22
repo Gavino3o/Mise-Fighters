@@ -11,20 +11,21 @@ using System;
  */
 public class Character : Unit
 {
-    public Image characterSplash;
+    public Sprite characterSplash;
 
     [SyncVar] public Player controllingPlayer;
 
-    //TODO: username display is still buggy
     [SerializeField] private TextMeshPro usernameDisplay;
 
     public InputCharacter input;
     public CastCharacter caster;
     public MoveCharacter movement;
     public AttackCharacter attacker;
+    public Animator animator;
+    public AnimatorCharacter characterAnimator;
     public Rigidbody2D rb;
 
-    public Action HitEnemy;
+    public event Action HitEnemy;
 
     public void HitSuccess()
     {
@@ -37,9 +38,14 @@ public class Character : Unit
         caster = GetComponent<CastCharacter>();
         movement = GetComponent<MoveCharacter>();
         attacker = GetComponent<AttackCharacter>();
+        animator = GetComponent<Animator>();
+        characterAnimator = GetComponent<AnimatorCharacter>();
         rb = GetComponent<Rigidbody2D>();
     }
 
+    /*
+     * Disables player input and attacks
+     */
     public override void OnDeath()
     {
         GetComponent<PlayerInput>().actions.Disable();
@@ -47,11 +53,20 @@ public class Character : Unit
         controllingPlayer.CharacterDeath();
     }
 
+    /*
+     * Reenables player input and revives the character with full health
+     */
     public void Revive()
     {
         GetComponent<PlayerInput>().actions.Enable();
         attacker.canAttack = true;
-        TakeDamage(baseStats.maxHealth * -1);    
+        ServerRevive();
+    }
+
+    [ServerRpc]
+    private void ServerRevive()
+    {
+        TakeDamage(baseStats.maxHealth * -1);
     }
 
 }
