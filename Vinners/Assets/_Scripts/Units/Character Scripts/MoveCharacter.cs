@@ -26,11 +26,8 @@ public sealed class MoveCharacter : NetworkBehaviour
     {
         if (!IsOwner) return;
         if (Camera.main == null) return;
-        if (interrupted)
-        {
-            rigidBody.velocity = Vector2.zero;
-            return;
-        }
+        if (interrupted) return;
+        
 
         rigidBody.velocity = 5f * character.currMoveSpeed * input.velocity;
  

@@ -314,7 +314,7 @@ GameObject:
   - component: {fileID: 1140230785626484532}
   m_Layer: 3
   m_Name: Butcher
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -572,7 +572,7 @@ MonoBehaviour:
   chargeSpeed: 3
   windUp: 0.3
   chargeSpellPrefab: {fileID: 5681926344258742825, guid: d7f52cce17b6d5b4fbf7167c90ba7136, type: 3}
-  noSpins: 7
+  noSpins: 5
   spinInterval: 0.5
   spinSpellPrefab: {fileID: 5681926344258742825, guid: b670351e56840e846bd3e82e452482d1, type: 3}
 --- !u!114 &1172006343598844436
@@ -606,7 +606,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 2
+  <PrefabId>k__BackingField: 19
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 0
   <SceneId>k__BackingField: 0
