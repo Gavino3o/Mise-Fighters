@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a4de1ab2434fece4cb230aab18203183, type: 3}
-  m_Name: Burn
+  m_Name: DoT
   m_EditorClassIdentifier: 
-  effectName: BlowTorch Burn
-  effectCode: 6
-  durationSeconds: 6.5
-  damageOverTime: 1.5
+  effectName: DoT
+  effectCode: -1
+  durationSeconds: 5
+  damageOverTime: 1
   attackMultiplier: 1
   moveSpeedMultiplier: 1
   douser: 0

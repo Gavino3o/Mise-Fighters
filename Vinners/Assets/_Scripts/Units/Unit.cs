@@ -99,6 +99,8 @@ public abstract class Unit : NetworkBehaviour
             statusEndtimes[(int) StatusEffectData.EFFECTCODES.DOUSE] = Time.time;
         }
 
+        if (sed.effectCode <= -1) return;
+
         StatusApplied?.Invoke(sed.effectCode);
         AnimateStatus(sed.effectCode);
         statusEndtimes[sed.effectCode] = Time.time + sed.durationSeconds;

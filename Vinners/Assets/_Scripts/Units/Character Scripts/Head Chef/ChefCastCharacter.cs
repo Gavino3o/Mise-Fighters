@@ -31,8 +31,8 @@ public class ChefCastCharacter : CastCharacter
         // Consider implementing using one slice and using animation destroy.
         Quaternion rotationOffset1 = Quaternion.Euler(0, 0, sliceAngle);
         Quaternion rotationOffset2 = Quaternion.Euler(0, 0 , -sliceAngle);
-        GameObject firstSlice = Instantiate(sliceSpellPrefab, transform.position + transform.up, transform.rotation * rotationOffset1);
-        GameObject secondSlice = Instantiate(sliceSpellPrefab, transform.position + transform.up, transform.rotation * rotationOffset2);
+        GameObject firstSlice = Instantiate(sliceSpellPrefab, transform.position + transform.up, input.rotation * rotationOffset1);
+        GameObject secondSlice = Instantiate(sliceSpellPrefab, transform.position + transform.up, input.rotation * rotationOffset2);
 
         firstSlice.GetComponent<Lifetime>().lifetime = spellData[0].duration;
         secondSlice.GetComponent<Lifetime>().lifetime = spellData[0].duration;
@@ -128,7 +128,7 @@ public class ChefCastCharacter : CastCharacter
     public void CastUltimateSkill()
     {
         Vector3 direction = new Vector3(input.targetDirection.x, input.targetDirection.y, 0);
-        NetworkObject obj = Instantiate(julienneSpellPrefab, transform.position + direction * 5f, transform.rotation);
+        NetworkObject obj = Instantiate(julienneSpellPrefab, transform.position + direction * 5f, input.rotation);
         SetupDamager(obj.GetComponent<EnemyDamager>(), 2);
         obj.GetComponent<Lifetime>().lifetime = spellData[2].duration;
         ServerManager.Spawn(obj);

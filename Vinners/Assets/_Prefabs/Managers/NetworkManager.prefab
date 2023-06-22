@@ -609,8 +609,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _useGlobalScenes: 1
   _startInOffline: 0
-  _offlineScene: Assets/Scenes/MainMenu.unity
-  _onlineScene: Assets/Scenes/CharacterSelect.unity
+  _offlineScene: Assets/_Scenes/MainMenu.unity
+  _onlineScene: Assets/_Scenes/CharacterSelect.unity
   _replaceScenes: 0
 --- !u!114 &7589570277345089366
 MonoBehaviour:
