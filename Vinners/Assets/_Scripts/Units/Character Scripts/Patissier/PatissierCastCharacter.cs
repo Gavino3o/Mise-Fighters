@@ -108,7 +108,7 @@ public class PatissierCastCharacter : CastCharacter
     [ServerRpc]
     public void CastUltimateSkill()
     {
-        NetworkObject obj = Instantiate(pinSpellPrefab, transform.position, transform.rotation);
+        NetworkObject obj = Instantiate(pinSpellPrefab, transform.position, input.rotation);
         SkillshotMotion motion = obj.GetComponent<SkillshotMotion>();
         if (motion != null) motion.movementDirection = input.targetDirection;
         SetupDamager(obj.GetComponent<EnemyDamager>(), 2);
