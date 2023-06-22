@@ -774,6 +774,8 @@ MonoBehaviour:
   burnSpellPrefab: {fileID: 5573050333223222883, guid: c203d78f488b8f34c8a96e2acdef8dda, type: 3}
   offSet: 1.5
   burnSpellSoundEffect: {fileID: 8300000, guid: 71fc52c98e9738e4ab51763e03b5be3c, type: 3}
+  scrambleSpellSoundEffect: {fileID: 8300000, guid: c8eca3b97b44b6c458cba7a3decc7010, type: 3}
+  bgmTest: {fileID: 8300000, guid: 3322407bae501854099d0bcc791af1cb, type: 3}
   scrambleSpeed: 8
   pinSpellPrefab: {fileID: 5592945174258440837, guid: b7901280ec29cca46b2d2771089e67f0, type: 3}
 --- !u!114 &-7564451973442373784

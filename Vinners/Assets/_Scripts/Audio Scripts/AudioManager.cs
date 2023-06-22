@@ -14,6 +14,18 @@ public class AudioManager : NetworkBehaviour
     [SerializeField] private AudioClip[] effectAudioClips;
     private int initialSoundEffectAudioSources = 5;
 
+    [Range(0f , 1f)]
+    public float backgroundMusicVolume = 1.0f;
+    [Range(0f, 1f)]
+    public float gameVolume = 1.0f;
+
+    [Range(0.1f, 3f)]
+    public float backgroundMusicPitch = 1.0f;
+    [Range(0.1f, 3f)]
+    public float gameVolumePitch = 1.0f;
+
+    public AudioMixerGroup audioMixer;
+
     private void Awake()
     {
         if (Instance != null && Instance != this)
@@ -27,8 +39,10 @@ public class AudioManager : NetworkBehaviour
 
         // Create an audio source for background music
         backgroundMusicAudioSource = gameObject.AddComponent<AudioSource>();
-        backgroundMusicAudioSource.clip = bgmAudioClips[0]; // This is hardcoded, separate later.
-        backgroundMusicAudioSource.Play();
+        backgroundMusicAudioSource.volume = backgroundMusicVolume;
+        backgroundMusicAudioSource.outputAudioMixerGroup = audioMixer;
+        backgroundMusicAudioSource.clip = bgmAudioClips[4]; // This is hardcoded, separate later.
+
 
         // Create an array of audio sources for sound effects
         soundEffectAudioSources = new AudioSource[initialSoundEffectAudioSources];
@@ -36,17 +50,27 @@ public class AudioManager : NetworkBehaviour
         {
             soundEffectAudioSources[i] = gameObject.AddComponent<AudioSource>();
             soundEffectAudioSources[i].playOnAwake = false;
+            soundEffectAudioSources[i].volume = gameVolume;
+            soundEffectAudioSources[i].outputAudioMixerGroup = audioMixer;
         }
     }
 
+    //This is called in character select.
+    private void Start()
+    {
+        backgroundMusicAudioSource.Play();
+        Debug.Log("BGM audio source function called");
+        Debug.Log(backgroundMusicAudioSource.isPlaying.ToString());
+    }
+
     [ServerRpc]
-    public void ServerPlayBackgroundMusic(int audioClipIndex, bool loop = true, float volume = 1f, float pitch = 1f)
+    public void ServerPlayBackgroundMusic(int audioClipIndex, bool loop = true)
     {
         ObserversPlayBackgroundMusic(audioClipIndex);
     }
 
     [ServerRpc]
-    public void ServerPlaySoundEffect(int audioClipIndex, float volume = 1f, float pitch = 1f)
+    public void ServerPlaySoundEffect(int audioClipIndex)
     {
         ObserversPlaySoundEffect(audioClipIndex);
     }
@@ -59,16 +83,19 @@ public class AudioManager : NetworkBehaviour
 
 
     [ObserversRpc]
-    public void ObserversPlayBackgroundMusic(int audioClipIndex, bool loop = true, float volume = 1f, float pitch = 1f)
+    public void ObserversPlayBackgroundMusic(int audioClipIndex, bool loop = true)
     {
+        if (backgroundMusicAudioSource.isPlaying)
+        {
+            ObserversStopBackgroundMusic();
+        }
+
         backgroundMusicAudioSource.clip = bgmAudioClips[audioClipIndex];
         backgroundMusicAudioSource.loop = loop;
-        backgroundMusicAudioSource.volume = volume;
-        backgroundMusicAudioSource.pitch = pitch;
         backgroundMusicAudioSource.Play();
     }
 
-    public void ObserversPlayAudio(AudioClip audioClip, bool loop = true, float volume = 1f, float pitch = 1f)
+    public void ObserversPlayBackgroundMusic(AudioClip audioClip, bool loop = true)
     {
         int index = System.Array.IndexOf(bgmAudioClips, audioClip);
         if (index == -1)
@@ -76,7 +103,7 @@ public class AudioManager : NetworkBehaviour
             Debug.Log("BGM Audio Clip chosen is missing.");
             return;
         }
-        ObserversPlayBackgroundMusic(index, loop, volume, pitch);
+        ObserversPlayBackgroundMusic(index, loop);
     }
 
     [ObserversRpc]
@@ -86,15 +113,13 @@ public class AudioManager : NetworkBehaviour
     }
 
     [ObserversRpc]
-    public void ObserversPlaySoundEffect(int audioClipIndex, float volume = 1f, float pitch = 1f)
+    public void ObserversPlaySoundEffect(int audioClipIndex)
     {
         foreach (AudioSource audioSource in soundEffectAudioSources)
         {
             if (!audioSource.isPlaying)
             {
                 audioSource.clip = effectAudioClips[audioClipIndex];
-                audioSource.volume = volume;
-                audioSource.pitch = pitch;
                 audioSource.Play();
                 return;
             }
@@ -103,11 +128,13 @@ public class AudioManager : NetworkBehaviour
         // If all audio sources are in use, create a new one and play the sound effect
         AudioSource newAudioSource = gameObject.AddComponent<AudioSource>();
         newAudioSource.clip = effectAudioClips[audioClipIndex];
-        newAudioSource.volume = volume;
+        newAudioSource.playOnAwake = false;
+        newAudioSource.volume = gameVolume;
+        newAudioSource.outputAudioMixerGroup = audioMixer;
         newAudioSource.Play();
     }
 
-    public void ObserversPlaySoundEffect(AudioClip audioClip, float volume = 1f, float pitch = 1f)
+    public void ObserversPlaySoundEffect(AudioClip audioClip)
     {
         int index = System.Array.IndexOf(effectAudioClips, audioClip);
         if (index == -1)
@@ -115,6 +142,7 @@ public class AudioManager : NetworkBehaviour
             Debug.Log("Audio clip chosen is missing.");
             return;
         }
-        ObserversPlaySoundEffect(index, volume, pitch);
+        ObserversPlaySoundEffect(index);
     }
+
 }
