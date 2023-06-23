@@ -12,9 +12,9 @@ public sealed class MoveCharacter : NetworkBehaviour
 
     public bool interrupted;
 
-    public override void OnStartClient()
+
+    private void Awake()
     {
-        base.OnStartClient();
         character = GetComponent<Character>();
         input = character.input;
         rigidBody = character.rb;
