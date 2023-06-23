@@ -10,6 +10,8 @@ public class PatissierCastCharacter : CastCharacter
     [Header("Burn Skill")]
     [SerializeField] private GameObject burnSpellPrefab;
     [SerializeField] private float offSet = 1.5f;
+    [SerializeField] private AudioClip burnSpellSoundEffect;
+    [SerializeField] private AudioClip scrambleSpellSoundEffect;
     public void OnSkill()
     {
         if (!IsOwner) return;
@@ -55,6 +57,7 @@ public class PatissierCastCharacter : CastCharacter
             obj.GetComponent<Lifetime>().lifetime = spellData[0].duration;
             ServerManager.Spawn(obj);    
         }
+        AudioManager.Instance.ObserversPlaySoundEffect(burnSpellSoundEffect);
         Debug.Log($"{spellData[0].spellName} casted");
     }
 
@@ -70,6 +73,7 @@ public class PatissierCastCharacter : CastCharacter
         {
             StartCoroutine(Cooldown(1));
             StartCoroutine(CastScrambleSkill());
+            AudioManager.Instance.ObserversPlaySoundEffect(scrambleSpellSoundEffect);
             Debug.Log($"{spellData[1].spellName} casted");
         }
         else
