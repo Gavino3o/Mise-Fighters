@@ -11,7 +11,6 @@ using System;
  * The Player class is responsible for information relating to a player's account (their username, connection status
  * to host, controlled character etc.)
  */
-
 public class Player : NetworkBehaviour
 {
     public static Player LocalInstance { get; private set; }
@@ -108,9 +107,6 @@ public class Player : NetworkBehaviour
         TargetCharacterDied(Owner);
     }
 
-    /*
-     * Shows the UI for GameInfo, has to be chain invoked (?) by the GameManager.
-     */
     [TargetRpc]
     private void TargetCharacterSpawned(NetworkConnection conn)
     {

@@ -11,7 +11,7 @@ using FishNet.Connection;
 
 /* 
  * Right now this class is just for managing lobbies, keeping track of players currently connected and in charge of starting the game
- * or changing scenes?
+ * or changing scenes.
  */
 public sealed class GameManager : NetworkBehaviour
 {
@@ -22,8 +22,13 @@ public sealed class GameManager : NetworkBehaviour
  
     [SyncVar] public bool canStart;
 
-    // just for debugging purposes
     [SyncVar] public int playerCount;
+
+    [Header("Scene Names")]
+    public string startScene;
+    public string stageOne;
+    public string stageTwo;
+    public string stageThree;
     
     private void Awake()
     {
@@ -44,7 +49,6 @@ public sealed class GameManager : NetworkBehaviour
 
     /*
      * Starts the Game for all Players.
-     * TODO: Likely just for current build, have to do proper state/scene change logic in the future.
      */
     [Server]
     public void StartGame()
@@ -61,6 +65,9 @@ public sealed class GameManager : NetworkBehaviour
         }
     }
 
+    /*
+     * Changes the scene and brings all owned objects with it
+     */
     [Server]
     public void ChangeScene(string sceneName)
     {

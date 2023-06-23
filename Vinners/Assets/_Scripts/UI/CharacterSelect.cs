@@ -36,19 +36,19 @@ public class CharacterSelect : View
     public override void Initialise()
     {
         currCharacterIndex = 0;
-        // DisplayCurrentCharacter();
+        DisplayCurrentCharacter();
         
         nextCharacterButton.onClick.AddListener(() =>
         {
             currCharacterIndex = (currCharacterIndex + 1) % characterList.Count;
-            // DisplayCurrentCharacter();
+            DisplayCurrentCharacter();
             Player.LocalInstance.ServerChooseCharacter(characterList[currCharacterIndex]);
         });
 
         prevCharacterButton.onClick.AddListener(() =>
         { 
             currCharacterIndex = (currCharacterIndex + characterList.Count - 1) % characterList.Count;
-            // DisplayCurrentCharacter();
+            DisplayCurrentCharacter();
             Player.LocalInstance.ServerChooseCharacter(characterList[currCharacterIndex]);
         });
 
@@ -108,7 +108,7 @@ public class CharacterSelect : View
 
     private void DisplayCurrentCharacter()
     {
-        characterDisplayPanel = characterList[currCharacterIndex].GetComponent<Character>().characterSplash;
+        characterDisplayPanel.sprite = characterList[currCharacterIndex].GetComponent<Character>().characterSplash;
     }
 
 

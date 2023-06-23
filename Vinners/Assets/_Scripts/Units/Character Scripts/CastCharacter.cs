@@ -1,8 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using FishNet.Object;
-using UnityEngine.InputSystem;
 using System;
 
 public class CastCharacter : NetworkBehaviour
@@ -11,11 +9,12 @@ public class CastCharacter : NetworkBehaviour
     protected Character character;
     protected Rigidbody2D rigidBody;
     protected MoveCharacter movement;
+    protected AnimatorCharacter characterAnimator;
 
     public SpellData[] spellData = new SpellData[3];
     public readonly bool[] canCast = new bool[3];
 
-    public static float ULT_METER = 50f;
+    public static float ULT_METER = 50f;   
     public float ultimate;
 
     private void Awake()
@@ -23,10 +22,12 @@ public class CastCharacter : NetworkBehaviour
         character = GetComponent<Character>();
 
         character.HitEnemy += CharacterHitEnemy;
+        character.DamageTaken += CharacterTookDamage;
 
         input = character.input; 
         rigidBody = character.rb;
         movement = character.movement;
+        characterAnimator = character.characterAnimator;
         ultimate = 0f;
 
         Array.Fill(canCast, true);
@@ -36,6 +37,7 @@ public class CastCharacter : NetworkBehaviour
     private void OnDestroy()
     {
         character.HitEnemy -= CharacterHitEnemy;
+        character.DamageTaken -= CharacterTookDamage;
     }
 
     // for now just a dummy class so that the Gameinfo can access it
@@ -48,8 +50,12 @@ public class CastCharacter : NetworkBehaviour
 
     private void CharacterHitEnemy()
     {
-        // value is 1 for testing purposes
         ChargeUltimate(1);
+    }
+
+    private void CharacterTookDamage()
+    {
+        ChargeUltimate(0.5f);
     }
 
     public void ChargeUltimate(float amt)
