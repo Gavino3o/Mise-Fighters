@@ -155,6 +155,7 @@ MonoBehaviour:
   managerList:
   - {fileID: 2512929587187230283, guid: 9264a27b1d93609428edad77837b376a, type: 3}
   - {fileID: 7522744700599576681, guid: 0864bbef96270be4896ad25dd5180c8a, type: 3}
+  - {fileID: 8292126667889097621, guid: 1ee29085abd109c4987e9352815bda23, type: 3}
 --- !u!4 &330662518
 Transform:
   m_ObjectHideFlags: 0

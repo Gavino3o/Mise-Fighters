@@ -477,6 +477,7 @@ GameObject:
   - component: {fileID: -595177013496435579}
   - component: {fileID: -7564451973442373784}
   - component: {fileID: 3649269149779349543}
+  - component: {fileID: 8564761197155556380}
   m_Layer: 3
   m_Name: Patissier
   m_TagString: Untagged
@@ -522,7 +523,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &-2564277016632147628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -677,7 +678,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 39
+  <PrefabId>k__BackingField: 5
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 0
   <SceneId>k__BackingField: 0
@@ -781,7 +782,6 @@ MonoBehaviour:
   offSet: 1.5
   burnSpellSoundEffect: {fileID: 8300000, guid: 71fc52c98e9738e4ab51763e03b5be3c, type: 3}
   scrambleSpellSoundEffect: {fileID: 8300000, guid: c8eca3b97b44b6c458cba7a3decc7010, type: 3}
-  bgmTest: {fileID: 8300000, guid: 3322407bae501854099d0bcc791af1cb, type: 3}
   scrambleSpeed: 8
   pinSpellPrefab: {fileID: 5592945174258440837, guid: b7901280ec29cca46b2d2771089e67f0, type: 3}
 --- !u!114 &-7564451973442373784
@@ -899,3 +899,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!58 &8564761197155556380
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8735874033422930139}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.5

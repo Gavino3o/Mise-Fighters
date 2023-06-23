@@ -312,6 +312,7 @@ GameObject:
   - component: {fileID: 1052875305421243053}
   - component: {fileID: 4013661713497051279}
   - component: {fileID: 1140230785626484532}
+  - component: {fileID: 5164507935448699220}
   m_Layer: 3
   m_Name: Butcher
   m_TagString: Player
@@ -355,7 +356,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &-2564277016632147628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -606,7 +607,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 19
+  <PrefabId>k__BackingField: 21
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 0
   <SceneId>k__BackingField: 0
@@ -805,3 +806,19 @@ MonoBehaviour:
   _interpolation: 2
   _clientAuthoritative: 1
   _sendToOwner: 1
+--- !u!58 &5164507935448699220
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8735874033422930139}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1

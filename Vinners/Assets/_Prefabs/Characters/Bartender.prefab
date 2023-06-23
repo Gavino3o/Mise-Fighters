@@ -312,6 +312,7 @@ GameObject:
   - component: {fileID: 7428444723336966989}
   - component: {fileID: 2820761590625722370}
   - component: {fileID: 6606701902620948633}
+  - component: {fileID: -1919902670998679599}
   m_Layer: 0
   m_Name: Bartender
   m_TagString: Untagged
@@ -355,7 +356,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &-2564277016632147628
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -556,7 +557,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 18
+  <PrefabId>k__BackingField: 25
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 0
   <SceneId>k__BackingField: 0
@@ -755,3 +756,19 @@ MonoBehaviour:
   _interpolation: 2
   _clientAuthoritative: 1
   _sendToOwner: 0
+--- !u!58 &-1919902670998679599
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8735874033422930139}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1.5
