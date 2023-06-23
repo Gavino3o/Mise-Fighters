@@ -85,10 +85,10 @@ public class AudioManager : NetworkBehaviour
     [ObserversRpc]
     public void ObserversPlayBackgroundMusic(int audioClipIndex, bool loop = true)
     {
-        if (backgroundMusicAudioSource.isPlaying)
+        /*if (backgroundMusicAudioSource.isPlaying)
         {
             ObserversStopBackgroundMusic();
-        }
+        }*/
 
         backgroundMusicAudioSource.clip = bgmAudioClips[audioClipIndex];
         backgroundMusicAudioSource.loop = loop;

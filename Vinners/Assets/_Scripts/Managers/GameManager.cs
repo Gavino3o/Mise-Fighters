@@ -63,6 +63,9 @@ public sealed class GameManager : NetworkBehaviour
         {
             players[i].SpawnCharacter();
         }
+
+        int rand = Random.Range(2, 5);
+        AudioManager.Instance.ObserversPlayBackgroundMusic(rand, true);
     }
 
     /*

@@ -9,6 +9,9 @@ public class ChefCastCharacter : CastCharacter
     [Header("Slice skill")]
     [SerializeField] private GameObject sliceSpellPrefab;
     [SerializeField] private float sliceAngle = 30;
+    [SerializeField] private AudioClip skillSpellSoundEffect;
+    [SerializeField] private AudioClip dashSpellSoundEffect;
+    [SerializeField] private AudioClip ultimateSpellSoundEffect;
     public void OnSkill()
     {
         if (!IsOwner) return;
@@ -17,6 +20,7 @@ public class ChefCastCharacter : CastCharacter
         {
             StartCoroutine(Cooldown(0));
             CastSliceSkill();
+            AudioManager.Instance.ObserversPlaySoundEffect(skillSpellSoundEffect);
             Debug.Log("Spell casted");
         }
         else
@@ -100,6 +104,7 @@ public class ChefCastCharacter : CastCharacter
         SetupDamager(stunCircle.GetComponent<EnemyDamager>(), 1);
         stunCircle.GetComponent<Lifetime>().lifetime = spellData[1].duration;
         ServerManager.Spawn(stunCircle);
+        AudioManager.Instance.ObserversPlaySoundEffect(dashSpellSoundEffect);
         yield return new WaitForSeconds(spellData[1].duration);
         movement.interrupted = false;
     }
@@ -116,6 +121,7 @@ public class ChefCastCharacter : CastCharacter
         {
             StartCoroutine(Cooldown(1));
             StartCoroutine(Julienne());
+            AudioManager.Instance.ObserversPlaySoundEffect(ultimateSpellSoundEffect);
             SpendUltimate(ULT_METER);
         }
         else

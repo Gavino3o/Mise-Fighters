@@ -7,6 +7,9 @@ public class ButcherCastCharacter : CastCharacter
     # region Taunt skill
     [Header("Taunt Skill")]
     [SerializeField] private NetworkObject tauntSpellPrefab;
+    [SerializeField] private AudioClip skillSpellSoundEffect;
+    [SerializeField] private AudioClip dashSpellSoundEffect;
+    [SerializeField] private AudioClip ultimateSpellSoundEffect;
     public void OnSkill()
     {
         if (!IsOwner) return;
@@ -14,6 +17,7 @@ public class ButcherCastCharacter : CastCharacter
         {
             StartCoroutine(Cooldown(0));
             characterAnimator.PlaySkill();
+            AudioManager.Instance.ObserversPlaySoundEffect(skillSpellSoundEffect);
             CastTauntSkill();
         }
         else
@@ -48,6 +52,7 @@ public class ButcherCastCharacter : CastCharacter
         {
             StartCoroutine(Cooldown(1));
             characterAnimator.PlayDash();
+            AudioManager.Instance.ObserversPlaySoundEffect(dashSpellSoundEffect);
             CastChargeSkill();
             StartCoroutine(Charge());
         }
@@ -92,6 +97,7 @@ public class ButcherCastCharacter : CastCharacter
         {
             StartCoroutine(Pirouette());
             characterAnimator.PlayUltimate();
+            AudioManager.Instance.ObserversPlaySoundEffect(ultimateSpellSoundEffect);
             SpendUltimate(ULT_METER);
         }
         else

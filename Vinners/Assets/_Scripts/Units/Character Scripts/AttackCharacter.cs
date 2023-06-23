@@ -7,7 +7,7 @@ public class AttackCharacter : NetworkBehaviour
     public InputCharacter input;
 
     [SerializeField] protected EnemyDamager projectile;
-
+    [SerializeField] protected AudioClip autoAttackSoundEffect;
     protected float lastAttacked;
     public bool canAttack;
 
@@ -47,6 +47,7 @@ public class AttackCharacter : NetworkBehaviour
         if (motion != null) motion.movementDirection = targetDirection;
         
         ServerManager.Spawn(obj);
+        AudioManager.Instance.ObserversPlaySoundEffect(autoAttackSoundEffect);
         Debug.Log($"{gameObject} controlled by {Owner} attacks!");
     }
 

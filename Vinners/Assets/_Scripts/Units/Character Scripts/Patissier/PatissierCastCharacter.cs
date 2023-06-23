@@ -10,8 +10,10 @@ public class PatissierCastCharacter : CastCharacter
     [Header("Burn Skill")]
     [SerializeField] private GameObject burnSpellPrefab;
     [SerializeField] private float offSet = 1.5f;
-    [SerializeField] private AudioClip burnSpellSoundEffect;
-    [SerializeField] private AudioClip scrambleSpellSoundEffect;
+    [SerializeField] private AudioClip skillSpellSoundEffect;
+    [SerializeField] private AudioClip dashSpellSoundEffect;
+    [SerializeField] private AudioClip ultimateSpellSoundEffect;
+
     public void OnSkill()
     {
         if (!IsOwner) return;
@@ -57,7 +59,7 @@ public class PatissierCastCharacter : CastCharacter
             obj.GetComponent<Lifetime>().lifetime = spellData[0].duration;
             ServerManager.Spawn(obj);    
         }
-        AudioManager.Instance.ObserversPlaySoundEffect(burnSpellSoundEffect);
+        AudioManager.Instance.ObserversPlaySoundEffect(skillSpellSoundEffect);
         Debug.Log($"{spellData[0].spellName} casted");
     }
 
@@ -73,7 +75,7 @@ public class PatissierCastCharacter : CastCharacter
         {
             StartCoroutine(Cooldown(1));
             StartCoroutine(CastScrambleSkill());
-            AudioManager.Instance.ObserversPlaySoundEffect(scrambleSpellSoundEffect);
+            AudioManager.Instance.ObserversPlaySoundEffect(dashSpellSoundEffect);
             Debug.Log($"{spellData[1].spellName} casted");
         }
         else
@@ -101,6 +103,7 @@ public class PatissierCastCharacter : CastCharacter
         if (canCast[2])
         {
             CastUltimateSkill();
+            AudioManager.Instance.ObserversPlaySoundEffect(ultimateSpellSoundEffect);
             SpendUltimate(ULT_METER);
         }
         else

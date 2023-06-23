@@ -6,6 +6,9 @@ public class BartenderCastCharacter : CastCharacter
     #region Bomb skill
     [Header("Bomb Skill")]
     [SerializeField] private NetworkObject bombSpellPrefab;
+    [SerializeField] private AudioClip skillSpellSoundEffect;
+    [SerializeField] private AudioClip dashSpellSoundEffect;
+    [SerializeField] private AudioClip ultimateSpellSoundEffect;
 
     public void OnSkill()
     {
@@ -14,6 +17,7 @@ public class BartenderCastCharacter : CastCharacter
         {
             StartCoroutine(Cooldown(0));
             characterAnimator.PlaySkill();
+            AudioManager.Instance.ObserversPlaySoundEffect(skillSpellSoundEffect);
             CastBombSkill(input.mousePos);
             Debug.Log("Spell casted");
         }
@@ -48,6 +52,7 @@ public class BartenderCastCharacter : CastCharacter
             DropLure();
             StartCoroutine(Cooldown(1));
             characterAnimator.PlayDash();
+            AudioManager.Instance.ObserversPlaySoundEffect(dashSpellSoundEffect);
             StartCoroutine(Backstep());
             Debug.Log($"{spellData[1].spellName} casted");
         }
@@ -87,6 +92,7 @@ public class BartenderCastCharacter : CastCharacter
         {
             CastUltimateSkill();
             characterAnimator.PlayUltimate();
+            AudioManager.Instance.ObserversPlaySoundEffect(ultimateSpellSoundEffect);
             SpendUltimate(ULT_METER);
         }
         else
