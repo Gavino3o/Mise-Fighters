@@ -41,7 +41,7 @@ public class AudioManager : NetworkBehaviour
         backgroundMusicAudioSource = gameObject.AddComponent<AudioSource>();
         backgroundMusicAudioSource.volume = backgroundMusicVolume;
         backgroundMusicAudioSource.outputAudioMixerGroup = audioMixer;
-        backgroundMusicAudioSource.clip = bgmAudioClips[4]; // This is hardcoded, separate later.
+        backgroundMusicAudioSource.clip = bgmAudioClips[1]; // This is hardcoded, separate later.
 
 
         // Create an array of audio sources for sound effects
