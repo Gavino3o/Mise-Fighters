@@ -41,6 +41,7 @@ public class Character : Unit
         animator = GetComponent<Animator>();
         characterAnimator = GetComponent<AnimatorCharacter>();
         rb = GetComponent<Rigidbody2D>();
+        sprite = GetComponent<SpriteRenderer>();
     }
 
     /*
