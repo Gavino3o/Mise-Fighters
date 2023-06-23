@@ -777,7 +777,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0c3df33242cbc894dbe1a9ff1a09cbfc, type: 2}
   - {fileID: 11400000, guid: e76f728daa0e79c47bf114ae5448b51f, type: 2}
   ultimate: 0
-  sliceSpellPrefab: {fileID: 8791335468521538598, guid: fd24006727f566f4aaa8a976a8c01434, type: 3}
+  sliceSpellPrefab: {fileID: 2618843596547878209, guid: b9f7e9c9dea3d9c44a2e2d8dd0d4b9fb, type: 3}
   sliceAngle: 30
   blinkDistance: 10
   stunPrefab: {fileID: 6848911510146320331, guid: 87358b2bea6d41f47bfe0d277051f09e, type: 3}

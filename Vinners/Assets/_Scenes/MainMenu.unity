@@ -1261,8 +1261,8 @@ MonoBehaviour:
   NetworkObserver: {fileID: 0}
   <PrefabId>k__BackingField: 0
   <SpawnableCollectionId>k__BackingField: 0
-  _scenePathHash: 2571393946
-  <SceneId>k__BackingField: 11044052906599702800
+  _scenePathHash: 2908241365
+  <SceneId>k__BackingField: 12490801553967909764
   <AssetPathHash>k__BackingField: 0
   _sceneNetworkObjects:
   - {fileID: 1528347539}
@@ -1281,8 +1281,13 @@ MonoBehaviour:
   _componentIndexCache: 0
   _addedNetworkObject: {fileID: 1528347539}
   _networkObjectCache: {fileID: 1528347539}
-  audioSource: {fileID: 0}
-  audioClips: []
+  bgmAudioClips: []
+  effectAudioClips: []
+  backgroundMusicVolume: 1
+  gameVolume: 1
+  backgroundMusicPitch: 1
+  gameVolumePitch: 1
+  audioMixer: {fileID: 0}
 --- !u!4 &1528347541
 Transform:
   m_ObjectHideFlags: 0
