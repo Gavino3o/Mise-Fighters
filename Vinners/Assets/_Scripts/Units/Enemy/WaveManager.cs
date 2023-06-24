@@ -10,7 +10,7 @@ public sealed class WaveManager : NetworkBehaviour
     public WaveData[] waveDatas;
     private WaveData currentWaveData;
     private int currentWaveIndex;
-    private List<GameObject> activeSpawners = new List<GameObject>();
+    private int enemyCountBuffer = 3;
 
     public static WaveManager Instance { get; private set; }
 
@@ -23,9 +23,9 @@ public sealed class WaveManager : NetworkBehaviour
     {
         base.OnStartServer();
 
-        if (waveDatas != null && waveDatas.Length >= 1)
+        if (waveDatas != null && waveDatas.Length > 0)
         {
-            Debug.Log("Activate Spawners");
+            Debug.Log("Activating all spawners");
             currentWaveIndex = 0;
             currentWaveData = waveDatas[0];
             ActivateAllSpawners();
@@ -35,6 +35,10 @@ public sealed class WaveManager : NetworkBehaviour
     private void Update()
     {
         if (!IsServer) return;
+        if (EnemyManager.Instance.GetEnemyDeathCount() >= currentWaveData.maxTotalEnemies - enemyCountBuffer)
+        {
+            StartNextWave();
+        }
     }
 
     private void StartNextWave()
@@ -43,14 +47,13 @@ public sealed class WaveManager : NetworkBehaviour
 
         currentWaveIndex++;
 
-        if (currentWaveIndex < waveDatas.Length && !currentWaveData.isLastWave)
+        if (currentWaveIndex < waveDatas.Length)
         {
             // Set the current wave to the next wave in the list
             currentWaveData = waveDatas[currentWaveIndex];
 
             //Delay according to delay in current wave data.
             Invoke(nameof(ActivateAllSpawners), currentWaveData.waveDelay);
-
         }
         else
         {
@@ -70,25 +73,30 @@ public sealed class WaveManager : NetworkBehaviour
             var newSpawner = Instantiate(enemySpawner, enemySpawner.transform.position, Quaternion.identity);
             ServerManager.Spawn(newSpawner);
             newSpawner.GetComponent<EnemySpawner>().ActivateSpawnner();
-            activeSpawners.Add(newSpawner);
-            Debug.Log("SpawnSpawners");
+            Debug.Log("Spawned a spawner");
         }
     }
 
-    public void SpawnerComplete(GameObject spawner)
-    {
-        if (!IsServer) return;
 
-        if (spawner.GetComponent<EnemySpawner>() != null)
-        {
-            activeSpawners.Remove(spawner);
 
-            if (activeSpawners.Count <= 0 && EnemyManager.GetEnemyCount() <= 0)
-            {
-                StartNextWave();
-            }
-        }
-    }
+
+    // The following methods are kept for testing purposes only
+    // private List<GameObject> activeSpawners = new List<GameObject>();
+
+    //public void SpawnerComplete(GameObject spawner)
+    //{
+    //    if (!IsServer) return;
+
+    //    if (spawner.GetComponent<EnemySpawner>() != null)
+    //    {
+    //        activeSpawners.Remove(spawner);
+
+    //        if (activeSpawners.Count <= 0 && EnemyManager.GetEnemyDeathCount() <= 0)
+    //        {
+    //            StartNextWave();
+    //        }
+    //    }
+    //}
 
 }
 

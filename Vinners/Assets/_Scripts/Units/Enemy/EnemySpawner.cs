@@ -10,13 +10,10 @@ public class EnemySpawner : NetworkBehaviour
     [SerializeField] public EnemySpawnerData enemySpawnerData;
     [SerializeField] private bool isActive = false;
     [SyncVar] private int spawnCount = 0;
-    private int maxSpawnCount;
     
     public override void OnStartServer()
     {
         base.OnStartServer();
-
-        maxSpawnCount = enemySpawnerData.maxEnemies;
 
         if (enemySpawnerData.isBossSpawner)
         {
@@ -41,21 +38,19 @@ public class EnemySpawner : NetworkBehaviour
 
         while (isActive)
         {
-            if (spawnCount >= enemySpawnerData.maxEnemies)
+            if (spawnCount >= enemySpawnerData.enemiesToSpawn)
             {
                 DeactivateSpawnner();
-                WaveManager.Instance.SpawnerComplete(gameObject);
             }
 
             int randomIndex = Random.Range(0, enemySpawnerData.enemyPrefabs.Length);
             int randomSpawnIndex = Random.Range(0, enemySpawnerData.spawnLocations.Length);
             GameObject enemyPrefab = enemySpawnerData.enemyPrefabs[randomIndex];
             Vector3 spawnPosition = enemySpawnerData.spawnLocations[randomSpawnIndex].position;
-     
+
             var newEnemy = Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
             Spawn(newEnemy);
             spawnCount++;
-            EnemyManager.IncrementCounter();
 
             yield return new WaitForSeconds(enemySpawnerData.spawnRate);
         }
@@ -63,9 +58,9 @@ public class EnemySpawner : NetworkBehaviour
 
     public void SpawnBosses()
     {
-        int noOfBosses = enemySpawnerData.bossPrefabs.Length;
+        int numOfBosses = enemySpawnerData.bossPrefabs.Length;
 
-        for (int i = 0; i < noOfBosses; i++)
+        for (int i = 0; i < numOfBosses; i++)
         {
             Transform bossSpawnPoint = enemySpawnerData.spawnLocations[i];
             GameObject bossPrefab = enemySpawnerData.bossPrefabs[i];
@@ -94,12 +89,7 @@ public class EnemySpawner : NetworkBehaviour
         this.isActive = false;
     }
 
-    public int GetMaxEnemyCount()
-    {
-        return maxSpawnCount;
-    }
-
-    public void UpdatepawnerData(EnemySpawnerData data)
+    public void UpdateSpawnerData(EnemySpawnerData data)
     {
         enemySpawnerData = data;
     }

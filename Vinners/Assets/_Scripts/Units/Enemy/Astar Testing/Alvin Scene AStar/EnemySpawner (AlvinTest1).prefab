@@ -103,7 +103,7 @@ MonoBehaviour:
   _networkObjectCache: {fileID: 99793830137053376}
   enemySpawnerData: {fileID: 11400000, guid: e4cae41d82608804a9a8f5cba5ff70ce, type: 2}
   isActive: 1
-  spawnCount: 20
+  spawnCount: 0
 --- !u!114 &99793830137053376
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,7 +128,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 1
+  <PrefabId>k__BackingField: 43
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 3541298865
   <SceneId>k__BackingField: 0

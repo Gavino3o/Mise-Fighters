@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6001219059347570288}
   - component: {fileID: 6001219059347570291}
+  - component: {fileID: -8788787984431564500}
   - component: {fileID: 6001219059347570290}
   - component: {fileID: 6001219059347570185}
   - component: {fileID: 6001219059347570186}
@@ -21,7 +22,7 @@ GameObject:
   - component: {fileID: 6001219059347570187}
   - component: {fileID: 6001219059347570289}
   - component: {fileID: 5373076045890855443}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: CornShooter
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -63,7 +64,23 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
+--- !u!58 &-8788787984431564500
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6001219059347570189}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.6
 --- !u!58 &6001219059347570290
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -100,6 +117,12 @@ MonoBehaviour:
   currAttackSpeed: 3
   currMoveSpeed: 3
   baseStats: {fileID: 11400000, guid: 433a8ed757f1dc241b57dfbe494237e2, type: 2}
+  sprite: {fileID: 0}
+  attackChangeEndtime: 0
+  speedChangeEndtime: 0
+  dousedUntil: 0
+  isDoused: 0
+  isPoisoned: 0
   maxHealth: 20
   maxScoreBonus: 8
   isBoss: 0
@@ -133,7 +156,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 21
+  <PrefabId>k__BackingField: 32
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 0
   <SceneId>k__BackingField: 0
@@ -268,12 +291,15 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 6001219059347570186}
   _networkObjectCache: {fileID: 6001219059347570186}
   projectile: {fileID: 6489842854619905979, guid: 8bc36fbd92417ea438aa601f4995faf4, type: 3}
-  speed: 3
-  attackRange: 3
+  stepbackSpeed: 2
+  attackRange: 8
   timeBetweenShots: 2
-  nextShotTime: 2
-  minDistanceFromPlayer: 0
+  minDistanceFromPlayer: 4
+  lifetime: 8
   playerTargeter: {fileID: 0}
+  enemyMovementController: {fileID: 0}
+  enemyAi: {fileID: 0}
+  rb: {fileID: 0}
 --- !u!212 &6001219059347570289
 SpriteRenderer:
   m_ObjectHideFlags: 0

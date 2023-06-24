@@ -27,12 +27,12 @@ public class MoveTowardsPlayer : NetworkBehaviour
         transform.position = Vector2.MoveTowards(this.transform.position, player.transform.position, movementSpeed * Time.deltaTime);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            EnemyManager.DecrementCounter();
-            this.Despawn();
-        }
-    }
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.CompareTag("Player"))
+    //    {
+    //        EnemyManager.DecrementCounter();
+    //        this.Despawn();
+    //    }
+    //}
 }
