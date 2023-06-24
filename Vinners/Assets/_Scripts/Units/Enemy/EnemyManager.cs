@@ -7,8 +7,8 @@ using FishNet.Object.Synchronizing;
 
 public sealed class EnemyManager : NetworkBehaviour
 {
-    [SyncVar] private int enemyCount;
-    private static List<GameObject> activeEnemies;
+    public int enemyDeathCount;
+   
     public static EnemyManager Instance { get; private set; }
 
     private void Awake()
@@ -19,52 +19,41 @@ public sealed class EnemyManager : NetworkBehaviour
     public override void OnStartServer()
     {
         base.OnStartServer();
-        enemyCount = 0;
+        enemyDeathCount = 0;
     }
 
-    public static void IncrementCounter(int increment)
+    public void IncrementDeathCount()
     {
-        EnemyManager.Instance.enemyCount += increment;
-    }
-  
-    public static void IncrementCounter()
-    {
-        EnemyManager.IncrementCounter(1);
-        Debug.Log(GetEnemyCount());
-    }
- 
-    public static void DecrementCounter(int decrement)
-    {
-        EnemyManager.Instance.enemyCount -= decrement;
+        if (!IsServer) return;
+        enemyDeathCount++;
+        Debug.Log(enemyDeathCount.ToString() + " has died.");
     }
 
-    public static void DecrementCounter()
+    public int GetEnemyDeathCount()
     {
-        EnemyManager.DecrementCounter(1);
-        Debug.Log(GetEnemyCount());
+        return EnemyManager.Instance.enemyDeathCount;
     }
 
-    public static int GetEnemyCount()
-    {
-        return EnemyManager.Instance.enemyCount;
-    }
- 
-    public static void AddActiveEnemy(GameObject enemy)
-    {
-        if (enemy.CompareTag("Enemy"))
-        {
-            EnemyManager.activeEnemies.Add(enemy);
-            IncrementCounter();
-        }
-    }
+    // The following methods are kept for testing
 
-   public static void RemoveActiveEnemy(GameObject enemy)
-    {
-        if (enemy.CompareTag("Enemy"))
-        {
-            EnemyManager.activeEnemies.Remove(enemy);
-            DecrementCounter();
-        }
-    }
-    
+    //private static List<GameObject> activeEnemies;
+
+    // public static void AddActiveEnemy(GameObject enemy)
+    // {
+    //     if (enemy.CompareTag("Enemy"))
+    //     {
+    //         EnemyManager.activeEnemies.Add(enemy);
+    //         IncrementCounter();
+    //     }
+    // }
+
+    //public static void RemoveActiveEnemy(GameObject enemy)
+    // {
+    //     if (enemy.CompareTag("Enemy"))
+    //     {
+    //         EnemyManager.activeEnemies.Remove(enemy);
+    //         DecrementCounter();
+    //     }
+    // }
+
 }

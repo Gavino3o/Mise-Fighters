@@ -56,22 +56,16 @@ public class EnemyShooter : NetworkBehaviour
     }
 
     // The following methods are kept for testing purposes only.
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            EnemyManager.DecrementCounter();
-            this.Despawn();
-        }
-    }
 
-    /*    private void MoveToAttackRange()
+    /*    
+     private void MoveToAttackRange()
+     {
+        if (!IsInRange())
         {
-            if (!IsInRange())
-            {
-                transform.position = Vector2.MoveTowards(transform.position, playerTransform.position, speed * Time.deltaTime);
-            }
-        }*/
+            transform.position = Vector2.MoveTowards(transform.position, playerTransform.position, speed * Time.deltaTime);
+        }
+     }
+    */
 
 
 }

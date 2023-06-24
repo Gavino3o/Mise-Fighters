@@ -9,6 +9,6 @@ public class EnemySpawnerData : ScriptableObject
     public GameObject[] bossPrefabs;
     public float spawnRate;
     public Transform[] spawnLocations;
-    public int maxEnemies;
+    public int enemiesToSpawn; 
     public bool isBossSpawner;
 }

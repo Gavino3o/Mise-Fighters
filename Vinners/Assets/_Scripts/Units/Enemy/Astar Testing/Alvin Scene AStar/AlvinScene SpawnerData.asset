@@ -15,8 +15,8 @@ MonoBehaviour:
   enemyPrefabs:
   - {fileID: 6001219059347570189, guid: 66e1906e6a074e2428064829a9262f8a, type: 3}
   bossPrefabs: []
-  spawnRate: 0
+  spawnRate: 2
   spawnLocations:
   - {fileID: 9168659958177914221, guid: 68c4c482016eb2744a589dfcb4ff1136, type: 3}
-  maxEnemies: 0
+  enemiesToSpawn: 20
   isBossSpawner: 0

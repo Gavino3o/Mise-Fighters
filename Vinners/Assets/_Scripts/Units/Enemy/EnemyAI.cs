@@ -63,7 +63,20 @@ public class EnemyAI : Unit
         //Spawn(newDeathEffect);
 
         enemyMovementController.StopAstarMovement();
-        EnemyManager.DecrementCounter();
+        EnemyManager.Instance.IncrementDeathCount();
         Despawn(gameObject);
     }
+
+
+
+    // The following methods are kept for testing purposes only
+
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.CompareTag("Player"))
+    //    {
+    //        EnemyManager.DecrementCounter();
+    //        this.Despawn();
+    //    }
+    //}
 }
