@@ -4,26 +4,29 @@ using Pathfinding;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Windows;
 
 public class EnemyShooter : NetworkBehaviour
 {
     public GameObject projectile;
-    public float speed;
+    public float stepbackSpeed;
     public float attackRange;
     public float timeBetweenShots;
-    public float nextShotTime;
+    private float nextShotTime;
     public float minDistanceFromPlayer;
     public float lifetime = 8;
 
     public PlayerTargeter playerTargeter;
     public EnemyMovementController enemyMovementController;
     public EnemyAI enemyAi;
+    public Rigidbody2D rb;
 
      void Start()
     {
         if (!IsServer) return;
         playerTargeter = gameObject.GetComponent<PlayerTargeter>();
         enemyMovementController = gameObject.GetComponent<EnemyMovementController>();
+        rb = gameObject.GetComponent<Rigidbody2D>();
     }
 
 
@@ -34,7 +37,7 @@ public class EnemyShooter : NetworkBehaviour
         if (IsInAttackRange())
         {
             enemyMovementController.StopAstarMovement();
-            RetreatFromPlayer();
+            //RetreatFromPlayer();
             Debug.Log("A* Movement Stopped by Enemy Shooter");
         } 
         else
@@ -43,17 +46,25 @@ public class EnemyShooter : NetworkBehaviour
             Debug.Log("A* Movement Started by Enemy Shooter");
         }
 
+        if (Time.time >= nextShotTime && IsInAttackRange())
+        {
+            ShootProjectile();
+            nextShotTime = Time.time + timeBetweenShots;
+        }
+            
     }
 
     private void ShootProjectile()
     {
-        if (Time.time > nextShotTime && IsInAttackRange())
+        var projectile = Instantiate(this.projectile, transform.position, Quaternion.identity);
+        if (projectile.GetComponent<EnemyArcProjectile>() != null)
         {
-            var projectile = Instantiate(this.projectile, transform.position, Quaternion.identity);
-            projectile.GetComponent<Lifetime>().lifetime = lifetime;
-            Spawn(projectile);
-            nextShotTime = Time.time + timeBetweenShots;
+            projectile.GetComponent<EnemyArcProjectile>().targetPosition = playerTargeter.GetCurrentTargetPlayer().transform.position;
         }
+        projectile.GetComponent<Lifetime>().lifetime = lifetime;
+        Spawn(projectile);
+        
+        
     }
 
     private void RetreatFromPlayer()
@@ -61,7 +72,8 @@ public class EnemyShooter : NetworkBehaviour
         var playerTransform = playerTargeter.GetCurrentTargetPlayer().transform.position;
         if (Vector2.Distance(transform.position, playerTransform) < minDistanceFromPlayer)
         {
-            gameObject.transform.position = Vector2.MoveTowards(transform.position, playerTransform, -speed * Time.deltaTime);
+            //gameObject.transform.position = Vector2.MoveTowards(transform.position, playerTransform, -speed * Time.deltaTime);
+            rb.velocity = (transform.position - playerTransform).normalized * stepbackSpeed;
         }
     }
 

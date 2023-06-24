@@ -7,11 +7,8 @@ using UnityEditor;
 public class EnemyArcProjectile : EnemyProjectile
 {
     public Vector3 startPosition;
-    public Vector3 targetPosition;
     public float arcHeight;
     [SerializeField] double _maxTimeActive;
-
-    public PlayerTargeter playerTargeter;
 
     public override void OnStartServer()
     {
@@ -19,8 +16,6 @@ public class EnemyArcProjectile : EnemyProjectile
 
         startPosition = transform.position;
         startPosition.z = 0;
-        playerTargeter = gameObject.GetComponent<PlayerTargeter>();
-        targetPosition = playerTargeter.GetCurrentTargetPlayer().transform.position;
     }
 
     void Update()
