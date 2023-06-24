@@ -7,9 +7,8 @@ using UnityEngine.TextCore.Text;
 
 public class SkillFollowPlayer : NetworkBehaviour
 {
-    public float xOffset;
-    public float yOffset;
-    public int direction;
+    public float xOffset = 0f;
+    public float yOffset = 0f;
     [SyncVar] public GameObject player;
 
     private void FixedUpdate()

@@ -9,6 +9,9 @@ public class ChefCastCharacter : CastCharacter
     [Header("Slice skill")]
     [SerializeField] private GameObject sliceSpellPrefab;
     [SerializeField] private float sliceAngle = 30;
+    [SerializeField] private AudioClip skillSpellSoundEffect;
+    [SerializeField] private AudioClip dashSpellSoundEffect;
+    [SerializeField] private AudioClip ultimateSpellSoundEffect;
     public void OnSkill()
     {
         if (!IsOwner) return;
@@ -17,6 +20,7 @@ public class ChefCastCharacter : CastCharacter
         {
             StartCoroutine(Cooldown(0));
             CastSliceSkill();
+            AudioManager.Instance.PlaySoundEffect(skillSpellSoundEffect);
             Debug.Log("Spell casted");
         }
         else
@@ -57,12 +61,24 @@ public class ChefCastCharacter : CastCharacter
         {
             StartCoroutine(Cooldown(1));
             StartCoroutine(Blink());
+            CastBlinkSkill();
             Debug.Log($"{spellData[1].spellName} casted");
         }
         else
         {
             Debug.Log("Spell is on cooldown");
         }
+    }
+
+
+    [ServerRpc]
+    public void CastBlinkSkill()
+    {
+        GameObject stunCircle = Instantiate(stunPrefab, transform.position, Quaternion.identity);
+        SetupDamager(stunCircle.GetComponent<EnemyDamager>(), 1);
+        stunCircle.GetComponent<Lifetime>().lifetime = spellData[1].duration;
+        ServerManager.Spawn(stunCircle);
+        AudioManager.Instance.PlaySoundEffect(dashSpellSoundEffect);
     }
 
     public IEnumerator Blink()
@@ -96,10 +112,6 @@ public class ChefCastCharacter : CastCharacter
                 Debug.Log("C3");
             }
         }
-        GameObject stunCircle = Instantiate(stunPrefab, transform.position, Quaternion.identity);
-        SetupDamager(stunCircle.GetComponent<EnemyDamager>(), 1);
-        stunCircle.GetComponent<Lifetime>().lifetime = spellData[1].duration;
-        ServerManager.Spawn(stunCircle);
         yield return new WaitForSeconds(spellData[1].duration);
         movement.interrupted = false;
     }
@@ -116,6 +128,7 @@ public class ChefCastCharacter : CastCharacter
         {
             StartCoroutine(Cooldown(1));
             StartCoroutine(Julienne());
+            AudioManager.Instance.PlaySoundEffect(ultimateSpellSoundEffect);
             SpendUltimate(ULT_METER);
         }
         else

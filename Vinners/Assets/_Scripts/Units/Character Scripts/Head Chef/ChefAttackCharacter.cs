@@ -37,6 +37,7 @@ public class ChefAttackCharacter : AttackCharacter
         if (motion != null) motion.movementDirection = targetDirection;
 
         ServerManager.Spawn(obj);
+        AudioManager.Instance.PlaySoundEffect(autoAttackSoundEffect);
         Debug.Log($"{gameObject} controlled by {Owner} attacks!");
     }
 }

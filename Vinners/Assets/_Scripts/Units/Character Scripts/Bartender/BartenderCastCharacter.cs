@@ -6,6 +6,9 @@ public class BartenderCastCharacter : CastCharacter
     #region Bomb skill
     [Header("Bomb Skill")]
     [SerializeField] private NetworkObject bombSpellPrefab;
+    [SerializeField] private AudioClip skillSpellSoundEffect;
+    [SerializeField] private AudioClip dashSpellSoundEffect;
+    [SerializeField] private AudioClip ultimateSpellSoundEffect;
 
     public void OnSkill()
     {
@@ -13,7 +16,7 @@ public class BartenderCastCharacter : CastCharacter
         if (base.canCast[0])
         {
             StartCoroutine(Cooldown(0));
-            characterAnimator.PlaySkill();
+            characterAnimator.PlaySkill();           
             CastBombSkill(input.mousePos);
             Debug.Log("Spell casted");
         }
@@ -30,6 +33,7 @@ public class BartenderCastCharacter : CastCharacter
         SetupDamager(obj.GetComponent<EnemyDamager>(), 0);
         obj.GetComponent<Lifetime>().lifetime = spellData[0].duration;
         ServerManager.Spawn(obj);
+        AudioManager.Instance.PlaySoundEffect(skillSpellSoundEffect);
         Debug.Log($"{spellData[0].spellName} casted");
     }
 
@@ -47,7 +51,7 @@ public class BartenderCastCharacter : CastCharacter
         {           
             DropLure();
             StartCoroutine(Cooldown(1));
-            characterAnimator.PlayDash();
+            characterAnimator.PlayDash();        
             StartCoroutine(Backstep());
             Debug.Log($"{spellData[1].spellName} casted");
         }
@@ -64,6 +68,7 @@ public class BartenderCastCharacter : CastCharacter
         obj.GetComponent<Lifetime>().lifetime = lureDuration;
         obj.GetComponent<Taunter>().target = obj;
         ServerManager.Spawn(obj);
+        AudioManager.Instance.PlaySoundEffect(dashSpellSoundEffect);
         Debug.Log("Lure dropped");
     }
 
@@ -86,7 +91,7 @@ public class BartenderCastCharacter : CastCharacter
         if (canCast[2])
         {
             CastUltimateSkill();
-            characterAnimator.PlayUltimate();
+            characterAnimator.PlayUltimate();           
             SpendUltimate(ULT_METER);
         }
         else
@@ -102,6 +107,7 @@ public class BartenderCastCharacter : CastCharacter
         SetupDamager(obj.GetComponent<EnemyDamager>(), 2);
         obj.GetComponent<Lifetime>().lifetime = spellData[2].duration;
         ServerManager.Spawn(obj);
+        AudioManager.Instance.PlaySoundEffect(ultimateSpellSoundEffect);
         Debug.Log($"{spellData[2].spellName} casted");
     }
 

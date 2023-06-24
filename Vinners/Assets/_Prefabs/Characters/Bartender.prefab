@@ -315,7 +315,7 @@ GameObject:
   - component: {fileID: -1919902670998679599}
   m_Layer: 0
   m_Name: Bartender
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -481,6 +481,7 @@ MonoBehaviour:
   character: {fileID: 0}
   input: {fileID: 0}
   projectile: {fileID: -3697913265258033151, guid: e8e4a964c4249b442a98a45097eb8e43, type: 3}
+  autoAttackSoundEffect: {fileID: 8300000, guid: 87bcd2801546c0f40ab02c98f09adc0a, type: 3}
   canAttack: 0
 --- !u!114 &4222959443470227111
 MonoBehaviour:
@@ -503,6 +504,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 49dd30dd861b7774a9ea36b9a07c0c1d, type: 2}
   ultimate: 0
   bombSpellPrefab: {fileID: 5681926344258742825, guid: be3491550470a5045bc42785cbb39c08, type: 3}
+  skillSpellSoundEffect: {fileID: 8300000, guid: 760e3e57e42b8a14791541dfa4136b02, type: 3}
+  dashSpellSoundEffect: {fileID: 8300000, guid: c374c9a6020563a42894d6a1eed02de3, type: 3}
+  ultimateSpellSoundEffect: {fileID: 8300000, guid: b1e173050d4e91246a11ddd11fdfd43e, type: 3}
   dashSpeed: 5
   lurePrefab: {fileID: 5681926344258742825, guid: 58ce1d0403ceb3b47b8eef26dda66f5a, type: 3}
   lureDuration: 2
@@ -636,7 +640,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1.35
 --- !u!95 &4387122027977419283
 Animator:
   serializedVersion: 5
@@ -771,4 +775,4 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1.5
+  m_Radius: 1.2

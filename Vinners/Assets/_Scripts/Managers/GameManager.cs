@@ -59,6 +59,9 @@ public sealed class GameManager : NetworkBehaviour
 
         ChangeScene("AlvinScene");
 
+        int rand = Random.Range(2, 5);
+        AudioManager.Instance.ObserversPlayBackgroundMusic(rand, true);
+
         for (int i = 0; i < players.Count; i++)
         {
             players[i].SpawnCharacter();

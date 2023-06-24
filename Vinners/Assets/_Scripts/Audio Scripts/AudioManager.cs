@@ -2,9 +2,9 @@ using FishNet.Object;
 using UnityEngine;
 using UnityEngine.Audio;
 
-public class AudioManager : NetworkBehaviour
+public sealed class AudioManager : NetworkBehaviour
 {
-    public static AudioManager Instance;
+    public static AudioManager Instance { get; private set; }
 
     // You can define additional properties or variables as per your needs.
 
@@ -15,9 +15,9 @@ public class AudioManager : NetworkBehaviour
     private int initialSoundEffectAudioSources = 5;
 
     [Range(0f , 1f)]
-    public float backgroundMusicVolume = 1.0f;
+    public float backgroundMusicVolume = 0.5f;
     [Range(0f, 1f)]
-    public float gameVolume = 1.0f;
+    public float gameVolume = 0.5f;
 
     [Range(0.1f, 3f)]
     public float backgroundMusicPitch = 1.0f;
@@ -28,21 +28,13 @@ public class AudioManager : NetworkBehaviour
 
     private void Awake()
     {
-        if (Instance != null && Instance != this)
-        {
-            Destroy(this.gameObject);
-        }
-        else
-        {
-            Instance = this;
-        }
+        Instance = this;
 
         // Create an audio source for background music
         backgroundMusicAudioSource = gameObject.AddComponent<AudioSource>();
         backgroundMusicAudioSource.volume = backgroundMusicVolume;
         backgroundMusicAudioSource.outputAudioMixerGroup = audioMixer;
-        backgroundMusicAudioSource.clip = bgmAudioClips[1]; // This is hardcoded, separate later.
-
+        backgroundMusicAudioSource.clip = bgmAudioClips[1];
 
         // Create an array of audio sources for sound effects
         soundEffectAudioSources = new AudioSource[initialSoundEffectAudioSources];
@@ -66,7 +58,7 @@ public class AudioManager : NetworkBehaviour
     [ServerRpc]
     public void ServerPlayBackgroundMusic(int audioClipIndex, bool loop = true)
     {
-        ObserversPlayBackgroundMusic(audioClipIndex);
+        ObserversPlayBackgroundMusic(audioClipIndex, loop);
     }
 
     [ServerRpc]
@@ -81,18 +73,26 @@ public class AudioManager : NetworkBehaviour
         ObserversStopBackgroundMusic();
     }
 
+    [ObserversRpc]
+    public void ObserversStopBackgroundMusic()
+    {
+        backgroundMusicAudioSource.Stop();
+    }
+
 
     [ObserversRpc]
     public void ObserversPlayBackgroundMusic(int audioClipIndex, bool loop = true)
-    {
+    { 
         if (backgroundMusicAudioSource.isPlaying)
         {
-            ObserversStopBackgroundMusic();
+            backgroundMusicAudioSource.Stop();
+            Debug.Log("BGM stopped");
         }
-
+        
         backgroundMusicAudioSource.clip = bgmAudioClips[audioClipIndex];
         backgroundMusicAudioSource.loop = loop;
         backgroundMusicAudioSource.Play();
+        Debug.Log("Is Playing? :" + backgroundMusicAudioSource.isPlaying.ToString());
     }
 
     public void ObserversPlayBackgroundMusic(AudioClip audioClip, bool loop = true)
@@ -103,13 +103,7 @@ public class AudioManager : NetworkBehaviour
             Debug.Log("BGM Audio Clip chosen is missing.");
             return;
         }
-        ObserversPlayBackgroundMusic(index, loop);
-    }
-
-    [ObserversRpc]
-    public void ObserversStopBackgroundMusic()
-    {
-        backgroundMusicAudioSource.Stop();
+        ObserversPlayBackgroundMusic(index, true);
     }
 
     [ObserversRpc]
@@ -134,7 +128,7 @@ public class AudioManager : NetworkBehaviour
         newAudioSource.Play();
     }
 
-    public void ObserversPlaySoundEffect(AudioClip audioClip)
+    public void PlaySoundEffect(AudioClip audioClip)
     {
         int index = System.Array.IndexOf(effectAudioClips, audioClip);
         if (index == -1)
@@ -144,5 +138,4 @@ public class AudioManager : NetworkBehaviour
         }
         ObserversPlaySoundEffect(index);
     }
-
 }

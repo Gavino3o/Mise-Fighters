@@ -7,6 +7,9 @@ public class ButcherCastCharacter : CastCharacter
     # region Taunt skill
     [Header("Taunt Skill")]
     [SerializeField] private NetworkObject tauntSpellPrefab;
+    [SerializeField] private AudioClip skillSpellSoundEffect;
+    [SerializeField] private AudioClip dashSpellSoundEffect;
+    [SerializeField] private AudioClip ultimateSpellSoundEffect;
     public void OnSkill()
     {
         if (!IsOwner) return;
@@ -30,6 +33,7 @@ public class ButcherCastCharacter : CastCharacter
         obj.GetComponent<Lifetime>().lifetime = spellData[0].duration;
         obj.GetComponent<Taunter>().target = NetworkObject;
         ServerManager.Spawn(obj);
+        AudioManager.Instance.PlaySoundEffect(skillSpellSoundEffect);
         Debug.Log($"{spellData[0].spellName} casted");
     }
 
@@ -65,6 +69,7 @@ public class ButcherCastCharacter : CastCharacter
         SetupDamager(obj.GetComponent<EnemyDamager>(), 1);
         obj.GetComponent<Lifetime>().lifetime = spellData[1].duration;
         ServerManager.Spawn(obj);
+        AudioManager.Instance.PlaySoundEffect(dashSpellSoundEffect);
         Debug.Log($"{spellData[1].spellName} casted");
     }
 
@@ -107,6 +112,7 @@ public class ButcherCastCharacter : CastCharacter
         SetupDamager(obj.GetComponent<EnemyDamager>(), 2);
         obj.GetComponent<Lifetime>().lifetime = spellData[2].duration;
         ServerManager.Spawn(obj);
+        AudioManager.Instance.PlaySoundEffect(ultimateSpellSoundEffect);
         Debug.Log($"{spellData[2].spellName} casted");
     }
 
