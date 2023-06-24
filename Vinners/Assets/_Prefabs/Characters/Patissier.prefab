@@ -778,6 +778,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4fe3ba38411a6c14db7cf6f93583fbad, type: 2}
   ultimate: 0
   burnSpellPrefab: {fileID: 5573050333223222883, guid: c203d78f488b8f34c8a96e2acdef8dda, type: 3}
+  scrambleSpellPrefab: {fileID: 5681926344258742825, guid: f4f133a1a74ceea499e66882daf036bd, type: 3}
   offSet: 1.5
   skillSpellSoundEffect: {fileID: 8300000, guid: 71fc52c98e9738e4ab51763e03b5be3c, type: 3}
   dashSpellSoundEffect: {fileID: 8300000, guid: c8eca3b97b44b6c458cba7a3decc7010, type: 3}

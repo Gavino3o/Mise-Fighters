@@ -17,7 +17,6 @@ public class ButcherCastCharacter : CastCharacter
         {
             StartCoroutine(Cooldown(0));
             characterAnimator.PlaySkill();
-            AudioManager.Instance.ObserversPlaySoundEffect(skillSpellSoundEffect);
             CastTauntSkill();
         }
         else
@@ -34,6 +33,7 @@ public class ButcherCastCharacter : CastCharacter
         obj.GetComponent<Lifetime>().lifetime = spellData[0].duration;
         obj.GetComponent<Taunter>().target = NetworkObject;
         ServerManager.Spawn(obj);
+        AudioManager.Instance.PlaySoundEffect(skillSpellSoundEffect);
         Debug.Log($"{spellData[0].spellName} casted");
     }
 
@@ -52,7 +52,6 @@ public class ButcherCastCharacter : CastCharacter
         {
             StartCoroutine(Cooldown(1));
             characterAnimator.PlayDash();
-            AudioManager.Instance.ObserversPlaySoundEffect(dashSpellSoundEffect);
             CastChargeSkill();
             StartCoroutine(Charge());
         }
@@ -70,6 +69,7 @@ public class ButcherCastCharacter : CastCharacter
         SetupDamager(obj.GetComponent<EnemyDamager>(), 1);
         obj.GetComponent<Lifetime>().lifetime = spellData[1].duration;
         ServerManager.Spawn(obj);
+        AudioManager.Instance.PlaySoundEffect(dashSpellSoundEffect);
         Debug.Log($"{spellData[1].spellName} casted");
     }
 
@@ -97,7 +97,6 @@ public class ButcherCastCharacter : CastCharacter
         {
             StartCoroutine(Pirouette());
             characterAnimator.PlayUltimate();
-            AudioManager.Instance.ObserversPlaySoundEffect(ultimateSpellSoundEffect);
             SpendUltimate(ULT_METER);
         }
         else
@@ -113,6 +112,7 @@ public class ButcherCastCharacter : CastCharacter
         SetupDamager(obj.GetComponent<EnemyDamager>(), 2);
         obj.GetComponent<Lifetime>().lifetime = spellData[2].duration;
         ServerManager.Spawn(obj);
+        AudioManager.Instance.PlaySoundEffect(ultimateSpellSoundEffect);
         Debug.Log($"{spellData[2].spellName} casted");
     }
 

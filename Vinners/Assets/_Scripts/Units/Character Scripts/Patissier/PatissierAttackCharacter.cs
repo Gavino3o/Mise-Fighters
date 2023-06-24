@@ -41,7 +41,7 @@ public class PatissierAttackCharacter : AttackCharacter
 
             ServerManager.Spawn(obj);  
         }
-        AudioManager.Instance.ObserversPlaySoundEffect(autoAttackSoundEffect);
+        AudioManager.Instance.PlaySoundEffect(autoAttackSoundEffect);
         Debug.Log($"{gameObject} controlled by {Owner} attacks!");
     }
 }

@@ -9,6 +9,7 @@ public class PatissierCastCharacter : CastCharacter
     #region Burn skill
     [Header("Burn Skill")]
     [SerializeField] private GameObject burnSpellPrefab;
+    [SerializeField] private NetworkObject scrambleSpellPrefab;
     [SerializeField] private float offSet = 1.5f;
     [SerializeField] private AudioClip skillSpellSoundEffect;
     [SerializeField] private AudioClip dashSpellSoundEffect;
@@ -20,7 +21,6 @@ public class PatissierCastCharacter : CastCharacter
         if (base.canCast[0])
         {
             StartCoroutine(Cooldown(0));
-
             CastBurnSkill();
             Debug.Log("Spell casted");
         }
@@ -59,7 +59,7 @@ public class PatissierCastCharacter : CastCharacter
             obj.GetComponent<Lifetime>().lifetime = spellData[0].duration;
             ServerManager.Spawn(obj);    
         }
-        AudioManager.Instance.ObserversPlaySoundEffect(skillSpellSoundEffect);
+        AudioManager.Instance.PlaySoundEffect(skillSpellSoundEffect);
         Debug.Log($"{spellData[0].spellName} casted");
     }
 
@@ -74,8 +74,8 @@ public class PatissierCastCharacter : CastCharacter
         if (canCast[1])
         {
             StartCoroutine(Cooldown(1));
-            StartCoroutine(CastScrambleSkill());
-            AudioManager.Instance.ObserversPlaySoundEffect(dashSpellSoundEffect);
+            StartCoroutine(Scramble());
+            CastScrambleSkill();
             Debug.Log($"{spellData[1].spellName} casted");
         }
         else
@@ -84,7 +84,20 @@ public class PatissierCastCharacter : CastCharacter
         }
     }
 
-    public IEnumerator CastScrambleSkill()
+    [ServerRpc]
+    public void CastScrambleSkill()
+    {
+        NetworkObject obj = Instantiate(scrambleSpellPrefab, transform);
+        SetupDamager(obj.GetComponent<EnemyDamager>(), 1);
+        obj.GetComponent<Lifetime>().lifetime = spellData[1].duration;
+        var skillFollowPlayer = obj.GetComponent<SkillFollowPlayer>();
+        skillFollowPlayer.player = gameObject;
+        ServerManager.Spawn(obj);
+        AudioManager.Instance.PlaySoundEffect(dashSpellSoundEffect);
+        Debug.Log($"{spellData[1].spellName} casted");
+    }
+
+    public IEnumerator Scramble()
     {
         movement.interrupted = true;
         rigidBody.velocity = scrambleSpeed * input.targetDirection;
@@ -103,7 +116,6 @@ public class PatissierCastCharacter : CastCharacter
         if (canCast[2])
         {
             CastUltimateSkill();
-            AudioManager.Instance.ObserversPlaySoundEffect(ultimateSpellSoundEffect);
             SpendUltimate(ULT_METER);
         }
         else
@@ -121,6 +133,7 @@ public class PatissierCastCharacter : CastCharacter
         SetupDamager(obj.GetComponent<EnemyDamager>(), 2);
         obj.GetComponent<Lifetime>().lifetime = spellData[2].duration;
         ServerManager.Spawn(obj);
+        AudioManager.Instance.PlaySoundEffect(ultimateSpellSoundEffect);
         Debug.Log($"{spellData[2].spellName} casted");
     }
     #endregion
