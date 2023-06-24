@@ -67,15 +67,7 @@ public class EnemyShooter : NetworkBehaviour
         
     }
 
-    private void RetreatFromPlayer()
-    {
-        var playerTransform = playerTargeter.GetCurrentTargetPlayer().transform.position;
-        if (Vector2.Distance(transform.position, playerTransform) < minDistanceFromPlayer)
-        {
-            //gameObject.transform.position = Vector2.MoveTowards(transform.position, playerTransform, -speed * Time.deltaTime);
-            rb.velocity = (transform.position - playerTransform).normalized * stepbackSpeed;
-        }
-    }
+
 
     public bool IsInAttackRange()
     {
@@ -94,6 +86,16 @@ public class EnemyShooter : NetworkBehaviour
         }
      }
     */
+
+    private void RetreatFromPlayer()
+    {
+        var playerTransform = playerTargeter.GetCurrentTargetPlayer().transform.position;
+        if (Vector2.Distance(transform.position, playerTransform) < minDistanceFromPlayer)
+        {
+            //gameObject.transform.position = Vector2.MoveTowards(transform.position, playerTransform, -speed * Time.deltaTime);
+            rb.velocity = (transform.position - playerTransform).normalized * stepbackSpeed;
+        }
+    }
 
 
 }
