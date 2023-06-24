@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2945851674530158077}
   - component: {fileID: 438325094001353575}
   - component: {fileID: -3192962304926842010}
+  - component: {fileID: 7776715998300196160}
   m_Layer: 0
   m_Name: ArcProjectileTest
   m_TagString: Untagged
@@ -67,14 +68,14 @@ MonoBehaviour:
   _componentIndexCache: 0
   _addedNetworkObject: {fileID: 2945851674530158077}
   _networkObjectCache: {fileID: 2945851674530158077}
-  damage: 100
-  maxLifeTime: 100
-  speed: 100
-  _startPosition: {x: 0, y: 0, z: 0}
-  _targetPosition: {x: 0, y: 0, z: 0}
-  arcHeight: 100
-  _timer: {fileID: 0}
-  _maxTimeActive: 100
+  damage: 1
+  maxLifeTime: 8
+  speed: 2
+  startPosition: {x: 0, y: 0, z: 0}
+  targetPosition: {x: 0, y: 0, z: 0}
+  arcHeight: 4
+  _maxTimeActive: 8
+  playerTargeter: {fileID: 0}
 --- !u!114 &2945851674530158077
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -93,6 +94,7 @@ MonoBehaviour:
   _networkBehaviours:
   - {fileID: 7909128096927307041}
   - {fileID: -3192962304926842010}
+  - {fileID: 7776715998300196160}
   <ParentNetworkObject>k__BackingField: {fileID: 0}
   <ChildNetworkObjects>k__BackingField: []
   _isNetworked: 1
@@ -100,7 +102,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 23
+  <PrefabId>k__BackingField: 44
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 0
   <SceneId>k__BackingField: 0
@@ -204,3 +206,19 @@ MonoBehaviour:
     X: 0
     Y: 0
     Z: 0
+--- !u!114 &7776715998300196160
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6489842854619905979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e5531d819eef9d4e994c10a36eda5f9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _componentIndexCache: 2
+  _addedNetworkObject: {fileID: 2945851674530158077}
+  _networkObjectCache: {fileID: 2945851674530158077}
+  lifetime: 0

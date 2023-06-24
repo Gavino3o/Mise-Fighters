@@ -13,21 +13,36 @@ public class EnemyShooter : NetworkBehaviour
     public float timeBetweenShots;
     public float nextShotTime;
     public float minDistanceFromPlayer;
+    public float lifetime = 8;
 
     public PlayerTargeter playerTargeter;
+    public EnemyMovementController enemyMovementController;
+    public EnemyAI enemyAi;
 
-    public void Start()
+     void Start()
     {
         if (!IsServer) return;
         playerTargeter = gameObject.GetComponent<PlayerTargeter>();
+        enemyMovementController = gameObject.GetComponent<EnemyMovementController>();
     }
 
 
     void Update()
     {
         if (!IsServer) return;
-        ShootProjectile();
-        RetreatFromPlayer();
+
+        if (IsInAttackRange())
+        {
+            enemyMovementController.StopAstarMovement();
+            RetreatFromPlayer();
+            Debug.Log("A* Movement Stopped by Enemy Shooter");
+        } 
+        else
+        {
+            enemyMovementController.StartAstarMovement();
+            Debug.Log("A* Movement Started by Enemy Shooter");
+        }
+
     }
 
     private void ShootProjectile()
@@ -35,6 +50,7 @@ public class EnemyShooter : NetworkBehaviour
         if (Time.time > nextShotTime && IsInAttackRange())
         {
             var projectile = Instantiate(this.projectile, transform.position, Quaternion.identity);
+            projectile.GetComponent<Lifetime>().lifetime = lifetime;
             Spawn(projectile);
             nextShotTime = Time.time + timeBetweenShots;
         }

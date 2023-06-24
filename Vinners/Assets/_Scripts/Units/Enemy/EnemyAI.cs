@@ -9,17 +9,21 @@ using System.IO;
 
 public class EnemyAI : Unit
 {
-    [SerializeField] 
-    public float maxHealth;
     [SerializeField]
-    public float maxScoreBonus;
-    public bool isBoss;
-    public bool canTeleport;
+    private float maxHealth;
+    [SerializeField]
+    private float maxScoreBonus;
+    [SerializeField]
+    private bool isBoss;
+    [SerializeField]
+    private bool canTeleport;
     protected Rigidbody2D rigidBody;
-    public GameObject deathEffect;
-    public GameObject scorePopUp;
-    private EnemyMovementController enemyMovementController;
-    private PlayerTargeter playerTargeter;
+    [SerializeField]
+    private GameObject deathEffect;
+    [SerializeField]
+    private GameObject scorePopUp;
+    protected EnemyMovementController enemyMovementController;
+    protected PlayerTargeter playerTargeter;
 
 
     private void Start()

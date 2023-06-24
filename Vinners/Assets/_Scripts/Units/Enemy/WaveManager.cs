@@ -35,7 +35,7 @@ public sealed class WaveManager : NetworkBehaviour
     private void Update()
     {
         if (!IsServer) return;
-        if (EnemyManager.Instance.GetEnemyDeathCount() >= currentWaveData.totalEnemies - enemyCountBuffer)
+        if (EnemyManager.Instance.GetEnemyDeathCount() >= currentWaveData.maxTotalEnemies - enemyCountBuffer)
         {
             StartNextWave();
         }

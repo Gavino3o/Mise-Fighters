@@ -6,19 +6,21 @@ using UnityEditor;
 
 public class EnemyArcProjectile : EnemyProjectile
 {
-    public Vector3 _startPosition;
-    public Vector3 _targetPosition;
+    public Vector3 startPosition;
+    public Vector3 targetPosition;
     public float arcHeight;
-    public AutoTimer _timer;
     [SerializeField] double _maxTimeActive;
-   
+
+    public PlayerTargeter playerTargeter;
+
     public override void OnStartServer()
     {
         base.OnStartServer();
 
-        _startPosition = transform.position;
-        _startPosition.z = 0;
-        _targetPosition = GameObject.FindGameObjectWithTag("Player").transform.position;
+        startPosition = transform.position;
+        startPosition.z = 0;
+        playerTargeter = gameObject.GetComponent<PlayerTargeter>();
+        targetPosition = playerTargeter.GetCurrentTargetPlayer().transform.position;
     }
 
     void Update()
@@ -29,11 +31,11 @@ public class EnemyArcProjectile : EnemyProjectile
 
     public void MoveToTargetLocation()
     {
-        float x1 = _startPosition.x;
-        float x2 = _targetPosition.x;
+        float x1 = startPosition.x;
+        float x2 = targetPosition.x;
         float distance = x2 - x1;
         float nextX = Mathf.MoveTowards(transform.position.x, x2, speed * Time.deltaTime);
-        float baseY = Mathf.Lerp(_startPosition.y, _targetPosition.y, (nextX - x1) / distance);
+        float baseY = Mathf.Lerp(startPosition.y, targetPosition.y, (nextX - x1) / distance);
         float arc = arcHeight * (nextX - x1) * (nextX - x2) / (-0.25f * distance * distance);
         Vector3 nextPosition = new Vector3(nextX, baseY + arc, transform.position.z);
 
@@ -41,7 +43,7 @@ public class EnemyArcProjectile : EnemyProjectile
         transform.rotation = LookAt2D(nextPosition - transform.position);
         transform.position = nextPosition;
 
-        if (Vector3.Distance(transform.position, _targetPosition) < 1f)
+        if (Vector3.Distance(transform.position, targetPosition) < 1f)
         {
             Arrived();
         }

@@ -100,6 +100,12 @@ MonoBehaviour:
   currAttackSpeed: 3
   currMoveSpeed: 3
   baseStats: {fileID: 11400000, guid: 433a8ed757f1dc241b57dfbe494237e2, type: 2}
+  sprite: {fileID: 0}
+  attackChangeEndtime: 0
+  speedChangeEndtime: 0
+  dousedUntil: 0
+  isDoused: 0
+  isPoisoned: 0
   maxHealth: 20
   maxScoreBonus: 8
   isBoss: 0
@@ -133,7 +139,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 21
+  <PrefabId>k__BackingField: 32
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 0
   <SceneId>k__BackingField: 0
@@ -269,11 +275,13 @@ MonoBehaviour:
   _networkObjectCache: {fileID: 6001219059347570186}
   projectile: {fileID: 6489842854619905979, guid: 8bc36fbd92417ea438aa601f4995faf4, type: 3}
   speed: 3
-  attackRange: 3
+  attackRange: 8
   timeBetweenShots: 2
-  nextShotTime: 2
-  minDistanceFromPlayer: 0
+  nextShotTime: 5
+  minDistanceFromPlayer: 4
+  lifetime: 8
   playerTargeter: {fileID: 0}
+  enemyMovementController: {fileID: 0}
 --- !u!212 &6001219059347570289
 SpriteRenderer:
   m_ObjectHideFlags: 0
