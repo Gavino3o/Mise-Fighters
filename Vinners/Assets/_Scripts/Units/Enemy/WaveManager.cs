@@ -49,11 +49,14 @@ public sealed class WaveManager : NetworkBehaviour
 
         if (currentWaveIndex < waveDatas.Length)
         {
+            //Reset Enemy Death Count
+            EnemyManager.Instance.ResetDeathCount();
+
             // Set the current wave to the next wave in the list
             currentWaveData = waveDatas[currentWaveIndex];
 
             //Delay according to delay in current wave data.
-            Invoke(nameof(ActivateAllSpawners), currentWaveData.waveDelay);
+            Invoke(nameof(ActivateAllSpawners), currentWaveData.waveDelay);         
         }
         else
         {
