@@ -56,7 +56,8 @@ public sealed class WaveManager : NetworkBehaviour
             currentWaveData = waveDatas[currentWaveIndex];
 
             //Delay according to delay in current wave data.
-            Invoke(nameof(ActivateAllSpawners), currentWaveData.waveDelay);         
+            Invoke(nameof(ActivateAllSpawners), currentWaveData.waveDelay);
+            Debug.Log("Next Wave Started");
         }
         else
         {

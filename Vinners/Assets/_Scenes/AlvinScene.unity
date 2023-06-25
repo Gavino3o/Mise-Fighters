@@ -387,9 +387,17 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3707909881375175072, guid: 37a2cb9306330e44cbb83830de6a16a0, type: 3}
+      propertyPath: waveDatas.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3707909881375175072, guid: 37a2cb9306330e44cbb83830de6a16a0, type: 3}
       propertyPath: waveDatas.Array.data[0]
       value: 
       objectReference: {fileID: 11400000, guid: ab3a8144c9e3b394d934f2c3ecba7c0c, type: 2}
+    - target: {fileID: 3707909881375175072, guid: 37a2cb9306330e44cbb83830de6a16a0, type: 3}
+      propertyPath: waveDatas.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: c5169120e1f796249a59627587a72dec, type: 2}
     - target: {fileID: 3707909881375175073, guid: 37a2cb9306330e44cbb83830de6a16a0, type: 3}
       propertyPath: m_RootOrder
       value: 14
@@ -3509,8 +3517,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1703418559}
   m_LocalRotation: {x: -0, y: -0, z: -0.7091915, w: 0.70501596}
-  m_LocalPosition: {x: 41.901443, y: -7.764018, z: 4.1263194}
-  m_LocalScale: {x: 53.086548, y: 0.90235984, z: 1}
+  m_LocalPosition: {x: 41.9019, y: -7.6839, z: 4.1263194}
+  m_LocalScale: {x: 52.927288, y: 0.90235984, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2015504013}

@@ -10,13 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 137df97faff98b0468632a8dfaa49c60, type: 3}
-  m_Name: AlvinScene SpawnerData
+  m_Name: SpawnerData (Kitchen2)
   m_EditorClassIdentifier: 
   enemyPrefabs:
+  - {fileID: 6001219059347570189, guid: 5b5d8bbb23fc46f40afbb7940441a64a, type: 3}
   - {fileID: 6001219059347570189, guid: 66e1906e6a074e2428064829a9262f8a, type: 3}
   bossPrefabs: []
   spawnRate: 2
   spawnLocations:
-  - {fileID: 9168659958177914221, guid: 68c4c482016eb2744a589dfcb4ff1136, type: 3}
+  - {fileID: 2841110905202065550, guid: 68c4c482016eb2744a589dfcb4ff1136, type: 3}
+  - {fileID: 948486902802904044, guid: ccd31645bad70b44a912c96297d8bd44, type: 3}
   enemiesToSpawn: 20
   isBossSpawner: 0

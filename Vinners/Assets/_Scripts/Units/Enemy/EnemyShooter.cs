@@ -57,14 +57,20 @@ public class EnemyShooter : NetworkBehaviour
     private void ShootProjectile()
     {
         var projectile = Instantiate(this.projectile, transform.position, Quaternion.identity);
+
+        // Rework Projectile Targetting in the future
         if (projectile.GetComponent<EnemyArcProjectile>() != null)
         {
             projectile.GetComponent<EnemyArcProjectile>().targetPosition = playerTargeter.GetCurrentTargetPlayer().transform.position;
         }
+
+        if (projectile.GetComponent<EnemyStraightProjectile>() != null)
+        {
+            projectile.GetComponent<EnemyStraightProjectile>().targetPosition = playerTargeter.GetCurrentTargetPlayer().transform.position;
+        }
+
         projectile.GetComponent<Lifetime>().lifetime = lifetime;
-        Spawn(projectile);
-        
-        
+        Spawn(projectile);   
     }
 
 

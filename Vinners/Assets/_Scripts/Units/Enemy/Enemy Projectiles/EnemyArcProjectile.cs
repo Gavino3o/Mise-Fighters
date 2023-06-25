@@ -7,8 +7,8 @@ using UnityEditor;
 public class EnemyArcProjectile : EnemyProjectile
 {
     public Vector3 startPosition;
-    public float arcHeight;
-    [SerializeField] double _maxTimeActive;
+    [SerializeField] private float arcHeight;
+    private CharacterDamager characterDamager;
 
     public override void OnStartServer()
     {
@@ -16,6 +16,9 @@ public class EnemyArcProjectile : EnemyProjectile
 
         startPosition = transform.position;
         startPosition.z = 0;
+        characterDamager = gameObject.GetComponent<CharacterDamager>();
+        characterDamager.damage = damage;
+        gameObject.GetComponent<Lifetime>().lifetime = maxLifeTime;
     }
 
     void Update()
@@ -58,11 +61,14 @@ public class EnemyArcProjectile : EnemyProjectile
         return Quaternion.Euler(0, 0, Mathf.Atan2(forward.y, forward.x) * Mathf.Rad2Deg);
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            Arrived();
-        }
-    }
+
+    // The following methods are kept for testing purposes only
+
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.CompareTag("Player"))
+    //    {
+    //        Arrived();
+    //    }
+    //}
 }

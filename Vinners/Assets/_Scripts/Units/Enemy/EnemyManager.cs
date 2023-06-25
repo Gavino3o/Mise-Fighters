@@ -36,7 +36,9 @@ public sealed class EnemyManager : NetworkBehaviour
 
     public void ResetDeathCount()
     {
+        if (!IsServer) return;
         enemyDeathCount = 0;
+        Debug.Log("Reset death count to 0.");
     }
 
     // The following methods are kept for testing
