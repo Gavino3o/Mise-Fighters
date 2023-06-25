@@ -13,7 +13,6 @@ MonoBehaviour:
   m_Name: SpawnerData (Kitchen2)
   m_EditorClassIdentifier: 
   enemyPrefabs:
-  - {fileID: 6001219059347570189, guid: 5b5d8bbb23fc46f40afbb7940441a64a, type: 3}
   - {fileID: 6001219059347570189, guid: 66e1906e6a074e2428064829a9262f8a, type: 3}
   bossPrefabs: []
   spawnRate: 2
