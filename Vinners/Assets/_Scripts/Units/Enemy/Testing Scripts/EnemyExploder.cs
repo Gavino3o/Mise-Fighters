@@ -8,7 +8,6 @@ public class EnemyExploder : NetworkBehaviour
     //Note: explodingCancelRange must be >= exploding Range
     [SerializeField] private AudioClip explodingAudioClip;
     [SerializeField] private float explodingWindUp;
-    [SerializeField] private float explodingRange;
     [SerializeField] private float explodingCancelRange;
     [SerializeField] private NetworkObject explosionPrefab;
 
@@ -21,13 +20,13 @@ public class EnemyExploder : NetworkBehaviour
         if (!IsServer) return;
         playerTargeter = gameObject.GetComponent<PlayerTargeter>();
         enemyMovementController = gameObject.GetComponent<EnemyMovementController>();
-        enemyAI = gameObject.GetComponent<EnemyAI>();
+        enemyAI= gameObject.GetComponent<EnemyAI>();
     }
 
     private void Update()
     {
         if (!IsServer) return;
-        if (IsInAttackRange())
+        if (enemyAI.IsInAttackRange())
         {
             StartCoroutine(ExplodeCoroutine());
         }
@@ -57,12 +56,6 @@ public class EnemyExploder : NetworkBehaviour
         ServerManager.Spawn(explosion);
         // Insert explosion animation and audio here
         enemyAI.OnDeath();
-    }
-
-    private bool IsInAttackRange()
-    {
-        var playerTransform = playerTargeter.GetCurrentTargetPlayer().transform.position;
-        return Vector2.Distance(transform.position, playerTransform) < explodingRange;
     }
 
     private bool PlayerExceedCancelRange()
