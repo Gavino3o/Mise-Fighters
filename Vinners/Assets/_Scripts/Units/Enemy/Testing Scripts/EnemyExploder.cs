@@ -42,17 +42,25 @@ public class EnemyExploder : NetworkBehaviour
         {
             // Insert unwind animation here (optional)
             enemyMovementController.StartAstarMovement();
+            Debug.Log("Explosion cancelled");
         }
         else
         {
             Explode();
+            Debug.Log("Enemy Exploded");
         }
+
+        yield return new WaitForSeconds(1f);
     }
 
-    [ServerRpc] 
     private void Explode()
     {
+        if (!IsServer) return;
         var explosion = Instantiate(explosionPrefab, gameObject.transform.position, Quaternion.identity);
+
+        // Hardcoded for testing
+        explosion.GetComponent<Lifetime>().lifetime = 1;
+        explosion.GetComponent<CharacterDamager>().damage = 1;
         ServerManager.Spawn(explosion);
         // Insert explosion animation and audio here
         enemyAI.OnDeath();
