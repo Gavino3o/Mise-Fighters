@@ -6,7 +6,7 @@ using FishNet.Object;
 public class EnemyExploder : NetworkBehaviour
 {
     //Note: explodingCancelRange must be >= exploding Range
-    [SerializeField] private AudioClip explodingAudioClip;
+    [SerializeField] private AudioClip explosionSoundEffect;
     [SerializeField] private float explodingWindUp;
     [SerializeField] private float explodingCancelRange;
     [SerializeField] private NetworkObject explosionPrefab;
@@ -62,7 +62,8 @@ public class EnemyExploder : NetworkBehaviour
         explosion.GetComponent<Lifetime>().lifetime = 1;
         explosion.GetComponent<CharacterDamager>().damage = 1;
         ServerManager.Spawn(explosion);
-        // Insert explosion animation and audio here
+        // Insert explosion animation here
+        AudioManager.Instance.PlaySoundEffect(explosionSoundEffect);
         enemyAI.OnDeath();
     }
 

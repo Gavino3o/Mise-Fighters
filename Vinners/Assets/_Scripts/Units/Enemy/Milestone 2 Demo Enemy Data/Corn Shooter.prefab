@@ -157,7 +157,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 36
+  <PrefabId>k__BackingField: 39
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 0
   <SceneId>k__BackingField: 0
@@ -292,6 +292,7 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 6001219059347570186}
   _networkObjectCache: {fileID: 6001219059347570186}
   autoAttackPrefab: {fileID: 6489842854619905979, guid: 8bc36fbd92417ea438aa601f4995faf4, type: 3}
+  autoAttackSound: {fileID: 8300000, guid: f236f2a6004c3b94e863ea23809cc410, type: 3}
   stepbackSpeed: 2
   timeBetweenAttacks: 2
   minDistanceFromPlayer: 3

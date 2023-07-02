@@ -11,6 +11,7 @@ using UnityEngine.Windows;
 public class EnemyAutoAttack : NetworkBehaviour
 {
     [SerializeField] private GameObject autoAttackPrefab;
+    [SerializeField] private AudioClip autoAttackSound;
     [SerializeField] private float stepbackSpeed;
     [SerializeField] private float timeBetweenAttacks;
     [SerializeField] private float minDistanceFromPlayer;
@@ -79,6 +80,7 @@ public class EnemyAutoAttack : NetworkBehaviour
                 break;
         }
 
+        AudioManager.Instance.PlaySoundEffect(autoAttackSound);
         attackPrefab.GetComponent<CharacterDamager>().damage = enemyAI.currAttack;
         attackPrefab.GetComponent<Lifetime>().lifetime = attackLifetime;
         ServerManager.Spawn(attackPrefab);

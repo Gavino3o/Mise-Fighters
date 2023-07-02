@@ -368,7 +368,7 @@ MonoBehaviour:
   _componentIndexCache: 3
   _addedNetworkObject: {fileID: 6001219059347570186}
   _networkObjectCache: {fileID: 6001219059347570186}
-  explodingAudioClip: {fileID: 0}
+  explosionSoundEffect: {fileID: 8300000, guid: 9ff68a9c42153ef4eadb38d7ab63a577, type: 3}
   explodingWindUp: 3
   explodingCancelRange: 5
   explosionPrefab: {fileID: 1520164269054886570, guid: febcac87f88d67c46a456a061aba17e6, type: 3}
