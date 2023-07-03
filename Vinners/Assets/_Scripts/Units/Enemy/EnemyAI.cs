@@ -9,22 +9,16 @@ using System.IO;
 
 public class EnemyAI : Unit
 {
-    [SerializeField]
-    private float maxHealth;
-    [SerializeField]
-    private float maxScoreBonus;
-    [SerializeField]
-    private bool isBoss;
-    [SerializeField]
-    private bool canTeleport;
+    [SerializeField] private float maxHealth;
+    [SerializeField] private float attackRange;
+    [SerializeField] private float maxScoreBonus;
+    [SerializeField] private bool isBoss;
+    [SerializeField] private bool canTeleport;
     protected Rigidbody2D rigidBody;
-    [SerializeField]
-    private GameObject deathEffect;
-    [SerializeField]
-    private GameObject scorePopUp;
+    [SerializeField] private GameObject deathEffect;
+    [SerializeField] private GameObject scorePopUp;
     protected EnemyMovementController enemyMovementController;
     protected PlayerTargeter playerTargeter;
-
 
     private void Start()
     {
@@ -69,6 +63,12 @@ public class EnemyAI : Unit
         enemyMovementController.StopAstarMovement();
         EnemyManager.Instance.IncrementDeathCount();
         Despawn(gameObject);
+    }
+
+    public bool IsInAttackRange()
+    {
+        var playerTransform = playerTargeter.GetCurrentTargetPlayer().transform.position;
+        return Vector2.Distance(transform.position, playerTransform) < attackRange;
     }
 
 

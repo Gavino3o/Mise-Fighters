@@ -112,13 +112,13 @@ public class ButcherCastCharacter : CastCharacter
         SetupDamager(obj.GetComponent<EnemyDamager>(), 2);
         obj.GetComponent<Lifetime>().lifetime = spellData[2].duration;
         ServerManager.Spawn(obj);
-        AudioManager.Instance.PlaySoundEffect(ultimateSpellSoundEffect);
         Debug.Log($"{spellData[2].spellName} casted");
     }
 
     public IEnumerator Pirouette()
     {
         int n = 0;
+        AudioManager.Instance.PlaySoundEffect(ultimateSpellSoundEffect);
         while (n < noSpins)
         {
             CastUltimateSkill();
