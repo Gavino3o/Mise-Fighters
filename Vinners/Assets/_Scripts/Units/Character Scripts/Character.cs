@@ -49,9 +49,11 @@ public class Character : Unit
      */
     public override void OnDeath()
     {
+        if (currHealth > 0) return;
+        controllingPlayer.CharacterDeath();
         GetComponent<PlayerInput>().actions.Disable();
         attacker.canAttack = false;
-        controllingPlayer.CharacterDeath();
+        
     }
 
     /*

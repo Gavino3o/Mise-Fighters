@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7688777833776387861}
   - component: {fileID: 786100300606622788}
   - component: {fileID: 1748411818049266262}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: 2213509280642668296}
   - component: {fileID: 891748480767110204}
   - component: {fileID: 6935388049523391863}
-  m_Layer: 5
+  m_Layer: 3
   m_Name: Username
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -313,7 +313,7 @@ GameObject:
   - component: {fileID: 2820761590625722370}
   - component: {fileID: 6606701902620948633}
   - component: {fileID: -1919902670998679599}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Bartender
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -561,7 +561,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 25
+  <PrefabId>k__BackingField: 29
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 0
   <SceneId>k__BackingField: 0

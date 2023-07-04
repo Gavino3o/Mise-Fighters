@@ -5,15 +5,16 @@ using UnityEngine;
 
 public class EnemyStraightProjectile : EnemyProjectile
 {
-    private Transform _targetPosition;
     private Vector2 _endPosition;
+    private CharacterDamager characterDamager;
     //public GameObject _effect;
 
     void Start()
     {
-        if (!IsServer) return;
-        _targetPosition = GameObject.FindGameObjectWithTag("Player").transform;
-        _endPosition = _targetPosition.position;
+        if (!IsServer) return;;
+        characterDamager = gameObject.GetComponent<CharacterDamager>();
+        characterDamager.damage = damage;
+        gameObject.GetComponent<Lifetime>().lifetime = maxLifeTime;
     }
 
     void Update()
@@ -24,35 +25,23 @@ public class EnemyStraightProjectile : EnemyProjectile
 
     public void MoveToTargetLocation()
     {
-        transform.position = Vector2.MoveTowards(transform.position, _endPosition, speed * Time.deltaTime);
-        if (Vector2.Distance(transform.position, _endPosition) < 10f)
-        {
-            OnHit();
-        }
+        //transform.position = Vector2.MoveTowards(transform.position, _endPosition, speed * Time.deltaTime);
+        transform.position += speed * Time.deltaTime * (targetPosition - transform.position).normalized;
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            // TODO: Take damage from DamageSource
-            // collision.GetComponent<Player>().TakeDamage();
             OnHit();
         }
     }
 
     private void OnHit()
-    {
+    {    
         if (!IsServer) return;
         //var effect = Instantiate(_effect, transform.position, Quaternion.identity);
         //Spawn(effect);
-        OnTimeOut();
-    }
-
-    private void OnTimeOut()
-    {
-        if(!IsServer) return;
         this.Despawn();
     }
-    
 }

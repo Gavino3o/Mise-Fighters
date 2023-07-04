@@ -7,7 +7,7 @@ using FishNet.Object.Synchronizing;
 
 public sealed class EnemyManager : NetworkBehaviour
 {
-    public int enemyDeathCount;
+    private int enemyDeathCount;
    
     public static EnemyManager Instance { get; private set; }
 
@@ -32,6 +32,13 @@ public sealed class EnemyManager : NetworkBehaviour
     public int GetEnemyDeathCount()
     {
         return EnemyManager.Instance.enemyDeathCount;
+    }
+
+    public void ResetDeathCount()
+    {
+        if (!IsServer) return;
+        enemyDeathCount = 0;
+        Debug.Log("Reset death count to 0.");
     }
 
     // The following methods are kept for testing

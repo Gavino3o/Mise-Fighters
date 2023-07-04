@@ -15,9 +15,9 @@ public sealed class AudioManager : NetworkBehaviour
     private int initialSoundEffectAudioSources = 5;
 
     [Range(0f , 1f)]
-    public float backgroundMusicVolume = 0.5f;
+    public float backgroundMusicVolume = 0.3f;
     [Range(0f, 1f)]
-    public float gameVolume = 0.5f;
+    public float gameVolume = 0.3f;
 
     [Range(0.1f, 3f)]
     public float backgroundMusicPitch = 1.0f;

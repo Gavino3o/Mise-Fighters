@@ -22,14 +22,7 @@ public sealed class WaveManager : NetworkBehaviour
     public override void OnStartServer()
     {
         base.OnStartServer();
-
-        if (waveDatas != null && waveDatas.Length > 0)
-        {
-            Debug.Log("Activating all spawners");
-            currentWaveIndex = 0;
-            currentWaveData = waveDatas[0];
-            ActivateAllSpawners();
-        }        
+        StartInitialWave();   
     }
 
     private void Update()
@@ -38,6 +31,17 @@ public sealed class WaveManager : NetworkBehaviour
         if (EnemyManager.Instance.GetEnemyDeathCount() >= currentWaveData.maxTotalEnemies - enemyCountBuffer)
         {
             StartNextWave();
+        }     
+    }
+
+    public void StartInitialWave()
+    {
+        if (waveDatas != null && waveDatas.Length > 0)
+        {
+            Debug.Log("Activating all spawners");
+            currentWaveIndex = 0;
+            currentWaveData = waveDatas[0];
+            ActivateAllSpawners();
         }
     }
 
@@ -49,11 +53,15 @@ public sealed class WaveManager : NetworkBehaviour
 
         if (currentWaveIndex < waveDatas.Length)
         {
+            //Reset Enemy Death Count
+            EnemyManager.Instance.ResetDeathCount();
+
             // Set the current wave to the next wave in the list
             currentWaveData = waveDatas[currentWaveIndex];
 
             //Delay according to delay in current wave data.
             Invoke(nameof(ActivateAllSpawners), currentWaveData.waveDelay);
+            Debug.Log("Next Wave Started");
         }
         else
         {
