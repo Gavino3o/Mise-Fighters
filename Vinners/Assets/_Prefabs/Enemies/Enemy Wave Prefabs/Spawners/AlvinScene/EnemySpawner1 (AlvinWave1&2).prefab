@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5139236993319310547}
   - component: {fileID: 99793830137053376}
   m_Layer: 0
-  m_Name: EnemySpawner2 (AlvinWave2)
+  m_Name: EnemySpawner1 (AlvinWave1&2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -48,7 +48,7 @@ MonoBehaviour:
   _componentIndexCache: 0
   _addedNetworkObject: {fileID: 99793830137053376}
   _networkObjectCache: {fileID: 99793830137053376}
-  enemySpawnerData: {fileID: 11400000, guid: 2c635c9fed44d8c499f74c5ad906fc45, type: 2}
+  enemySpawnerData: {fileID: 11400000, guid: e4cae41d82608804a9a8f5cba5ff70ce, type: 2}
   isActive: 1
   spawnCount: 0
 --- !u!114 &99793830137053376
@@ -75,11 +75,11 @@ MonoBehaviour:
   _initializeOrder: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 36
+  <PrefabId>k__BackingField: 32
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 3541298865
   <SceneId>k__BackingField: 0
-  <AssetPathHash>k__BackingField: 5358125098667353034
+  <AssetPathHash>k__BackingField: 2873479880704739625
   _sceneNetworkObjects:
   - {fileID: 99793830137053376}
   - {fileID: 0}

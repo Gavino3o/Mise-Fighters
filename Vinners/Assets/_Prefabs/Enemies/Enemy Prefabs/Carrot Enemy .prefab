@@ -20,7 +20,7 @@ GameObject:
   - component: {fileID: 6001219059347570294}
   - component: {fileID: 6001219059347570289}
   - component: {fileID: 5373076045890855443}
-  - component: {fileID: -7908260711624779204}
+  - component: {fileID: -9023209792706731504}
   m_Layer: 3
   m_Name: 'Carrot Enemy '
   m_TagString: Enemy
@@ -133,7 +133,6 @@ MonoBehaviour:
   - {fileID: 6001219059347570185}
   - {fileID: 6001219059347570184}
   - {fileID: 5373076045890855443}
-  - {fileID: -7908260711624779204}
   <ParentNetworkObject>k__BackingField: {fileID: 0}
   <ChildNetworkObjects>k__BackingField: []
   _isNetworked: 1
@@ -141,7 +140,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 30
+  <PrefabId>k__BackingField: 19
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 0
   <SceneId>k__BackingField: 0
@@ -298,8 +297,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -473647291
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: -1407051598, guid: bc7e7e0f68981bb4f9bc2ab0e2211a1e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -354,7 +353,7 @@ MonoBehaviour:
     X: 0
     Y: 0
     Z: 0
---- !u!114 &-7908260711624779204
+--- !u!114 &-9023209792706731504
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -363,19 +362,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 6001219059347570189}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1e29f36a5080b9049a6ec3b17772c911, type: 3}
+  m_Script: {fileID: 11500000, guid: 2f6e04cc97e1bbd4e878bd63c8baadc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 3
-  _addedNetworkObject: {fileID: 6001219059347570186}
-  _networkObjectCache: {fileID: 6001219059347570186}
-  autoAttackPrefab: {fileID: 7779146619869393723, guid: 5f267024986b0b44bb92f3e8e94bb476, type: 3}
-  autoAttackSound: {fileID: 0}
-  stepbackSpeed: 2
-  timeBetweenAttacks: 4
-  minDistanceFromPlayer: 0
-  attackLifetime: 1
-  enemyType: 3
+  damage: 0.5
 --- !u!1 &8020902060449385012
 GameObject:
   m_ObjectHideFlags: 0

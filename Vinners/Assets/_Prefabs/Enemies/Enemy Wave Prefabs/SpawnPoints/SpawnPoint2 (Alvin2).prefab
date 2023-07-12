@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 948486902802904044}
   m_Layer: 0
-  m_Name: SpawnPoint2 (Kitchen2)
+  m_Name: SpawnPoint2 (Alvin2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
