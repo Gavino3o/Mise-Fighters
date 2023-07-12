@@ -57,14 +57,16 @@ public sealed class GameManager : NetworkBehaviour
         // change scene maybe change scene global should bring all players with it.
         // then we just use those player objects to spawn their characters
 
-        ChangeScene("AlvinScene");
+        // Both this is hardcoded. Change in the future
+        ChangeScene("KitchenScene");
+        Vector3 spawnPoint = new Vector3(34, 20, 0);
 
         int rand = Random.Range(2, 5);
         AudioManager.Instance.ObserversPlayBackgroundMusic(rand, true);
 
         for (int i = 0; i < players.Count; i++)
         {
-            players[i].SpawnCharacter();
+            players[i].SpawnCharacter(spawnPoint);
         }
     }
 
