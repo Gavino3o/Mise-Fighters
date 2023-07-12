@@ -81,9 +81,9 @@ public class Player : NetworkBehaviour
     /*
      * Upon game start, spawns the Character Object and handles the UI changes
      */
-    public void SpawnCharacter()
+    public void SpawnCharacter(Vector3 spawnLocation)
     {
-        GameObject instance = Instantiate(characterPrefab);
+        GameObject instance = Instantiate(characterPrefab, spawnLocation, Quaternion.identity);
         Spawn(instance, Owner);
         controlledCharacter = instance.GetComponent<Character>();
         controlledCharacter.controllingPlayer = this;
