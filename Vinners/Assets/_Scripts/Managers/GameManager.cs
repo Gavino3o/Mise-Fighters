@@ -57,7 +57,7 @@ public sealed class GameManager : NetworkBehaviour
         // change scene maybe change scene global should bring all players with it.
         // then we just use those player objects to spawn their characters
 
-        ChangeScene("AlvinScene");
+        ChangeScene("KitchenScene");
 
         int rand = Random.Range(2, 5);
         AudioManager.Instance.ObserversPlayBackgroundMusic(rand, true);
