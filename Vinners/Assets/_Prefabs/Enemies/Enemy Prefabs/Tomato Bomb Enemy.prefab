@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 5373076045890855443}
   - component: {fileID: 1349623856011892800}
   m_Layer: 3
-  m_Name: Egg Bomb Enemy
+  m_Name: Tomato Bomb Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -140,11 +140,11 @@ MonoBehaviour:
   _initializeOrder: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 36
+  <PrefabId>k__BackingField: 35
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 0
   <SceneId>k__BackingField: 0
-  <AssetPathHash>k__BackingField: 14242148543615868483
+  <AssetPathHash>k__BackingField: 4302521023404757877
   _sceneNetworkObjects:
   - {fileID: 0}
   - {fileID: 6001219059347570186}
