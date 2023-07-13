@@ -50,12 +50,12 @@ public class CastCharacter : NetworkBehaviour
 
     private void CharacterHitEnemy()
     {
-        ChargeUltimate(1);
+        ChargeUltimate(0.5f);
     }
 
     private void CharacterTookDamage()
     {
-        ChargeUltimate(0.5f);
+        ChargeUltimate(0.25f);
     }
 
     public void ChargeUltimate(float amt)

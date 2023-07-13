@@ -19,6 +19,7 @@ public class ChefCastCharacter : CastCharacter
         if (base.canCast[0])
         {
             StartCoroutine(Cooldown(0));
+            characterAnimator.PlaySkill();
             CastSliceSkill();
             AudioManager.Instance.PlaySoundEffect(skillSpellSoundEffect);
             Debug.Log("Spell casted");
@@ -60,6 +61,7 @@ public class ChefCastCharacter : CastCharacter
         if (canCast[1])
         {
             StartCoroutine(Cooldown(1));
+            characterAnimator.PlayDash();
             StartCoroutine(Blink());
             CastBlinkSkill();
             Debug.Log($"{spellData[1].spellName} casted");
@@ -127,6 +129,7 @@ public class ChefCastCharacter : CastCharacter
         if (canCast[2])
         {
             StartCoroutine(Cooldown(1));
+            characterAnimator.PlayUltimate();
             StartCoroutine(Julienne());
             AudioManager.Instance.PlaySoundEffect(ultimateSpellSoundEffect);
             SpendUltimate(ULT_METER);
