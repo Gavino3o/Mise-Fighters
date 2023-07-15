@@ -12,7 +12,7 @@ public abstract class Unit : NetworkBehaviour
     [SyncVar] public float currAttackSpeed;
     [SyncVar] public float currMoveSpeed;
 
-    [SerializeField] protected UnitStats baseStats;
+    public UnitStats baseStats;
 
     public event Action DamageTaken;
     public event Action<float> HealthChanged;
