@@ -36,7 +36,7 @@ public abstract class Unit : NetworkBehaviour
     }
 
     // This should be the only way a unit's health is changed
-    public void TakeDamage(float dmg)
+    public virtual void TakeDamage(float dmg)
     {
         float next = currHealth -= dmg;
         if (next >= baseStats.maxHealth)

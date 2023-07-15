@@ -28,7 +28,8 @@ public class CastCharacter : NetworkBehaviour
         rigidBody = character.rb;
         movement = character.movement;
         characterAnimator = character.characterAnimator;
-        ultimate = 0f;
+        // for quick testing
+        ultimate = 50f;
 
         Array.Fill(canCast, true);
         CheckUltimate();
