@@ -10,6 +10,7 @@ public sealed class MainMenu : View
     // quit game
     [SerializeField] private Button hostButton;
     [SerializeField] private Button joinButton;
+    [SerializeField] private Button guideButton;
     [SerializeField] private Button optionsButton;
     [SerializeField] private Button quitButton;
 
@@ -23,6 +24,12 @@ public sealed class MainMenu : View
         });
 
         joinButton.onClick.AddListener(() => InstanceFinder.ClientManager.StartConnection());
+
+        guideButton.onClick.AddListener(() => {
+            Debug.Log("Guide Opened");
+            OfflineUIManager.LocalInstance.Show<GuideMenu>();
+        });
+
 
         optionsButton.onClick.AddListener(() => Debug.Log("Options Menu Opened"));
 

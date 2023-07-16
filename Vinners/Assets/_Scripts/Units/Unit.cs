@@ -19,6 +19,8 @@ public abstract class Unit : NetworkBehaviour
     public event Action<int> StatusApplied;
     public event Action<int> StatusEnded;
 
+    public bool isInvicible;
+
     public SpriteRenderer sprite;
 
     private void Awake()
@@ -38,6 +40,7 @@ public abstract class Unit : NetworkBehaviour
     // This should be the only way a unit's health is changed
     public virtual void TakeDamage(float dmg)
     {
+        if (isInvicible) return;
         float next = currHealth -= dmg;
         if (next >= baseStats.maxHealth)
         {

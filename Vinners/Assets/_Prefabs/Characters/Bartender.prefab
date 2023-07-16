@@ -431,6 +431,7 @@ MonoBehaviour:
   currAttackSpeed: 0
   currMoveSpeed: 0
   baseStats: {fileID: 11400000, guid: bfffa5faa8ed94148a2bc8b5a7488f20, type: 2}
+  isInvicible: 0
   sprite: {fileID: 7428444723336966989}
   attackChangeEndtime: 0
   speedChangeEndtime: 0
@@ -441,7 +442,7 @@ MonoBehaviour:
   controllingPlayer: {fileID: 0}
   usernameDisplay: {fileID: 6935388049523391863}
   input: {fileID: 0}
-  caster: {fileID: 0}
+  caster: {fileID: 4222959443470227111}
   movement: {fileID: 0}
   attacker: {fileID: 0}
   animator: {fileID: 0}
@@ -561,7 +562,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 25
+  <PrefabId>k__BackingField: 26
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 0
   <SceneId>k__BackingField: 0

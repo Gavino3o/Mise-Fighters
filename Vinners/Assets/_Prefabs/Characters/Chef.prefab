@@ -431,6 +431,7 @@ MonoBehaviour:
   currAttackSpeed: 0
   currMoveSpeed: 0
   baseStats: {fileID: 11400000, guid: f5fb05d0cca8201498bc47f1cb401d51, type: 2}
+  isInvicible: 0
   sprite: {fileID: 0}
   attackChangeEndtime: 0
   speedChangeEndtime: 0
@@ -441,7 +442,7 @@ MonoBehaviour:
   controllingPlayer: {fileID: 0}
   usernameDisplay: {fileID: 7911271535273823007}
   input: {fileID: 0}
-  caster: {fileID: 0}
+  caster: {fileID: 1201508549497567103}
   movement: {fileID: 0}
   attacker: {fileID: 0}
   animator: {fileID: 0}
@@ -504,6 +505,8 @@ MonoBehaviour:
   - {fileID: 4414647984169859242}
   - {fileID: 1201508549497567103}
   - {fileID: 4319138583678300156}
+  - {fileID: 5900062611421221275}
+  - {fileID: 7192796342934078999}
   <ParentNetworkObject>k__BackingField: {fileID: 0}
   <ChildNetworkObjects>k__BackingField: []
   _isNetworked: 1
@@ -511,7 +514,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 34
+  <PrefabId>k__BackingField: 33
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 0
   <SceneId>k__BackingField: 0
@@ -740,9 +743,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b3684163f8d55854d8a3da010fb1ec04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 255
+  _componentIndexCache: 6
   _addedNetworkObject: {fileID: 1172006343598844436}
-  _networkObjectCache: {fileID: 0}
+  _networkObjectCache: {fileID: 1172006343598844436}
   networkAnimator: {fileID: 0}
   animator: {fileID: 0}
   character: {fileID: 0}
@@ -765,9 +768,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8cac635f24954048aad3a6ff9110beb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 255
+  _componentIndexCache: 7
   _addedNetworkObject: {fileID: 1172006343598844436}
-  _networkObjectCache: {fileID: 0}
+  _networkObjectCache: {fileID: 1172006343598844436}
   IgnoredParameters: []
   _animator: {fileID: 8076738551528337046}
   _smoothFloats: 1

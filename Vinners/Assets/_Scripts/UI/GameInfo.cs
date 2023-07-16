@@ -21,7 +21,7 @@ public class GameInfo : View
     [SerializeField] private HealthBar HP;
     [SerializeField] private BubbleIndicator SkillReady;
     [SerializeField] private BubbleIndicator DashReady;
-    [SerializeField] private TextMeshProUGUI UltiReady;
+    [SerializeField] private UltMeter UltiReady;
 
     private Player player;
     private Character character;
@@ -35,6 +35,7 @@ public class GameInfo : View
     private void Start()
     {
         HP.Setup(player.controlledCharacter.baseStats.maxHealth, player.controlledCharacter.currHealth);
+        UltiReady.Setup(player.controlledCharacter.caster.ultimate, CastCharacter.ULT_METER);
         SetupUI();
     }
 
@@ -44,8 +45,8 @@ public class GameInfo : View
 
         if (player == null || player.controlledCharacter == null) return;
 
-        HP.SetHP(player.controlledCharacter.currHealth);
-        // UpdateHealth(player.controlledCharacter.currHealth);
+        
+        UpdateHealth();
         UpdateSkill();
         UpdateDash();
         UpdateUltText();
@@ -57,12 +58,13 @@ public class GameInfo : View
         
         SkillReady.SetLabel("SKILL");
         DashReady.SetLabel("DASH");
+        UltiReady.SetLabel("ULT");
 
     }
 
-    private void UpdateHealth(float hp)
+    private void UpdateHealth()
     {
-        HP.SetHP(hp);
+        HP.SetHP(player.controlledCharacter.currHealth);
     } 
 
     private void UpdateSkill()
@@ -78,6 +80,6 @@ public class GameInfo : View
     }
     private void UpdateUltText()
     {
-       UltiReady.text = $"Charge: {player.controlledCharacter.caster.ultimate}/50 Ulti Ready:{player.controlledCharacter.caster.canCast[2]}";
+       UltiReady.SetMeter(player.controlledCharacter.caster.ultimate);
     }
 }
