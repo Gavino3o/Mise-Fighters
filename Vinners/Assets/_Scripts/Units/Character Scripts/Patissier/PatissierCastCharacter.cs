@@ -21,6 +21,7 @@ public class PatissierCastCharacter : CastCharacter
         if (base.canCast[0])
         {
             StartCoroutine(Cooldown(0));
+            characterAnimator.PlaySkill();
             CastBurnSkill();
             Debug.Log("Spell casted");
         }
@@ -72,6 +73,7 @@ public class PatissierCastCharacter : CastCharacter
         if (canCast[1])
         {
             StartCoroutine(Cooldown(1));
+            characterAnimator.PlayDash();
             StartCoroutine(Scramble());
             CastScrambleSkill();
             Debug.Log($"{spellData[1].spellName} casted");
@@ -114,6 +116,7 @@ public class PatissierCastCharacter : CastCharacter
         if (canCast[2])
         {
             CastUltimateSkill();
+            characterAnimator.PlayUltimate();
             SpendUltimate(ULT_METER);
         }
         else

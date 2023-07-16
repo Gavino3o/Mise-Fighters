@@ -21,7 +21,7 @@ public class EnemyArcProjectile : EnemyProjectile
         gameObject.GetComponent<Lifetime>().lifetime = maxLifeTime;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (!IsServer) return;
         MoveToTargetLocation();

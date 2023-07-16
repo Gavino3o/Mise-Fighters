@@ -44,14 +44,23 @@ public class Character : Unit
         sprite = GetComponent<SpriteRenderer>();
     }
 
+    public override void TakeDamage(float dmg)
+    {
+        base.TakeDamage(dmg);
+        if (currHealth > 0)
+        {
+            GetComponent<PlayerInput>().ActivateInput();
+            attacker.canAttack = true;
+        }
+    }
     /*
-     * Disables player input and attacks
-     */
+    * Disables player input and attacks
+    */
     public override void OnDeath()
     {
         if (currHealth > 0) return;
         controllingPlayer.CharacterDeath();
-        GetComponent<PlayerInput>().actions.Disable();
+        GetComponent<PlayerInput>().DeactivateInput();
         attacker.canAttack = false;
         
     }
@@ -61,8 +70,6 @@ public class Character : Unit
      */
     public void Revive()
     {
-        GetComponent<PlayerInput>().actions.Enable();
-        attacker.canAttack = true;
         ServerRevive();
     }
 

@@ -18,10 +18,10 @@ public class GameInfo : View
      * Current Stage
      * Current Wave
      */
-    [SerializeField] private TextMeshProUGUI HP;
-    [SerializeField] private TextMeshProUGUI SkillReady;
-    [SerializeField] private TextMeshProUGUI DashReady;
-    [SerializeField] private TextMeshProUGUI UltiReady;
+    [SerializeField] private HealthBar HP;
+    [SerializeField] private BubbleIndicator SkillReady;
+    [SerializeField] private BubbleIndicator DashReady;
+    [SerializeField] private UltMeter UltiReady;
 
     private Player player;
     private Character character;
@@ -30,6 +30,13 @@ public class GameInfo : View
     {
         player = Player.LocalInstance;
         character = player.controlledCharacter;
+
+    }
+    private void Start()
+    {
+        HP.Setup(player.controlledCharacter.baseStats.maxHealth, player.controlledCharacter.currHealth);
+        UltiReady.Setup(player.controlledCharacter.caster.ultimate, CastCharacter.ULT_METER);
+        SetupUI();
     }
 
     private void Update()
@@ -37,16 +44,42 @@ public class GameInfo : View
         if (!Initialised) return;
 
         if (player == null || player.controlledCharacter == null) return;
-       
-        HP.text = $"HP: {player.controlledCharacter.currHealth}";
-        SkillReady.text = $"Skill Ready: {player.controlledCharacter.caster.canCast[0]}";
-        DashReady.text = $"Dash Ready: {player.controlledCharacter.caster.canCast[1]}";
+
+        
+        UpdateHealth();
+        UpdateSkill();
+        UpdateDash();
         UpdateUltText();
        
     }
 
+    private void SetupUI()
+    {
+        
+        SkillReady.SetLabel("SKILL");
+        DashReady.SetLabel("DASH");
+        UltiReady.SetLabel("ULT");
+
+    }
+
+    private void UpdateHealth()
+    {
+        HP.SetHP(player.controlledCharacter.currHealth);
+    } 
+
+    private void UpdateSkill()
+    {
+        SkillReady.Check(player.controlledCharacter.caster.canCast[0]);
+
+    }
+
+    private void UpdateDash()
+    {
+        DashReady.Check(player.controlledCharacter.caster.canCast[1]);
+
+    }
     private void UpdateUltText()
     {
-       UltiReady.text = $"Charge: {player.controlledCharacter.caster.ultimate}/50 Ulti Ready:{player.controlledCharacter.caster.canCast[2]}";
+       UltiReady.SetMeter(player.controlledCharacter.caster.ultimate);
     }
 }

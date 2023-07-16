@@ -12,12 +12,14 @@ public abstract class Unit : NetworkBehaviour
     [SyncVar] public float currAttackSpeed;
     [SyncVar] public float currMoveSpeed;
 
-    [SerializeField] protected UnitStats baseStats;
+    public UnitStats baseStats;
 
     public event Action DamageTaken;
     public event Action<float> HealthChanged;
     public event Action<int> StatusApplied;
     public event Action<int> StatusEnded;
+
+    public bool isInvicible;
 
     public SpriteRenderer sprite;
 
@@ -36,8 +38,9 @@ public abstract class Unit : NetworkBehaviour
     }
 
     // This should be the only way a unit's health is changed
-    public void TakeDamage(float dmg)
+    public virtual void TakeDamage(float dmg)
     {
+        if (isInvicible) return;
         float next = currHealth -= dmg;
         if (next >= baseStats.maxHealth)
         {

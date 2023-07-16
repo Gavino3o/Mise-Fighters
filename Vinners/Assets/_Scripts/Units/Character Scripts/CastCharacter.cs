@@ -28,7 +28,8 @@ public class CastCharacter : NetworkBehaviour
         rigidBody = character.rb;
         movement = character.movement;
         characterAnimator = character.characterAnimator;
-        ultimate = 0f;
+        // for quick testing
+        ultimate = 50f;
 
         Array.Fill(canCast, true);
         CheckUltimate();
@@ -50,12 +51,12 @@ public class CastCharacter : NetworkBehaviour
 
     private void CharacterHitEnemy()
     {
-        ChargeUltimate(1);
+        ChargeUltimate(0.5f);
     }
 
     private void CharacterTookDamage()
     {
-        ChargeUltimate(0.5f);
+        ChargeUltimate(0.25f);
     }
 
     public void ChargeUltimate(float amt)

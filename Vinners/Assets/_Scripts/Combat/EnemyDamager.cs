@@ -12,16 +12,17 @@ public class EnemyDamager : MonoBehaviour
         {
             unit.TakeDamage(damage);
             Debug.Log($"{gameObject} dealt {damage} damage to {other.gameObject}!");
+            if (source != null)
+            {
+                source.HitSuccess();
+            }
+            else
+            {
+                Debug.Log("Source is null");
+            }
 
         }
-        // placed here for now, should be inside if bracket.
-        if (source != null)
-        {
-            source.HitSuccess();
-        } else
-        {
-            Debug.Log("Source is null");
-        }
+    
     }
 
 }

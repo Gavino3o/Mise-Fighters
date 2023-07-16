@@ -9,15 +9,18 @@ public class EnemyStraightProjectile : EnemyProjectile
     private CharacterDamager characterDamager;
     //public GameObject _effect;
 
+    private Vector3 movementDirection;
+
     void Start()
     {
-        if (!IsServer) return;;
+        if (!IsServer) return;
         characterDamager = gameObject.GetComponent<CharacterDamager>();
         characterDamager.damage = damage;
         gameObject.GetComponent<Lifetime>().lifetime = maxLifeTime;
+        movementDirection = (targetPosition - transform.position).normalized;
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (!IsServer) return;
         MoveToTargetLocation();
@@ -25,8 +28,10 @@ public class EnemyStraightProjectile : EnemyProjectile
 
     public void MoveToTargetLocation()
     {
+        transform.position += speed * Time.deltaTime * (Vector3)movementDirection;
+
         //transform.position = Vector2.MoveTowards(transform.position, _endPosition, speed * Time.deltaTime);
-        transform.position += speed * Time.deltaTime * (targetPosition - transform.position).normalized;
+        // transform.position += speed * Time.deltaTime * (targetPosition - transform.position).normalized;
     }
 
     public void OnTriggerEnter2D(Collider2D collision)
@@ -34,7 +39,7 @@ public class EnemyStraightProjectile : EnemyProjectile
         if (collision.CompareTag("Player"))
         {
             OnHit();
-        }
+        } 
     }
 
     private void OnHit()

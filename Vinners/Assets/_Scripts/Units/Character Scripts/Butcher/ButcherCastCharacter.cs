@@ -76,10 +76,12 @@ public class ButcherCastCharacter : CastCharacter
     public IEnumerator Charge()
     {
         movement.interrupted = true;
+        character.isInvicible = true;
         yield return new WaitForSeconds(windUp);
         rigidBody.velocity = 3 * chargeSpeed * input.targetDirection;
         yield return new WaitForSeconds(spellData[1].duration);
         movement.interrupted = false;
+        character.isInvicible = false;
     }
 
     #endregion
