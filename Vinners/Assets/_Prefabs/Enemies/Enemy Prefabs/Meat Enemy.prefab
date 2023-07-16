@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 6001219059347570289}
   - component: {fileID: 5373076045890855443}
   m_Layer: 3
-  m_Name: Meat Shooter Enemy
+  m_Name: Meat Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -37,7 +37,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6001219059347570189}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.787, y: -1.977, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -112,7 +112,7 @@ MonoBehaviour:
   _componentIndexCache: 0
   _addedNetworkObject: {fileID: 6001219059347570186}
   _networkObjectCache: {fileID: 6001219059347570186}
-  currHealth: 10
+  currHealth: 20
   currAttack: 0.5
   currAttackSpeed: 1
   currMoveSpeed: 3
@@ -125,7 +125,7 @@ MonoBehaviour:
   isPoisoned: 0
   maxHealth: 20
   attackRange: 8
-  maxScoreBonus: 0
+  maxScoreBonus: 8
   isBoss: 0
   canTeleport: 0
   deathEffect: {fileID: 0}
@@ -157,11 +157,11 @@ MonoBehaviour:
   _initializeOrder: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 14
+  <PrefabId>k__BackingField: 28
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 0
   <SceneId>k__BackingField: 0
-  <AssetPathHash>k__BackingField: 4916763389823569395
+  <AssetPathHash>k__BackingField: 15254419405492035079
   _sceneNetworkObjects:
   - {fileID: 0}
   - {fileID: 6001219059347570186}
@@ -291,13 +291,13 @@ MonoBehaviour:
   _componentIndexCache: 2
   _addedNetworkObject: {fileID: 6001219059347570186}
   _networkObjectCache: {fileID: 6001219059347570186}
-  autoAttackPrefab: {fileID: 2208993795722911827, guid: 30926289832cc5a409907afbeca289a1, type: 3}
-  autoAttackSound: {fileID: 0}
+  autoAttackPrefab: {fileID: 6489842854619905979, guid: 8bc36fbd92417ea438aa601f4995faf4, type: 3}
+  autoAttackSound: {fileID: 8300000, guid: f236f2a6004c3b94e863ea23809cc410, type: 3}
   stepbackSpeed: 2
   timeBetweenAttacks: 2
-  minDistanceFromPlayer: 4
-  attackLifetime: 8
-  enemyType: 2
+  minDistanceFromPlayer: 3
+  attackLifetime: 0
+  enemyType: 1
 --- !u!212 &6001219059347570289
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -339,7 +339,7 @@ SpriteRenderer:
   m_SortingLayerID: -473647291
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: -1176261658, guid: d1a7a775e58af704597d53c2c80d43bc, type: 3}
+  m_Sprite: {fileID: -233640955, guid: 392b28c6f1c18a446a2bbbe6020ac1a0, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

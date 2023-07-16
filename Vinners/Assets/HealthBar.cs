@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using FishNet.Object;
 
-public class HealthBar : NetworkBehaviour
+public class HealthBar : MonoBehaviour
 {
     public Slider slider;
     

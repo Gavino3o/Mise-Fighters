@@ -5034,11 +5034,11 @@ PrefabInstance:
     - target: {fileID: 3707909881375175072, guid: 37a2cb9306330e44cbb83830de6a16a0, type: 3}
       propertyPath: waveDatas.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: fa1cf72f19059dc4a89d444479367160, type: 2}
+      objectReference: {fileID: 11400000, guid: 855193e3061c8f9429a0884fb4bde2a5, type: 2}
     - target: {fileID: 3707909881375175072, guid: 37a2cb9306330e44cbb83830de6a16a0, type: 3}
       propertyPath: waveDatas.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: 855193e3061c8f9429a0884fb4bde2a5, type: 2}
+      objectReference: {fileID: 11400000, guid: fa1cf72f19059dc4a89d444479367160, type: 2}
     - target: {fileID: 3707909881375175072, guid: 37a2cb9306330e44cbb83830de6a16a0, type: 3}
       propertyPath: waveDatas.Array.data[2]
       value: 

@@ -1,6 +1,7 @@
 
 using UnityEngine;
 using FishNet.Object;
+using FishNet;
 
 public class UIManager : NetworkBehaviour
 {
@@ -8,10 +9,13 @@ public class UIManager : NetworkBehaviour
 
     [SerializeField] private View[] views;
 
-    private void Awake()
+
+    public override void OnStartClient()
     {
-        LocalInstance = this;  
+        base.OnStartClient();
+        LocalInstance = this;
     }
+
     public void Initialise()
     {
         foreach (View v in views) v.Initialise();

@@ -839,7 +839,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9a9b793f4878d34d80f74b689730c06, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 255
+  _componentIndexCache: 0
   _addedNetworkObject: {fileID: 0}
   _networkObjectCache: {fileID: 0}
   slider: {fileID: 35586281205208505}

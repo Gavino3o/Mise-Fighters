@@ -49,11 +49,6 @@ public class Player : NetworkBehaviour
         GameManager.Instance.playerCount--;
     }
 
-    private void FixedUpdate()
-    {
-        if (!base.IsOwner) return;
-    }
-
     /*
      * Assigns the player's chosen Character.
      */
