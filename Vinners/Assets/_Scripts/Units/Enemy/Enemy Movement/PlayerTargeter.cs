@@ -24,6 +24,8 @@ public class PlayerTargeter : MonoBehaviour
         targetPlayer = players[rand];
         destinationSetter.target = targetPlayer.transform;
     }
+
+    [ObserversRpc]
     public void ChangeTargetPlayer(GameObject player)
     {
         if (destinationSetter == null)
