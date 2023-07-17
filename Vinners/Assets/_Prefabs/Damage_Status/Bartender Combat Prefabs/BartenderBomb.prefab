@@ -142,6 +142,7 @@ GameObject:
   - component: {fileID: -6029480087865222614}
   - component: {fileID: -8903695721614164821}
   - component: {fileID: 2983890739566527849}
+  - component: {fileID: -5875864747554372312}
   m_Layer: 0
   m_Name: BartenderBomb
   m_TagString: Untagged
@@ -206,7 +207,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 10
+  <PrefabId>k__BackingField: 39
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 0
   <SceneId>k__BackingField: 0
@@ -257,3 +258,17 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 5681926344258742825}
   _networkObjectCache: {fileID: 5681926344258742825}
   lifetime: 0
+--- !u!114 &-5875864747554372312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6848911510146320331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abdc099b4b88e404ab54d2f1bf147a97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sed:
+  - {fileID: 11400000, guid: 934983034587654479bd3327f391ea38, type: 2}

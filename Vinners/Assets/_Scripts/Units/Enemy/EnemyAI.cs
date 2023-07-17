@@ -38,6 +38,11 @@ public class EnemyAI : Unit
         if (!IsServer) return;
     }
 
+    public void TauntedBy(GameObject obj, float duration)
+    {
+        playerTargeter.ChangeTargetDuration(obj, duration);
+    }
+
     public void EnemyTakeDamage(float dmg, GameObject player)
     {
         base.TakeDamage(dmg);

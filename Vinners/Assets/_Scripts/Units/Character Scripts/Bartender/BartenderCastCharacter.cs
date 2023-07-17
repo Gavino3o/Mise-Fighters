@@ -43,7 +43,7 @@ public class BartenderCastCharacter : CastCharacter
     [Header("Backstep Skill")]
     public float dashSpeed = 6f;
     [SerializeField] private NetworkObject lurePrefab;
-    public float lureDuration = 2f;
+    public float lureDuration = 4f;
     public void OnDash()
     {
         if (!IsOwner) return;
@@ -66,7 +66,7 @@ public class BartenderCastCharacter : CastCharacter
     {
         NetworkObject obj = Instantiate(lurePrefab, transform.position, transform.rotation);
         obj.GetComponent<Lifetime>().lifetime = lureDuration;
-        obj.GetComponent<Taunter>().target = obj;
+        obj.GetComponent<Taunter>().target = obj.gameObject;
         ServerManager.Spawn(obj);
         AudioManager.Instance.PlaySoundEffect(dashSpellSoundEffect);
         Debug.Log("Lure dropped");

@@ -510,7 +510,7 @@ MonoBehaviour:
   ultimateSpellSoundEffect: {fileID: 8300000, guid: b1e173050d4e91246a11ddd11fdfd43e, type: 3}
   dashSpeed: 5
   lurePrefab: {fileID: 5681926344258742825, guid: 58ce1d0403ceb3b47b8eef26dda66f5a, type: 3}
-  lureDuration: 2
+  lureDuration: 4
   iceSpellPrefab: {fileID: 5681926344258742825, guid: fda7ad45dd5c7f54a9f176ca50df5c6e, type: 3}
 --- !u!114 &8302944292573092573
 MonoBehaviour:

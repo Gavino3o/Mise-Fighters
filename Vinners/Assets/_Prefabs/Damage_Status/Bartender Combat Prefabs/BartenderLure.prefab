@@ -119,9 +119,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8cac635f24954048aad3a6ff9110beb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 255
+  _componentIndexCache: 2
   _addedNetworkObject: {fileID: 5681926344258742825}
-  _networkObjectCache: {fileID: 0}
+  _networkObjectCache: {fileID: 5681926344258742825}
   IgnoredParameters: []
   _animator: {fileID: 3883389646746468788}
   _smoothFloats: 1
@@ -199,6 +199,7 @@ MonoBehaviour:
   _networkBehaviours:
   - {fileID: 5268666267829379887}
   - {fileID: 7060475180936071515}
+  - {fileID: 3412667567585502942}
   <ParentNetworkObject>k__BackingField: {fileID: 0}
   <ChildNetworkObjects>k__BackingField: []
   _isNetworked: 1
@@ -244,6 +245,7 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 5681926344258742825}
   _networkObjectCache: {fileID: 5681926344258742825}
   target: {fileID: 6848911510146320331}
+  tauntDuration: 4
 --- !u!114 &-3035421113775085332
 MonoBehaviour:
   m_ObjectHideFlags: 0

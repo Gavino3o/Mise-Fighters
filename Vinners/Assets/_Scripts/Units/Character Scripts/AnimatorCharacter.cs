@@ -69,6 +69,11 @@ public class AnimatorCharacter : NetworkBehaviour
         PlayCastAnimation(ultimate);
     }
 
+    public void PlayUltimate(float duration)
+    {
+        PlayCastAnimation(ultimate, duration);
+    }
+
     private void PlayCastAnimation(string name)
     {
         if (!IsOwner) return;
@@ -77,6 +82,15 @@ public class AnimatorCharacter : NetworkBehaviour
         float delay = animator.GetCurrentAnimatorStateInfo(0).length;
         Invoke(nameof(StoppedCasting), delay);
     }
+
+    private void PlayCastAnimation(string name, float duration)
+    {
+        if (!IsOwner) return;
+        isCasting = true;
+        ChangeAnimation(name);
+        Invoke(nameof(StoppedCasting), duration);
+    }
+
     private void StoppedCasting()
     {
         isCasting = false;
