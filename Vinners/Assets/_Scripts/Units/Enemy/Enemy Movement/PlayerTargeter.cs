@@ -33,6 +33,19 @@ public class PlayerTargeter : NetworkBehaviour
         destinationSetter.target = player.transform;
     }
 
+    public void ChangeTargetDuration(GameObject obj, float duration)
+    {
+        StartCoroutine(Taunted(obj, duration));
+    }
+
+    private IEnumerator Taunted(GameObject obj, float duration)
+    {
+        GameObject tmp = targetPlayer;
+        ChangeTargetPlayer(obj);
+        yield return new WaitForSeconds(duration);
+        ChangeTargetPlayer(tmp);
+    }
+
     public GameObject GetCurrentTargetPlayer()
     {
         if (destinationSetter == null)

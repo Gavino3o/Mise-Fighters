@@ -19,4 +19,4 @@ MonoBehaviour:
   attackMultiplier: 1
   moveSpeedMultiplier: 1
   douser: 0
-  igniter: 0
+  igniter: 1

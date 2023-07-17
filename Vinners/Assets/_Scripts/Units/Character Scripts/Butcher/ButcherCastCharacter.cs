@@ -31,7 +31,7 @@ public class ButcherCastCharacter : CastCharacter
         NetworkObject obj = Instantiate(tauntSpellPrefab, transform);
         SetupDamager(obj.GetComponent<EnemyDamager>(), 0);
         obj.GetComponent<Lifetime>().lifetime = spellData[0].duration;
-        obj.GetComponent<Taunter>().target = NetworkObject;
+        obj.GetComponent<Taunter>().target = gameObject;
         ServerManager.Spawn(obj);
         AudioManager.Instance.PlaySoundEffect(skillSpellSoundEffect);
         Debug.Log($"{spellData[0].spellName} casted");
@@ -51,7 +51,7 @@ public class ButcherCastCharacter : CastCharacter
         if (canCast[1])
         {
             StartCoroutine(Cooldown(1));
-            characterAnimator.PlayDash();
+            characterAnimator.PlayDash(spellData[1].duration);
             CastChargeSkill();
             StartCoroutine(Charge());
         }
@@ -98,7 +98,7 @@ public class ButcherCastCharacter : CastCharacter
         if (canCast[2])
         {
             StartCoroutine(Pirouette());
-            characterAnimator.PlayUltimate();
+            characterAnimator.PlayUltimate(noSpins * spinInterval);
             SpendUltimate(ULT_METER);
         }
         else

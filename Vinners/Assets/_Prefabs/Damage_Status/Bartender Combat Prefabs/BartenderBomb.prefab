@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 909448301764112696}
   - component: {fileID: 4393917697518315791}
+  - component: {fileID: 5558231388984945609}
+  - component: {fileID: 817579996409463878}
   m_Layer: 0
   m_Name: Circle
   m_TagString: Untagged
@@ -70,11 +72,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.7783019, g: 0.8127095, b: 1, a: 1}
+  m_SortingLayerID: -473647291
+  m_SortingLayer: 1
+  m_SortingOrder: 2
+  m_Sprite: {fileID: 957459071, guid: 4d21125e7e19e0b40957f9031fa86e47, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -84,6 +86,48 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &5558231388984945609
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2178413791162040748}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6851c2a303163b247a4a890e953ddd04, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &817579996409463878
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2178413791162040748}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8cac635f24954048aad3a6ff9110beb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _componentIndexCache: 1
+  _addedNetworkObject: {fileID: 5681926344258742825}
+  _networkObjectCache: {fileID: 5681926344258742825}
+  IgnoredParameters: []
+  _animator: {fileID: 5558231388984945609}
+  _smoothFloats: 1
+  _interpolation: 2
+  _clientAuthoritative: 1
+  _sendToOwner: 0
 --- !u!1 &6848911510146320331
 GameObject:
   m_ObjectHideFlags: 0
@@ -98,6 +142,7 @@ GameObject:
   - component: {fileID: -6029480087865222614}
   - component: {fileID: -8903695721614164821}
   - component: {fileID: 2983890739566527849}
+  - component: {fileID: -5875864747554372312}
   m_Layer: 0
   m_Name: BartenderBomb
   m_TagString: Untagged
@@ -114,8 +159,8 @@ Transform:
   m_GameObject: {fileID: 6848911510146320331}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 0}
-  m_ConstrainProportionsScale: 0
+  m_LocalScale: {x: 2, y: 2, z: 0}
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 909448301764112696}
   m_Father: {fileID: 0}
@@ -136,7 +181,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 1.5
 --- !u!114 &5681926344258742825
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -154,6 +199,7 @@ MonoBehaviour:
   <PredictedSpawn>k__BackingField: {fileID: 0}
   _networkBehaviours:
   - {fileID: 2983890739566527849}
+  - {fileID: 817579996409463878}
   <ParentNetworkObject>k__BackingField: {fileID: 0}
   <ChildNetworkObjects>k__BackingField: []
   _isNetworked: 1
@@ -161,7 +207,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 10
+  <PrefabId>k__BackingField: 39
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 0
   <SceneId>k__BackingField: 0
@@ -212,3 +258,17 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 5681926344258742825}
   _networkObjectCache: {fileID: 5681926344258742825}
   lifetime: 0
+--- !u!114 &-5875864747554372312
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6848911510146320331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: abdc099b4b88e404ab54d2f1bf147a97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sed:
+  - {fileID: 11400000, guid: 934983034587654479bd3327f391ea38, type: 2}

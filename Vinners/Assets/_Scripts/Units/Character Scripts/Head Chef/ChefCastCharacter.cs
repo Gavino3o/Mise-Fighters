@@ -128,7 +128,7 @@ public class ChefCastCharacter : CastCharacter
         if (canCast[2])
         {
             StartCoroutine(Cooldown(1));
-            characterAnimator.PlayUltimate();
+            characterAnimator.PlayUltimate(spellData[2].duration);
             StartCoroutine(Julienne());
             SpendUltimate(ULT_METER);
         }
@@ -153,9 +153,12 @@ public class ChefCastCharacter : CastCharacter
     public IEnumerator Julienne()
     {
         movement.interrupted = true;
+        character.isInvicible = true;
+        GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         CastUltimateSkill();
         yield return new WaitForSeconds(spellData[2].duration);
         movement.interrupted = false;
+        character.isInvicible = false;
     }
 
     #endregion

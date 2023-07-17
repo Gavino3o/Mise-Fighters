@@ -1,6 +1,5 @@
 using UnityEngine;
 
-// Should separate into Character and Enemy status appliers
 public class EnemyStatusApplier : MonoBehaviour
 {
     [SerializeField] private StatusEffectData[] sed;
@@ -12,7 +11,7 @@ public class EnemyStatusApplier : MonoBehaviour
         {
             foreach (StatusEffectData effect in sed)
             {
-                // unit.ApplyStatusEffect(effect);
+                unit.ApplyStatusEffect(effect);
                 Debug.Log($"Status effect {effect.effectName} applied to {other.gameObject}!");
             }
         }

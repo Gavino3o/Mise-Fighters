@@ -486,7 +486,7 @@ MonoBehaviour:
   dousedUntil: 0
   isDoused: 0
   isPoisoned: 0
-  characterSplash: {fileID: 21300000, guid: d16a48c05ca0e474faedcaa70abde048, type: 3}
+  characterSplash: {fileID: 21300000, guid: e9c44a8ed5f0f644d8e08f02038330fd, type: 3}
   controllingPlayer: {fileID: 0}
   usernameDisplay: {fileID: 7911271535273823007}
   input: {fileID: 0}

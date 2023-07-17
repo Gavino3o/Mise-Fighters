@@ -5034,11 +5034,11 @@ PrefabInstance:
     - target: {fileID: 3707909881375175072, guid: 37a2cb9306330e44cbb83830de6a16a0, type: 3}
       propertyPath: waveDatas.Array.data[0]
       value: 
-      objectReference: {fileID: 11400000, guid: 855193e3061c8f9429a0884fb4bde2a5, type: 2}
+      objectReference: {fileID: 11400000, guid: fa1cf72f19059dc4a89d444479367160, type: 2}
     - target: {fileID: 3707909881375175072, guid: 37a2cb9306330e44cbb83830de6a16a0, type: 3}
       propertyPath: waveDatas.Array.data[1]
       value: 
-      objectReference: {fileID: 11400000, guid: fa1cf72f19059dc4a89d444479367160, type: 2}
+      objectReference: {fileID: 11400000, guid: 855193e3061c8f9429a0884fb4bde2a5, type: 2}
     - target: {fileID: 3707909881375175072, guid: 37a2cb9306330e44cbb83830de6a16a0, type: 3}
       propertyPath: waveDatas.Array.data[2]
       value: 
@@ -5092,6 +5092,10 @@ PrefabInstance:
       value: WaveManager
       objectReference: {fileID: 0}
     - target: {fileID: 3707909881375175075, guid: 37a2cb9306330e44cbb83830de6a16a0, type: 3}
+      propertyPath: _isGlobal
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3707909881375175075, guid: 37a2cb9306330e44cbb83830de6a16a0, type: 3}
       propertyPath: _scenePathHash
       value: 22784919
       objectReference: {fileID: 0}
@@ -5110,6 +5114,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3707909881375175073, guid: 37a2cb9306330e44cbb83830de6a16a0, type: 3}
   m_PrefabInstance: {fileID: 460570501}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &460570503 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3707909881375175075, guid: 37a2cb9306330e44cbb83830de6a16a0, type: 3}
+  m_PrefabInstance: {fileID: 460570501}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26b716c41e9b56b4baafaf13a523ba2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &496708711
 GameObject:
   m_ObjectHideFlags: 0
@@ -38420,6 +38435,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1639134225}
     m_Modifications:
     - target: {fileID: 7120164164731578937, guid: 26ffbab9a01f13548b9df19435d31c6f, type: 3}
+      propertyPath: _isGlobal
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7120164164731578937, guid: 26ffbab9a01f13548b9df19435d31c6f, type: 3}
       propertyPath: _scenePathHash
       value: 22784919
       objectReference: {fileID: 0}
@@ -38429,12 +38448,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7120164164731578937, guid: 26ffbab9a01f13548b9df19435d31c6f, type: 3}
       propertyPath: _sceneNetworkObjects.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7120164164731578937, guid: 26ffbab9a01f13548b9df19435d31c6f, type: 3}
       propertyPath: _sceneNetworkObjects.Array.data[0]
       value: 
-      objectReference: {fileID: 1750790003}
+      objectReference: {fileID: 460570503}
     - target: {fileID: 7120164164731578939, guid: 26ffbab9a01f13548b9df19435d31c6f, type: 3}
       propertyPath: m_RootOrder
       value: 1

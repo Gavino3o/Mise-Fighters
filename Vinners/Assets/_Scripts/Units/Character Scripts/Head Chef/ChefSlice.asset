@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: ChefSlice
   m_EditorClassIdentifier: 
   spellName: Slice and Dice
-  description: Performs two quick slashes in an arc.
+  description: Performs two quick slashes in an arc in the direction faced, damaging
+    all enemies hit.
   cooldown: 3
   damage: 2
   duration: 0.8
