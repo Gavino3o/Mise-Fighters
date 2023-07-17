@@ -68,6 +68,7 @@ public sealed class WaveManager : NetworkBehaviour
             // All waves have been spawned, end the game or restart from the beginning
             // Use Event. ie: public event OnWaveEnd()
             Debug.Log("Waves progression ended successfully");
+            GameManager.Instance.StageClear();
         }
     }
 

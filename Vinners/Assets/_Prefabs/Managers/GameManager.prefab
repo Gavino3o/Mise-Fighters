@@ -50,10 +50,9 @@ MonoBehaviour:
   _networkObjectCache: {fileID: 2512929587187230282}
   canStart: 0
   playerCount: 0
-  startScene: 
-  stageOne: 
-  stageTwo: 
-  stageThree: 
+  sceneNames:
+  - AlvinScene
+  - KitchenScene
 --- !u!114 &2512929587187230282
 MonoBehaviour:
   m_ObjectHideFlags: 0

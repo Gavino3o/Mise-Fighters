@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36e87e5fae43ec140b894b33b6657c9f, type: 3}
   m_Name: AlvinScene WaveData Melee
   m_EditorClassIdentifier: 
-  maxTotalEnemies: 15
+  maxTotalEnemies: 4
   waveDelay: 5
   isLastWave: 0
   enemySpawnerPrefabs:

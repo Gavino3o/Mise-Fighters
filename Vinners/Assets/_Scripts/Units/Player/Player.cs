@@ -85,16 +85,30 @@ public class Player : NetworkBehaviour
         TargetCharacterSpawned(Owner);
     }
 
+    public void StageCleared()
+    {
+        TargetStageClear(Owner);
+    }
+
+
+    public void EnterNextScene()
+    {
+        // reset position to middle of stage or set some spawnpoints
+
+        RespawnCharacter();
+        TargetCharacterSpawned(Owner);
+    }
+
     [ServerRpc]
     public void ServerRespawnCharacter()
     {
         TargetCharacterSpawned(Owner);
     }
 
-    [ServerRpc]
     public void RespawnCharacter()
     {     
-        controlledCharacter.Revive(Owner);
+        controlledCharacter.Revive();
+        ServerRespawnCharacter();
     }
 
     [ServerRpc]
@@ -106,6 +120,7 @@ public class Player : NetworkBehaviour
     [TargetRpc]
     private void TargetCharacterSpawned(NetworkConnection conn)
     {
+        // This line is not being called on new scene load.
         UIManager.LocalInstance.Show<GameInfo>();
         ServerSetLockIn(false);
     }

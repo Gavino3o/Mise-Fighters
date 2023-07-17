@@ -45,15 +45,6 @@ public class Character : Unit
         sprite = GetComponent<SpriteRenderer>();
     }
 
-    public override void TakeDamage(float dmg)
-    {
-        base.TakeDamage(dmg);
-        if (currHealth > 0)
-        {
-            GetComponent<PlayerInput>().ActivateInput();
-            attacker.canAttack = true;
-        }
-    }
     /*
     * Disables player input and attacks
     */
@@ -63,22 +54,16 @@ public class Character : Unit
         controllingPlayer.CharacterDeath();
         GetComponent<PlayerInput>().DeactivateInput();
         attacker.canAttack = false;
-        
+     
     }
 
     /*
-     * Reenables player input and revives the character with full health
+     * Reenables player input and revives the character with half health
      */
-    [TargetRpc]
-    public void Revive(NetworkConnection conn)
+    public void Revive()
     {
-        ServerRevive();
+        TakeDamage(baseStats.maxHealth * - 0.5f);
+        GetComponent<PlayerInput>().ActivateInput();
+        attacker.canAttack = true;
     }
-
-    [ServerRpc]
-    private void ServerRevive()
-    {
-        TakeDamage(baseStats.maxHealth * -1);
-    }
-
 }

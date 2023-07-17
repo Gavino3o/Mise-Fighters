@@ -13,7 +13,7 @@ public class UIManager : NetworkBehaviour
     public override void OnStartClient()
     {
         base.OnStartClient();
-        LocalInstance = this;
+        if (LocalInstance == null) LocalInstance = this;
     }
 
     public void Initialise()
