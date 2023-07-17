@@ -54,6 +54,7 @@ public class ChefCastCharacter : CastCharacter
     [Header("Blink Skill")]
 
     public float blinkDistance = 10f;
+    [SerializeField] private LayerMask obstacleLayer;
     [SerializeField] private GameObject stunPrefab;
     public void OnDash()
     {
@@ -86,10 +87,8 @@ public class ChefCastCharacter : CastCharacter
     public IEnumerator Blink()
     {
         Vector2 blinkDirection = input.targetDirection;
-        Vector2 rayOffset = blinkDirection * 1.5f; //Origin of ray cannot be within a collider.
-
-        // TODO: Add layering for obstacle layer.
-        RaycastHit2D hit = Physics2D.Raycast((Vector2) transform.position + rayOffset, blinkDirection);
+        
+        RaycastHit2D hit = Physics2D.Raycast((Vector2) transform.position, blinkDirection, blinkDistance, obstacleLayer);
         movement.interrupted = true;
         if (hit.collider == null)
         {
@@ -108,7 +107,12 @@ public class ChefCastCharacter : CastCharacter
             }
             else
             {
-                Vector2 newPosition = (Vector2) transform.position + blinkDirection * (obstacleDistance - 1f);
+                var shortenedBlinkDistance = obstacleDistance - 1f;
+                if (shortenedBlinkDistance <= 0f)
+                {
+                    shortenedBlinkDistance = 0f;
+                } 
+                Vector2 newPosition = (Vector2) transform.position + blinkDirection * (shortenedBlinkDistance);
                 transform.position = newPosition;
                 Debug.Log(obstacleDistance.ToString());
                 Debug.Log("C3");
