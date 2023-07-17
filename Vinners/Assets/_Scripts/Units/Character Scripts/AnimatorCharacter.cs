@@ -64,6 +64,11 @@ public class AnimatorCharacter : NetworkBehaviour
         PlayCastAnimation(dash);
     }
 
+    public void PlayDash(float duration)
+    {
+        PlayCastAnimation(dash, duration);
+    }
+
     public void PlayUltimate()
     {
         PlayCastAnimation(ultimate);
