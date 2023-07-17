@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spellName: Julienne
   description: "Using his trusty (and meticulously sharpened) chef\u2019s knife,
-    the Head Chef decimates everything in a rectangular area in front of him,"
+    the Head Chef decimates everything in a rectangular area in front of him."
   cooldown: 0
   damage: 1
   duration: 3

@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: ButcherCharge
   m_EditorClassIdentifier: 
   spellName: Reckless Charge
-  description: 'Charges forward, pushing all enemies in his path and dealing (50%ATK)
-    damage to all enemies hit. '
+  description: 'Charges forward, damaging all enemies in his path. '
   cooldown: 9
   damage: 0.5
   duration: 0.8

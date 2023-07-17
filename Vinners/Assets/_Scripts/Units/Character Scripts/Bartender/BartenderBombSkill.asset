@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: BartenderBombSkill
   m_EditorClassIdentifier: 
   spellName: Cocktail Bomb
-  description: Lobs a freshly shaken Margarita at the target location that explodes
-    in a large AOE, dealing (75%ATK) damage, SLOWING them slightly.
+  description: Lobs a freshly shaken Margarita at the target location that explodes,
+    dealing damage to enemies and SLOWING them slightly.
   cooldown: 5
   damage: 0.75
   duration: 1.5

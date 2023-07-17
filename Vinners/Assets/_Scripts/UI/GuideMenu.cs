@@ -20,6 +20,7 @@ public class GuideMenu : View
         SetupCharacters();
         SetupEnemies();
         backButton.onClick.AddListener(() => OfflineUIManager.LocalInstance.Show<MainMenu>());
+        display.gameObject.SetActive(false);
     }
 
     private void SetupCharacters()

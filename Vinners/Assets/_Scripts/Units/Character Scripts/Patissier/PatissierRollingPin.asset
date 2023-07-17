@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: PatissierRollingPin
   m_EditorClassIdentifier: 
   spellName: "You\u2019re Dough-ne for"
-  description: 'Sends out a comically large rolling pin in the direction faced '
+  description: Sends out a comically large rolling pin in the direction faced, dealing
+    massive damage to all enemies hit.
   cooldown: 0
-  damage: 10
+  damage: 3
   duration: 5

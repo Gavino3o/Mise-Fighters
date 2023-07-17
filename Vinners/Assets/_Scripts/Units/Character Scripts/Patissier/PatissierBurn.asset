@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: PatissierBurn
   m_EditorClassIdentifier: 
   spellName: Toasted Meringue
-  description: Continuously ignites her enemies in a hortizontal direction.
+  description: Continuously ignites enemies in a horizontal direction.
   cooldown: 5
   damage: 1
   duration: 5
