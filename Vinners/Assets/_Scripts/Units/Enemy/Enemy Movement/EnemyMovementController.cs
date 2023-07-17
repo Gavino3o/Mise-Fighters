@@ -29,6 +29,7 @@ public class EnemyMovementController : NetworkBehaviour
         movementScript.isStopped = false;
     }
 
+    [ObserversRpc]
     public void StartAstarMovement()
     {
         if (movementScript == null)
@@ -39,6 +40,7 @@ public class EnemyMovementController : NetworkBehaviour
         movementScript.isStopped = false;
     }
 
+    [ObserversRpc]
     public void StopAstarMovement()
     {
         if (movementScript == null)
@@ -51,6 +53,8 @@ public class EnemyMovementController : NetworkBehaviour
 
     public void SetMaxMovementSpeed(float speed)
     {
+        if (!IsServer) { return; }
+
         if (movementScript == null)
         {
             Setup();

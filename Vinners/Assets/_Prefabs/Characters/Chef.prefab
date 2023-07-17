@@ -620,6 +620,9 @@ MonoBehaviour:
   dashSpellSoundEffect: {fileID: 8300000, guid: d0d2d7babd195e74fb9749b14c7abf47, type: 3}
   ultimateSpellSoundEffect: {fileID: 8300000, guid: 33484ca726f4a2441b9877e5ec2e3d7c, type: 3}
   blinkDistance: 10
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 2
   stunPrefab: {fileID: 6848911510146320331, guid: 87358b2bea6d41f47bfe0d277051f09e, type: 3}
   julienneSpellPrefab: {fileID: 1327810909067165929, guid: 49bfb66a079275245b01fcb558a09df0, type: 3}
 --- !u!114 &4319138583678300156
