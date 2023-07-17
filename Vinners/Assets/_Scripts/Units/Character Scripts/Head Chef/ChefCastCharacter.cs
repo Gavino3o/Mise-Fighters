@@ -20,8 +20,7 @@ public class ChefCastCharacter : CastCharacter
         {
             StartCoroutine(Cooldown(0));
             characterAnimator.PlaySkill();
-            CastSliceSkill();
-            AudioManager.Instance.PlaySoundEffect(skillSpellSoundEffect);
+            CastSliceSkill();         
             Debug.Log("Spell casted");
         }
         else
@@ -33,18 +32,14 @@ public class ChefCastCharacter : CastCharacter
     [ServerRpc]
     public void CastSliceSkill()
     {
-        // Consider implementing using one slice and using animation destroy.
         Quaternion rotationOffset1 = Quaternion.Euler(0, 0, sliceAngle);
-        Quaternion rotationOffset2 = Quaternion.Euler(0, 0 , -sliceAngle);
         GameObject firstSlice = Instantiate(sliceSpellPrefab, transform.position + transform.up, input.rotation * rotationOffset1);
-        GameObject secondSlice = Instantiate(sliceSpellPrefab, transform.position + transform.up, input.rotation * rotationOffset2);
 
         firstSlice.GetComponent<Lifetime>().lifetime = spellData[0].duration;
-        secondSlice.GetComponent<Lifetime>().lifetime = spellData[0].duration;
         SetupDamager(firstSlice.GetComponent<EnemyDamager>(), 0);
-        SetupDamager(secondSlice.GetComponent<EnemyDamager>(), 0);
         ServerManager.Spawn(firstSlice);
-        ServerManager.Spawn(secondSlice);
+        //ServerManager.Spawn(secondSlice);
+        AudioManager.Instance.PlaySoundEffect(skillSpellSoundEffect);
         Debug.Log($"{spellData[0].spellName} casted");
     }
 
@@ -54,6 +49,7 @@ public class ChefCastCharacter : CastCharacter
     [Header("Blink Skill")]
 
     public float blinkDistance = 10f;
+    [SerializeField] private LayerMask obstacleLayer;
     [SerializeField] private GameObject stunPrefab;
     public void OnDash()
     {
@@ -86,10 +82,8 @@ public class ChefCastCharacter : CastCharacter
     public IEnumerator Blink()
     {
         Vector2 blinkDirection = input.targetDirection;
-        Vector2 rayOffset = blinkDirection * 1.5f; //Origin of ray cannot be within a collider.
-
-        // TODO: Add layering for obstacle layer.
-        RaycastHit2D hit = Physics2D.Raycast((Vector2) transform.position + rayOffset, blinkDirection);
+        
+        RaycastHit2D hit = Physics2D.Raycast((Vector2) transform.position, blinkDirection, blinkDistance, obstacleLayer);
         movement.interrupted = true;
         if (hit.collider == null)
         {
@@ -108,7 +102,12 @@ public class ChefCastCharacter : CastCharacter
             }
             else
             {
-                Vector2 newPosition = (Vector2) transform.position + blinkDirection * (obstacleDistance - 1f);
+                var shortenedBlinkDistance = obstacleDistance - 1f;
+                if (shortenedBlinkDistance <= 0f)
+                {
+                    shortenedBlinkDistance = 0f;
+                } 
+                Vector2 newPosition = (Vector2) transform.position + blinkDirection * (shortenedBlinkDistance);
                 transform.position = newPosition;
                 Debug.Log(obstacleDistance.ToString());
                 Debug.Log("C3");
@@ -131,7 +130,6 @@ public class ChefCastCharacter : CastCharacter
             StartCoroutine(Cooldown(1));
             characterAnimator.PlayUltimate(spellData[2].duration);
             StartCoroutine(Julienne());
-            AudioManager.Instance.PlaySoundEffect(ultimateSpellSoundEffect);
             SpendUltimate(ULT_METER);
         }
         else
@@ -148,6 +146,7 @@ public class ChefCastCharacter : CastCharacter
         SetupDamager(obj.GetComponent<EnemyDamager>(), 2);
         obj.GetComponent<Lifetime>().lifetime = spellData[2].duration;
         ServerManager.Spawn(obj);
+        AudioManager.Instance.PlaySoundEffect(ultimateSpellSoundEffect);
         Debug.Log($"{spellData[2].spellName} casted");
     }
 
