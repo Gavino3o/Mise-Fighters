@@ -6,7 +6,7 @@ using UnityEngine;
 using static Pathfinding.AIDestinationSetter;
 using FishNet.Object;
 
-public class PlayerTargeter : MonoBehaviour
+public class PlayerTargeter : NetworkBehaviour
 {
     private AIDestinationSetter destinationSetter;
     private GameObject targetPlayer;
