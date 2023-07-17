@@ -97,6 +97,7 @@ public class Player : NetworkBehaviour
         controlledCharacter.Revive(Owner);
     }
 
+    [ServerRpc]
     public void CharacterDeath()
     {
         TargetCharacterDied(Owner);
