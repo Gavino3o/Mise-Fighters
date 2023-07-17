@@ -91,10 +91,10 @@ public class Player : NetworkBehaviour
         TargetCharacterSpawned(Owner);
     }
 
+    [ServerRpc]
     public void RespawnCharacter()
-    {
-        
-        controlledCharacter.Revive();
+    {     
+        controlledCharacter.Revive(Owner);
     }
 
     public void CharacterDeath()

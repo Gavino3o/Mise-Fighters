@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.InputSystem;
 using System;
+using FishNet.Connection;
 
 /*
  * Should contain centralised references to all other components;
@@ -68,7 +69,8 @@ public class Character : Unit
     /*
      * Reenables player input and revives the character with full health
      */
-    public void Revive()
+    [TargetRpc]
+    public void Revive(NetworkConnection conn)
     {
         ServerRevive();
     }
