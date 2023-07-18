@@ -114,11 +114,15 @@ public sealed class GameManager : NetworkBehaviour
         currentScene++;
         ChangeScene(currentScene);
 
-        for (int i = 0; i < players.Count; i++)
-        {
-            players[i].EnterNextScene();
-        }
+        ObserversEnteredNextScene();
     }
+
+    [ObserversRpc]
+    public void ObserversEnteredNextScene()
+    {
+        Player.LocalInstance.EnterNextScene();
+    }
+
 
     [Server]
     public void Victory()
