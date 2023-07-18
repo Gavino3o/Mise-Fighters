@@ -10,10 +10,17 @@ public class UIManager : NetworkBehaviour
     [SerializeField] private View[] views;
 
 
+    private void Start()
+    {
+
+    }
+
     public override void OnStartClient()
     {
         base.OnStartClient();
-        LocalInstance = this;
+        if (LocalInstance == null) LocalInstance = this;
+        else Destroy(this);
+
     }
 
     public void Initialise()
