@@ -25,10 +25,15 @@ public sealed class GameManager : NetworkBehaviour
     [SyncVar] public int playerCount;
 
     [Header("Scene Names")]
-    public string startScene;
+    public string[] sceneNames;
+
+    private int currentScene;
+    
+    /*public string startScene;
     public string stageOne;
     public string stageTwo;
     public string stageThree;
+    */
     
     private void Awake()
     {
@@ -37,7 +42,6 @@ public sealed class GameManager : NetworkBehaviour
 
     /*
      * Track if all Players are locked in.
-     * TODO: Likely just for current build, might have more update functions that could be acstracted out in the future.
      */
     private void Update()
     {
@@ -58,8 +62,8 @@ public sealed class GameManager : NetworkBehaviour
         // then we just use those player objects to spawn their characters
 
         // Both this is hardcoded. Change in the future
-        ChangeScene("KitchenScene");
-        Vector3 spawnPoint = new Vector3(34, 20, 0);
+        ChangeScene(0);
+        Vector3 spawnPoint = new(34, 20, 0);
 
         int rand = Random.Range(2, 5);
         AudioManager.Instance.ObserversPlayBackgroundMusic(rand, true);
@@ -74,9 +78,15 @@ public sealed class GameManager : NetworkBehaviour
      * Changes the scene and brings all owned objects with it
      */
     [Server]
-    public void ChangeScene(string sceneName)
+    public void ChangeScene(int stage)
     {
-        SceneLoadData sld = new(sceneName);
+        currentScene = stage;
+        if (sceneNames[stage] == null)
+        {
+            Victory();
+        }
+
+        SceneLoadData sld = new(sceneNames[stage]);
         List<NetworkObject> movedObjects = new();
         foreach (NetworkConnection item in InstanceFinder.ServerManager.Clients.Values)
         {
@@ -87,6 +97,37 @@ public sealed class GameManager : NetworkBehaviour
         sld.MovedNetworkObjects = movedObjects.ToArray();
         sld.ReplaceScenes = ReplaceOption.All;
         InstanceFinder.SceneManager.LoadGlobalScenes(sld);
+    }
+
+    [Server]
+    public void StageClear()
+    {
+        for (int i = 0; i < players.Count; i++)
+        {
+            players[i].StageCleared();
+        }
+    }
+
+    [Server]
+    public void LoadNextScene()
+    {
+        currentScene++;
+        ChangeScene(currentScene);
+
+        ObserversEnteredNextScene();
+    }
+
+    [ObserversRpc]
+    public void ObserversEnteredNextScene()
+    {
+        Player.LocalInstance.EnterNextScene();
+    }
+
+
+    [Server]
+    public void Victory()
+    {
+        // win!
     }
 
 }

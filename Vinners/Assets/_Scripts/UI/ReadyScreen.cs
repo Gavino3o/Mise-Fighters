@@ -25,7 +25,7 @@ public class ReadyScreen : View
             if (startGameButton != null) startGameButton.gameObject.SetActive(true);
 
             startGameButton.onClick.AddListener(() => {
-                GameManager.Instance.StartGame();
+                GameManager.Instance.LoadNextScene();
             });
 
         }

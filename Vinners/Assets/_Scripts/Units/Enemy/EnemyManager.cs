@@ -7,7 +7,7 @@ using FishNet.Object.Synchronizing;
 
 public sealed class EnemyManager : NetworkBehaviour
 {
-    private int enemyDeathCount;
+    public int enemyDeathCount;
    
     public static EnemyManager Instance { get; private set; }
 
