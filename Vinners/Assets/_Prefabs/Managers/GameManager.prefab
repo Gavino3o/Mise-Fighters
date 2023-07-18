@@ -51,8 +51,8 @@ MonoBehaviour:
   canStart: 0
   playerCount: 0
   sceneNames:
-  - AlvinScene
   - KitchenScene
+  - AlvinScene
 --- !u!114 &2512929587187230282
 MonoBehaviour:
   m_ObjectHideFlags: 0
