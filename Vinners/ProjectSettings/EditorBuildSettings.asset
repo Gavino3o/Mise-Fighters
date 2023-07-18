@@ -12,9 +12,15 @@ EditorBuildSettings:
     path: Assets/_Scenes/CharacterSelect.unity
     guid: 51b08ee6f337daf46a9ec1fb8db1f63d
   - enabled: 1
+    path: Assets/_Scenes/AlvinScene.unity
+    guid: 08ce493374d2a384cb2c1ee5a0445d70
+  - enabled: 1
     path: Assets/_Scenes/KitchenScene.unity
     guid: 947f7221f82e7cc4cbcc04043e411f5f
   - enabled: 1
-    path: Assets/_Scenes/AlvinScene.unity
-    guid: 08ce493374d2a384cb2c1ee5a0445d70
+    path: Assets/_Scenes/MarketScene.unity
+    guid: 37bbe8f32908d154fa652fe85ed2bd79
+  - enabled: 1
+    path: Assets/_Scenes/IngredientBossScene.unity
+    guid: 50c17dd7b555ea542895bdbe3c5ded94
   m_configObjects: {}

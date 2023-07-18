@@ -24,6 +24,10 @@ public sealed class GameManager : NetworkBehaviour
 
     [SyncVar] public int playerCount;
 
+    private Vector3 kitchenSpawnLocation = new Vector3(34, 20, 0);
+    private Vector3 marketSpawnLocation = new Vector3(24, 22, 0);
+    private Vector3 bossSpawnLocation = new Vector3(6, 21, 0);
+
     [Header("Scene Names")]
     public string[] sceneNames;
 

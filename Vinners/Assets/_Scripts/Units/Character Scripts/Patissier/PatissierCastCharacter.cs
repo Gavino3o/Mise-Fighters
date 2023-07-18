@@ -91,7 +91,7 @@ public class PatissierCastCharacter : CastCharacter
         SetupDamager(obj.GetComponent<EnemyDamager>(), 1);
         obj.GetComponent<Lifetime>().lifetime = spellData[1].duration;
         var skillFollowPlayer = obj.GetComponent<SkillFollowPlayer>();
-        skillFollowPlayer.player = gameObject;
+        skillFollowPlayer.player = this.gameObject;
         ServerManager.Spawn(obj);
         AudioManager.Instance.PlaySoundEffect(dashSpellSoundEffect);
         Debug.Log($"{spellData[1].spellName} casted");
