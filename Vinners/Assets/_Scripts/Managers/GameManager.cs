@@ -24,6 +24,10 @@ public sealed class GameManager : NetworkBehaviour
 
     [SyncVar] public int playerCount;
 
+    private Vector3 kitchenSpawnLocation = new Vector3(34, 20, 0);
+    private Vector3 marketSpawnLocation = new Vector3(24, 22, 0);
+    private Vector3 bossSpawnLocation = new Vector3(6, 21, 0);
+
     [Header("Scene Names")]
     public string startScene;
     public string stageOne;
@@ -58,8 +62,8 @@ public sealed class GameManager : NetworkBehaviour
         // then we just use those player objects to spawn their characters
 
         // Both this is hardcoded. Change in the future
-        ChangeScene("IngredientBossScene");
-        Vector3 spawnPoint = new Vector3(6, 21, 0);
+        ChangeScene("KitchenScene");
+        Vector3 spawnPoint = kitchenSpawnLocation;
 
         int rand = Random.Range(2, 5);
         AudioManager.Instance.ObserversPlayBackgroundMusic(rand, true);
