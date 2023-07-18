@@ -58,8 +58,8 @@ public sealed class GameManager : NetworkBehaviour
         // then we just use those player objects to spawn their characters
 
         // Both this is hardcoded. Change in the future
-        ChangeScene("KitchenScene");
-        Vector3 spawnPoint = new Vector3(34, 20, 0);
+        ChangeScene("IngredientBossScene");
+        Vector3 spawnPoint = new Vector3(6, 21, 0);
 
         int rand = Random.Range(2, 5);
         AudioManager.Instance.ObserversPlayBackgroundMusic(rand, true);
