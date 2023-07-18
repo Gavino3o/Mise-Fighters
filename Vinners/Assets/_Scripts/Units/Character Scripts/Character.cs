@@ -62,8 +62,15 @@ public class Character : Unit
      */
     public void Revive()
     {
-        TakeDamage(baseStats.maxHealth * - 0.5f);
+        ServerRevive();
         GetComponent<PlayerInput>().ActivateInput();
         attacker.canAttack = true;
     }
+
+    [ServerRpc]
+    private void ServerRevive()
+    {
+        TakeDamage(baseStats.maxHealth * -0.5f);
+    }
+    
 }
