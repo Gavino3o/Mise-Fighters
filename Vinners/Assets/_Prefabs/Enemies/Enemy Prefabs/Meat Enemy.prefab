@@ -128,7 +128,7 @@ MonoBehaviour:
   maxHealth: 20
   attackRange: 8
   maxScoreBonus: 8
-  isBoss: 0
+  canMove: 1
   canTeleport: 0
   deathEffect: {fileID: 0}
   scorePopUp: {fileID: 0}
@@ -278,6 +278,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf604fded9e665e44add54a4d7e18617, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _componentIndexCache: 255
+  _addedNetworkObject: {fileID: 6001219059347570186}
+  _networkObjectCache: {fileID: 0}
 --- !u!114 &6001219059347570187
 MonoBehaviour:
   m_ObjectHideFlags: 0
