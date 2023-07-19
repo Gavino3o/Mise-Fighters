@@ -31,7 +31,7 @@ public class ButcherCastCharacter : CastCharacter
         NetworkObject obj = Instantiate(tauntSpellPrefab, transform);
         SetupDamager(obj.GetComponent<EnemyDamager>(), 0);
         obj.GetComponent<Lifetime>().lifetime = spellData[0].duration;
-        obj.GetComponent<Taunter>().target = gameObject;
+        obj.GetComponent<Taunter>().target = character.gameObject;
         ServerManager.Spawn(obj);
         AudioManager.Instance.PlaySoundEffect(skillSpellSoundEffect);
         Debug.Log($"{spellData[0].spellName} casted");

@@ -119,9 +119,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8cac635f24954048aad3a6ff9110beb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 255
+  _componentIndexCache: 1
   _addedNetworkObject: {fileID: 5681926344258742825}
-  _networkObjectCache: {fileID: 0}
+  _networkObjectCache: {fileID: 5681926344258742825}
   IgnoredParameters: []
   _animator: {fileID: 13259927677542606}
   _smoothFloats: 1
@@ -143,7 +143,7 @@ GameObject:
   - component: {fileID: -7837863084922600633}
   - component: {fileID: 8592591217138531861}
   m_Layer: 0
-  m_Name: ChefStunCircle
+  m_Name: ChefSlowCircle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -198,6 +198,7 @@ MonoBehaviour:
   <PredictedSpawn>k__BackingField: {fileID: 0}
   _networkBehaviours:
   - {fileID: -3039632337467576896}
+  - {fileID: 7457864999615565386}
   <ParentNetworkObject>k__BackingField: {fileID: 0}
   <ChildNetworkObjects>k__BackingField: []
   _isNetworked: 1
@@ -205,11 +206,11 @@ MonoBehaviour:
   _initializeOrder: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 19
+  <PrefabId>k__BackingField: 7
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 0
   <SceneId>k__BackingField: 0
-  <AssetPathHash>k__BackingField: 10978165898011621941
+  <AssetPathHash>k__BackingField: 1915549721586364991
   _sceneNetworkObjects: []
 --- !u!114 &-3039632337467576896
 MonoBehaviour:

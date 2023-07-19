@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   effectName: BlowTorch Burn
   effectCode: 6
-  durationSeconds: 6.5
+  durationSeconds: 3
   damageOverTime: 1.5
   attackMultiplier: 1
   moveSpeedMultiplier: 1

@@ -52,7 +52,8 @@ MonoBehaviour:
   playerCount: 0
   sceneNames:
   - KitchenScene
-  - AlvinScene
+  - MarketScene
+  - SpaghettiBossScene
 --- !u!114 &2512929587187230282
 MonoBehaviour:
   m_ObjectHideFlags: 0

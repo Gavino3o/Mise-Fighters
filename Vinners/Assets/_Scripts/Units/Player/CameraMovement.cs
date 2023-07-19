@@ -22,6 +22,9 @@ public class CameraMovement : NetworkBehaviour
         if (base.IsOwner)
         {
             playerCamera = Camera.main;
+            playerCamera.orthographic = true;
+
+            playerCamera.orthographicSize = 6.5f;
         }
         else
         {

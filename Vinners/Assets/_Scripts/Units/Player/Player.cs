@@ -87,13 +87,16 @@ public class Player : NetworkBehaviour
 
     public void StageCleared()
     {
+        controlledCharacter.isInvicible = true;
         TargetStageClear(Owner);
     }
 
 
-    public void EnterNextScene()
+    public void EnterNextScene(Vector3 spawnPoint)
     {
         // reset position to middle of stage or set some spawnpoints
+        controlledCharacter.isInvicible = false;
+        controlledCharacter.transform.position = spawnPoint;
 
         RespawnCharacter();
     }

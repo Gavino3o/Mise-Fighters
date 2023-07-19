@@ -24,9 +24,8 @@ public sealed class GameManager : NetworkBehaviour
 
     [SyncVar] public int playerCount;
 
-    private Vector3 kitchenSpawnLocation = new Vector3(34, 20, 0);
-    private Vector3 marketSpawnLocation = new Vector3(24, 22, 0);
-    private Vector3 bossSpawnLocation = new Vector3(6, 21, 0);
+    private Vector3[] spawnPoints = {new Vector3(34, 20, 0), new Vector3(24, 22, 0), new Vector3(6, 21, 0) };
+
 
     [Header("Scene Names")]
     public string[] sceneNames;
@@ -67,7 +66,7 @@ public sealed class GameManager : NetworkBehaviour
 
         // Both this is hardcoded. Change in the future
         ChangeScene(0);
-        Vector3 spawnPoint = new(34, 20, 0);
+        Vector3 spawnPoint = spawnPoints[0];
 
         int rand = Random.Range(2, 5);
         AudioManager.Instance.ObserversPlayBackgroundMusic(rand, true);
@@ -124,7 +123,7 @@ public sealed class GameManager : NetworkBehaviour
     [ObserversRpc]
     public void ObserversEnteredNextScene()
     {
-        Player.LocalInstance.EnterNextScene();
+        Player.LocalInstance.EnterNextScene(spawnPoints[currentScene]);
     }
 
 

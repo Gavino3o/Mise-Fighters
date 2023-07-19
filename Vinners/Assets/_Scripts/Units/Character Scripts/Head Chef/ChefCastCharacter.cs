@@ -33,7 +33,7 @@ public class ChefCastCharacter : CastCharacter
     public void CastSliceSkill()
     {
         Quaternion rotationOffset1 = Quaternion.Euler(0, 0, sliceAngle);
-        GameObject firstSlice = Instantiate(sliceSpellPrefab, transform.position + transform.up, input.rotation * rotationOffset1);
+        GameObject firstSlice = Instantiate(sliceSpellPrefab, transform.position + transform.up, input.rotation);
 
         firstSlice.GetComponent<Lifetime>().lifetime = spellData[0].duration;
         SetupDamager(firstSlice.GetComponent<EnemyDamager>(), 0);

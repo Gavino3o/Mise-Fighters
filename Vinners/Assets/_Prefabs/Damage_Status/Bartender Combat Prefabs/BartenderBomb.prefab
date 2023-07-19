@@ -240,7 +240,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sed:
-  - {fileID: 11400000, guid: 2c9cc8f9028ec3e46afcd121577eb42b, type: 2}
   - {fileID: 11400000, guid: 532713dbe22142448bb0dc5654cd1bf2, type: 2}
 --- !u!114 &2983890739566527849
 MonoBehaviour:
