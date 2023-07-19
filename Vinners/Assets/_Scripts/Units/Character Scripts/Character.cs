@@ -51,6 +51,8 @@ public class Character : Unit
     public override void OnDeath()
     {
         if (currHealth > 0) return;
+        GameManager.Instance.DecrementLives();
+        isInvicible = true;
         controllingPlayer.CharacterDeath();
         GetComponent<PlayerInput>().DeactivateInput();
         attacker.canAttack = false;
@@ -62,6 +64,7 @@ public class Character : Unit
      */
     public void Revive()
     {
+        
         ServerRevive();
         GetComponent<PlayerInput>().ActivateInput();
         attacker.canAttack = true;
@@ -70,7 +73,8 @@ public class Character : Unit
     [ServerRpc]
     private void ServerRevive()
     {
-        TakeDamage(baseStats.maxHealth * -0.5f);
+        isInvicible = false;
+        TakeDamage(baseStats.maxHealth * -0.75f);
     }
     
 }

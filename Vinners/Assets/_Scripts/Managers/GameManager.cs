@@ -17,6 +17,8 @@ public sealed class GameManager : NetworkBehaviour
 {
     public static GameManager Instance { get; private set; }
 
+    public int livesTotal;
+
     // List of players currently in the game
     [SyncObject] public readonly SyncList<Player> players = new();
  
@@ -54,6 +56,17 @@ public sealed class GameManager : NetworkBehaviour
         
     }
 
+    private void Start()
+    {
+        livesTotal = 6;
+    }
+
+    [ObserversRpc]
+    public void DecrementLives()
+    {
+        livesTotal--;
+    }
+
     /*
      * Starts the Game for all Players.
      */
@@ -61,6 +74,7 @@ public sealed class GameManager : NetworkBehaviour
     public void StartGame()
     {
         if (!canStart) return;
+
         // change scene maybe change scene global should bring all players with it.
         // then we just use those player objects to spawn their characters
 

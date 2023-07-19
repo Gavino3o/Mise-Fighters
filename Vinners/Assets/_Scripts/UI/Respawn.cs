@@ -8,15 +8,26 @@ using TMPro;
 public class Respawn : View
 {
 
-    [SerializeField] private Button dummyRespawnButton;
+    [SerializeField] private Button respawnButton;
+
+    public TextMeshProUGUI remainingLives;
 
     public override void Initialise()
     {
         base.Initialise();
 
-        dummyRespawnButton.onClick.AddListener(() =>
+        respawnButton.onClick.AddListener(() =>
         {
             Player.LocalInstance.RespawnCharacter(); 
         });
     }
+
+    private void Update()
+    {
+        if (!Initialised) return;
+        respawnButton.interactable = (GameManager.Instance.livesTotal > 0);
+        remainingLives.text = "Lives Left:" + GameManager.Instance.livesTotal.ToString();
+        
+    }
+
 }

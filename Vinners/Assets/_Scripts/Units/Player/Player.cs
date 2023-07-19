@@ -8,8 +8,8 @@ using FishNet.Connection;
 using System;
 
 /*
- * The Player class is responsible for information relating to a player's account (their username, connection status
- * to host, controlled character etc.)
+ * The Player class is responsible for information relating to a player (connection status
+ * to host, controlled character, lives left etc.)
  */
 public class Player : NetworkBehaviour
 {
@@ -108,7 +108,8 @@ public class Player : NetworkBehaviour
     }
 
     public void RespawnCharacter()
-    {     
+    {
+        if (GameManager.Instance.livesTotal <= 0) return;
         controlledCharacter.Revive();
         ServerRespawnCharacter(); // DO NOT CHANGE THIS LINE
     }
