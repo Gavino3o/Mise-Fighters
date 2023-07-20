@@ -51,8 +51,8 @@ MonoBehaviour:
   canStart: 0
   playerCount: 0
   sceneNames:
-  - KitchenScene
   - SpaghettiBossScene
+  - KitchenScene
   - AlvinScene
 --- !u!114 &2512929587187230282
 MonoBehaviour:

@@ -21,7 +21,7 @@ public sealed class EnemyManager : NetworkBehaviour
     {
         base.OnStartServer();
         enemyDeathCount = 0;
-        isBossAlive = false;
+        isBossAlive = true;
     }
 
     public void IncrementDeathCount()

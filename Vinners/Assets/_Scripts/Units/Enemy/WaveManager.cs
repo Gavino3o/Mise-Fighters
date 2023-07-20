@@ -71,6 +71,7 @@ public sealed class WaveManager : NetworkBehaviour
             if (currentWaveIndex < waveDatas.Length)
             {
                 EnemyManager.Instance.ResetDeathCount();
+                EnemyManager.Instance.SetBossAliveStatus(true);
                 currentWaveData = waveDatas[currentWaveIndex];
                 currentSpawnerPrefab = currentWaveData.enemySpawnerPrefab;
                 currentEnemySpawner = currentSpawnerPrefab.GetComponent<EnemySpawner>();
@@ -104,15 +105,16 @@ public sealed class WaveManager : NetworkBehaviour
         if (!currentWaveData.isBossWave)
         {
             bool cond1 = EnemyManager.Instance.GetEnemyDeathCount() >= currentEnemySpawner.GetMaxSpawnCount();
-            bool cond2 = !currentEnemySpawner.isSpawnerActive();
+            bool cond2 = !currentEnemySpawner.IsSpawnerActive();
             return cond1 && cond2;
         } 
         else
         {
             bool cond1 = EnemyManager.Instance.GetEnemyDeathCount() >= currentEnemySpawner.GetMaxSpawnCount();
-            bool cond2 = !currentEnemySpawner.isSpawnerActive();
+            bool cond2 = !currentEnemySpawner.IsSpawnerActive();
             bool cond3 = !EnemyManager.Instance.isWaveBossAlive();
 
+            Debug.Log("Condition 3 hit? : " + cond3.ToString());
             return cond1 && cond2 && cond3;
         }
 

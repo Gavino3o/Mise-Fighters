@@ -60,6 +60,7 @@ public class EnemySpawner : NetworkBehaviour
 
     public void SpawnBosses()
     {
+        if (!IsServer) return;
         int numOfBosses = enemySpawnerData.bossPrefabs.Length;
 
         for (int i = 0; i < numOfBosses; i++)
@@ -74,6 +75,7 @@ public class EnemySpawner : NetworkBehaviour
         EnemyManager.Instance.SetBossAliveStatus(true);
         DeactivateSpawnner();
         Debug.Log("Deactivating Spawner: " + isActive.ToString());
+        Debug.Log("Boss Alive?: " + EnemyManager.Instance.isWaveBossAlive().ToString());
     }
 
     public void ActivateSpawnner()
@@ -107,7 +109,7 @@ public class EnemySpawner : NetworkBehaviour
         return enemySpawnerData.enemiesToSpawn;
     }
 
-    public bool isSpawnerActive()
+    public bool IsSpawnerActive()
     {
         return this.isActive;
     }
