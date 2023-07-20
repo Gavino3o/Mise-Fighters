@@ -28,6 +28,10 @@ public class SpaghettiBossAttacks : NetworkBehaviour
     [SerializeField] private int maxTomatoBombs;
     [SerializeField] private int maxMeatballComets;
 
+    [SerializeField] private float shootTomatoCooldown;
+    [SerializeField] private float meatballCometCooldown;
+    [SerializeField] private float tomatoBombCooldown;
+
     public enum Direction
     {
         Horizontal = 1, Vertical = 2
@@ -40,9 +44,9 @@ public class SpaghettiBossAttacks : NetworkBehaviour
         playerTargeter = gameObject.GetComponent<PlayerTargeter>();
         rb = gameObject.GetComponent<Rigidbody2D>();
 
-        InvokeRepeating(nameof(ShootTomato), 5, 5);
-        InvokeRepeating(nameof(SpawnMeatballComets), 5, 5);
-        InvokeRepeating(nameof(SummonTomatoBombs), 5, 5);
+        InvokeRepeating(nameof(ShootTomato), 5, shootTomatoCooldown);
+        InvokeRepeating(nameof(SpawnMeatballComets), 5, meatballCometCooldown);
+        InvokeRepeating(nameof(SummonTomatoBombs), 5, tomatoBombCooldown);
         Debug.Log("Invoked everything");
     }
 
@@ -116,8 +120,8 @@ public class SpaghettiBossAttacks : NetworkBehaviour
     private void SummonTomatoBombs()
     {
         if (!IsServer) return;
-        System.Random rng = new System.Random();
-        var numOfTomato = rng.Next(1, maxTomatoBombs);
+        
+        var numOfTomato = UnityEngine.Random.Range(1, maxTomatoBombs + 1);
 
         for (int i = 0; i < numOfTomato; i++)
         {
