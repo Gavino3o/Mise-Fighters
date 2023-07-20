@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 6668610948571743968}
   - component: {fileID: 6897538778518810386}
   m_Layer: 0
-  m_Name: Meatball Projectile
+  m_Name: Tomato Projectile
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -54,8 +54,8 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 1965754883973309892}
   _networkObjectCache: {fileID: 1965754883973309892}
   damage: 3
-  maxLifeTime: 10
-  speed: 7
+  maxLifeTime: 8
+  speed: 5
   targetPosition: {x: 0, y: 0, z: 0}
 --- !u!114 &1965754883973309892
 MonoBehaviour:
@@ -82,11 +82,11 @@ MonoBehaviour:
   _initializeOrder: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 37
+  <PrefabId>k__BackingField: 33
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 0
   <SceneId>k__BackingField: 0
-  <AssetPathHash>k__BackingField: 14078256778413122971
+  <AssetPathHash>k__BackingField: 10211059430794866027
   _sceneNetworkObjects:
   - {fileID: 1965754883973309892}
   - {fileID: 0}
@@ -176,7 +176,7 @@ SpriteRenderer:
   m_SortingLayerID: -473647291
   m_SortingLayer: 1
   m_SortingOrder: 2
-  m_Sprite: {fileID: 21300000, guid: 5905ab035fe775d41b5326b9acebdb98, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 37125b39feeb39e4e86338ee5c137644, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

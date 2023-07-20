@@ -21,8 +21,10 @@ public class SpaghettiBossAttacks : NetworkBehaviour
     private int[] yRange = new int[] { 0, 26 };
 
     [SerializeField] private GameObject tomatoBombPrefab;
+    [SerializeField] private GameObject tomatoProjectilePrefab;
     [SerializeField] private GameObject meatballPrefab;
     [SerializeField] private AudioClip meatballSoundEffect;
+    [SerializeField] private AudioClip tomatoProjectileSoundEffect;
     [SerializeField] private int maxTomatoBombs;
     [SerializeField] private int maxMeatballComets;
 
@@ -38,28 +40,30 @@ public class SpaghettiBossAttacks : NetworkBehaviour
         playerTargeter = gameObject.GetComponent<PlayerTargeter>();
         rb = gameObject.GetComponent<Rigidbody2D>();
 
-        InvokeRepeating(nameof(ShootMeatball), 5, 5);
+        InvokeRepeating(nameof(ShootTomato), 5, 5);
         InvokeRepeating(nameof(SpawnMeatballComets), 5, 5);
         InvokeRepeating(nameof(SummonTomatoBombs), 5, 5);
         Debug.Log("Invoked everything");
     }
 
-    private void ShootMeatball()
+    private void ShootTomato()
     {
         if (!IsServer) return;
-        var projectile = Instantiate(meatballPrefab, transform.position, Quaternion.identity);
+        var projectile = Instantiate(tomatoProjectilePrefab, transform.position, Quaternion.identity);
 
         if (projectile.GetComponent<EnemyStraightProjectile>() != null)
         {
             projectile.GetComponent<EnemyStraightProjectile>().targetPosition = playerTargeter.GetCurrentTargetPlayer().transform.position;
         }
-
-        AudioManager.Instance.PlaySoundEffect(meatballSoundEffect);
+        projectile.GetComponent<CharacterDamager>().damage = enemyAI.currAttack;
+        projectile.GetComponent<Lifetime>().lifetime = 8;
+        AudioManager.Instance.PlaySoundEffect(tomatoProjectileSoundEffect);
         ServerManager.Spawn(projectile);
     }
 
     private void SpawnMeatballComets()
     {
+        if (!IsServer) return;
         int numOfComets = UnityEngine.Random.Range(1, maxMeatballComets + 1);
         Array values = Enum.GetValues(typeof(Direction));
         System.Random rng = new System.Random();
@@ -82,8 +86,9 @@ public class SpaghettiBossAttacks : NetworkBehaviour
                     var horizontalProjectile = Instantiate(meatballPrefab, spawnLocation, Quaternion.identity);
 
                     horizontalProjectile.GetComponent<EnemyStraightProjectile>().targetPosition = new Vector3(xRange[oppXIndex], yCoord);
-
-                    AudioManager.Instance.PlaySoundEffect(meatballSoundEffect);                  
+                    horizontalProjectile.GetComponent<CharacterDamager>().damage = enemyAI.currAttack;
+                    horizontalProjectile.GetComponent<Lifetime>().lifetime = 10;
+                
                     ServerManager.Spawn(horizontalProjectile);
                 }
                 break;
@@ -98,16 +103,19 @@ public class SpaghettiBossAttacks : NetworkBehaviour
                     var verticalProjectile = Instantiate(meatballPrefab, spawnLocation, Quaternion.identity);
 
                     verticalProjectile.GetComponent<EnemyStraightProjectile>().targetPosition = new Vector3(xCoord, yRange[oopYIndex]);
-
-                    AudioManager.Instance.PlaySoundEffect(meatballSoundEffect);
+                    verticalProjectile.GetComponent<CharacterDamager>().damage = enemyAI.currAttack;
+                    verticalProjectile.GetComponent<Lifetime>().lifetime = 10;
+                    
                     ServerManager.Spawn(verticalProjectile);
                 }
                 break;
         }
+        AudioManager.Instance.PlaySoundEffect(meatballSoundEffect);
     }
 
     private void SummonTomatoBombs()
     {
+        if (!IsServer) return;
         System.Random rng = new System.Random();
         var numOfTomato = rng.Next(1, maxTomatoBombs);
 

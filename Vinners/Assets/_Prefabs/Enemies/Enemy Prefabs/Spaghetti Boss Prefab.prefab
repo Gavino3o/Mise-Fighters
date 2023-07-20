@@ -347,7 +347,9 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 7119554722637575329}
   _networkObjectCache: {fileID: 7119554722637575329}
   tomatoBombPrefab: {fileID: 6001219059347570189, guid: 2b1ff3ea4a359594cb314b264a8c2a6e, type: 3}
+  tomatoProjectilePrefab: {fileID: 1324420992794764313, guid: 22472f7923d6b0343ae011692b7e392f, type: 3}
   meatballPrefab: {fileID: 1324420992794764313, guid: e511bdca0d51a784cb221e710495ab4d, type: 3}
-  meatballSoundEffect: {fileID: 8300000, guid: bb5fbd1813c1d3e449632c58d9d75f73, type: 3}
+  meatballSoundEffect: {fileID: 8300000, guid: 371031a6ea475934b8deb8720fe99b2e, type: 3}
+  tomatoProjectileSoundEffect: {fileID: 8300000, guid: 17a1762af948f124fbf837df6595d75e, type: 3}
   maxTomatoBombs: 5
   maxMeatballComets: 3
