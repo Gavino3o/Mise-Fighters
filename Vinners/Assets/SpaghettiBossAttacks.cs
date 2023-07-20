@@ -121,7 +121,9 @@ public class SpaghettiBossAttacks : NetworkBehaviour
 
         for (int i = 0; i < numOfTomato; i++)
         {
-            var tomato = Instantiate(tomatoBombPrefab, transform.position, Quaternion.identity);
+            var position = new Vector3(UnityEngine.Random.Range(transform.position.x - 5, transform.position.x + 5),
+                UnityEngine.Random.Range(transform.position.y - 5, transform.position.y + 5));
+            var tomato = Instantiate(tomatoBombPrefab, position, Quaternion.identity);
             ServerManager.Spawn(tomato);
         }
     }
