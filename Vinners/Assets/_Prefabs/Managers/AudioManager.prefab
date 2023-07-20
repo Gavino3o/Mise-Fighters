@@ -78,6 +78,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 9ff68a9c42153ef4eadb38d7ab63a577, type: 3}
   - {fileID: 8300000, guid: 9f2a0abede0c4d24d83b90c1f03e51ef, type: 3}
   - {fileID: 8300000, guid: f236f2a6004c3b94e863ea23809cc410, type: 3}
+  - {fileID: 8300000, guid: bb5fbd1813c1d3e449632c58d9d75f73, type: 3}
   backgroundMusicVolume: 1
   gameVolume: 1
   backgroundMusicPitch: 1
@@ -107,7 +108,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 32
+  <PrefabId>k__BackingField: 29
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 2571393946
   <SceneId>k__BackingField: 0

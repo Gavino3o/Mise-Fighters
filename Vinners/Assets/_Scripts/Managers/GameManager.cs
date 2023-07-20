@@ -67,7 +67,7 @@ public sealed class GameManager : NetworkBehaviour
 
         // Both this is hardcoded. Change in the future
         ChangeScene(0);
-        Vector3 spawnPoint = new(34, 20, 0);
+        Vector3 spawnPoint = kitchenSpawnLocation;
 
         int rand = Random.Range(2, 5);
         AudioManager.Instance.ObserversPlayBackgroundMusic(rand, true);

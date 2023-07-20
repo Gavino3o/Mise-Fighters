@@ -23,7 +23,6 @@ public class SpaghettiBossAttacks : NetworkBehaviour
     [SerializeField] private GameObject tomatoBombPrefab;
     [SerializeField] private GameObject meatballPrefab;
     [SerializeField] private AudioClip meatballSoundEffect;
-    [SerializeField] private float meatballAttackLifeTime;
     [SerializeField] private int maxTomatoBombs;
     [SerializeField] private int maxMeatballComets;
 
@@ -39,9 +38,10 @@ public class SpaghettiBossAttacks : NetworkBehaviour
         playerTargeter = gameObject.GetComponent<PlayerTargeter>();
         rb = gameObject.GetComponent<Rigidbody2D>();
 
-        InvokeRepeating(nameof(ShootMeatball), 10, 10);
-        InvokeRepeating(nameof(SpawnMeatballComets), 10, 10);
-        InvokeRepeating(nameof(SummonTomatoBombs), 10, 10);
+        InvokeRepeating(nameof(ShootMeatball), 5, 5);
+        InvokeRepeating(nameof(SpawnMeatballComets), 5, 5);
+        InvokeRepeating(nameof(SummonTomatoBombs), 5, 5);
+        Debug.Log("Invoked everything");
     }
 
     private void ShootMeatball()
@@ -55,8 +55,6 @@ public class SpaghettiBossAttacks : NetworkBehaviour
         }
 
         AudioManager.Instance.PlaySoundEffect(meatballSoundEffect);
-        projectile.GetComponent<CharacterDamager>().damage = enemyAI.currAttack;
-        projectile.GetComponent<Lifetime>().lifetime = meatballAttackLifeTime;
         ServerManager.Spawn(projectile);
     }
 
@@ -76,26 +74,32 @@ public class SpaghettiBossAttacks : NetworkBehaviour
             case Direction.Horizontal:
                 for (int i = 0; i < numOfComets; i++)
                 {
-                    xCoord = xRange[rng.Next(0, xRange.Length)];
+                    var xIndex = rng.Next(0, xRange.Length);
+                    var oppXIndex = xIndex == 0 ? 1 : 0;
+                    xCoord = xRange[xIndex];
                     yCoord = rng.Next(arenaMinY, arenaMaxY);
                     spawnLocation = new Vector3(xCoord, yCoord);
                     var horizontalProjectile = Instantiate(meatballPrefab, spawnLocation, Quaternion.identity);
-                    AudioManager.Instance.PlaySoundEffect(meatballSoundEffect);
-                    horizontalProjectile.GetComponent<CharacterDamager>().damage = enemyAI.currAttack;
-                    horizontalProjectile.GetComponent<Lifetime>().lifetime = meatballAttackLifeTime;
+
+                    horizontalProjectile.GetComponent<EnemyStraightProjectile>().targetPosition = new Vector3(xRange[oppXIndex], yCoord);
+
+                    AudioManager.Instance.PlaySoundEffect(meatballSoundEffect);                  
                     ServerManager.Spawn(horizontalProjectile);
                 }
                 break;
             case Direction.Vertical:
                 for (int i = 0; i < numOfComets; i++)
                 {
+                    var yIndex = rng.Next(0, yRange.Length);
+                    var oopYIndex = yIndex == 0 ? 1 : 0;
                     xCoord = rng.Next(arenaMinX, arenaMaxX);
-                    yCoord = yRange[rng.Next(0, yRange.Length)];
+                    yCoord = yRange[yIndex];
                     spawnLocation = new Vector3(xCoord, yCoord);
                     var verticalProjectile = Instantiate(meatballPrefab, spawnLocation, Quaternion.identity);
+
+                    verticalProjectile.GetComponent<EnemyStraightProjectile>().targetPosition = new Vector3(xCoord, yRange[oopYIndex]);
+
                     AudioManager.Instance.PlaySoundEffect(meatballSoundEffect);
-                    verticalProjectile.GetComponent<CharacterDamager>().damage = enemyAI.currAttack;
-                    verticalProjectile.GetComponent<Lifetime>().lifetime = meatballAttackLifeTime;
                     ServerManager.Spawn(verticalProjectile);
                 }
                 break;
