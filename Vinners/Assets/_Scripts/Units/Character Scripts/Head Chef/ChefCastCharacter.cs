@@ -115,7 +115,7 @@ public class ChefCastCharacter : CastCharacter
             }
         }
         yield return new WaitForSeconds(spellData[1].duration);
-        character.isInvicible = true;
+        character.isInvicible = false;
     }
     #endregion
 
@@ -141,8 +141,8 @@ public class ChefCastCharacter : CastCharacter
     [ServerRpc]
     public void CastUltimateSkill(Quaternion rotation)
     {
-        Vector3 direction = new (input.targetDirection.x, input.targetDirection.y, 0);
-        NetworkObject obj = Instantiate(julienneSpellPrefab, transform.position + direction * 5f, rotation);
+ 
+        NetworkObject obj = Instantiate(julienneSpellPrefab, transform.position, rotation);
         SetupDamager(obj.GetComponent<EnemyDamager>(), 2);
         obj.GetComponent<Lifetime>().lifetime = spellData[2].duration;
         ServerManager.Spawn(obj);

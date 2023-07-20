@@ -84,7 +84,6 @@ public class Player : NetworkBehaviour
         TargetStageClear(Owner);
     }
 
-
     public void EnterNextScene(Vector3 spawnPoint)
     {
         // reset position to middle of stage or set some spawnpoints
@@ -94,23 +93,10 @@ public class Player : NetworkBehaviour
         RespawnCharacter();
     }
 
-    [ServerRpc]
-    public void ServerRespawnCharacter()
-    {
-        TargetCharacterSpawned(Owner);
-    }
-
     public void RespawnCharacter()
     {
         if (GameManager.Instance.livesTotal <= 0) return;
         controlledCharacter.Revive();
-        ServerRespawnCharacter(); // DO NOT CHANGE THIS LINE
-    }
-
-    [ServerRpc]
-    public void CharacterDeath()
-    {
-        TargetCharacterDied(Owner);
     }
 
     [TargetRpc]
@@ -126,9 +112,5 @@ public class Player : NetworkBehaviour
         UIManager.LocalInstance.Show<ReadyScreen>();
     }
 
-    [TargetRpc]
-    private void TargetCharacterDied(NetworkConnection conn)
-    {
-        UIManager.LocalInstance.Show<Respawn>();
-    }
+
 }

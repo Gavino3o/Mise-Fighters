@@ -19,7 +19,7 @@ public abstract class Unit : NetworkBehaviour
     public event Action<int> StatusApplied;
     public event Action<int> StatusEnded;
 
-    public bool isInvicible;
+    [SyncVar] public bool isInvicible;
 
     public SpriteRenderer sprite;
 
@@ -58,6 +58,7 @@ public abstract class Unit : NetworkBehaviour
         DamageTaken?.Invoke();
         HealthChanged?.Invoke(next);        
     }
+
 
     public abstract void OnDeath();
 

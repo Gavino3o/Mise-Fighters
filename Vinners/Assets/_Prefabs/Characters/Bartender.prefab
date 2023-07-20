@@ -193,7 +193,7 @@ MonoBehaviour:
   input: {fileID: 0}
   projectile: {fileID: -3697913265258033151, guid: e8e4a964c4249b442a98a45097eb8e43, type: 3}
   autoAttackSoundEffect: {fileID: 8300000, guid: 87bcd2801546c0f40ab02c98f09adc0a, type: 3}
-  canAttack: 0
+  canAttack: 1
 --- !u!114 &4222959443470227111
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -167,7 +167,7 @@ MonoBehaviour:
     m_ActionName: PlayerInput/Revive[/Keyboard/f]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: 3bd5384a-f0bf-4132-9e33-bf3e0316b572
+  m_DefaultActionMap: PlayerInput
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!114 &6967667816943390858
@@ -241,7 +241,7 @@ MonoBehaviour:
   input: {fileID: 0}
   projectile: {fileID: -7984758693773651456, guid: a6a510987340e9b46aeb18a606847f80, type: 3}
   autoAttackSoundEffect: {fileID: 8300000, guid: 1e5bace1ae11f9949a77e0e6448c7fb1, type: 3}
-  canAttack: 0
+  canAttack: 1
 --- !u!114 &8302944292573092573
 MonoBehaviour:
   m_ObjectHideFlags: 0

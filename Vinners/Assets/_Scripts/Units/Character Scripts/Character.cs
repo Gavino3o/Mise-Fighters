@@ -58,29 +58,57 @@ public class Character : Unit
     {
         if (currHealth > 0) return;
         GameManager.Instance.DecrementLives();
+        
+        ShowRespawn(Owner);
+        ToggleInput(Owner, false);
         isInvicible = true;
-        controllingPlayer.CharacterDeath();
-        GetComponent<PlayerInput>().DeactivateInput();
         attacker.canAttack = false;
-     
+
     }
 
     /*
      * Reenables player input and revives the character with half health
      */
+    [ServerRpc (RequireOwnership = false)]
     public void Revive()
     {
         
-        ServerRevive();
-        GetComponent<PlayerInput>().ActivateInput();
+        ServerHeal();
+        ShowHUD(Owner);
+        ToggleInput(Owner, true);
+        isInvicible = false;
         attacker.canAttack = true;
     }
 
-    [ServerRpc]
-    private void ServerRevive()
+    [ServerRpc(RequireOwnership = false)]
+    private void ServerHeal()
     {
-        isInvicible = false;
-        TakeDamage(baseStats.maxHealth * -0.75f);
+        TakeDamage(baseStats.maxHealth * -0.5f);
+    }
+
+    [TargetRpc]
+    private void ShowRespawn(NetworkConnection conn)
+    {
+        UIManager.LocalInstance.Show<Respawn>();
+    }
+
+    [TargetRpc]
+    private void ShowHUD(NetworkConnection conn)
+    {
+        UIManager.LocalInstance.Show<GameInfo>();
+    }
+
+
+    [TargetRpc]
+    private void ToggleInput(NetworkConnection conn, bool value)
+    {
+        if (value)
+        {
+            GetComponent<PlayerInput>().ActivateInput();
+        } else
+        {
+            GetComponent<PlayerInput>().DeactivateInput();
+        }
     }
 
     public void OnPause()

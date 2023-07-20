@@ -1,5 +1,6 @@
 using UnityEngine;
 using FishNet.Object;
+using FishNet.Object.Synchronizing;
 
 public class AttackCharacter : NetworkBehaviour
 {
@@ -9,13 +10,12 @@ public class AttackCharacter : NetworkBehaviour
     [SerializeField] protected EnemyDamager projectile;
     [SerializeField] protected AudioClip autoAttackSoundEffect;
     protected float lastAttacked;
-    public bool canAttack;
+    [SyncVar] public bool canAttack;
 
     private void Awake()
     {
         character = GetComponent<Character>();
         input = character.input;
-        canAttack = true;
         projectile.source = character;
     }
 

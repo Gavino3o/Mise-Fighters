@@ -354,7 +354,7 @@ MonoBehaviour:
   input: {fileID: 0}
   projectile: {fileID: 4972985306315519815, guid: 33acc3a7d6250f3468c0bf32f395bd9c, type: 3}
   autoAttackSoundEffect: {fileID: 8300000, guid: c28afed5fc7ef424783f0bf690bbe618, type: 3}
-  canAttack: 0
+  canAttack: 1
 --- !u!58 &-850889346576525728
 CircleCollider2D:
   m_ObjectHideFlags: 0

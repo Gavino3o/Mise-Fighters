@@ -1035,7 +1035,6 @@ GameObject:
   - component: {fileID: 3031761100475038055}
   - component: {fileID: 3031761100475038060}
   - component: {fileID: 3031761100475038061}
-  - component: {fileID: 3031761100475038062}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -1091,23 +1090,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa07599644669fc418a086f3b145d3fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  secret: MiseFighers
+  secret: MiseFighters
   port: 0
-  discoveryInterval: 2
-  automatic: 1
---- !u!114 &3031761100475038062
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3031761100475038058}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 95fd0aa0635fe1e4c8798eaeb4f8de50, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  networkDiscovery: {fileID: 3031761100475038061}
+  discoveryInterval: 1
+  automatic: 0
 --- !u!224 &3713772982488782866
 RectTransform:
   m_ObjectHideFlags: 0
