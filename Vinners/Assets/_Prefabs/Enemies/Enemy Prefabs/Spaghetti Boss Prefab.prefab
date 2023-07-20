@@ -75,6 +75,7 @@ MonoBehaviour:
   maxScoreBonus: 1
   canMove: 0
   canTeleport: 0
+  isBossEnemy: 1
   deathEffect: {fileID: 0}
   scorePopUp: {fileID: 0}
 --- !u!114 &7119554722637575324
@@ -121,7 +122,7 @@ MonoBehaviour:
   NetworkObserver: {fileID: 0}
   <PrefabId>k__BackingField: 9
   <SpawnableCollectionId>k__BackingField: 0
-  _scenePathHash: 110009981
+  _scenePathHash: 0
   <SceneId>k__BackingField: 0
   <AssetPathHash>k__BackingField: 2386655640237714833
   _sceneNetworkObjects:

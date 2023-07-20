@@ -10,7 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 36e87e5fae43ec140b894b33b6657c9f, type: 3}
-  m_Name: KitchenScene WaveData Shooter
+  m_Name: SpahettiBossScene WaveData
   m_EditorClassIdentifier: 
   waveDelay: 2
-  enemySpawnerPrefab: {fileID: 8767666322901950175, guid: 92a19d9531a045a44be5919dd5b897ad, type: 3}
+  enemySpawnerPrefab: {fileID: 2432202987941846798, guid: 8bfbe71a4093f434dbd399f08b79049e, type: 3}
+  isBossWave: 1

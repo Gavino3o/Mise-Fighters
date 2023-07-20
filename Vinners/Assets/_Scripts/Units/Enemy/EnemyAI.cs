@@ -14,6 +14,7 @@ public class EnemyAI : Unit
     [SerializeField] private float maxScoreBonus;
     [SerializeField] private bool canMove;
     [SerializeField] private bool canTeleport;
+    [SerializeField] private bool isBossEnemy;
     protected Rigidbody2D rigidBody;
     [SerializeField] private GameObject deathEffect;
     [SerializeField] private GameObject scorePopUp;
@@ -75,6 +76,11 @@ public class EnemyAI : Unit
         enemyMovementController.StopAstarMovement();
         EnemyManager.Instance.IncrementDeathCount();
         Despawn(gameObject);
+
+        if (isBossEnemy)
+        {
+            EnemyManager.Instance.SetBossAliveStatus(false);
+        }
     }
 
     public bool IsInAttackRange()
