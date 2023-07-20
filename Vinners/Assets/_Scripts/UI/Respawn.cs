@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using FishNet;
 
 /*
  * Displays and updates information relevant to the main gameplay
@@ -9,6 +10,7 @@ public class Respawn : View
 {
 
     [SerializeField] private Button respawnButton;
+    [SerializeField] private Button leaveButton;
 
     public TextMeshProUGUI remainingLives;
 
@@ -20,6 +22,25 @@ public class Respawn : View
         {
             Player.LocalInstance.RespawnCharacter(); 
         });
+
+        if (InstanceFinder.IsHost)
+        {
+            leaveButton.onClick.AddListener(() =>
+            {
+                InstanceFinder.ServerManager.StopConnection(false);
+                InstanceFinder.ClientManager.StopConnection();
+
+            });
+
+        }
+        else
+        {
+
+            leaveButton.onClick.AddListener(() => {
+                InstanceFinder.ClientManager.StopConnection();
+            });
+
+        }
     }
 
     private void Update()

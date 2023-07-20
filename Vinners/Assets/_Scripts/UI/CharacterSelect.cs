@@ -20,18 +20,9 @@ public class CharacterSelect : View
 
     [SerializeField] private Image characterDisplayPanel;
     [SerializeField] private Button leaveButton;
-    [SerializeField] private TMP_InputField inputUsernameField;
 
-    /* figure out how to get the character sprites from this later
-     * [SerializeField] List<Character> characterList;
-     * OR
-     * we can have character splash arts
-     * [SerializeField] List<Image> characterSprites;
-     */
     [SerializeField] private List<GameObject> characterList;
-
-    // just to monitor in inspector
-    [SerializeField] private int currCharacterIndex;
+    private int currCharacterIndex;
 
     public override void Initialise()
     {
@@ -60,8 +51,6 @@ public class CharacterSelect : View
             Player.LocalInstance.ServerSetLockIn(!Player.LocalInstance.isLockedIn);
 
         });
-
-        inputUsernameField.onEndEdit.AddListener(playerInput => Player.LocalInstance.ServerSetUsername(playerInput));
         
         /*
          * Only the Host should have access to the start button

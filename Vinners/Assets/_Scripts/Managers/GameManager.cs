@@ -19,7 +19,7 @@ public sealed class GameManager : NetworkBehaviour
 
     public int livesTotal;
 
-    // List of players currently in the game
+    // List of players currently in the games
     [SyncObject] public readonly SyncList<Player> players = new();
  
     [SyncVar] public bool canStart;

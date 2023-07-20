@@ -11,7 +11,7 @@ public class GuideMenu : View
     
     [SerializeField] private Button[] characterButtons;
     [SerializeField] private Button[] enemyButtons;
-    [SerializeField] public Button backButton;
+    [SerializeField] private Button backButton;
 
     public DisplayPanel display;
 

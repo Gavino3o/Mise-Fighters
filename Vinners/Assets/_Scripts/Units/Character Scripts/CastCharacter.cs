@@ -41,7 +41,6 @@ public class CastCharacter : NetworkBehaviour
         character.DamageTaken -= CharacterTookDamage;
     }
 
-    // for now just a dummy class so that the Gameinfo can access it
     public IEnumerator Cooldown(int id)
     {
         canCast[id] = false;

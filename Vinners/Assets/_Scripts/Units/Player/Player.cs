@@ -15,7 +15,6 @@ public class Player : NetworkBehaviour
 {
     public static Player LocalInstance { get; private set; }
     
-    [SyncVar] public string username = "unset";
     [SyncVar] public bool isLockedIn;
     [SyncVar] public Character controlledCharacter;
     
@@ -65,12 +64,6 @@ public class Player : NetworkBehaviour
     public void ServerSetLockIn(bool value)
     {
         isLockedIn = value;
-    }
-
-    [ServerRpc]
-    public void ServerSetUsername(string s)
-    {
-        if (s != null) username = s;
     }
 
     /*
@@ -123,8 +116,6 @@ public class Player : NetworkBehaviour
     [TargetRpc]
     private void TargetCharacterSpawned(NetworkConnection conn)
     {
-        // This line is not being called on new scene load.
-        if (UIManager.LocalInstance == null) Debug.Log("UIManager Lost"); // UImanager is not lost
         UIManager.LocalInstance.Show<GameInfo>();
         ServerSetLockIn(false);
     }
@@ -138,7 +129,6 @@ public class Player : NetworkBehaviour
     [TargetRpc]
     private void TargetCharacterDied(NetworkConnection conn)
     {
-        Debug.Log("You died bozo");
         UIManager.LocalInstance.Show<Respawn>();
     }
 }

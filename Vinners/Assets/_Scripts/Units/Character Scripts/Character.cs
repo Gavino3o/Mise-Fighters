@@ -16,7 +16,6 @@ public class Character : Unit
 
     [SyncVar] public Player controllingPlayer;
 
-    [SerializeField] private TextMeshPro usernameDisplay;
 
     public InputCharacter input;
     public CastCharacter caster;
@@ -43,6 +42,12 @@ public class Character : Unit
         characterAnimator = GetComponent<AnimatorCharacter>();
         rb = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
+
+        string rebinds = PlayerPrefs.GetString("rebinds", string.Empty);
+
+        if (string.IsNullOrEmpty(rebinds)) return;
+
+        GetComponent<PlayerInput>().actions.LoadBindingOverridesFromJson(rebinds);
     }
 
     /*
