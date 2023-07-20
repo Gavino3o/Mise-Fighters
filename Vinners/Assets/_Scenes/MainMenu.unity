@@ -706,7 +706,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1634112266}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 365.08115, y: 241.54149, z: -3.5823674}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1034,6 +1034,8 @@ GameObject:
   - component: {fileID: 3031761100475038054}
   - component: {fileID: 3031761100475038055}
   - component: {fileID: 3031761100475038060}
+  - component: {fileID: 3031761100475038061}
+  - component: {fileID: 3031761100475038062}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -1077,6 +1079,35 @@ MonoBehaviour:
   _updateHostVisibility: 1
   _defaultConditions:
   - {fileID: 11400000, guid: 2033f54fd2794464bae08fa5a55c8996, type: 2}
+--- !u!114 &3031761100475038061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3031761100475038058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa07599644669fc418a086f3b145d3fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  secret: MiseFighers
+  port: 0
+  discoveryInterval: 2
+  automatic: 1
+--- !u!114 &3031761100475038062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3031761100475038058}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95fd0aa0635fe1e4c8798eaeb4f8de50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  networkDiscovery: {fileID: 3031761100475038061}
 --- !u!224 &3713772982488782866
 RectTransform:
   m_ObjectHideFlags: 0

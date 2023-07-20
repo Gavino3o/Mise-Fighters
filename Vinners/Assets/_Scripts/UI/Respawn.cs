@@ -46,7 +46,8 @@ public class Respawn : View
     private void Update()
     {
         if (!Initialised) return;
-        respawnButton.interactable = (GameManager.Instance.livesTotal > 0);
+        respawnButton.interactable = GameManager.Instance.livesTotal > 0;
+        leaveButton.interactable = GameManager.Instance.livesTotal <= 0;
         remainingLives.text = "Lives Left:" + GameManager.Instance.livesTotal.ToString();
         
     }

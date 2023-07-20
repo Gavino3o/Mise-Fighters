@@ -121,12 +121,14 @@ public class ButcherCastCharacter : CastCharacter
     {
         int n = 0;
         AudioManager.Instance.PlaySoundEffect(ultimateSpellSoundEffect);
+        character.isInvicible = true;
         while (n < noSpins)
         {
             CastUltimateSkill();
             n++;
             yield return new WaitForSeconds(spinInterval);
         }
+        character.isInvicible = false;
     }
     #endregion
 }

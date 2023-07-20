@@ -84,7 +84,8 @@ public class ChefCastCharacter : CastCharacter
         Vector2 blinkDirection = input.targetDirection;
         
         RaycastHit2D hit = Physics2D.Raycast((Vector2) transform.position, blinkDirection, blinkDistance, obstacleLayer);
-        movement.interrupted = true;
+
+        character.isInvicible = true;
         if (hit.collider == null)
         {
             Vector2 newPosition = (Vector2) transform.position + blinkDirection * blinkDistance;
@@ -114,7 +115,7 @@ public class ChefCastCharacter : CastCharacter
             }
         }
         yield return new WaitForSeconds(spellData[1].duration);
-        movement.interrupted = false;
+        character.isInvicible = true;
     }
     #endregion
 

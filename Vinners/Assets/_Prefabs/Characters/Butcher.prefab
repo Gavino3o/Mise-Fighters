@@ -167,7 +167,7 @@ MonoBehaviour:
     m_ActionName: PlayerInput/Revive[/Keyboard/f]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
-  m_DefaultActionMap: PlayerInput
+  m_DefaultActionMap: 3bd5384a-f0bf-4132-9e33-bf3e0316b572
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
 --- !u!114 &6967667816943390858

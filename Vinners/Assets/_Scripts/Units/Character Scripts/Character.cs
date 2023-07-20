@@ -27,6 +27,7 @@ public class Character : Unit
 
     public event Action HitEnemy;
 
+
     public void HitSuccess()
     {
         HitEnemy?.Invoke();
@@ -81,5 +82,10 @@ public class Character : Unit
         isInvicible = false;
         TakeDamage(baseStats.maxHealth * -0.75f);
     }
-    
+
+    public void OnPause()
+    {
+        UIManager.LocalInstance.Show<PauseMenu>();
+    }
+
 }

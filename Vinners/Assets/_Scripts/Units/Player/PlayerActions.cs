@@ -73,7 +73,7 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Revive"",
+                    ""name"": ""Pause"",
                     ""type"": ""Button"",
                     ""id"": ""137e9fee-1b33-4b45-8ebb-eb65d05ee98b"",
                     ""expectedControlType"": ""Button"",
@@ -185,11 +185,11 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""179db147-ff7e-4fa9-af30-601fa7cbfd1d"",
-                    ""path"": ""<Keyboard>/f"",
+                    ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Revive"",
+                    ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -205,7 +205,7 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
         m_PlayerInput_Skill = m_PlayerInput.FindAction("Skill", throwIfNotFound: true);
         m_PlayerInput_Dash = m_PlayerInput.FindAction("Dash", throwIfNotFound: true);
         m_PlayerInput_Ultimate = m_PlayerInput.FindAction("Ultimate", throwIfNotFound: true);
-        m_PlayerInput_Revive = m_PlayerInput.FindAction("Revive", throwIfNotFound: true);
+        m_PlayerInput_Pause = m_PlayerInput.FindAction("Pause", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -272,7 +272,7 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerInput_Skill;
     private readonly InputAction m_PlayerInput_Dash;
     private readonly InputAction m_PlayerInput_Ultimate;
-    private readonly InputAction m_PlayerInput_Revive;
+    private readonly InputAction m_PlayerInput_Pause;
     public struct PlayerInputActions
     {
         private @PlayerActions m_Wrapper;
@@ -282,7 +282,7 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
         public InputAction @Skill => m_Wrapper.m_PlayerInput_Skill;
         public InputAction @Dash => m_Wrapper.m_PlayerInput_Dash;
         public InputAction @Ultimate => m_Wrapper.m_PlayerInput_Ultimate;
-        public InputAction @Revive => m_Wrapper.m_PlayerInput_Revive;
+        public InputAction @Pause => m_Wrapper.m_PlayerInput_Pause;
         public InputActionMap Get() { return m_Wrapper.m_PlayerInput; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -307,9 +307,9 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
             @Ultimate.started += instance.OnUltimate;
             @Ultimate.performed += instance.OnUltimate;
             @Ultimate.canceled += instance.OnUltimate;
-            @Revive.started += instance.OnRevive;
-            @Revive.performed += instance.OnRevive;
-            @Revive.canceled += instance.OnRevive;
+            @Pause.started += instance.OnPause;
+            @Pause.performed += instance.OnPause;
+            @Pause.canceled += instance.OnPause;
         }
 
         private void UnregisterCallbacks(IPlayerInputActions instance)
@@ -329,9 +329,9 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
             @Ultimate.started -= instance.OnUltimate;
             @Ultimate.performed -= instance.OnUltimate;
             @Ultimate.canceled -= instance.OnUltimate;
-            @Revive.started -= instance.OnRevive;
-            @Revive.performed -= instance.OnRevive;
-            @Revive.canceled -= instance.OnRevive;
+            @Pause.started -= instance.OnPause;
+            @Pause.performed -= instance.OnPause;
+            @Pause.canceled -= instance.OnPause;
         }
 
         public void RemoveCallbacks(IPlayerInputActions instance)
@@ -356,6 +356,6 @@ public partial class @PlayerActions: IInputActionCollection2, IDisposable
         void OnSkill(InputAction.CallbackContext context);
         void OnDash(InputAction.CallbackContext context);
         void OnUltimate(InputAction.CallbackContext context);
-        void OnRevive(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
 }
