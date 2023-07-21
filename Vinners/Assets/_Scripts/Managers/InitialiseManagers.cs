@@ -3,7 +3,7 @@ using FishNet;
 
 public class InitialiseManagers : MonoBehaviour
 {
-    [SerializeField] GameObject[] managerList;
+    [SerializeField] private GameObject[] managerList;
 
     private void Start()
     {

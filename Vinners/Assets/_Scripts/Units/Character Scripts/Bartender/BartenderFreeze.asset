@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spellName: Just the Rocks
   description: 'The Bartender flash freezes everything around her in a large radius,
-    dealing massive damage and FREEZING enemies for 2 seconds '
+    dealing massive damage and  SLOWING enemies for 2 seconds '
   cooldown: 0
   damage: 3
   duration: 0.5

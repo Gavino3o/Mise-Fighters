@@ -9,14 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a4de1ab2434fece4cb230aab18203183, type: 3}
-  m_Name: Taunted
+  m_Script: {fileID: 11500000, guid: 99e2519ac92139f4f84b4d0b6dfd7782, type: 3}
+  m_Name: Corn Stats
   m_EditorClassIdentifier: 
-  effectName: Taunted
-  effectCode: 0
-  durationSeconds: 3
-  damageOverTime: 0
-  attackMultiplier: 1
-  moveSpeedMultiplier: 1.2
-  douser: 0
-  igniter: 0
+  maxHealth: 18
+  attack: 3
+  attackFreqSeconds: 2
+  moveSpeed: 3

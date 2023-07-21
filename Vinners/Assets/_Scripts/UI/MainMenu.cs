@@ -31,7 +31,7 @@ public sealed class MainMenu : View
         });
 
 
-        optionsButton.onClick.AddListener(() => Debug.Log("Options Menu Opened"));
+        optionsButton.onClick.AddListener(() => OfflineUIManager.LocalInstance.Show<RebindControls>());
 
         quitButton.onClick.AddListener(() => Application.Quit());
     }

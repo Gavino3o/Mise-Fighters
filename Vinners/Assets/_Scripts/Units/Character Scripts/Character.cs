@@ -16,7 +16,6 @@ public class Character : Unit
 
     [SyncVar] public Player controllingPlayer;
 
-    [SerializeField] private TextMeshPro usernameDisplay;
 
     public InputCharacter input;
     public CastCharacter caster;
@@ -27,6 +26,7 @@ public class Character : Unit
     public Rigidbody2D rb;
 
     public event Action HitEnemy;
+
 
     public void HitSuccess()
     {
@@ -43,6 +43,12 @@ public class Character : Unit
         characterAnimator = GetComponent<AnimatorCharacter>();
         rb = GetComponent<Rigidbody2D>();
         sprite = GetComponent<SpriteRenderer>();
+
+        string rebinds = PlayerPrefs.GetString("rebinds", string.Empty);
+
+        if (string.IsNullOrEmpty(rebinds)) return;
+
+        GetComponent<PlayerInput>().actions.LoadBindingOverridesFromJson(rebinds);
     }
 
     /*
@@ -51,26 +57,63 @@ public class Character : Unit
     public override void OnDeath()
     {
         if (currHealth > 0) return;
-        controllingPlayer.CharacterDeath();
-        GetComponent<PlayerInput>().DeactivateInput();
+        GameManager.Instance.DecrementLives();
+        
+        ShowRespawn(Owner);
+        ToggleInput(Owner, false);
+        isInvicible = true;
         attacker.canAttack = false;
-     
+
     }
 
     /*
      * Reenables player input and revives the character with half health
      */
+    [ServerRpc (RequireOwnership = false)]
     public void Revive()
     {
-        ServerRevive();
-        GetComponent<PlayerInput>().ActivateInput();
+        
+        ServerHeal();
+        ShowHUD(Owner);
+        ToggleInput(Owner, true);
+        isInvicible = false;
         attacker.canAttack = true;
     }
 
-    [ServerRpc]
-    private void ServerRevive()
+    [ServerRpc(RequireOwnership = false)]
+    private void ServerHeal()
     {
         TakeDamage(baseStats.maxHealth * -0.5f);
     }
-    
+
+    [TargetRpc]
+    private void ShowRespawn(NetworkConnection conn)
+    {
+        UIManager.LocalInstance.Show<Respawn>();
+    }
+
+    [TargetRpc]
+    private void ShowHUD(NetworkConnection conn)
+    {
+        UIManager.LocalInstance.Show<GameInfo>();
+    }
+
+
+    [TargetRpc]
+    private void ToggleInput(NetworkConnection conn, bool value)
+    {
+        if (value)
+        {
+            GetComponent<PlayerInput>().ActivateInput();
+        } else
+        {
+            GetComponent<PlayerInput>().DeactivateInput();
+        }
+    }
+
+    public void OnPause()
+    {
+        UIManager.LocalInstance.Show<PauseMenu>();
+    }
+
 }

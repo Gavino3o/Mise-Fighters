@@ -8,7 +8,7 @@ public class ChefCastCharacter : CastCharacter
     #region Slice skill
     [Header("Slice skill")]
     [SerializeField] private GameObject sliceSpellPrefab;
-    [SerializeField] private float sliceAngle = 30;
+    [SerializeField] private float sliceAngle;
     [SerializeField] private AudioClip skillSpellSoundEffect;
     [SerializeField] private AudioClip dashSpellSoundEffect;
     [SerializeField] private AudioClip ultimateSpellSoundEffect;
@@ -20,7 +20,7 @@ public class ChefCastCharacter : CastCharacter
         {
             StartCoroutine(Cooldown(0));
             characterAnimator.PlaySkill();
-            CastSliceSkill();         
+            CastSliceSkill(input.rotation);         
             Debug.Log("Spell casted");
         }
         else
@@ -30,10 +30,10 @@ public class ChefCastCharacter : CastCharacter
     }
 
     [ServerRpc]
-    public void CastSliceSkill()
+    public void CastSliceSkill(Quaternion rotation)
     {
-        Quaternion rotationOffset1 = Quaternion.Euler(0, 0, sliceAngle);
-        GameObject firstSlice = Instantiate(sliceSpellPrefab, transform.position + transform.up, input.rotation * rotationOffset1);
+        // Quaternion rotationOffset1 = Quaternion.Euler(0, 0, sliceAngle);
+        GameObject firstSlice = Instantiate(sliceSpellPrefab, transform.position, rotation);
 
         firstSlice.GetComponent<Lifetime>().lifetime = spellData[0].duration;
         SetupDamager(firstSlice.GetComponent<EnemyDamager>(), 0);
@@ -84,7 +84,8 @@ public class ChefCastCharacter : CastCharacter
         Vector2 blinkDirection = input.targetDirection;
         
         RaycastHit2D hit = Physics2D.Raycast((Vector2) transform.position, blinkDirection, blinkDistance, obstacleLayer);
-        movement.interrupted = true;
+
+        character.isInvicible = true;
         if (hit.collider == null)
         {
             Vector2 newPosition = (Vector2) transform.position + blinkDirection * blinkDistance;
@@ -114,7 +115,7 @@ public class ChefCastCharacter : CastCharacter
             }
         }
         yield return new WaitForSeconds(spellData[1].duration);
-        movement.interrupted = false;
+        character.isInvicible = false;
     }
     #endregion
 
@@ -127,7 +128,6 @@ public class ChefCastCharacter : CastCharacter
         if (!IsOwner) return;
         if (canCast[2])
         {
-            StartCoroutine(Cooldown(1));
             characterAnimator.PlayUltimate(spellData[2].duration);
             StartCoroutine(Julienne());
             SpendUltimate(ULT_METER);
@@ -139,10 +139,10 @@ public class ChefCastCharacter : CastCharacter
     }
 
     [ServerRpc]
-    public void CastUltimateSkill()
+    public void CastUltimateSkill(Quaternion rotation)
     {
-        Vector3 direction = new Vector3(input.targetDirection.x, input.targetDirection.y, 0);
-        NetworkObject obj = Instantiate(julienneSpellPrefab, transform.position + direction * 5f, input.rotation);
+ 
+        NetworkObject obj = Instantiate(julienneSpellPrefab, transform.position, rotation);
         SetupDamager(obj.GetComponent<EnemyDamager>(), 2);
         obj.GetComponent<Lifetime>().lifetime = spellData[2].duration;
         ServerManager.Spawn(obj);
@@ -155,7 +155,7 @@ public class ChefCastCharacter : CastCharacter
         movement.interrupted = true;
         character.isInvicible = true;
         GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-        CastUltimateSkill();
+        CastUltimateSkill(input.rotation);
         yield return new WaitForSeconds(spellData[2].duration);
         movement.interrupted = false;
         character.isInvicible = false;

@@ -206,7 +206,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 11
+  <PrefabId>k__BackingField: 44
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 0
   <SceneId>k__BackingField: 0
@@ -239,7 +239,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sed:
-  - {fileID: 11400000, guid: c7ebac09ef8f73c478645e1d6ed914ac, type: 2}
+  - {fileID: 11400000, guid: 2c9cc8f9028ec3e46afcd121577eb42b, type: 2}
 --- !u!114 &2983890739566527849
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -53,7 +53,8 @@ MonoBehaviour:
   sceneNames:
   - SpaghettiBossScene
   - KitchenScene
-  - AlvinScene
+  - MarketScene
+  - SpaghettiBossScene
 --- !u!114 &2512929587187230282
 MonoBehaviour:
   m_ObjectHideFlags: 0

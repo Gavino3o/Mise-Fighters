@@ -19,7 +19,7 @@ public abstract class Unit : NetworkBehaviour
     public event Action<int> StatusApplied;
     public event Action<int> StatusEnded;
 
-    public bool isInvicible;
+    [SyncVar] public bool isInvicible;
 
     public SpriteRenderer sprite;
 
@@ -58,6 +58,7 @@ public abstract class Unit : NetworkBehaviour
         DamageTaken?.Invoke();
         HealthChanged?.Invoke(next);        
     }
+
 
     public abstract void OnDeath();
 
@@ -115,15 +116,27 @@ public abstract class Unit : NetworkBehaviour
         {
             case (int) StatusEffectData.EFFECTCODES.SLOW:
                 sprite.color = Color.cyan;
+                sprite.flipY = false;
                 break;
             case (int)StatusEffectData.EFFECTCODES.FREEZE:
                 sprite.color = Color.blue;
+                sprite.flipY = false;
                 break;
             case (int)StatusEffectData.EFFECTCODES.DOUSE:
                 sprite.color = Color.gray;
+                sprite.flipY = false;
                 break;
             case (int)StatusEffectData.EFFECTCODES.BURN:
                 sprite.color = Color.red;
+                sprite.flipY = false;
+                break;
+            case (int)StatusEffectData.EFFECTCODES.BUFF:
+                sprite.color = new(165, 255, 207);
+                sprite.flipY = false;
+                break;
+            case (int)StatusEffectData.EFFECTCODES.FLATTEN:
+                sprite.color = Color.white;
+                sprite.flipY = true;
                 break;
             default:
                 break;
@@ -141,6 +154,7 @@ public abstract class Unit : NetworkBehaviour
             }
         }
         sprite.color = Color.white;
+        sprite.flipY = false;
     }
 
     private void Update()

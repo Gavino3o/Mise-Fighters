@@ -72,7 +72,7 @@ public class BartenderCastCharacter : CastCharacter
         Debug.Log("Lure dropped");
     }
 
-    public IEnumerator Backstep()
+    private IEnumerator Backstep()
     {
         movement.interrupted = true;
         rigidBody.velocity = -3 * dashSpeed * input.targetDirection;
@@ -90,7 +90,7 @@ public class BartenderCastCharacter : CastCharacter
         if (!IsOwner) return;
         if (canCast[2])
         {
-            CastUltimateSkill();
+            StartCoroutine(FlashFreeze());
             characterAnimator.PlayUltimate();           
             SpendUltimate(ULT_METER);
         }
@@ -109,6 +109,15 @@ public class BartenderCastCharacter : CastCharacter
         ServerManager.Spawn(obj);
         AudioManager.Instance.PlaySoundEffect(ultimateSpellSoundEffect);
         Debug.Log($"{spellData[2].spellName} casted");
+    }
+
+    private IEnumerator FlashFreeze()
+    {
+        character.isInvicible = true;
+        CastUltimateSkill();
+        yield return new WaitForSeconds(spellData[2].duration);
+        character.isInvicible = false;
+
     }
 
     #endregion

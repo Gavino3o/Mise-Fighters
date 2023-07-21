@@ -17,7 +17,6 @@ GameObject:
   - component: {fileID: 3188260082321371685}
   - component: {fileID: 4467782615910205017}
   - component: {fileID: 5391405848033123519}
-  - component: {fileID: 6065863120923766994}
   - component: {fileID: 7143126545374738508}
   m_Layer: 0
   m_Name: PatissierAttack
@@ -165,7 +164,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 13
+  <PrefabId>k__BackingField: 15
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 0
   <SceneId>k__BackingField: 0
@@ -226,7 +225,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e02d89fc6ebf2ef43aab5ed62c33e70c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spinSpeed: 3
+  spinSpeed: 6
 --- !u!114 &5391405848033123519
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -244,19 +243,6 @@ MonoBehaviour:
   _networkObjectCache: {fileID: 5570169295091342332}
   projectileSpeed: 8
   movementDirection: {x: 0, y: 0}
---- !u!114 &6065863120923766994
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1071578125239900988}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: abdc099b4b88e404ab54d2f1bf147a97, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sed: []
 --- !u!114 &7143126545374738508
 MonoBehaviour:
   m_ObjectHideFlags: 0

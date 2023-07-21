@@ -100,9 +100,11 @@ public class PatissierCastCharacter : CastCharacter
     public IEnumerator Scramble()
     {
         movement.interrupted = true;
+        character.isInvicible = true;
         rigidBody.velocity = scrambleSpeed * input.targetDirection;
         yield return new WaitForSeconds(spellData[1].duration);
         movement.interrupted = false;
+        character.isInvicible = false;
     }
 
     #endregion

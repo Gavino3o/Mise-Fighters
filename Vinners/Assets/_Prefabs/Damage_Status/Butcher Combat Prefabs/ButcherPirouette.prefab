@@ -119,9 +119,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8cac635f24954048aad3a6ff9110beb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 255
+  _componentIndexCache: 2
   _addedNetworkObject: {fileID: 5681926344258742825}
-  _networkObjectCache: {fileID: 0}
+  _networkObjectCache: {fileID: 5681926344258742825}
   IgnoredParameters: []
   _animator: {fileID: 5562181603274007762}
   _smoothFloats: 1
@@ -141,7 +141,6 @@ GameObject:
   - component: {fileID: 5681926344258742825}
   - component: {fileID: -3039632337467576896}
   - component: {fileID: 5889363550730292998}
-  - component: {fileID: 1926722233354095623}
   m_Layer: 0
   m_Name: ButcherPirouette
   m_TagString: Untagged
@@ -198,7 +197,8 @@ MonoBehaviour:
   <PredictedSpawn>k__BackingField: {fileID: 0}
   _networkBehaviours:
   - {fileID: -3039632337467576896}
-  - {fileID: 1926722233354095623}
+  - {fileID: 0}
+  - {fileID: 675774143438465876}
   <ParentNetworkObject>k__BackingField: {fileID: 0}
   <ChildNetworkObjects>k__BackingField: []
   _isNetworked: 1
@@ -242,20 +242,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   source: {fileID: 0}
   damage: 0
---- !u!114 &1926722233354095623
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6848911510146320331}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c7e57ca8e9ce45c42b55749515d482bd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _componentIndexCache: 1
-  _addedNetworkObject: {fileID: 5681926344258742825}
-  _networkObjectCache: {fileID: 5681926344258742825}
-  target: {fileID: 0}
-  tauntDuration: 4

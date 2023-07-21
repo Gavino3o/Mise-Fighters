@@ -11,7 +11,7 @@ public class GuideMenu : View
     
     [SerializeField] private Button[] characterButtons;
     [SerializeField] private Button[] enemyButtons;
-    [SerializeField] public Button backButton;
+    [SerializeField] private Button backButton;
 
     public DisplayPanel display;
 
@@ -19,7 +19,10 @@ public class GuideMenu : View
     {
         SetupCharacters();
         SetupEnemies();
-        backButton.onClick.AddListener(() => OfflineUIManager.LocalInstance.Show<MainMenu>());
+        backButton.onClick.AddListener(() => {
+            display.gameObject.SetActive(false);
+            OfflineUIManager.LocalInstance.Show<MainMenu>();
+        });
         display.gameObject.SetActive(false);
     }
 
