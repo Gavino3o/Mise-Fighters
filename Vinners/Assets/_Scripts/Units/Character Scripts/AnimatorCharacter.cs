@@ -59,6 +59,11 @@ public class AnimatorCharacter : NetworkBehaviour
         PlayCastAnimation(skill);
     }
 
+    public void PlaySkill(float duration)
+    {
+        PlayCastAnimation(skill, duration);
+    }
+
     public void PlayDash()
     {
         PlayCastAnimation(dash);

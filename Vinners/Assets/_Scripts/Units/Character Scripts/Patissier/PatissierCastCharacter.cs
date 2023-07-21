@@ -21,8 +21,8 @@ public class PatissierCastCharacter : CastCharacter
         if (base.canCast[0])
         {
             StartCoroutine(Cooldown(0));
-            characterAnimator.PlaySkill();
-            CastBurnSkill();
+            characterAnimator.PlaySkill(spellData[0].duration);
+            CastBurnSkill(input.mousePos);
             Debug.Log("Spell casted");
         }
         else
@@ -32,9 +32,8 @@ public class PatissierCastCharacter : CastCharacter
     }
 
     [ServerRpc]
-    public void CastBurnSkill()
+    public void CastBurnSkill(Vector2 mousePosition)
     {
-        var mousePosition = input.mousePos;
         
         if (mousePosition.x < transform.position.x)
         {
@@ -73,7 +72,7 @@ public class PatissierCastCharacter : CastCharacter
         if (canCast[1])
         {
             StartCoroutine(Cooldown(1));
-            characterAnimator.PlayDash();
+            characterAnimator.PlayDash(spellData[1].duration);
             StartCoroutine(Scramble());
             CastScrambleSkill();
             Debug.Log($"{spellData[1].spellName} casted");
@@ -117,7 +116,7 @@ public class PatissierCastCharacter : CastCharacter
         if (!IsOwner) return;
         if (canCast[2])
         {
-            CastUltimateSkill();
+            CastUltimateSkill(input.rotation);
             characterAnimator.PlayUltimate();
             SpendUltimate(ULT_METER);
         }
@@ -128,9 +127,9 @@ public class PatissierCastCharacter : CastCharacter
     }
 
     [ServerRpc]
-    public void CastUltimateSkill()
+    public void CastUltimateSkill(Quaternion rotation)
     {
-        NetworkObject obj = Instantiate(pinSpellPrefab, transform.position, input.rotation);
+        NetworkObject obj = Instantiate(pinSpellPrefab, transform.position, rotation);
         SkillshotMotion motion = obj.GetComponent<SkillshotMotion>();
         if (motion != null) motion.movementDirection = input.targetDirection;
         SetupDamager(obj.GetComponent<EnemyDamager>(), 2);
