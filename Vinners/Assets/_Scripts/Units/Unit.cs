@@ -26,6 +26,7 @@ public abstract class Unit : NetworkBehaviour
     private void Awake()
     {
         sprite = GetComponent<SpriteRenderer>();
+        
     }
 
     public override void OnStartNetwork()

@@ -53,11 +53,10 @@ public class EnemyMovementController : NetworkBehaviour
 
     public void SetMaxMovementSpeed(float speed)
     {
-        if (!IsServer) { return; }
 
         if (movementScript == null)
         {
-            Setup();
+            return;
         }
 
         movementScript.maxSpeed = speed;

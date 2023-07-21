@@ -46,6 +46,6 @@ public class EnemyStraightProjectile : EnemyProjectile
         if (!IsServer) return;
         //var effect = Instantiate(_effect, transform.position, Quaternion.identity);
         //Spawn(effect);
-        this.Despawn();
+        //this.Despawn();
     }
 }

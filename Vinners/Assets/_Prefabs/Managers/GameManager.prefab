@@ -48,10 +48,10 @@ MonoBehaviour:
   _componentIndexCache: 0
   _addedNetworkObject: {fileID: 2512929587187230282}
   _networkObjectCache: {fileID: 2512929587187230282}
+  livesTotal: 0
   canStart: 0
   playerCount: 0
   sceneNames:
-  - SpaghettiBossScene
   - KitchenScene
   - MarketScene
   - SpaghettiBossScene

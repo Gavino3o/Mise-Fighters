@@ -16,14 +16,6 @@ public class EnemySpawner : NetworkBehaviour
         base.OnStartServer();
         isActive = false;
 
-        if (enemySpawnerData.isBossSpawner)
-        {
-            SpawnBosses();
-        } 
-        else
-        {
-            StartCoroutine(SpawnEnemiesRoutine());
-        }
     }
 
     public override void OnStartClient()

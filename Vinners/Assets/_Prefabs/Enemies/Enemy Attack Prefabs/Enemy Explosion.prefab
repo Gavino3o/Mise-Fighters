@@ -48,6 +48,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f6e04cc97e1bbd4e878bd63c8baadc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _componentIndexCache: 0
+  _addedNetworkObject: {fileID: 1520164269054886570}
+  _networkObjectCache: {fileID: 1520164269054886570}
   damage: 0
 --- !u!114 &5999184626588773273
 MonoBehaviour:
@@ -61,7 +64,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e5531d819eef9d4e994c10a36eda5f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 0
+  _componentIndexCache: 1
   _addedNetworkObject: {fileID: 1520164269054886570}
   _networkObjectCache: {fileID: 1520164269054886570}
   lifetime: 0
@@ -81,7 +84,9 @@ MonoBehaviour:
   <ComponentIndex>k__BackingField: 0
   <PredictedSpawn>k__BackingField: {fileID: 0}
   _networkBehaviours:
+  - {fileID: 1828941271698922387}
   - {fileID: 5999184626588773273}
+  - {fileID: 8700588277264679861}
   <ParentNetworkObject>k__BackingField: {fileID: 0}
   <ChildNetworkObjects>k__BackingField: []
   _isNetworked: 1
@@ -184,9 +189,9 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -473647291
+  m_SortingLayer: 1
+  m_SortingOrder: 2
   m_Sprite: {fileID: 1999727222, guid: 3ac2a8ec22e70534284aaf538e7349ed, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -231,9 +236,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8cac635f24954048aad3a6ff9110beb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 255
+  _componentIndexCache: 2
   _addedNetworkObject: {fileID: 1520164269054886570}
-  _networkObjectCache: {fileID: 0}
+  _networkObjectCache: {fileID: 1520164269054886570}
   IgnoredParameters: []
   _animator: {fileID: 6037618473352283943}
   _smoothFloats: 1
