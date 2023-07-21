@@ -5,9 +5,8 @@ using UnityEngine;
 
 public class EnemyStraightProjectile : EnemyProjectile
 {
-    private Vector2 _endPosition;
     private CharacterDamager characterDamager;
-    //public GameObject _effect;
+    //public GameObject effect;
 
     private Vector3 movementDirection;
 

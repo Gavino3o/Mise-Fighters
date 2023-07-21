@@ -6,11 +6,13 @@ using FishNet.Object;
 
 public sealed class WaveManager : NetworkBehaviour
 {
-    // Reference to the WaveData scriptable objects for the current wave
-    public WaveData[] waveDatas;
+    [SerializeField] private WaveData[] waveDatas;
     private WaveData currentWaveData;
     private int currentWaveIndex;
     private int enemyCountBuffer = 3;
+    private GameObject currentSpawnerPrefab;
+    private EnemySpawner currentEnemySpawner;
+    
 
     public static WaveManager Instance { get; private set; }
 
@@ -22,14 +24,15 @@ public sealed class WaveManager : NetworkBehaviour
     public override void OnStartServer()
     {
         base.OnStartServer();
-        StartInitialWave();   
+        StartInitialWave();
     }
 
     private void Update()
     {
         if (!IsServer) return;
-        if (EnemyManager.Instance.GetEnemyDeathCount() >= currentWaveData.maxTotalEnemies - enemyCountBuffer)
+        if (CanStartNextWave())
         {
+            Debug.Log("INITIATE CHANGE WAVE");
             StartNextWave();
         }     
     }
@@ -41,7 +44,14 @@ public sealed class WaveManager : NetworkBehaviour
             Debug.Log("Activating all spawners");
             currentWaveIndex = 0;
             currentWaveData = waveDatas[0];
-            ActivateAllSpawners();
+            currentSpawnerPrefab = currentWaveData.enemySpawnerPrefab;
+            currentEnemySpawner = currentSpawnerPrefab.GetComponent<EnemySpawner>();
+            ActivateSpawner();
+        } 
+        else
+        {
+            Debug.Log("No wave datas found");
+            return;
         }
     }
 
@@ -49,47 +59,71 @@ public sealed class WaveManager : NetworkBehaviour
     {
         if (!IsServer) return;
 
-        currentWaveIndex++;
-
-        if (currentWaveIndex < waveDatas.Length)
+        if (waveDatas == null && waveDatas.Length <= 0)
         {
-            //Reset Enemy Death Count
-            EnemyManager.Instance.ResetDeathCount();
-
-            // Set the current wave to the next wave in the list
-            currentWaveData = waveDatas[currentWaveIndex];
-
-            //Delay according to delay in current wave data.
-            Invoke(nameof(ActivateAllSpawners), currentWaveData.waveDelay);
-            Debug.Log("Next Wave Started");
-        }
+            Debug.Log("No wave datas found");
+            return;
+        } 
         else
         {
-            // All waves have been spawned, end the game or restart from the beginning
-            // Use Event. ie: public event OnWaveEnd()
-            Debug.Log("Waves progression ended successfully");
-            GameManager.Instance.StageClear();
+            currentWaveIndex++;
+
+            if (currentWaveIndex < waveDatas.Length)
+            {
+                EnemyManager.Instance.ResetDeathCount();
+                EnemyManager.Instance.SetBossAliveStatus(true);
+                currentWaveData = waveDatas[currentWaveIndex];
+                currentSpawnerPrefab = currentWaveData.enemySpawnerPrefab;
+                currentEnemySpawner = currentSpawnerPrefab.GetComponent<EnemySpawner>();
+                ActivateSpawner();
+                Debug.Log("Next Wave Started");
+            }
+            else
+            {
+                Debug.Log("Waves progression ended successfully");
+                var remainingEnemies = GameObject.FindGameObjectsWithTag("Enemy");
+                foreach (var enemy in remainingEnemies)
+                {
+                    Despawn(enemy);
+                }
+                GameManager.Instance.StageClear();
+            }
         }
     }
 
-    public void ActivateAllSpawners()
+    public void ActivateSpawner()
     {
         if (!IsServer) return;
-
-        Debug.Log("Instantiate Spawners");
-        foreach (GameObject enemySpawner in currentWaveData.enemySpawnerPrefabs)
-        {
-            var newSpawner = Instantiate(enemySpawner, enemySpawner.transform.position, Quaternion.identity);
-            ServerManager.Spawn(newSpawner);
-            newSpawner.GetComponent<EnemySpawner>().ActivateSpawnner();
-            Debug.Log("Spawned a spawner");
-        }
+        var newSpawner = Instantiate(currentSpawnerPrefab, currentSpawnerPrefab.transform.position, Quaternion.identity);
+        ServerManager.Spawn(newSpawner);
+        newSpawner.GetComponent<EnemySpawner>().ActivateSpawnner();
+        Debug.Log("Spawner created and activated succesfully");
     }
 
+    private bool CanStartNextWave()
+    {
+        if (!currentWaveData.isBossWave)
+        {
+            bool cond1 = EnemyManager.Instance.GetEnemyDeathCount() >= currentEnemySpawner.GetMaxSpawnCount();
+            bool cond2 = !currentEnemySpawner.IsSpawnerActive();
+            return cond1 && cond2;
+        } 
+        else
+        {
+            bool cond1 = EnemyManager.Instance.GetEnemyDeathCount() >= currentEnemySpawner.GetMaxSpawnCount();
+            bool cond2 = !currentEnemySpawner.IsSpawnerActive();
+            bool cond3 = !EnemyManager.Instance.isWaveBossAlive();
 
+            Debug.Log("Condition 3 hit? : " + cond3.ToString());
+            return cond1 && cond2 && cond3;
+        }
+
+    }
 
 
     // The following methods are kept for testing purposes only
+
+
     // private List<GameObject> activeSpawners = new List<GameObject>();
 
     //public void SpawnerComplete(GameObject spawner)

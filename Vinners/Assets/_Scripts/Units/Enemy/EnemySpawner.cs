@@ -7,13 +7,14 @@ using Unity.VisualScripting;
 
 public class EnemySpawner : NetworkBehaviour 
 {
-    [SerializeField] public EnemySpawnerData enemySpawnerData;
-    [SerializeField] private bool isActive = false;
+    [SerializeField] private EnemySpawnerData enemySpawnerData;
     [SyncVar] private int spawnCount = 0;
-    
+    [SyncVar] private bool isActive;
+
     public override void OnStartServer()
     {
         base.OnStartServer();
+        isActive = false;
 
         if (enemySpawnerData.isBossSpawner)
         {
@@ -39,8 +40,9 @@ public class EnemySpawner : NetworkBehaviour
         while (isActive)
         {
             if (spawnCount >= enemySpawnerData.enemiesToSpawn)
-            {
+            {                
                 DeactivateSpawnner();
+                Debug.Log("Deactivating Spawner: " + isActive.ToString());
             }
 
             int randomIndex = Random.Range(0, enemySpawnerData.enemyPrefabs.Length);
@@ -58,6 +60,7 @@ public class EnemySpawner : NetworkBehaviour
 
     public void SpawnBosses()
     {
+        if (!IsServer) return;
         int numOfBosses = enemySpawnerData.bossPrefabs.Length;
 
         for (int i = 0; i < numOfBosses; i++)
@@ -65,14 +68,19 @@ public class EnemySpawner : NetworkBehaviour
             Transform bossSpawnPoint = enemySpawnerData.spawnLocations[i];
             GameObject bossPrefab = enemySpawnerData.bossPrefabs[i];
 
-            var newBoss = Instantiate(bossPrefab, bossSpawnPoint);
-            Spawn(newBoss);
+            var newBoss = Instantiate(bossPrefab, bossSpawnPoint.position, Quaternion.identity);
+            ServerManager.Spawn(newBoss);
             spawnCount++;
         }
+        EnemyManager.Instance.SetBossAliveStatus(true);
+        DeactivateSpawnner();
+        Debug.Log("Deactivating Spawner: " + isActive.ToString());
+        Debug.Log("Boss Alive?: " + EnemyManager.Instance.isWaveBossAlive().ToString());
     }
 
     public void ActivateSpawnner()
     {
+        if (!IsServer) return;
         this.isActive = true;
         if (enemySpawnerData.isBossSpawner)
         {
@@ -86,11 +94,23 @@ public class EnemySpawner : NetworkBehaviour
 
     public void DeactivateSpawnner()
     {
+        if (!IsServer) return;
         this.isActive = false;
     }
 
     public void UpdateSpawnerData(EnemySpawnerData data)
     {
+        if (!IsServer) return;
         enemySpawnerData = data;
+    }
+
+    public int GetMaxSpawnCount()
+    {
+        return enemySpawnerData.enemiesToSpawn;
+    }
+
+    public bool IsSpawnerActive()
+    {
+        return this.isActive;
     }
 }

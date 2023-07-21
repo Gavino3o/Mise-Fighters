@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6001219059347570288}
   - component: {fileID: 6001219059347570291}
+  - component: {fileID: 3207499083239359376}
   - component: {fileID: 6001219059347570290}
   - component: {fileID: 6001219059347570185}
   - component: {fileID: 6001219059347570186}
@@ -67,6 +68,22 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!58 &3207499083239359376
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6001219059347570189}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.6
 --- !u!58 &6001219059347570290
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -112,7 +129,7 @@ MonoBehaviour:
   isPoisoned: 0
   attackRange: 2
   maxScoreBonus: 8
-  isBoss: 0
+  canMove: 1
   canTeleport: 0
   deathEffect: {fileID: 0}
   scorePopUp: {fileID: 0}

@@ -9,8 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 36e87e5fae43ec140b894b33b6657c9f, type: 3}
-  m_Name: KitchenScene WaveData Shooter
+  m_Script: {fileID: 11500000, guid: 99e2519ac92139f4f84b4d0b6dfd7782, type: 3}
+  m_Name: UnitStats (SpaghettiBoss)
   m_EditorClassIdentifier: 
-  waveDelay: 2
-  enemySpawnerPrefab: {fileID: 8767666322901950175, guid: 92a19d9531a045a44be5919dd5b897ad, type: 3}
+  maxHealth: 100
+  attack: 3
+  attackFreqSeconds: 2
+  moveSpeed: 0

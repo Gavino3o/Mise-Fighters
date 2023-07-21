@@ -12,8 +12,9 @@ public class EnemyAI : Unit
    
     [SerializeField] private float attackRange;
     [SerializeField] private float maxScoreBonus;
-    [SerializeField] private bool isBoss;
+    [SerializeField] private bool canMove;
     [SerializeField] private bool canTeleport;
+    [SerializeField] private bool isBossEnemy;
     protected Rigidbody2D rigidBody;
     [SerializeField] private GameObject deathEffect;
     [SerializeField] private GameObject scorePopUp;
@@ -22,14 +23,21 @@ public class EnemyAI : Unit
 
     private void Start()
     {
-        enemyMovementController = GetComponent<EnemyMovementController>();
         playerTargeter = GetComponent<PlayerTargeter>();
         rigidBody = GetComponent<Rigidbody2D>();
         rigidBody.isKinematic = true;
         GetComponentInChildren<Collider2D>().isTrigger = true;
+        enemyMovementController = GetComponent<EnemyMovementController>();
+        enemyMovementController.SetMaxMovementSpeed(currMoveSpeed);
 
-
-        enemyMovementController.StartAstarMovement();
+        if (canMove)
+        { 
+            enemyMovementController.StartAstarMovement();
+        } 
+        else
+        {
+            enemyMovementController.StopAstarMovement();
+        }
     }
 
     private void FixedUpdate()
@@ -68,6 +76,11 @@ public class EnemyAI : Unit
         enemyMovementController.StopAstarMovement();
         EnemyManager.Instance.IncrementDeathCount();
         Despawn(gameObject);
+
+        if (isBossEnemy)
+        {
+            EnemyManager.Instance.SetBossAliveStatus(false);
+        }
     }
 
     public bool IsInAttackRange()

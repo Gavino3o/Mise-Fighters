@@ -5,8 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "WaveData", menuName = "WaveData")]
 public class WaveData : ScriptableObject
 {
-    public int maxTotalEnemies;
     public float waveDelay;
-    public bool isLastWave;
-    public GameObject[] enemySpawnerPrefabs;
+    public GameObject enemySpawnerPrefab;
+    public bool isBossWave;
 }

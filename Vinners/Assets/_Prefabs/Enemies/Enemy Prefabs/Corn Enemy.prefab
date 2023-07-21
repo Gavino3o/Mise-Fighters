@@ -129,7 +129,7 @@ MonoBehaviour:
   isPoisoned: 0
   attackRange: 8
   maxScoreBonus: 0
-  isBoss: 0
+  canMove: 1
   canTeleport: 0
   deathEffect: {fileID: 0}
   scorePopUp: {fileID: 0}

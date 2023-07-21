@@ -7,7 +7,8 @@ using FishNet.Object.Synchronizing;
 
 public sealed class EnemyManager : NetworkBehaviour
 {
-    public int enemyDeathCount;
+    [SyncVar] public int enemyDeathCount;
+    [SyncVar] private bool isBossAlive;
    
     public static EnemyManager Instance { get; private set; }
 
@@ -20,6 +21,7 @@ public sealed class EnemyManager : NetworkBehaviour
     {
         base.OnStartServer();
         enemyDeathCount = 0;
+        isBossAlive = true;
     }
 
     public void IncrementDeathCount()
@@ -39,6 +41,16 @@ public sealed class EnemyManager : NetworkBehaviour
         if (!IsServer) return;
         enemyDeathCount = 0;
         Debug.Log("Reset death count to 0.");
+    }
+
+    public bool isWaveBossAlive()
+    {
+        return isBossAlive;
+    }
+
+    public void SetBossAliveStatus(bool status)
+    {
+        isBossAlive = status;
     }
 
     // The following methods are kept for testing

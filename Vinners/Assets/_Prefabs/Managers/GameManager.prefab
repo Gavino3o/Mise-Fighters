@@ -51,6 +51,7 @@ MonoBehaviour:
   canStart: 0
   playerCount: 0
   sceneNames:
+  - SpaghettiBossScene
   - KitchenScene
   - MarketScene
   - SpaghettiBossScene
@@ -78,7 +79,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 7
+  <PrefabId>k__BackingField: 31
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 0
   <SceneId>k__BackingField: 0
