@@ -17,7 +17,6 @@ GameObject:
   - component: {fileID: 1172006343598844436}
   - component: {fileID: 716281723751957937}
   - component: {fileID: 4414647984169859242}
-  - component: {fileID: 1644733848970717618}
   - component: {fileID: -595177013496435579}
   - component: {fileID: -7564451973442373784}
   - component: {fileID: 8564761197155556380}
@@ -288,22 +287,6 @@ MonoBehaviour:
   _componentIndexCache: 3
   _addedNetworkObject: {fileID: 1172006343598844436}
   _networkObjectCache: {fileID: 1172006343598844436}
---- !u!58 &1644733848970717618
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8735874033422930139}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 1.35
 --- !u!114 &-595177013496435579
 MonoBehaviour:
   m_ObjectHideFlags: 0

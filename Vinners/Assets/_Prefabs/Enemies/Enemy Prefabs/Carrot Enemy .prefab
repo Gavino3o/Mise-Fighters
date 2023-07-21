@@ -114,6 +114,7 @@ MonoBehaviour:
   maxScoreBonus: 8
   canMove: 1
   canTeleport: 0
+  isBossEnemy: 0
   deathEffect: {fileID: 0}
   scorePopUp: {fileID: 0}
 --- !u!114 &6001219059347570186
@@ -467,7 +468,7 @@ MonoBehaviour:
   _componentIndexCache: 5
   _addedNetworkObject: {fileID: 6001219059347570186}
   _networkObjectCache: {fileID: 6001219059347570186}
-  damage: 0.5
+  damage: 2
 --- !u!1001 &3439798403492994811
 PrefabInstance:
   m_ObjectHideFlags: 0

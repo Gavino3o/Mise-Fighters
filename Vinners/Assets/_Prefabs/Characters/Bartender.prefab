@@ -19,7 +19,6 @@ GameObject:
   - component: {fileID: 1172006343598844436}
   - component: {fileID: 716281723751957937}
   - component: {fileID: 5376647301302664577}
-  - component: {fileID: 8302210857773574313}
   - component: {fileID: 4387122027977419283}
   - component: {fileID: 7428444723336966989}
   - component: {fileID: 2820761590625722370}
@@ -272,7 +271,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 26
+  <PrefabId>k__BackingField: 30
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 0
   <SceneId>k__BackingField: 0
@@ -336,22 +335,6 @@ MonoBehaviour:
   _componentIndexCache: 5
   _addedNetworkObject: {fileID: 1172006343598844436}
   _networkObjectCache: {fileID: 1172006343598844436}
---- !u!58 &8302210857773574313
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8735874033422930139}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 1.35
 --- !u!95 &4387122027977419283
 Animator:
   serializedVersion: 5
