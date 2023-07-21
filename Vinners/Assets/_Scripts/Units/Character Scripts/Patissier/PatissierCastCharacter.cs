@@ -10,7 +10,7 @@ public class PatissierCastCharacter : CastCharacter
     [Header("Burn Skill")]
     [SerializeField] private GameObject burnSpellPrefab;
     [SerializeField] private NetworkObject scrambleSpellPrefab;
-    [SerializeField] private float offSet = 1.5f;
+    [SerializeField] private float offSet = 2.0f;
     [SerializeField] private AudioClip skillSpellSoundEffect;
     [SerializeField] private AudioClip dashSpellSoundEffect;
     [SerializeField] private AudioClip ultimateSpellSoundEffect;

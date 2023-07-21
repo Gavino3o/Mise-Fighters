@@ -9,7 +9,6 @@ public sealed class WaveManager : NetworkBehaviour
     [SerializeField] private WaveData[] waveDatas;
     private WaveData currentWaveData;
     private int currentWaveIndex;
-    private int enemyCountBuffer = 3;
     private GameObject currentSpawnerPrefab;
     private EnemySpawner currentEnemySpawner;
     

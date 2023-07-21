@@ -142,7 +142,7 @@ MonoBehaviour:
   currMoveSpeed: 0
   baseStats: {fileID: 11400000, guid: f5fb05d0cca8201498bc47f1cb401d51, type: 2}
   isInvicible: 0
-  sprite: {fileID: 0}
+  sprite: {fileID: 6156433653468455234}
   attackChangeEndtime: 0
   speedChangeEndtime: 0
   dousedUntil: 0

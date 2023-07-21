@@ -23,12 +23,6 @@ public abstract class Unit : NetworkBehaviour
 
     public SpriteRenderer sprite;
 
-    private void Awake()
-    {
-        sprite = GetComponent<SpriteRenderer>();
-        
-    }
-
     public override void OnStartNetwork()
     {
         base.OnStartNetwork();
