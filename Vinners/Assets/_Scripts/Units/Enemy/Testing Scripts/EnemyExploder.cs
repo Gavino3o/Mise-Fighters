@@ -60,7 +60,7 @@ public class EnemyExploder : NetworkBehaviour
 
         // Hardcoded for testing
         explosion.GetComponent<Lifetime>().lifetime = 1;
-        explosion.GetComponent<CharacterDamager>().damage = 1;
+        explosion.GetComponent<CharacterDamager>().damage = enemyAI.currAttack;
         ServerManager.Spawn(explosion);
         // Insert explosion animation here
         AudioManager.Instance.PlaySoundEffect(explosionSoundEffect);

@@ -9,7 +9,7 @@ using System.IO;
 
 public class EnemyAI : Unit
 {
-    [SerializeField] private float maxHealth;
+   
     [SerializeField] private float attackRange;
     [SerializeField] private float maxScoreBonus;
     [SerializeField] private bool isBoss;
@@ -22,21 +22,21 @@ public class EnemyAI : Unit
 
     private void Start()
     {
-        currHealth = maxHealth;
         enemyMovementController = GetComponent<EnemyMovementController>();
         playerTargeter = GetComponent<PlayerTargeter>();
         rigidBody = GetComponent<Rigidbody2D>();
         rigidBody.isKinematic = true;
         GetComponentInChildren<Collider2D>().isTrigger = true;
-        enemyMovementController.SetMaxMovementSpeed(currMoveSpeed);
+
 
         enemyMovementController.StartAstarMovement();
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
-        if (!IsServer) return;
+        enemyMovementController.SetMaxMovementSpeed(currMoveSpeed);
     }
+
 
     public void TauntedBy(GameObject obj, float duration)
     {

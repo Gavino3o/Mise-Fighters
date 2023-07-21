@@ -22,6 +22,8 @@ GameObject:
   - component: {fileID: 6001219059347570187}
   - component: {fileID: 6001219059347570289}
   - component: {fileID: 5373076045890855443}
+  - component: {fileID: 2785540202203931567}
+  - component: {fileID: 1494273451207857902}
   m_Layer: 3
   m_Name: Meat Enemy
   m_TagString: Enemy
@@ -113,11 +115,11 @@ MonoBehaviour:
   _componentIndexCache: 0
   _addedNetworkObject: {fileID: 6001219059347570186}
   _networkObjectCache: {fileID: 6001219059347570186}
-  currHealth: 20
-  currAttack: 0.5
-  currAttackSpeed: 1
-  currMoveSpeed: 3
-  baseStats: {fileID: 11400000, guid: 433a8ed757f1dc241b57dfbe494237e2, type: 2}
+  currHealth: 0
+  currAttack: 0
+  currAttackSpeed: 0
+  currMoveSpeed: 0
+  baseStats: {fileID: 11400000, guid: 83c17c72b3148194fa84551d676f61bd, type: 2}
   isInvicible: 0
   sprite: {fileID: 6001219059347570289}
   attackChangeEndtime: 0
@@ -125,7 +127,6 @@ MonoBehaviour:
   dousedUntil: 0
   isDoused: 0
   isPoisoned: 0
-  maxHealth: 20
   attackRange: 8
   maxScoreBonus: 8
   isBoss: 0
@@ -150,6 +151,7 @@ MonoBehaviour:
   _networkBehaviours:
   - {fileID: 6001219059347570185}
   - {fileID: 6001219059347570184}
+  - {fileID: 6001219059347570294}
   - {fileID: 6001219059347570187}
   - {fileID: 5373076045890855443}
   <ParentNetworkObject>k__BackingField: {fileID: 0}
@@ -278,6 +280,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf604fded9e665e44add54a4d7e18617, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _componentIndexCache: 2
+  _addedNetworkObject: {fileID: 6001219059347570186}
+  _networkObjectCache: {fileID: 6001219059347570186}
 --- !u!114 &6001219059347570187
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -290,7 +295,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1e29f36a5080b9049a6ec3b17772c911, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 2
+  _componentIndexCache: 3
   _addedNetworkObject: {fileID: 6001219059347570186}
   _networkObjectCache: {fileID: 6001219059347570186}
   autoAttackPrefab: {fileID: 6489842854619905979, guid: 8bc36fbd92417ea438aa601f4995faf4, type: 3}
@@ -364,7 +369,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2836e36774ca1c4bbbee976e17b649c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _componentIndexCache: 3
+  _componentIndexCache: 4
   _addedNetworkObject: {fileID: 6001219059347570186}
   _networkObjectCache: {fileID: 6001219059347570186}
   _componentConfiguration: 0
@@ -394,6 +399,48 @@ MonoBehaviour:
     X: 0
     Y: 0
     Z: 0
+--- !u!95 &2785540202203931567
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6001219059347570189}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: d34aed3241f4ec54188bb16de5389305, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1494273451207857902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6001219059347570189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e8cac635f24954048aad3a6ff9110beb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _componentIndexCache: 255
+  _addedNetworkObject: {fileID: 6001219059347570186}
+  _networkObjectCache: {fileID: 0}
+  IgnoredParameters: []
+  _animator: {fileID: 2785540202203931567}
+  _smoothFloats: 1
+  _interpolation: 2
+  _clientAuthoritative: 1
+  _sendToOwner: 0
 --- !u!1001 &8699070757831269408
 PrefabInstance:
   m_ObjectHideFlags: 0
