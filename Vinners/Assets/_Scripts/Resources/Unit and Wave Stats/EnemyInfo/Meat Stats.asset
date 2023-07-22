@@ -15,4 +15,4 @@ MonoBehaviour:
   maxHealth: 20
   attack: 2
   attackFreqSeconds: 2
-  moveSpeed: 2.8
+  moveSpeed: 2.3

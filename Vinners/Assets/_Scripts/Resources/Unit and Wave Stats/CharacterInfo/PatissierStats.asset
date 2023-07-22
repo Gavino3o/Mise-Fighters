@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99e2519ac92139f4f84b4d0b6dfd7782, type: 3}
   m_Name: PatissierStats
   m_EditorClassIdentifier: 
-  maxHealth: 23
-  attack: 5
-  attackFreqSeconds: 1.8
+  maxHealth: 28
+  attack: 4
+  attackFreqSeconds: 1.6
   moveSpeed: 1

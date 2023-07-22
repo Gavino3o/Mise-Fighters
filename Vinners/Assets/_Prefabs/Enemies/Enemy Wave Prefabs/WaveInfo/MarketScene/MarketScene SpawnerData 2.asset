@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: MarketScene SpawnerData 2
   m_EditorClassIdentifier: 
   enemyPrefabs:
-  - {fileID: 6001219059347570189, guid: 82df1810b8c144d458f7328f072366b3, type: 3}
   - {fileID: 6001219059347570189, guid: 5b5d8bbb23fc46f40afbb7940441a64a, type: 3}
   - {fileID: 6001219059347570189, guid: 5b5d8bbb23fc46f40afbb7940441a64a, type: 3}
   - {fileID: 6001219059347570189, guid: 2b1ff3ea4a359594cb314b264a8c2a6e, type: 3}
+  - {fileID: 6001219059347570189, guid: 17e9d1b6eb7188344a81c34e44688c0c, type: 3}
   bossPrefabs: []
-  spawnRate: 0.5
+  spawnRate: 0.7
   spawnLocations: []
   enemiesToSpawn: 0
   isBossSpawner: 0

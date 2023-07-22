@@ -17,6 +17,6 @@ MonoBehaviour:
   durationSeconds: 3
   damageOverTime: 0
   attackMultiplier: 0.5
-  moveSpeedMultiplier: 0.75
+  moveSpeedMultiplier: 0.5
   douser: 0
   igniter: 0

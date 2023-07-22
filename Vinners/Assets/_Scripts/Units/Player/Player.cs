@@ -84,6 +84,18 @@ public class Player : NetworkBehaviour
         TargetStageClear(Owner);
     }
 
+    public void GameCleared()
+    {
+        // ServerDespawnCharacter();
+        TargetGameClear(Owner);
+    }
+
+    [ServerRpc(RequireOwnership =false)]
+    private void ServerDespawnCharacter()
+    {
+        controlledCharacter.Despawn();
+    }
+
     public void EnterNextScene(Vector3 spawnPoint)
     {
         // reset position to middle of stage or set some spawnpoints
@@ -112,5 +124,10 @@ public class Player : NetworkBehaviour
         UIManager.LocalInstance.Show<ReadyScreen>();
     }
 
+    [TargetRpc]
+    private void TargetGameClear(NetworkConnection conn)
+    {
+        UIManager.LocalInstance.Show<VictoryScreen>();
+    }
 
 }

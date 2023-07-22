@@ -16,7 +16,7 @@ MonoBehaviour:
   effectCode: 6
   durationSeconds: 5
   damageOverTime: 1
-  attackMultiplier: 0.75
+  attackMultiplier: 1
   moveSpeedMultiplier: 1
   douser: 0
   igniter: 1

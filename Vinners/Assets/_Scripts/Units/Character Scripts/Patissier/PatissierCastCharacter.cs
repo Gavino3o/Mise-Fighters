@@ -39,7 +39,7 @@ public class PatissierCastCharacter : CastCharacter
         {
             // If mouse input is on the left
             GameObject obj = Instantiate(burnSpellPrefab, transform.right, Quaternion.Euler(0, 0, 270));
-            Debug.Log("Left");
+
             var skillFollowPlayer = obj.GetComponent<SkillFollowPlayer>();
             skillFollowPlayer.player = gameObject;
             skillFollowPlayer.xOffset = -offSet;
@@ -50,7 +50,7 @@ public class PatissierCastCharacter : CastCharacter
         {
             // If mouse input is on the right, exact above or exact below
             GameObject obj = Instantiate(burnSpellPrefab, -transform.right, Quaternion.Euler(0, 0, -270));
-            Debug.Log("Right");
+
             var skillFollowPlayer = obj.GetComponent<SkillFollowPlayer>();
             skillFollowPlayer.player = gameObject;
             skillFollowPlayer.xOffset = offSet;

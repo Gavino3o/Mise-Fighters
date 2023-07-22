@@ -17,7 +17,7 @@ public class ButcherCastCharacter : CastCharacter
         {
             StartCoroutine(Cooldown(0));
             characterAnimator.PlaySkill();
-            CastTauntSkill();
+            StartCoroutine(Taunting());
         }
         else
         {
@@ -35,6 +35,15 @@ public class ButcherCastCharacter : CastCharacter
         ServerManager.Spawn(obj);
         AudioManager.Instance.PlaySoundEffect(skillSpellSoundEffect);
         Debug.Log($"{spellData[0].spellName} casted");
+    }
+
+    private IEnumerator Taunting()
+    {
+        character.isInvicible = true;
+        CastTauntSkill();
+        yield return new WaitForSeconds(0.7f);
+        character.isInvicible = false;
+ 
     }
 
     #endregion

@@ -16,6 +16,7 @@ MonoBehaviour:
   - {fileID: 6001219059347570189, guid: 82df1810b8c144d458f7328f072366b3, type: 3}
   - {fileID: 6001219059347570189, guid: 66e1906e6a074e2428064829a9262f8a, type: 3}
   - {fileID: 6001219059347570189, guid: 82df1810b8c144d458f7328f072366b3, type: 3}
+  - {fileID: 6001219059347570189, guid: ad612cf003841ca41bf2390b72323af7, type: 3}
   bossPrefabs: []
   spawnRate: 1
   spawnLocations:

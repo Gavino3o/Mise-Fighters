@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ad7733e8510838847a89fbb9c2a609f4, type: 3}
-  m_Name: PatissierRollingPin
+  m_Name: BartenderFreeze
   m_EditorClassIdentifier: 
-  spellName: "You\u2019re Dough-ne for"
-  description: Sends out a comically large rolling pin in the direction faced, dealing
-    massive damage to all enemies hit.
+  spellName: Just the Rocks
+  description: 'The Bartender flash freezes everything around her in a large radius,
+    dealing massive damage and  SLOWING enemies. '
   cooldown: 0
-  damage: 3
-  duration: 5
+  damage: 5
+  duration: 0.8

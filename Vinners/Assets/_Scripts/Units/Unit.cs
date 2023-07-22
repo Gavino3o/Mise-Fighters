@@ -126,7 +126,7 @@ public abstract class Unit : NetworkBehaviour
                 sprite.flipY = false;
                 break;
             case (int)StatusEffectData.EFFECTCODES.BUFF:
-                sprite.color = new(165, 255, 207);
+                sprite.color = new(0.5f, 1, 0.5f);
                 sprite.flipY = false;
                 break;
             case (int)StatusEffectData.EFFECTCODES.FLATTEN:
