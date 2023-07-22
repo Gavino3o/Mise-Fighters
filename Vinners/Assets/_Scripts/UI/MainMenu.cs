@@ -2,6 +2,8 @@ using FishNet;
 using FishNet.Managing;
 using UnityEngine;
 using UnityEngine.UI;
+using FishNet.Discovery;
+using System.Net;
 
 public sealed class MainMenu : View
 {
@@ -13,9 +15,45 @@ public sealed class MainMenu : View
     [SerializeField] private Button guideButton;
     [SerializeField] private Button optionsButton;
     [SerializeField] private Button quitButton;
+    [SerializeField] private NetworkDiscovery networkDiscovery;
+
+    public IPEndPoint ipAddress = null;
+
+    private void OnDestroy()
+    {
+        networkDiscovery.ServerFoundCallback -= ConnectToIP;
+    }
+
+    private void OnDisable()
+    {
+        networkDiscovery.ServerFoundCallback -= ConnectToIP;
+    }
+
+    private void OnEnable()
+    {
+        networkDiscovery.ServerFoundCallback += ConnectToIP;
+    }
+
+    private void ConnectToIP(IPEndPoint address)
+    {
+        ipAddress = address;
+
+        joinButton.onClick.RemoveAllListeners();
+
+        joinButton.onClick.AddListener(() =>
+        {
+                networkDiscovery.StopAdvertisingServer();
+
+                networkDiscovery.StopSearchingForServers();
+
+                InstanceFinder.ClientManager.StartConnection(address.ToString());
+        });
+    }
 
     private void Start()
     {
+        if (networkDiscovery == null) networkDiscovery = FindObjectOfType<NetworkDiscovery>();
+        networkDiscovery.ServerFoundCallback += ConnectToIP;
 
         hostButton.onClick.AddListener(() =>
         {
@@ -23,10 +61,9 @@ public sealed class MainMenu : View
             InstanceFinder.ClientManager.StartConnection();
         });
 
-        joinButton.onClick.AddListener(() => InstanceFinder.ClientManager.StartConnection());
+        
 
         guideButton.onClick.AddListener(() => {
-            Debug.Log("Guide Opened");
             OfflineUIManager.LocalInstance.Show<GuideMenu>();
         });
 
@@ -34,6 +71,12 @@ public sealed class MainMenu : View
         optionsButton.onClick.AddListener(() => OfflineUIManager.LocalInstance.Show<RebindControls>());
 
         quitButton.onClick.AddListener(() => Application.Quit());
+    }
+
+    private void Update()
+    {
+        joinButton.image.color = ipAddress == null ? Color.grey : Color.white;
+        joinButton.interactable = ipAddress != null;
     }
 }
     

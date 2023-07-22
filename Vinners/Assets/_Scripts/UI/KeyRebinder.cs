@@ -63,9 +63,17 @@ public class KeyRebinder : MonoBehaviour
                     {
                         var nextBindingIndex = bindingIndex + 1;
                         if (nextBindingIndex < action.bindings.Count && action.bindings[nextBindingIndex].isPartOfComposite)
+                        {
                             PerformInteractiveRebind(action, nextBindingIndex, true);
-
-                    } 
+                        } else
+                        {
+                            BindingEnded?.Invoke();
+                        }
+                           
+                    } else
+                    {
+                        BindingEnded?.Invoke();
+                    }
 
                 });
 
@@ -89,7 +97,7 @@ public class KeyRebinder : MonoBehaviour
         awaitingInputObject.SetActive(false);
         inProgress = false;
 
-        BindingEnded?.Invoke();
+        
     }
 
     private void UpdateDisplayText()
