@@ -4,19 +4,23 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using TMPro;
+using System;
 
 public class KeyRebinder : MonoBehaviour
 {
     [SerializeField] private InputActionReference refAction;
 
     [SerializeField] TMP_Text bindingDisplayNameText;
-    [SerializeField] private Button startRebindObject;
+    [SerializeField] public Button startRebindObject;
     [SerializeField] private GameObject awaitingInputObject;
     [SerializeField] private TMP_Text awaitingInputText;
 
     public bool inProgress;
 
     private InputActionRebindingExtensions.RebindingOperation rebindingOperation;
+
+    public event Action BindingStarted;
+    public event Action BindingEnded;
 
     private void Start()
     {
@@ -27,6 +31,8 @@ public class KeyRebinder : MonoBehaviour
 
     public void StartRebinding()
     {
+        BindingStarted?.Invoke();
+
 
         inProgress = true;
         var action = refAction.action;
@@ -65,13 +71,12 @@ public class KeyRebinder : MonoBehaviour
 
         var partName = default(string);
         if (action.bindings[bindingIndex].isPartOfComposite)
-            partName = $"Binding '{action.bindings[bindingIndex].name}'. ";
+            partName = $"Binding '{action.bindings[bindingIndex].name}.'";
         startRebindObject.gameObject.SetActive(false);
         awaitingInputObject.SetActive(true);
 
-        var text = !string.IsNullOrEmpty(rebindingOperation.expectedControlType)
-                    ? $"{partName}Waiting for {rebindingOperation.expectedControlType} input..."
-                    : $"{partName}Waiting for input...";
+        var text = $"{partName} Awaiting input...";
+
         awaitingInputText.text = text;
 
         rebindingOperation.Start();
@@ -83,6 +88,8 @@ public class KeyRebinder : MonoBehaviour
         startRebindObject.gameObject.SetActive(true);
         awaitingInputObject.SetActive(false);
         inProgress = false;
+
+        BindingEnded?.Invoke();
     }
 
     private void UpdateDisplayText()

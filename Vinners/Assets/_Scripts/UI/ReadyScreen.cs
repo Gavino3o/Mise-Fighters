@@ -7,7 +7,6 @@ using TMPro;
 
 public class ReadyScreen : View
 {
-    public TextMeshProUGUI readyButtonText;
     public Button readyButton;
     public Button startGameButton;
 
@@ -39,7 +38,7 @@ public class ReadyScreen : View
     {
         if (!Initialised) return;
 
-        readyButtonText.color = Player.LocalInstance.isLockedIn ? Color.green : Color.red;
+        readyButton.image.color = Player.LocalInstance.isLockedIn ? Color.grey : Color.white;
 
         // Should only be able to start game if all players in the lobby are ready.
         startGameButton.interactable = GameManager.Instance.canStart;

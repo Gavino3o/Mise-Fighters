@@ -11,7 +11,6 @@ using FishNet;
 public class CharacterSelect : View
 {
     
-    [SerializeField] private TextMeshProUGUI lockInButtonText;
     [SerializeField] private Button nextCharacterButton;
     [SerializeField] private Button prevCharacterButton;
     [SerializeField] private Button lockInButton;
@@ -89,7 +88,7 @@ public class CharacterSelect : View
     {
         if (!Initialised) return;
 
-        lockInButtonText.color = Player.LocalInstance.isLockedIn ? Color.green : Color.red;
+        lockInButton.image.color = Player.LocalInstance.isLockedIn ? Color.grey : Color.white;
 
         // Should only be able to start game if all players in the lobby are ready.
         startGameButton.interactable = GameManager.Instance.canStart;
