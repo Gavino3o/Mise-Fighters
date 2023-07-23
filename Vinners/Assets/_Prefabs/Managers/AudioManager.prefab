@@ -58,7 +58,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 7f80730b673e664408b1b7a83a4e870c, type: 3}
   - {fileID: 8300000, guid: 71fc52c98e9738e4ab51763e03b5be3c, type: 3}
   - {fileID: 8300000, guid: c8eca3b97b44b6c458cba7a3decc7010, type: 3}
-  - {fileID: 8300000, guid: 2efceb0a2562b7548ace3b500cd1e846, type: 3}
+  - {fileID: 8300000, guid: a4e144dcf6922f34399886fd17bda4a0, type: 3}
   - {fileID: 8300000, guid: 1e5bace1ae11f9949a77e0e6448c7fb1, type: 3}
   - {fileID: 8300000, guid: ae23cc4e8018acf4e9e67ff2901cb94a, type: 3}
   - {fileID: 8300000, guid: a1a1517e2d97b36449f4c2f11b765e7e, type: 3}
@@ -109,7 +109,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 32
+  <PrefabId>k__BackingField: 41
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 2571393946
   <SceneId>k__BackingField: 0
