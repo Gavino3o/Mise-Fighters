@@ -19,6 +19,10 @@ MonoBehaviour:
   - {fileID: 6001219059347570189, guid: 17e9d1b6eb7188344a81c34e44688c0c, type: 3}
   bossPrefabs: []
   spawnRate: 0.7
-  spawnLocations: []
+  spawnLocations:
+  - {fileID: 117531311175742461, guid: 3f0fbc5daa49caa459f61e1c3741e71e, type: 3}
+  - {fileID: 2640684533479847277, guid: a763697c6e668a5468b1409d84b56e8e, type: 3}
+  - {fileID: 4501958896609383117, guid: 4d27da598b5f4704d9e0298fcbf4bbc4, type: 3}
+  - {fileID: 5759181790454345187, guid: 40efbc58187bc454bb1e25d6d0661e58, type: 3}
   enemiesToSpawn: 20
   isBossSpawner: 0
