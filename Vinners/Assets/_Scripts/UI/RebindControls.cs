@@ -24,6 +24,26 @@ public class RebindControls : View
         if (string.IsNullOrEmpty(rebinds)) return;
 
         playerInput.actions.LoadBindingOverridesFromJson(rebinds);
+
+        
+    }
+
+    private void Awake()
+    {
+        foreach (KeyRebinder rebinder in keyRebinders)
+        {
+            rebinder.BindingStarted += RebindingInProgress;
+            rebinder.BindingEnded += RebindingFinished;
+        }
+    }
+
+    private void OnDestroy()
+    {
+        foreach (KeyRebinder rebinder in keyRebinders)
+        {
+            rebinder.BindingStarted -= RebindingInProgress;
+            rebinder.BindingEnded -= RebindingFinished;
+        }
     }
 
     public void SaveKeybinds()
@@ -34,20 +54,25 @@ public class RebindControls : View
 
     }
 
-    private bool RebindingInProgress()
+    private void RebindingInProgress()
+    {
+        UpdateRebinders(false);
+    }
+
+    private void RebindingFinished()
+    {
+        UpdateRebinders(true);
+    }
+
+
+    private void UpdateRebinders(bool value)
     {
         foreach (KeyRebinder rebinder in keyRebinders)
         {
-            if (rebinder.inProgress) return true;
+            rebinder.startRebindObject.interactable = value;
         }
-        return false;
-    }
-
-    void Update()
-    {
-        bool value = !RebindingInProgress();
         backButton.interactable = value;
     }
-   
+
 
 }

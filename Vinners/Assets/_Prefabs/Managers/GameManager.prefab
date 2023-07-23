@@ -55,6 +55,7 @@ MonoBehaviour:
   - KitchenScene
   - MarketScene
   - SpaghettiBossScene
+  victorySceneName: VictoryScene
 --- !u!114 &2512929587187230282
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -79,7 +80,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 31
+  <PrefabId>k__BackingField: 41
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 0
   <SceneId>k__BackingField: 0

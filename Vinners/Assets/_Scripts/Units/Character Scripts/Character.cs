@@ -61,7 +61,7 @@ public class Character : Unit
         
         ShowRespawn(Owner);
         ToggleInput(Owner, false);
-        isInvicible = true;
+        isInvincible = true;
         attacker.canAttack = false;
 
     }
@@ -76,14 +76,14 @@ public class Character : Unit
         ServerHeal();
         ShowHUD(Owner);
         ToggleInput(Owner, true);
-        isInvicible = false;
+        isInvincible = false;
         attacker.canAttack = true;
     }
 
     [ServerRpc(RequireOwnership = false)]
     private void ServerHeal()
     {
-        TakeDamage(baseStats.maxHealth * -0.5f);
+        TakeDamage(baseStats.maxHealth * -0.75f);
     }
 
     [TargetRpc]

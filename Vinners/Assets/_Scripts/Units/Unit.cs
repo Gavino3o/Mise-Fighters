@@ -19,7 +19,21 @@ public abstract class Unit : NetworkBehaviour
     public event Action<int> StatusApplied;
     public event Action<int> StatusEnded;
 
-    [SyncVar] public bool isInvicible;
+    [SyncVar] public bool isInvincible;
+
+    [ServerRpc]
+    public void MakeInvincible()
+    {
+        isInvincible = true;
+    }
+
+    [ServerRpc]
+    public void MakeVulnerable()
+    {
+        isInvincible = false;
+    }
+
+    
 
     public SpriteRenderer sprite;
 
@@ -35,7 +49,7 @@ public abstract class Unit : NetworkBehaviour
     // This should be the only way a unit's health is changed
     public virtual void TakeDamage(float dmg)
     {
-        if (isInvicible) return;
+        if (isInvincible) return;
         float next = currHealth -= dmg;
         if (next >= baseStats.maxHealth)
         {
@@ -126,7 +140,7 @@ public abstract class Unit : NetworkBehaviour
                 sprite.flipY = false;
                 break;
             case (int)StatusEffectData.EFFECTCODES.BUFF:
-                sprite.color = new(165, 255, 207);
+                sprite.color = new(0.5f, 1, 0.5f);
                 sprite.flipY = false;
                 break;
             case (int)StatusEffectData.EFFECTCODES.FLATTEN:

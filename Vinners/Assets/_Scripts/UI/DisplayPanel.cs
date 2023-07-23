@@ -12,6 +12,10 @@ public class DisplayPanel : MonoBehaviour
     public TextMeshProUGUI dashDesc;
     public TextMeshProUGUI ultDesc;
 
+    public TextMeshProUGUI skillName;
+    public TextMeshProUGUI dashName;
+    public TextMeshProUGUI ultName;
+
     public Button backButton;
 
     private void Start()
@@ -28,6 +32,11 @@ public class DisplayPanel : MonoBehaviour
         skillDesc.text = spldata[0].description;
         dashDesc.text = spldata[1].description;
         ultDesc.text = spldata[2].description;
+
+        skillName.text = spldata[0].spellName;
+        dashName.text = spldata[1].spellName;
+        ultName.text = spldata[2].spellName;
+
 
     }
 

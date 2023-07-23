@@ -19,11 +19,11 @@ GameObject:
   - component: {fileID: 4414647984169859242}
   - component: {fileID: -595177013496435579}
   - component: {fileID: -7564451973442373784}
-  - component: {fileID: 8564761197155556380}
   - component: {fileID: 6111969500587686426}
   - component: {fileID: 2067188378006845319}
   - component: {fileID: -8802169046272653161}
   - component: {fileID: 6786351217899528315}
+  - component: {fileID: 7860887055099389980}
   m_Layer: 3
   m_Name: Patissier
   m_TagString: Player
@@ -141,7 +141,7 @@ MonoBehaviour:
   currAttackSpeed: 0
   currMoveSpeed: 0
   baseStats: {fileID: 11400000, guid: 2e451125e1043ff40ab2f416915b1ead, type: 2}
-  isInvicible: 0
+  isInvincible: 0
   sprite: {fileID: 6786351217899528315}
   attackChangeEndtime: 0
   speedChangeEndtime: 0
@@ -308,12 +308,11 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 4fe3ba38411a6c14db7cf6f93583fbad, type: 2}
   ultimate: 0
   burnSpellPrefab: {fileID: 5573050333223222883, guid: c203d78f488b8f34c8a96e2acdef8dda, type: 3}
-  scrambleSpellPrefab: {fileID: 5681926344258742825, guid: f4f133a1a74ceea499e66882daf036bd, type: 3}
-  offSet: 1.5
+  offSet: 1.7
   skillSpellSoundEffect: {fileID: 8300000, guid: 71fc52c98e9738e4ab51763e03b5be3c, type: 3}
   dashSpellSoundEffect: {fileID: 8300000, guid: c8eca3b97b44b6c458cba7a3decc7010, type: 3}
   ultimateSpellSoundEffect: {fileID: 8300000, guid: 2efceb0a2562b7548ace3b500cd1e846, type: 3}
-  scrambleSpeed: 8
+  scrambleSpeed: 9
   pinSpellPrefab: {fileID: 5592945174258440837, guid: b7901280ec29cca46b2d2771089e67f0, type: 3}
 --- !u!114 &-7564451973442373784
 MonoBehaviour:
@@ -335,22 +334,6 @@ MonoBehaviour:
   projectile: {fileID: 4279149033440265247, guid: fe23b3dfd0d788f458c4b7a103bd5028, type: 3}
   autoAttackSoundEffect: {fileID: 8300000, guid: 7f80730b673e664408b1b7a83a4e870c, type: 3}
   canAttack: 1
---- !u!58 &8564761197155556380
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8735874033422930139}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 1.2
 --- !u!95 &6111969500587686426
 Animator:
   serializedVersion: 5
@@ -470,3 +453,19 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!70 &7860887055099389980
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8735874033422930139}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 1.25, y: 2.64}
+  m_Direction: 0

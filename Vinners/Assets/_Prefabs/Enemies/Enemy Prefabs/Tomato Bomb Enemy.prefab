@@ -82,7 +82,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.75
 --- !u!114 &6001219059347570185
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -146,7 +146,7 @@ MonoBehaviour:
   _initializeOrder: 0
   _defaultDespawnType: 0
   NetworkObserver: {fileID: 0}
-  <PrefabId>k__BackingField: 14
+  <PrefabId>k__BackingField: 17
   <SpawnableCollectionId>k__BackingField: 0
   _scenePathHash: 0
   <SceneId>k__BackingField: 0
@@ -378,7 +378,7 @@ MonoBehaviour:
   _addedNetworkObject: {fileID: 6001219059347570186}
   _networkObjectCache: {fileID: 6001219059347570186}
   explosionSoundEffect: {fileID: 8300000, guid: 9ff68a9c42153ef4eadb38d7ab63a577, type: 3}
-  explodingWindUp: 2
+  explodingWindUp: 1.5
   explodingCancelRange: 5
   explosionPrefab: {fileID: 1520164269054886570, guid: febcac87f88d67c46a456a061aba17e6, type: 3}
 --- !u!95 &5449756150339247702

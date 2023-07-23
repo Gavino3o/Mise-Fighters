@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99e2519ac92139f4f84b4d0b6dfd7782, type: 3}
   m_Name: ChefStats
   m_EditorClassIdentifier: 
-  maxHealth: 18
+  maxHealth: 26
   attack: 6
   attackFreqSeconds: 1
   moveSpeed: 1.1

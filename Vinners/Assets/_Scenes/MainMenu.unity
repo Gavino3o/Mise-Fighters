@@ -359,7 +359,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 956530494}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 281.68134, y: 131.64297, z: 0.8346626}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -517,7 +517,7 @@ MonoBehaviour:
   m_UiScaleMode: 1
   m_ReferencePixelsPerUnit: 100
   m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 450}
+  m_ReferenceResolution: {x: 1920, y: 1080}
   m_ScreenMatchMode: 0
   m_MatchWidthOrHeight: 0
   m_PhysicalUnit: 3
@@ -829,6 +829,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1344181432}
     m_Modifications:
+    - target: {fileID: 11587201960831770, guid: f7489c894aceedf41853287717850285, type: 3}
+      propertyPath: networkDiscovery
+      value: 
+      objectReference: {fileID: 3031761100475038061}
     - target: {fileID: 11587201960831772, guid: f7489c894aceedf41853287717850285, type: 3}
       propertyPath: m_Name
       value: MainMenu
@@ -1035,6 +1039,8 @@ GameObject:
   - component: {fileID: 3031761100475038055}
   - component: {fileID: 3031761100475038060}
   - component: {fileID: 3031761100475038061}
+  - component: {fileID: 3031761100475038062}
+  - component: {fileID: 3031761100475038063}
   m_Layer: 0
   m_Name: NetworkManager
   m_TagString: Untagged
@@ -1091,9 +1097,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   secret: MiseFighters
-  port: 0
-  discoveryInterval: 1
-  automatic: 0
+  port: 7771
+  discoveryInterval: 0.5
+  automatic: 1
+--- !u!114 &3031761100475038062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3031761100475038058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f48f002b825cbd45a19bd96d90f9edb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _unreliableMTU: 1023
+  _ipv4BindAddress: 
+  _ipv6BindAddress: 
+  _port: 7770
+  _maximumClients: 4095
+  _clientAddress: localhost
+  _timeout: 15
+--- !u!114 &3031761100475038063
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3031761100475038058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95fd0aa0635fe1e4c8798eaeb4f8de50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  networkDiscovery: {fileID: 3031761100475038061}
 --- !u!224 &3713772982488782866
 RectTransform:
   m_ObjectHideFlags: 0

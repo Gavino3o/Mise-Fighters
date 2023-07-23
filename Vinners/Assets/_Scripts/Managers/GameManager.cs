@@ -31,6 +31,7 @@ public sealed class GameManager : NetworkBehaviour
 
     [Header("Scene Names")]
     public string[] sceneNames;
+    public string victorySceneName;
 
     private int currentScene;
     
@@ -117,6 +118,22 @@ public sealed class GameManager : NetworkBehaviour
     }
 
     [Server]
+    public void ChangeScene(string stage)
+    {
+        SceneLoadData sld = new(stage);
+        List<NetworkObject> movedObjects = new();
+        foreach (NetworkConnection item in InstanceFinder.ServerManager.Clients.Values)
+        {
+            foreach (NetworkObject nob in item.Objects)
+                movedObjects.Add(nob);
+        }
+
+        sld.MovedNetworkObjects = movedObjects.ToArray();
+        sld.ReplaceScenes = ReplaceOption.All;
+        InstanceFinder.SceneManager.LoadGlobalScenes(sld);
+    }
+
+    [Server]
     public void StageClear()
     {
         for (int i = 0; i < players.Count; i++)
@@ -129,9 +146,15 @@ public sealed class GameManager : NetworkBehaviour
     public void LoadNextScene()
     {
         currentScene++;
-        ChangeScene(currentScene);
+        if (currentScene < sceneNames.Length)
+        {
+            ChangeScene(currentScene);
 
-        ObserversEnteredNextScene();
+            ObserversEnteredNextScene();
+        } else
+        {
+            Victory();
+        }
     }
 
     [ObserversRpc]
@@ -144,7 +167,11 @@ public sealed class GameManager : NetworkBehaviour
     [Server]
     public void Victory()
     {
-        // win!
+        ChangeScene(victorySceneName);
+        for (int i = 0; i < players.Count; i++)
+        {
+            players[i].GameCleared();
+        }
     }
 
 }

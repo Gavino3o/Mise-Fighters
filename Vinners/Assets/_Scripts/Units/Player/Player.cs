@@ -80,14 +80,26 @@ public class Player : NetworkBehaviour
 
     public void StageCleared()
     {
-        controlledCharacter.isInvicible = true;
+        controlledCharacter.isInvincible = true;
         TargetStageClear(Owner);
+    }
+
+    public void GameCleared()
+    {
+        // ServerDespawnCharacter();
+        TargetGameClear(Owner);
+    }
+
+    [ServerRpc(RequireOwnership =false)]
+    private void ServerDespawnCharacter()
+    {
+        controlledCharacter.Despawn();
     }
 
     public void EnterNextScene(Vector3 spawnPoint)
     {
         // reset position to middle of stage or set some spawnpoints
-        controlledCharacter.isInvicible = false;
+        controlledCharacter.isInvincible = false;
         controlledCharacter.transform.position = spawnPoint;
 
         RespawnCharacter();
@@ -112,5 +124,10 @@ public class Player : NetworkBehaviour
         UIManager.LocalInstance.Show<ReadyScreen>();
     }
 
+    [TargetRpc]
+    private void TargetGameClear(NetworkConnection conn)
+    {
+        UIManager.LocalInstance.Show<VictoryScreen>();
+    }
 
 }

@@ -75,9 +75,11 @@ public class BartenderCastCharacter : CastCharacter
     private IEnumerator Backstep()
     {
         movement.interrupted = true;
+        character.MakeInvincible();
         rigidBody.velocity = -3 * dashSpeed * input.targetDirection;
         yield return new WaitForSeconds(spellData[1].duration);
         movement.interrupted = false;
+        character.MakeVulnerable();
     }
     #endregion
 
@@ -113,10 +115,10 @@ public class BartenderCastCharacter : CastCharacter
 
     private IEnumerator FlashFreeze()
     {
-        character.isInvicible = true;
+        character.MakeInvincible();
         CastUltimateSkill();
         yield return new WaitForSeconds(spellData[2].duration);
-        character.isInvicible = false;
+        character.MakeVulnerable();
 
     }
 

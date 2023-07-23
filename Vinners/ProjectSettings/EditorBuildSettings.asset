@@ -21,6 +21,9 @@ EditorBuildSettings:
     path: Assets/_Scenes/MarketScene.unity
     guid: 37bbe8f32908d154fa652fe85ed2bd79
   - enabled: 1
-    path: Assets/_Scenes/IngredientBossScene.unity
+    path: Assets/_Scenes/SpaghettiBossScene.unity
     guid: 50c17dd7b555ea542895bdbe3c5ded94
+  - enabled: 1
+    path: Assets/_Scenes/VictoryScene.unity
+    guid: 4158d1c98eeb68945aa1dfe7d62d28d1
   m_configObjects: {}

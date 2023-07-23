@@ -59,7 +59,7 @@ public class ChefCastCharacter : CastCharacter
             StartCoroutine(Cooldown(1));
             characterAnimator.PlayDash();
             StartCoroutine(Blink());
-            CastBlinkSkill();
+
             Debug.Log($"{spellData[1].spellName} casted");
         }
         else
@@ -85,7 +85,7 @@ public class ChefCastCharacter : CastCharacter
         
         RaycastHit2D hit = Physics2D.Raycast((Vector2) transform.position, blinkDirection, blinkDistance, obstacleLayer);
 
-        character.isInvicible = true;
+        character.MakeInvincible();
         if (hit.collider == null)
         {
             Vector2 newPosition = (Vector2) transform.position + blinkDirection * blinkDistance;
@@ -114,8 +114,9 @@ public class ChefCastCharacter : CastCharacter
                 Debug.Log("C3");
             }
         }
+        CastBlinkSkill();
         yield return new WaitForSeconds(spellData[1].duration);
-        character.isInvicible = false;
+        character.MakeVulnerable();
     }
     #endregion
 
@@ -153,12 +154,12 @@ public class ChefCastCharacter : CastCharacter
     public IEnumerator Julienne()
     {
         movement.interrupted = true;
-        character.isInvicible = true;
+        character.MakeInvincible();
         GetComponent<Rigidbody2D>().velocity = Vector2.zero;
         CastUltimateSkill(input.rotation);
         yield return new WaitForSeconds(spellData[2].duration);
         movement.interrupted = false;
-        character.isInvicible = false;
+        character.MakeVulnerable();
     }
 
     #endregion

@@ -141,13 +141,13 @@ GameObject:
   - component: {fileID: 7119554722637575324}
   - component: {fileID: 7119554722637575329}
   - component: {fileID: 7119554722637575328}
-  - component: {fileID: 7119554722637575331}
   - component: {fileID: 7119554722637575333}
   - component: {fileID: 7119554722637575332}
   - component: {fileID: 7119554722637575335}
   - component: {fileID: 7119554722637575334}
   - component: {fileID: 7119554722637575336}
   - component: {fileID: -7818713724408860998}
+  - component: {fileID: 5691978060935590778}
   m_Layer: 3
   m_Name: Spaghetti Boss Prefab
   m_TagString: Enemy
@@ -192,7 +192,7 @@ MonoBehaviour:
   currAttackSpeed: 3
   currMoveSpeed: 0
   baseStats: {fileID: 11400000, guid: 246a02dfef84aa747ad255f6e52faa44, type: 2}
-  isInvicible: 0
+  isInvincible: 0
   sprite: {fileID: 7162347092086912513}
   attackChangeEndtime: 0
   speedChangeEndtime: 0
@@ -272,22 +272,6 @@ MonoBehaviour:
   _componentIndexCache: 2
   _addedNetworkObject: {fileID: 7119554722637575329}
   _networkObjectCache: {fileID: 7119554722637575329}
---- !u!58 &7119554722637575331
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7119554722637575339}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.3
 --- !u!50 &7119554722637575333
 Rigidbody2D:
   serializedVersion: 4
@@ -414,9 +398,9 @@ MonoBehaviour:
   meatballSoundEffect: {fileID: 8300000, guid: 371031a6ea475934b8deb8720fe99b2e, type: 3}
   tomatoProjectileSoundEffect: {fileID: 8300000, guid: 17a1762af948f124fbf837df6595d75e, type: 3}
   maxTomatoBombs: 5
-  maxMeatballComets: 3
-  shootTomatoCooldown: 3
-  meatballCometCooldown: 5
+  maxMeatballComets: 6
+  shootTomatoCooldown: 2
+  meatballCometCooldown: 4
   tomatoBombCooldown: 10
 --- !u!114 &-7818713724408860998
 MonoBehaviour:
@@ -460,6 +444,38 @@ MonoBehaviour:
     X: 0
     Y: 0
     Z: 0
+--- !u!60 &5691978060935590778
+PolygonCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7119554722637575339}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Points:
+    m_Paths:
+    - - {x: -0.016421951, y: 0.6058729}
+      - {x: -0.81146985, y: 0.42397073}
+      - {x: -0.7191609, y: -0.44773397}
+      - {x: -0.37560275, y: -0.57927054}
+      - {x: 0.5067129, y: -0.5685037}
+      - {x: 0.752005, y: -0.39846796}
+      - {x: 0.7786259, y: 0.374705}
 --- !u!1001 &2655591833558421548
 PrefabInstance:
   m_ObjectHideFlags: 0
