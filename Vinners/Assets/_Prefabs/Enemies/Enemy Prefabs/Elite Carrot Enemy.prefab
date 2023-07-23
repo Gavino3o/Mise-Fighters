@@ -103,7 +103,7 @@ MonoBehaviour:
   currAttackSpeed: 0
   currMoveSpeed: 0
   baseStats: {fileID: 11400000, guid: 5d1b4873929193f459536061c88d8bcb, type: 2}
-  isInvicible: 0
+  isInvincible: 0
   sprite: {fileID: 6001219059347570289}
   attackChangeEndtime: 0
   speedChangeEndtime: 0
@@ -468,7 +468,7 @@ MonoBehaviour:
   _componentIndexCache: 5
   _addedNetworkObject: {fileID: 6001219059347570186}
   _networkObjectCache: {fileID: 6001219059347570186}
-  damage: 3
+  damage: 2.5
 --- !u!1001 &3439798403492994811
 PrefabInstance:
   m_ObjectHideFlags: 0

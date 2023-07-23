@@ -9,7 +9,7 @@ public class PatissierCastCharacter : CastCharacter
     #region Burn skill
     [Header("Burn Skill")]
     [SerializeField] private GameObject burnSpellPrefab;
-    [SerializeField] private NetworkObject scrambleSpellPrefab;
+    // [SerializeField] private NetworkObject scrambleSpellPrefab;
     [SerializeField] private float offSet = 2.0f;
     [SerializeField] private AudioClip skillSpellSoundEffect;
     [SerializeField] private AudioClip dashSpellSoundEffect;
@@ -86,12 +86,6 @@ public class PatissierCastCharacter : CastCharacter
     [ServerRpc]
     public void CastScrambleSkill()
     {
-        NetworkObject obj = Instantiate(scrambleSpellPrefab, transform);
-        SetupDamager(obj.GetComponent<EnemyDamager>(), 1);
-        obj.GetComponent<Lifetime>().lifetime = spellData[1].duration;
-        var skillFollowPlayer = obj.GetComponent<SkillFollowPlayer>();
-        skillFollowPlayer.player = this.gameObject;
-        ServerManager.Spawn(obj);
         AudioManager.Instance.PlaySoundEffect(dashSpellSoundEffect);
         Debug.Log($"{spellData[1].spellName} casted");
     }
@@ -99,11 +93,11 @@ public class PatissierCastCharacter : CastCharacter
     public IEnumerator Scramble()
     {
         movement.interrupted = true;
-        character.isInvicible = true;
+        character.MakeInvincible();
         rigidBody.velocity = scrambleSpeed * input.targetDirection;
         yield return new WaitForSeconds(spellData[1].duration);
         movement.interrupted = false;
-        character.isInvicible = false;
+        character.MakeVulnerable();
     }
 
     #endregion

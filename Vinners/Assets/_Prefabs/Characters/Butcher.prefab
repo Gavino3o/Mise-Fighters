@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 1052875305421243053}
   - component: {fileID: 4013661713497051279}
   - component: {fileID: 1140230785626484532}
-  - component: {fileID: 5164507935448699220}
+  - component: {fileID: 2905784950320286316}
   m_Layer: 3
   m_Name: Butcher
   m_TagString: Player
@@ -189,7 +189,7 @@ MonoBehaviour:
   currAttackSpeed: 0
   currMoveSpeed: 0
   baseStats: {fileID: 11400000, guid: e0474f370e814a94bb53361c62251371, type: 2}
-  isInvicible: 0
+  isInvincible: 0
   sprite: {fileID: 4013661713497051279}
   attackChangeEndtime: 0
   speedChangeEndtime: 0
@@ -281,6 +281,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 81bcb4d13af5d9b4f9853700b3b915ef, type: 2}
   ultimate: 0
   tauntSpellPrefab: {fileID: 5681926344258742825, guid: 81d487595d0fdee469440d0d92732af3, type: 3}
+  tauntHealAmount: 2
   skillSpellSoundEffect: {fileID: 8300000, guid: 134d544fb7da58c4c91dffae2613c419, type: 3}
   dashSpellSoundEffect: {fileID: 8300000, guid: ae23cc4e8018acf4e9e67ff2901cb94a, type: 3}
   ultimateSpellSoundEffect: {fileID: 8300000, guid: a1a1517e2d97b36449f4c2f11b765e7e, type: 3}
@@ -504,8 +505,8 @@ MonoBehaviour:
   _interpolation: 2
   _clientAuthoritative: 1
   _sendToOwner: 1
---- !u!58 &5164507935448699220
-CircleCollider2D:
+--- !u!70 &2905784950320286316
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -517,6 +518,6 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 1.2
+  m_Offset: {x: -0.16, y: 0}
+  m_Size: {x: 1.65, y: 1.81}
+  m_Direction: 0

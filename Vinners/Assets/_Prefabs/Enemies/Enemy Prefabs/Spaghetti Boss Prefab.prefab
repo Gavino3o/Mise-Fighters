@@ -192,7 +192,7 @@ MonoBehaviour:
   currAttackSpeed: 3
   currMoveSpeed: 0
   baseStats: {fileID: 11400000, guid: 246a02dfef84aa747ad255f6e52faa44, type: 2}
-  isInvicible: 0
+  isInvincible: 0
   sprite: {fileID: 7162347092086912513}
   attackChangeEndtime: 0
   speedChangeEndtime: 0
@@ -398,9 +398,9 @@ MonoBehaviour:
   meatballSoundEffect: {fileID: 8300000, guid: 371031a6ea475934b8deb8720fe99b2e, type: 3}
   tomatoProjectileSoundEffect: {fileID: 8300000, guid: 17a1762af948f124fbf837df6595d75e, type: 3}
   maxTomatoBombs: 5
-  maxMeatballComets: 3
-  shootTomatoCooldown: 3
-  meatballCometCooldown: 5
+  maxMeatballComets: 6
+  shootTomatoCooldown: 2
+  meatballCometCooldown: 4
   tomatoBombCooldown: 10
 --- !u!114 &-7818713724408860998
 MonoBehaviour:

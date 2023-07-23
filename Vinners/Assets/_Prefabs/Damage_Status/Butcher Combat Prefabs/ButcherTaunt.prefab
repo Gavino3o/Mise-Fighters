@@ -139,6 +139,7 @@ GameObject:
   - component: {fileID: 6450928562848444778}
   - component: {fileID: 2613679174344540096}
   - component: {fileID: 7636735374378466463}
+  - component: {fileID: 7253531922725694560}
   m_Layer: 0
   m_Name: Rally
   m_TagString: Untagged
@@ -191,6 +192,22 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 4.01
+--- !u!114 &7253531922725694560
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3588523573507339507}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f6e04cc97e1bbd4e878bd63c8baadc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _componentIndexCache: 255
+  _addedNetworkObject: {fileID: 5681926344258742825}
+  _networkObjectCache: {fileID: 0}
+  damage: -4
 --- !u!1 &6848911510146320331
 GameObject:
   m_ObjectHideFlags: 0

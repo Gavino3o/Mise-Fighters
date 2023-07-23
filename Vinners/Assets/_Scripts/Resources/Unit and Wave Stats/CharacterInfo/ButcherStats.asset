@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99e2519ac92139f4f84b4d0b6dfd7782, type: 3}
   m_Name: ButcherStats
   m_EditorClassIdentifier: 
-  maxHealth: 38
+  maxHealth: 41
   attack: 5
   attackFreqSeconds: 1.1
   moveSpeed: 0.9

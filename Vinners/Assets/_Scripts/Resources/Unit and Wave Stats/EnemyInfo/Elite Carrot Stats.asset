@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99e2519ac92139f4f84b4d0b6dfd7782, type: 3}
   m_Name: Elite Carrot Stats
   m_EditorClassIdentifier: 
-  maxHealth: 31
+  maxHealth: 30
   attack: 2
   attackFreqSeconds: 2
   moveSpeed: 2.7

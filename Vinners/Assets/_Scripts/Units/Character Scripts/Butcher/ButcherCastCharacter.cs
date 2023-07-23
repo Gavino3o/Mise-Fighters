@@ -7,6 +7,7 @@ public class ButcherCastCharacter : CastCharacter
     # region Taunt skill
     [Header("Taunt Skill")]
     [SerializeField] private NetworkObject tauntSpellPrefab;
+    [SerializeField] private float tauntHealAmount = 2f;
     [SerializeField] private AudioClip skillSpellSoundEffect;
     [SerializeField] private AudioClip dashSpellSoundEffect;
     [SerializeField] private AudioClip ultimateSpellSoundEffect;
@@ -39,11 +40,17 @@ public class ButcherCastCharacter : CastCharacter
 
     private IEnumerator Taunting()
     {
-        character.isInvicible = true;
+        character.MakeInvincible();
         CastTauntSkill();
-        yield return new WaitForSeconds(0.7f);
-        character.isInvicible = false;
- 
+        yield return new WaitForSeconds(1f);
+        character.MakeVulnerable();
+        SmallHeal();
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    private void SmallHeal()
+    {
+        character.TakeDamage(-1 * tauntHealAmount);
     }
 
     #endregion
@@ -85,12 +92,12 @@ public class ButcherCastCharacter : CastCharacter
     public IEnumerator Charge()
     {
         movement.interrupted = true;
-        character.isInvicible = true;
+        character.MakeInvincible();
         yield return new WaitForSeconds(windUp);
         rigidBody.velocity = 3 * chargeSpeed * input.targetDirection;
         yield return new WaitForSeconds(spellData[1].duration);
         movement.interrupted = false;
-        character.isInvicible = false;
+        character.MakeVulnerable();
     }
 
     #endregion
@@ -130,14 +137,14 @@ public class ButcherCastCharacter : CastCharacter
     {
         int n = 0;
         AudioManager.Instance.PlaySoundEffect(ultimateSpellSoundEffect);
-        character.isInvicible = true;
+        character.MakeInvincible();
         while (n < noSpins)
         {
             CastUltimateSkill();
             n++;
             yield return new WaitForSeconds(spinInterval);
         }
-        character.isInvicible = false;
+        character.MakeVulnerable();
     }
     #endregion
 }

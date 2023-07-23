@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 7428444723336966989}
   - component: {fileID: 2820761590625722370}
   - component: {fileID: 6606701902620948633}
-  - component: {fileID: -1919902670998679599}
+  - component: {fileID: 5604929002852262200}
   m_Layer: 3
   m_Name: Bartender
   m_TagString: Player
@@ -141,7 +141,7 @@ MonoBehaviour:
   currAttackSpeed: 0
   currMoveSpeed: 0
   baseStats: {fileID: 11400000, guid: bfffa5faa8ed94148a2bc8b5a7488f20, type: 2}
-  isInvicible: 0
+  isInvincible: 0
   sprite: {fileID: 7428444723336966989}
   attackChangeEndtime: 0
   speedChangeEndtime: 0
@@ -454,8 +454,8 @@ MonoBehaviour:
   _interpolation: 2
   _clientAuthoritative: 1
   _sendToOwner: 0
---- !u!58 &-1919902670998679599
-CircleCollider2D:
+--- !u!70 &5604929002852262200
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -468,5 +468,5 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 1.2
+  m_Size: {x: 1.04, y: 2.56}
+  m_Direction: 0

@@ -26,5 +26,5 @@ MonoBehaviour:
   - {fileID: 2640684533479847277, guid: a763697c6e668a5468b1409d84b56e8e, type: 3}
   - {fileID: 4501958896609383117, guid: 4d27da598b5f4704d9e0298fcbf4bbc4, type: 3}
   - {fileID: 5759181790454345187, guid: 40efbc58187bc454bb1e25d6d0661e58, type: 3}
-  enemiesToSpawn: 70
+  enemiesToSpawn: 50
   isBossSpawner: 0

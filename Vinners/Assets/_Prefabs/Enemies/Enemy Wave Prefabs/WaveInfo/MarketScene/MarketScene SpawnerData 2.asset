@@ -20,5 +20,5 @@ MonoBehaviour:
   bossPrefabs: []
   spawnRate: 0.7
   spawnLocations: []
-  enemiesToSpawn: 0
+  enemiesToSpawn: 20
   isBossSpawner: 0

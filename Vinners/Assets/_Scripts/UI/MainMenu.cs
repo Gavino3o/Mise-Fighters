@@ -15,45 +15,19 @@ public sealed class MainMenu : View
     [SerializeField] private Button guideButton;
     [SerializeField] private Button optionsButton;
     [SerializeField] private Button quitButton;
-    [SerializeField] private NetworkDiscovery networkDiscovery;
+    [SerializeField] public NetworkDiscovery networkDiscovery;
 
-    public IPEndPoint ipAddress = null;
-
-    private void OnDestroy()
-    {
-        networkDiscovery.ServerFoundCallback -= ConnectToIP;
-    }
-
-    private void OnDisable()
-    {
-        networkDiscovery.ServerFoundCallback -= ConnectToIP;
-    }
-
-    private void OnEnable()
-    {
-        networkDiscovery.ServerFoundCallback += ConnectToIP;
-    }
-
-    private void ConnectToIP(IPEndPoint address)
+    public IPEndPoint ipAddress;
+    private void StoreAddress(IPEndPoint address)
     {
         ipAddress = address;
 
-        joinButton.onClick.RemoveAllListeners();
-
-        joinButton.onClick.AddListener(() =>
-        {
-                networkDiscovery.StopAdvertisingServer();
-
-                networkDiscovery.StopSearchingForServers();
-
-                InstanceFinder.ClientManager.StartConnection(address.ToString());
-        });
     }
 
     private void Start()
     {
         if (networkDiscovery == null) networkDiscovery = FindObjectOfType<NetworkDiscovery>();
-        networkDiscovery.ServerFoundCallback += ConnectToIP;
+        networkDiscovery.ServerFoundCallback += StoreAddress;
 
         hostButton.onClick.AddListener(() =>
         {
@@ -61,7 +35,13 @@ public sealed class MainMenu : View
             InstanceFinder.ClientManager.StartConnection();
         });
 
-        
+
+        joinButton.onClick.AddListener(() =>
+        {
+            ConnectToStoredAddress();
+        });
+
+
 
         guideButton.onClick.AddListener(() => {
             OfflineUIManager.LocalInstance.Show<GuideMenu>();
@@ -73,9 +53,18 @@ public sealed class MainMenu : View
         quitButton.onClick.AddListener(() => Application.Quit());
     }
 
+    private void ConnectToStoredAddress()
+    {
+        networkDiscovery.StopAdvertisingServer();
+
+        networkDiscovery.StopSearchingForServers();
+
+        InstanceFinder.ClientManager.StartConnection(ipAddress.ToString());
+    }
+
     private void Update()
     {
-        joinButton.image.color = ipAddress == null ? Color.grey : Color.white;
+        joinButton.image.color = ipAddress != null ? Color.white : Color.grey;
         joinButton.interactable = ipAddress != null;
     }
 }

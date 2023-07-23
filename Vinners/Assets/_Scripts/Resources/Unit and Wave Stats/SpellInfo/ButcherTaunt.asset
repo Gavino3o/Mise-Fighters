@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spellName: A Butcher's Bravado
   description: Stomps the ground while TAUNTING and damaging all enemies within a
-    medium range. His war cry rallies nearby allies, BUFFING their attack for a short
-    time.
-  cooldown: 5
+    medium range. His war cry heals himself while rallies nearby allies, BUFFING
+    their attack for a short time and healing them for twice the amount he heals.
+  cooldown: 6
   damage: 1.5
   duration: 0.3
