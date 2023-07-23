@@ -612,9 +612,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 951813b0cc2320142805fd0f32ec49fc, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 081209e1b5445154cbcb0c956f2dd7d1, type: 3}
+  m_audioClip: {fileID: 8300000, guid: e792a80529837e64e8ab8ef64a357f41, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.318
+  m_Volume: 0.545
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -1096,10 +1096,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa07599644669fc418a086f3b145d3fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  secret: MiseFighters
-  port: 7771
-  discoveryInterval: 0.5
-  automatic: 1
 --- !u!114 &3031761100475038062
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1131,7 +1127,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fd0aa0635fe1e4c8798eaeb4f8de50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  networkDiscovery: {fileID: 3031761100475038061}
 --- !u!224 &3713772982488782866
 RectTransform:
   m_ObjectHideFlags: 0
