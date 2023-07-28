@@ -1096,6 +1096,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa07599644669fc418a086f3b145d3fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  secret: MiseFighters
+  port: 7771
+  discoveryInterval: 0.5
+  automatic: 1
 --- !u!114 &3031761100475038062
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1127,6 +1131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95fd0aa0635fe1e4c8798eaeb4f8de50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  networkDiscovery: {fileID: 3031761100475038061}
 --- !u!224 &3713772982488782866
 RectTransform:
   m_ObjectHideFlags: 0
