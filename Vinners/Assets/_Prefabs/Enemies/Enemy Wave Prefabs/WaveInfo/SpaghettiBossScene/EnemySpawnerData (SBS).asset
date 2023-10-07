@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 137df97faff98b0468632a8dfaa49c60, type: 3}
+  m_Name: EnemySpawnerData (SBS)
+  m_EditorClassIdentifier: 
+  enemyPrefabs: []
+  bossPrefabs:
+  - {fileID: 7119554722637575339, guid: a9c0fba93ee3e284e89e6b0241ffd9df, type: 3}
+  spawnRate: 3
+  spawnLocations:
+  - {fileID: 2375760050493014178, guid: 38d0f326724044640a1ba3da10b569c8, type: 3}
+  enemiesToSpawn: 1
+  isBossSpawner: 1

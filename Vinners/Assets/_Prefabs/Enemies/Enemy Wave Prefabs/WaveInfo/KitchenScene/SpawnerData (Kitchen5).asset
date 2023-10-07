@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 137df97faff98b0468632a8dfaa49c60, type: 3}
+  m_Name: SpawnerData (Kitchen5)
+  m_EditorClassIdentifier: 
+  enemyPrefabs:
+  - {fileID: 6001219059347570189, guid: 82df1810b8c144d458f7328f072366b3, type: 3}
+  - {fileID: 6001219059347570189, guid: 5b5d8bbb23fc46f40afbb7940441a64a, type: 3}
+  - {fileID: 6001219059347570189, guid: 66e1906e6a074e2428064829a9262f8a, type: 3}
+  bossPrefabs: []
+  spawnRate: 1
+  spawnLocations:
+  - {fileID: 2841110905202065550, guid: 4b827333cc8d3584ebe0e0ed571f6965, type: 3}
+  - {fileID: 948486902802904044, guid: 3e5d3d3f58b230e49a4eb480e05908da, type: 3}
+  - {fileID: 4487480563297438107, guid: 7ffa91099ad4fd043b54c6e40020ad88, type: 3}
+  - {fileID: 5183694921223052322, guid: a86940a4922e1a749b7c2b73f0461883, type: 3}
+  enemiesToSpawn: 25
+  isBossSpawner: 0

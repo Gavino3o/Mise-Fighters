@@ -1,0 +1,114 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &8292126667889097621
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8292126667889097617}
+  - component: {fileID: 8292126667889097616}
+  - component: {fileID: 8292126667889097623}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: MainCamera
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8292126667889097617
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8292126667889097621}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8292126667889097616
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8292126667889097621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c63f8eb983c4e045ba1c5da153122ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _componentIndexCache: 0
+  _addedNetworkObject: {fileID: 8292126667889097623}
+  _networkObjectCache: {fileID: 8292126667889097623}
+  bgmAudioClips:
+  - {fileID: 8300000, guid: e792a80529837e64e8ab8ef64a357f41, type: 3}
+  - {fileID: 8300000, guid: 1af4812e1190c2c4aa2646d291badeab, type: 3}
+  - {fileID: 8300000, guid: 3322407bae501854099d0bcc791af1cb, type: 3}
+  - {fileID: 8300000, guid: 66d68b035adb85744ada0fb04585b648, type: 3}
+  - {fileID: 8300000, guid: 86bb061000eb755448c1a4eefbcbcd8d, type: 3}
+  effectAudioClips:
+  - {fileID: 8300000, guid: 7f80730b673e664408b1b7a83a4e870c, type: 3}
+  - {fileID: 8300000, guid: 71fc52c98e9738e4ab51763e03b5be3c, type: 3}
+  - {fileID: 8300000, guid: c8eca3b97b44b6c458cba7a3decc7010, type: 3}
+  - {fileID: 8300000, guid: a4e144dcf6922f34399886fd17bda4a0, type: 3}
+  - {fileID: 8300000, guid: 1e5bace1ae11f9949a77e0e6448c7fb1, type: 3}
+  - {fileID: 8300000, guid: ae23cc4e8018acf4e9e67ff2901cb94a, type: 3}
+  - {fileID: 8300000, guid: a1a1517e2d97b36449f4c2f11b765e7e, type: 3}
+  - {fileID: 8300000, guid: 134d544fb7da58c4c91dffae2613c419, type: 3}
+  - {fileID: 8300000, guid: 87bcd2801546c0f40ab02c98f09adc0a, type: 3}
+  - {fileID: 8300000, guid: 760e3e57e42b8a14791541dfa4136b02, type: 3}
+  - {fileID: 8300000, guid: c374c9a6020563a42894d6a1eed02de3, type: 3}
+  - {fileID: 8300000, guid: b1e173050d4e91246a11ddd11fdfd43e, type: 3}
+  - {fileID: 8300000, guid: c28afed5fc7ef424783f0bf690bbe618, type: 3}
+  - {fileID: 8300000, guid: d0d2d7babd195e74fb9749b14c7abf47, type: 3}
+  - {fileID: 8300000, guid: 5c5c8e36a2d694e4a8d033fa01a401cd, type: 3}
+  - {fileID: 8300000, guid: 33484ca726f4a2441b9877e5ec2e3d7c, type: 3}
+  - {fileID: 8300000, guid: 9ff68a9c42153ef4eadb38d7ab63a577, type: 3}
+  - {fileID: 8300000, guid: 9f2a0abede0c4d24d83b90c1f03e51ef, type: 3}
+  - {fileID: 8300000, guid: f236f2a6004c3b94e863ea23809cc410, type: 3}
+  - {fileID: 8300000, guid: 371031a6ea475934b8deb8720fe99b2e, type: 3}
+  - {fileID: 8300000, guid: 17a1762af948f124fbf837df6595d75e, type: 3}
+  backgroundMusicVolume: 1
+  gameVolume: 1
+  backgroundMusicPitch: 1
+  gameVolumePitch: 1
+  audioMixer: {fileID: 24300002, guid: 951813b0cc2320142805fd0f32ec49fc, type: 2}
+--- !u!114 &8292126667889097623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8292126667889097621}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26b716c41e9b56b4baafaf13a523ba2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <IsNested>k__BackingField: 0
+  <ComponentIndex>k__BackingField: 0
+  <PredictedSpawn>k__BackingField: {fileID: 0}
+  _networkBehaviours:
+  - {fileID: 8292126667889097616}
+  <ParentNetworkObject>k__BackingField: {fileID: 0}
+  <ChildNetworkObjects>k__BackingField: []
+  _isNetworked: 1
+  _isGlobal: 1
+  _initializeOrder: 0
+  _defaultDespawnType: 0
+  NetworkObserver: {fileID: 0}
+  <PrefabId>k__BackingField: 41
+  <SpawnableCollectionId>k__BackingField: 0
+  _scenePathHash: 2571393946
+  <SceneId>k__BackingField: 0
+  <AssetPathHash>k__BackingField: 13041277864124148143
+  _sceneNetworkObjects:
+  - {fileID: 8292126667889097623}
