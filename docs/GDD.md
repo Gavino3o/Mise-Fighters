@@ -438,7 +438,7 @@ This was especially important when working on the character/enemy related script
 5. Upon completing the waves of enemies, no more enemies spawn and the ready screen is displayed.
 6. Upon completion of the boss level, the ready screen’s continue button brings both players to an empty scene where a victory popup is displayed. Players can then return to the main menu.
 
-### User Testing
+### User Acceptance Testing
 
 Testing procedure: Game was given to the participants without any explanation, testers gameplay was observed and noted down.
 
@@ -608,3 +608,19 @@ We found out the bug was caused by us calculating/accessing values from our Inpu
 Initially, our enemy system uses multiple spawners per wave with set number of enemies per wave and pre-determined enemy variants. The wave system also utilised a buffer mechanism to determine the number of enemy deaths before signalling a wave transition. This system has caused some performance issues and logic error when the wave sized has been increased and boss waves were implemented.
 
 After some brainstorming, we decided we had to overhaul the whole enemy system entirely. The new system would utilise one spawner per wave with set number of enemies, and the enemy variants spawned are determined by set probability. Wave transition conditions were also revised to be more in depth with multiple checks instead of just checking for enemy death counts. These changes have made the wave transition more stable and made enemy waves more diverse and unpredictable, resulting in overall better player experience.
+
+## Appendix A: Character Details
+
+| Character | Butcher | Bartender | Pâtissier | Chef |
+|-|-|-|-|-|
+|HP|High|Medium|Medium|Low|
+|ATK|Medium|Low|Low|High|
+|AS|Medium|Fast|Slow|Fast|
+|MS|Slow|Medium|Medium|Fast|
+|Normal Attack/Basic attack. Automatically fired with delay.|Swings his cleaver in an arc in front of him damaging all enemies in range.|Flings an ice cube at the faced direction damaging all enemies it passes through.|Scatters 4 pastries cardinally damaging enemies hit.|Stabs quickly at the closest enemy damaging all enemies in range.|
+|SP1<br>Signature skill|[A Butcher’s Bravado]<br>Stomps the ground while TAUNTING all enemies within a medium range and dealing damage in an AOE.|[Cocktail Bomb]<br>Lobs a freshly shaken Margarita at the closest enemy that explodes in a large AOE dealing damage DOUSING them. Allies caught in the range receive an ATK BOOST.|[Toasted Meringue]<br>Activates his blowtorch and continuously ignites enemies (in the horizontal direction faced) applying a strong BURNING effect to all enemies hit.|[Slice and Dice]<br>Performs two quick slashes in an arc in front of him| doing damage to all enemies hit.|
+|SP2<br>Movement ability|[Reckless Charge]<br>Charges forward dealing damage to all enemies hit.|[On the House]<br>Nimbly backsteps leaving behind a sweet concoction at her previous location which TAUNTS enemies.|[Gotta Run]<br>Frantically scrambles in the direction they are facing.|[Nothing Personal]<br>Blinks behind the closest enemy in the direction faced| STUNNING enemies in a small AOE for 1s.|
+|ULT Can only be used when the ULT meter is full (Build meter by attacking OR taking damage)|[Gutsy Pirouette]<br>With surprising dexterity, the Butcher performs a glorious spin, heavily damaging enemies caught in the area. (1 tick/s)|[Just the Rocks]<br>The Bartender flash freezes everything around her in a large radius dealing massive damage and FREEZING enemies.|[You’re Dough-ne for]<br> The Patissier sends out a comically large rolling pin in the direction they are facing, dealing massive     damage and FLATTENING all enemies hit.|[Julienne]<br>Using his trusty (and meticulously sharpened) chef’s knife| the Head Chef decimates everything in a rectangular area in front of him| dealing massive damage.|
+
+## Appendix B: Enemy Details
+
