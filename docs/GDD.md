@@ -179,6 +179,201 @@ Unit testing was conducted with a focus on whether individual scripts and method
 
 Note: All tests in this section were conducted in multiplayer context. (one game instance in the Unity Editor as the host and another built instance as the client). The tests are  considered successes only if it is performed and satisfactory result is achieved across both client and host in synchronisation. Double checking of synchronised values was done via the Unity Editor’s hierarchy.
 
+#### Character Input
+
+| Test | Expected Result |
+|------|--------|
+| WASD movement keys pressed | Character moves along cardinal and diagonal directions properly according to keys pressed |
+| Mouse moved around the character | Direction faced in input script updates correctly to match the character’s faced direction. |
+| Mouse moved around the character | Character turns left and right properly to face the mouse cursor |
+| Skill key pressed | Character attempts to cast a skill correctly |
+| Dash key pressed | Character attempts to cast a dash correctly |
+| Ultimate key pressed | Character attempts to cast an ultimate correctly |
+| Wait for character to auto attack | Character attempts to attack at the intervals specified  |
+
+#### Character HP/Death Behaviour
+
+| Test | Expected Result |
+|------|--------|
+| Character collides with a character damager | Character takes damage |
+| Character with 35 HP collides with a 10 HP damager | Character takes 10 damage; remaining HP 25 |
+| Character with 5 HP collides with a 10 HP damager | Character takes 5 damage, remaining HP at 0 |
+| Character with 20/35 HP collides with a -10HP damager  | Character heals 10 HP, remaining HP 30 |
+| Character with 30/35 HP collides with a -10HP damager | Character heals 5 HP, remaining HP 35 |
+| Character HP is reduced to 0 | Respawn screen shows correctly |
+| Character HP is reduced to 0 | Respawn screen shows correct amount of revives available for both players |
+| Character attempts inputs while dead (in respawn screen) | Character does not respond to inputs |
+| Character attempts to attack while dead | Character no longer automatically attacks while dead |
+| Character is revived | Character HP set to maximum as defined in baseStats |
+| Characters run out of revives | Respawn button greys out and is not interactable. Quit Game Button becomes interactable |
+
+#### Character Status Effect
+
+| Test | Expected Result |
+|------|--------|
+| Character is afflicted with a slow effect | Character movement speed is reduced by the set multiplier|
+| Character is afflicted with a slow while already slowed | Character movement remains at the lowered value, only restoring once the latest slow expires |
+| Character is afflicted with a freeze effect | Character movement is stopped |
+| Character is afflicted with the douse status | Character attack is lowered and isDoused flag is set |
+| Character is afflicted with burn status while undoused | Character is burned and their attack is lowered while taking a Damage over Time (DoT) effect |
+| Character is afflicted with burn status while doused | Character takes the 7 ignition damage while still receiving effects of burn, isDoused flag is unset |
+
+#### Character Spell System
+
+| Test | Expected Result |
+|------|--------|
+|Skill/Dash pressed when off cooldown | Spell casts correctly and is put on cooldown|
+|Skill/Dash pressed when on cooldown | Spell does not cast|
+|Character deals damage| Ultimate meter charges|
+|Character takes damage| Ultimate meter charges|
+|Character charges ultimate meter when it is already full| Ultimate meter does not exceed the maximum stipulated charge amount|
+|Ultimate pressed when not enough ultimate charge| Ultimate does not cast|
+|Ultimate pressed when at full ultimate charge| Ultimate casts and expends all ultimate charge|
+
+#### Butcher Spells/Attacks
+
+| Test | Expected Result |
+|------|--------|
+|Butcher auto attacks| Attack prefab spawned correctly in the direction faced|
+|Taunt spell is successfully casted|Taunt spell effect is spawned at the butcher’s position|
+|Dash spell is successfully casted|Butcher’s movement inputs are interrupted while dash is casting|
+|Dash spell is successfully casted|Butcher moves rapidly in direction faced|
+|Dash spell ends|Butcher’s movement inputs are restored and player regains control|
+|Ultimate spell is successfully casted|Ultimate coroutine starts and spawns the circular damage prefab at the correct predefined intervals and the correct predefined number of times.|
+|Ultimate spell is successfully casted|The ultimate spell prefab is spawned at the butcher’s position|
+|Dash casted successfully while Ultimate is channelling|The ultimate spell cast follows the butcher correctly|
+
+#### Bartender Spells/Attacks
+
+| Test | Expected Result |
+|------|--------|
+|Bartender auto attacks| Attack prefab spawned correctly and travels in the direction faced|
+|Bartender auto attacks|Attacks continue flying at the predefined speed| while having random rotations as visual effect|
+|Bomb spell successfully casted|Bomb spell spawned at the cursor location and lasts for the set duration|
+|Backstep spell successfully casted|Lure spell spawned at the current location and lasts for the set duration| bartender’s movement inputs are briefly interrupted|
+|Backstep spell successfully casted|Bartender swiftly moves in direction opposite to the current one faced|
+|Ultimate spell successfully casted|Ultimate spell spawns correctly as current location|
+
+#### Patissier Spells/Attacks
+
+| Test | Expected Result |
+|------|--------|
+|Patissier auto attacks| Attack prefab spawned correctly and travels in the cardinal directions|
+|Patissier auto attacks|Attacks continue flying at the predefined speed|
+|Torch spell successfully casted|Torch Spell Prefab follows the players on either the left or right side depending on player target position|
+|Dash spell is successfully casted|Patissier movement inputs are interrupted while dash is casting|
+|Dash spell is successfully casted|Patissier’s moves rapidly in direction faced|
+|Dash spell ends|Patissier’s movement inputs are restored and player regains control|
+|Ultimate spell successfully casted|Ultimate spell spawns correctly as player current location|
+|Ultimate spell successfully casted|Rolling Pin Spell Prefab spawns and travels in direction faced|
+|Ultimate spell successfully casted|Rolling Pin Spell Prefab despawns once lifetime is exceeded|
+
+#### Chef Spells/Attacks
+
+| Test | Expected Result |
+|------|--------|
+|Head Chef auto attacks|Chef Auto Attack Prefab spawned correctly in direction faced with correct orientation|
+|Slice spell successfully casted|Two Slice Prefabs are spawned simultaneously in correct rotations in direction faced of the chef|
+|Blink spell successfully casted|If no obstacles are in front of the direction faced| the player is successfully teleported in the direction faced at a predetermined distance|
+|Blink spell successfully casted|If there is an obstacle in front of the direction faced| the player is successfully teleported in the direction faced| but stopping right before the obstacle|
+|Blink spell successfully casted|When player teleports to set distance| a stun prefab is spawned at player new location.|
+|Ultimate spell successfully casted|Player movement imputed is interrupted at the start of the spell and regained once the spell finishes|
+|Ultimate spell successfully casted|Ultimate Prefab is spawned correct in direction faced| with correct rotation and despawns after lifetime is exceeded|
+
+### Enemy Spawning and Enemy Behaviour
+
+#### Enemy Pathfinding/Targetting
+
+| Test | Expected Result |
+|------|--------|
+|Target and Enemy pathfinder are in the same scene|Enemy sets target and starts following it|
+|Target moves position while being targeted by enemy|Enemy pathfinding updates to follow the target|
+|Target moves behind an obstacle|Enemy pathfinding updates to move around the obstacle|
+|Target stops|Enemy pathfinding stops when attack range is reached|
+|Enemies with CanMove flag set as false|Enemy will not move when spawned|
+
+#### Enemy Attacking/Behaviour
+
+| Test | Expected Result |
+|------|--------|
+|Melee enemy collides with the target|Melee enemy deals damage to the target|
+|Target moves while being chased by melee enemy|Melee enemy continues chasing target until colliding with it again|
+|Ranged enemy is outside its attack range to target|Ranged enemy pathfinds towards target|
+|Ranged enemy enters attack range|Ranged enemy stops movement and attempts to start attacking|
+|Ranged enemy attacks| Projectile spawns and moves towards target fired at regular intervals
+|Arc Projectile Ranged enemy attacks|Projectile moves towards target location in an arc
+|Target is moved out of attack range again|Ranged enemy stops attacking and continues to chase the target|
+|Spaghetti Boss Enemy Spawns|All boss skills occur after indicated time delay|
+|Spaghetti Boss Enemy Shoots Tomato Projectile|Tomato projectile is fired at random player character|
+|Spaghetti Boss Summons Tomato Bomb Enemies|Tomato Bomb enemies are spawned in specified radius and are activated|
+|Spaghetti Boss Summons Meatball Comets|Meatball comets are spawned in the edges of the map| and move horizontally or vertically across the arena based on spawn location.|
+|Meatball Comet or Tomato Projectile hits player|Player character takes indicated damage|
+
+
+#### Enemy Spawning
+
+| Test | Expected Result |
+|------|--------|
+|Injected enemy prefabs are spawnedEnemy Spawner spawned enemy|Enemy prefabs spawned has working attack and behaviour|
+|Enemy Spawner spawned enemy|Enemy prefabs spawned in correct spawn location|
+|Enemy Spawner spawning enemy|Enemy Spawner spawns the correct predetermined number of enemies|
+|Enemy spawner spawned all enemies|Enemy spawner deactivates and no enemies are spawned|
+|Boss Spawner spawns enemies|Boss is spawned and activated|
+
+#### Wave System
+
+| Test | Expected Result |
+|------|--------|
+|Game begins| Wave system loads first wave and instantiates initial spawners|
+|An enemy is killed|Wave system successfully records down enemy death and update enemy death counter accordingly|
+|All enemies in current wave are killed|Wave system successfully detected wave is over|
+|All enemies in current wave are killed|Wave system loads next wave successfully|
+|Loading next wave|Wave system loads next wave and instantiates spawners correctly|
+|Loading next wave|Wave system resets enemy death count correctly|
+|All waves loaded|Wave system successfully detects all waves has been loaded| signals end of level|
+|Boss is killed by player|Wave system successfully detects boss on death status and signals end of game|
+
+### Scene Transitions and Basic Player Connectivity
+
+#### Main Menu
+
+| Test | Expected Result |
+|------|--------|
+|Build and Run game|Offline Main Menu scene loads correctly|
+|Host button is pressed when no active connections|Starts game and hosts a lobby|
+|Join button is pressed when no active host|Nothing happens as no host is active|
+|Join button is pressed when active host present|Client loads into the same lobby|
+|Player connects to game correctly either as host or client|Character Select lobby loads|
+|Guide Button is pressed when no active connections|Menu with Interactable character sprites of the 4 playable characters are shown|
+|A character sprite is pressed in the guide menu|Character splash art is shown along with the names and descriptions of character kit/skills|
+|Close button is pressed in the character kit/skill screen|Menu with Interactable character sprites of the 4 playable characters are shown|
+|Main menu button is pressed in the 4 Character Info Screen|Main Menu loads|
+
+#### Character Select
+
+| Test | Expected Result |
+|------|--------|
+|Loading into Character Select as host|UI loads for host with the start button active but greyed out|
+|Loading into Character Select as client|UI loads for client with the start button inactive|
+|Cycling through characters as host and client|Character splash arts cycle correctly and display the currently hovered character; at the end of the character list it loops back to the first|
+|One player locks in|Host is still unable to start the game as not all players are locked in|
+|All connected players lock in|Host is able to start the game| start button is no longer greyed out|
+|Host leaves the lobby|Lobby disbands automatically and all connected players are returned to the offline Main Menu scene|
+|Client leaves the lobby|Host still remains in the lobby and the lobby can still accept new players|
+
+#### Game Scene
+
+| Test | Expected Result |
+|------|--------|
+|Load into game scene|Characters load successfully into new game scene and can see each other in the game world|
+|Load into game scene|Camera centres on characters correctly|
+|Load into game scene with scene objects|Scene objects are loaded and are visible to both players|
+|Host disconnects from game scene|Both players are forced to disconnect and game session ends|
+
+<br> 
+
+### Integration Testing
+
 <br>
 
 ## Build
