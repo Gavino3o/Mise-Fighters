@@ -112,11 +112,11 @@ The game will consist of captivating audio throughout. Players are able to enjoy
 
 ### Overall Design
 
-![OverallDesign](images\Overall_Design.png)
+![OverallDesign](images/Overall_Design.png)
 
 ### Characters
 
-![CharacterScripts](images\CharacterScriptDiagram.png)
+![CharacterScripts](images/CharacterScriptDiagram.png)
 
 - Unit - contains information (Stats, StatusEffects) about units in the game and implements methods for units to interact via the combat system. (Taking damage, being afflicted by Statuses)
 - Player - contains information about the player and a reference to their controlled character.
@@ -130,7 +130,7 @@ The game will consist of captivating audio throughout. Players are able to enjoy
 
 ### Managers/UI
 
-![ManagerUI](images\ManagerScriptDiagram.png)
+![ManagerUI](images/ManagerScriptDiagram.png)
 
 - GameManager - singleton in charge of scene changes and keeping references to all connected players. Handles the lives total as well.
 - UIManager - singleton with functionality to change UI screens that can be used from other classes.
@@ -555,7 +555,7 @@ Link: [Mise-Fighters Download](https://drive.google.com/file/d/1TGjD3pHHSMJFhYWl
 
 (Extract the contents before proceeding.)
 
-![BuildExampleImg1](images\BuildExampleImg1.png)
+![BuildExampleImg1](images/BuildExampleImg1.png)
 
 We are using this Network Discovery package for LAN play (as recommended by FishNet official documentation) : Abdelfattah-Radwan/Fish-Networking-Discovery
 
