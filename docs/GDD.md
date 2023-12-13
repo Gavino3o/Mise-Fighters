@@ -2,14 +2,17 @@
 
 **Mise Fighters is a Local Multiplayer Co-op Hack & Slash RPG.**<br>
 The game lets you play as a chef, a butcher, a bartender or a pattisier on a mission to withstand the fury of vengeful food ingredients that have mysteriously come to life to seek revenge for their cooked brethen.<br>
-While Hack & Slash games often exhibit a gory and intesne atmosphere, Mise Fighters is infused with humour and light-heartedness while maintaining a thrilling action-packed gameplay.<br>
+While Hack & Slash games often exhibit a gory and intesne atmosphere, Mise Fighters is infused with humour and light-heartedness while maintaining a thrilling action-packed gameplay.
 
+<br>
 
 ## Problem Motivation
 
 Drawing inspiration from beloved hack and slash titles like Hades and Hyper Light Drifter, we set out to create a whimsical online multiplayer cooperative hack and slash experience. Our game introduces a team of a chef, a butcher, a bartender and a pâtissier on a mission to withstand the fury of vengeful food ingredients that have mysteriously come to life. While hack and slash games often exhibit a gory and intense atmosphere, we wanted to infuse our game with humour and light-heartedness while maintaining a thrilling action-packed gameplay.
 
 In our unique culinary adventure, players are not only encouraged but also rewarded for synergizing their skills to unleash mesmerizing combos and amusing effects against the culinary adversaries. By seamlessly combining their culinary prowess, the 4 friends can overcome the challenges and obstacles thrown their way.
+
+<br>
 
 ## Overview
 
@@ -77,6 +80,8 @@ The in game overlay will provide key information to the player while also being 
 
 The game will consist of captivating audio throughout. Players are able to enjoy background music in menus and in game accompanied by fun sound effects for characters, enemies and environments. The audio of this game aims to enhance the player experience.
 
+<br>
+
 ## User Stories
 
 1. As a player, I want to access the main menu to start or join a multiplayer game, adjust settings, and navigate the game options easily.
@@ -88,6 +93,8 @@ The game will consist of captivating audio throughout. Players are able to enjoy
 7. As a player, I want the option to restart the game if all players die, allowing us to make a fresh attempt to overcome the challenges.
 8. As a player, I want to be able to exit the game midway, ensuring that I can easily return to the main menu or exit the game entirely.
 
+<br>
+
 ## Design
 
 ### Technologies Used
@@ -98,7 +105,6 @@ The game will consist of captivating audio throughout. Players are able to enjoy
 - Aseprite: Used for sprites and animations for Units, Environments and VFX.
 - Clip Studio Paint: Used for splash art and concept art for the game.
 - GitHub: Version control and collaboration.
-
 
 ### Overall Design
 
@@ -160,3 +166,81 @@ The game will consist of captivating audio throughout. Players are able to enjoy
 
 - AudioManager - Contains a list of all sound clips and audio sources to control the playing/synchronisation of game sounds.
 - AudioMixers - Allows playing of multiple clips simultaneously.
+
+<br>
+
+## Testing
+
+### Unit Testing
+
+Unit testing was conducted with a focus on whether individual scripts and methods within those scripts worked as intended.
+
+### Player-Character related systems
+
+Note: All tests in this section were conducted in multiplayer context. (one game instance in the Unity Editor as the host and another built instance as the client). The tests are  considered successes only if it is performed and satisfactory result is achieved across both client and host in synchronisation. Double checking of synchronised values was done via the Unity Editor’s hierarchy.
+
+<br>
+
+## Build
+
+Link: [Mise-Fighters Download](https://drive.google.com/file/d/1TGjD3pHHSMJFhYWlhF8fZCtCaoKDS3S_/view?usp=drive_linkhttps://drive.google.com/drive/u/0/folders/1Cx69BKabV8r-LCioAJPXIR8c9OckY4Fi)
+
+(Extract the contents before proceeding.)
+
+![BuildExampleImg1](images\BuildExampleImg1.png)
+
+We are using this Network Discovery package for LAN play (as recommended by FishNet official documentation) : Abdelfattah-Radwan/Fish-Networking-Discovery
+
+In order to facilitate testing both over LAN and on a single machine (two instances), we have left both FishNet’s NetworkHUD and the package NetworkDiscovery HUD active.
+
+**LAN Testing instructions:**<br>
+You will require two machines connected to the same WiFi network. One will be the host and the other the client.
+The host machine runs the application, and selects host. They will be loaded into the lobby. Click Start under the Advertising tab if not automatically advertising.
+The client machine runs the application. Click Start under the Searching tab if not automatically searching.
+Once the server has been found, the IP will be displayed under the servers tab in the same section.
+Click the button with your IP to connect to the same lobby as the host machine.
+
+![HostingExample1](images/HostingExample1.png)
+
+**Single Machine testing instructions:**<br>
+Open two instances of the game on one machine. One will be the host and the other the client.
+The host instance selects host. They will be loaded into the lobby.
+The client instance clicks the “Start Client” button at the top left of the screen to connect to the same lobby as the host machine.
+
+<br>
+
+## Problems Faced
+
+Managing the multiple aspects of the game 
+With such a complex design and multiple interconnected parts, there was a constant need for us to update each other on the changes we made and do peer code reviews to understand the design of all the game systems, at least at a basic level.
+
+Us having to affect multiple scripts/systems when making changes also led to the occasional merge conflicts.
+
+Managing the difficulty curve (solved with playtesting)
+As developers we are very familiar with the game and its mechanics, so we would naturally underestimate the difficulty of the game. Even with this in mind, we somehow still managed to make the game too difficult on the first playtest. Through player feedback we have brought the difficulty back to an acceptable level, but definitely could be refined more.
+
+### Bugs Squashed:
+
+#### Synchronisation bugs
+
+Faced many challenges involving syncing of values across clients. Especially with so many moving parts, we had to make sure values were synchronised properly.
+
+To fix this bug, we used SyncVar and ServerRPC calls to alter values that are meant to be synced (notably, health) this not only reduced desync but made health bars more responsive and stop jittering, which was a problem before.
+
+#### Client side errors and dealing with RPC calls
+
+Often when implementing features they would work on the host instance/in singleplayer but break in multiplayer on the client instance.
+
+To fix these bugs, we had to correctly implement RPC calls and chain the correct function calls together. For instance, UI displays were bugged and inconsistent for the client instance. Our solution was to chain a TargetRPC function so that only the targeted connection shows the new UI, while other clients remain unaffected (this was useful for Respawn screen and Pause menu screen)
+
+#### Spellcasting related bugs
+
+Spell casting was challenging to implement as animations and damagers had to be synchronised across both clients. We often encountered issues where the client could not cast spells in the desired input direction.
+
+We found out the bug was caused by us calculating/accessing values from our InputCharacter class within RPC functions. To fix it we passed the data as arguments instead.
+
+#### Enemy spawning
+
+Initially, our enemy system uses multiple spawners per wave with set number of enemies per wave and pre-determined enemy variants. The wave system also utilised a buffer mechanism to determine the number of enemy deaths before signalling a wave transition. This system has caused some performance issues and logic error when the wave sized has been increased and boss waves were implemented.
+
+After some brainstorming, we decided we had to overhaul the whole enemy system entirely. The new system would utilise one spawner per wave with set number of enemies, and the enemy variants spawned are determined by set probability. Wave transition conditions were also revised to be more in depth with multiple checks instead of just checking for enemy death counts. These changes have made the wave transition more stable and made enemy waves more diverse and unpredictable, resulting in overall better player experience.

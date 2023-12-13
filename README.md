@@ -7,7 +7,7 @@ While Hack & Slash games often exhibit a gory and intesne atmosphere, Mise Fight
 ![poster](docs\images\Mise Fighter Poster.png)
 
 # Installation Guide
-1. Download the latest version of the game from [here](https://drive.google.com/file/d/1TGjD3pHHSMJFhYWlhF8fZCtCaoKDS3S_/view?usp=drive_linkhttps://drive.google.com/drive/u/0/folders/1Cx69BKabV8r-LCioAJPXIR8c9OckY4Fihttps://github.com/Gavino3o/Mise-Fighters/releases/tag/initialRelease).
+1. Download the latest version of the game from [here](https://drive.google.com/file/d/1TGjD3pHHSMJFhYWlhF8fZCtCaoKDS3S_/view?usp=drive_linkhttps://drive.google.com/drive/u/0/folders/1Cx69BKabV8r-LCioAJPXIR8c9OckY4Fi).
 2. Move the zip file into the folder you want to use as storage for the game.
 3. Extract the contents of the zip file.
 4. Double-click `MiseFighters.exe` to run the game.
