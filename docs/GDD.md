@@ -622,5 +622,37 @@ After some brainstorming, we decided we had to overhaul the whole enemy system e
 |SP2<br>Movement ability|[Reckless Charge]<br>Charges forward dealing damage to all enemies hit.|[On the House]<br>Nimbly backsteps leaving behind a sweet concoction at her previous location which TAUNTS enemies.|[Gotta Run]<br>Frantically scrambles in the direction they are facing.|[Nothing Personal]<br>Blinks behind the closest enemy in the direction faced| STUNNING enemies in a small AOE for 1s.|
 |ULT Can only be used when the ULT meter is full (Build meter by attacking OR taking damage)|[Gutsy Pirouette]<br>With surprising dexterity, the Butcher performs a glorious spin, heavily damaging enemies caught in the area. (1 tick/s)|[Just the Rocks]<br>The Bartender flash freezes everything around her in a large radius dealing massive damage and FREEZING enemies.|[You’re Dough-ne for]<br> The Patissier sends out a comically large rolling pin in the direction they are facing, dealing massive     damage and FLATTENING all enemies hit.|[Julienne]<br>Using his trusty (and meticulously sharpened) chef’s knife| the Head Chef decimates everything in a rectangular area in front of him| dealing massive damage.|
 
+<br>
+
 ## Appendix B: Enemy Details
 
+|Enemy Type| HP | ATK | AS | MS | Description |
+|-|-|-|-|-|-|
+|(Normal/Elite) Carrot | Medium/High | Medium | Medium | Medium | Basic Melee Enemy |
+|Tomato | Low | High | NA | Fast | Self-Exploding enemies. It will charge the player and detonate itself when in range |
+| Corn | Low | Medium | Medium | Low | Basic ranged enemy. Chucks kernels of itself at the player |
+| Meat | Low | Medium | Medium | Low | Elite ranged enemy. Lobs drumsticks in an arc towards the player|
+| Corn Kernels | Very Low | Very Low | Medium | Very Fast | Fastest swarm enemies. They tend to pop out of nowhere. |
+| Spagetthi Monster | Very High | Medium | Medium | Does not move | Boss Enemy.<br>SP1: Spawns Tomato Enemies to attack the players.<br>SP2: Flings tomato projectiles at the player.<br>SP3: Summons meatball comets horizontally or vertically accross the arena. |
+
+<br>
+
+## Appendix C: Credits/Assets used
+
+### Packages:
+- Network Discovery package: Abdelfattah-Radwan/Fish-Networking-Discovery
+- Astar Pathfinding package: Pathfinding in 2D
+- Fishnet package: https://github.com/FirstGearGames/FishNet
+
+### Sprites: 
+- Fire effect/ Ice effect: https://codemanu.itch.io/pixelart-effect-pack 
+- Interior Design Tileset: https://rcpstd.itch.io/interior-tileset-asset-pack-16x16
+- Kitchen Tileset: https://limezu.itch.io/kitchen
+- Market Tileset: https://gif-superretroworld.itch.io/marketplace
+
+### Music:
+- Main Menu BGM: https://www.youtube.com/watch?v=o9_Gu3TI4IY&ab_channel=Chillpeach
+- Character Select BGM: https://www.youtube.com/watch?v=c9aDCHM73Ro&list=PLMf0q6-pSDdsWY4LWYncx25qvonLA520c&index=12&ab_channel=yourmoodishere.
+- Action BGM1: https://soundcloud.com/spatemusic/fuccatatogue-alteredidk3
+- Action BGM2: https://soundcloud.com/spatemusic/idkwhatbiibthisis2
+- Action BGM3: https://soundcloud.com/spatemusic/sets/prologue-ep
