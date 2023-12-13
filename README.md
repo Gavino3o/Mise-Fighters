@@ -15,4 +15,4 @@ While Hack & Slash games often exhibit a gory and intense atmosphere, Mise Fight
 ![BuildExampleImg1](docs/images/BuildExampleImg1.png)
 
 # Useful links
-If you would like to know how Mise Fighters is made or would like to contribute to the game, here is the [Game Design Document](docs\GDD.md).
+If you would like to know how Mise Fighters is made or would like to contribute to the game, here is the [Game Design Document](docs/GDD.md).
