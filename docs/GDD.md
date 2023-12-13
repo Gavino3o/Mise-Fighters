@@ -374,6 +374,175 @@ Note: All tests in this section were conducted in multiplayer context. (one game
 
 ### Integration Testing
 
+Testing done to ensure individual components/scripts work together as intended.
+
+#### Combat Interactions
+
+| Test | Expected Result |
+|------|--------|
+|Character and Enemy in the same scene|Enemy targets the player automatically|
+|Character hits an Enemy with a damaging attack|Enemy takes damage successfully|
+|Enemy hits Character with a damaging attack|Character takes damage successfully|
+|Character kills an Enemy|Enemy dies and is despawned|
+
+#### Character Animations/Sprite Visuals
+
+| Test | Expected Result |
+|------|--------|
+|Character does not input anything|Idle animation plays and loops|
+|Character starts moving|Walk animation starts playing|
+|Character turns to face the opposite direction|Sprite is flipped on both host and client|
+|Character casts spell successfully|Spell animations play uninterrupted by movement/idle animations|
+|Character is afflicted by status effect with sprite alterations|Character sprite changes colour correctly to match the status effect changing back to the default colour once the effect expires|
+
+#### Character Scripts/GameView UI
+
+| Test | Expected Result |
+|------|--------|
+|Character takes damage/HP is changed|GameView updates to show the most recent HP value|
+|Character spell is available to cast|GameView shows that the spell is ready to be cast|
+|Character casts spell and goes on cooldown|GameView updates to show the spell is on cooldown|
+|Character has X ultimate charge|GameView correctly shows that character has X ultimate charge|
+|Character gains ultimate charge|GameView correctly updates to show new ultimate charge level|
+
+#### Audio/SFX Responses to Game Events
+
+| Test | Expected Result |
+|------|--------|
+|Game loads offline Main Menu scene|Background music plays|
+|Game loads online CharacterSelect scene|AudioManager plays lobby BGM for both host and client|
+|Player clicks UI buttons|Appropriate SFX plays only for the player in question
+|Characters perform actions with SFX attached (attacking, casting etc.)|AudioManager plays SFX for both host and client|
+|Enemies perform actions with SFX attached (attacking etc)|AudioManager plays SFX for both host and client|
+
+#### EnemyManager/WaveManager/GameManager Scene Transitions
+
+| Test | Expected Result |
+|------|--------|
+|EnemyManager quota met|EnemyManager signals quota met to WaveManager, Enemy Death Count Resets for next wave|
+|Boss Wave conditions met|WaveManager calls GameManager to show VictoryScreen|
+|Waves have all finished spawning|WaveManager calls GameManager to show ReadyScreen|
+|Host clicks continue when all players are ready|Scene transitions successfully to next scene and waves spawn if in the scene|
+
+<br>
+
+### System Testing/Regression Testing
+Throughout the software development process, measures were taken to ensure code changes on the commit would not jeopardise the existing product. Before any commits/after every work session  a simple runthrough of the game was conducted to lookout for new bugs/console errors that might arise.
+
+This was especially important when working on the character/enemy related scripts, as they all had to interact with one another; sometimes improving a system would require changing how these scripts interact.
+
+1. Game starts up and loads the offline scene successfully.
+2. One instance hosts and another joins, ready system working as intended and background music is playing for both instances. Character select panel displays the hovered character.
+3. In game, both characters’ movement, animations, attacks and sound effects can be seen/heard on each others’ screens. Notably, movement abilities that drastically change the player position still gets networked without error.
+4. Players take turns attacking enemies with both skills and auto attacks. Once the enemies die, they despawn properly on both instances. 
+5. Upon completing the waves of enemies, no more enemies spawn and the ready screen is displayed.
+6. Upon completion of the boss level, the ready screen’s continue button brings both players to an empty scene where a victory popup is displayed. Players can then return to the main menu.
+
+### User Testing
+
+Testing procedure: Game was given to the participants without any explanation, testers gameplay was observed and noted down.
+
+Afterwards an interview is conducted with the tester to explain anything unclear about the game and ask for their feedback.
+
+#### SESSION 1: Date: 24/6/2023
+
+**Playtester #1 description:** <br>
+Limited experience with this genre of 2D hack and slash
+Experience with top down MOBAs
+
+**Playtester #2 description:**<br>
+Little/No experience with action games.
+
+**Observations:**<br>
+
+- Hosting and joining was not immediately clear, more explanation probably needed or better naming of buttons.
+- Controls were unknown, tutorial screen or controls shown in main menu would have been helpful. We ended up having to break silence and at least tell them the controls, especially for the less experienced playtester.
+- Movement was smooth as well as camera follow.
+- Desired more feedback on enemy hit/defeat.
+- Playtester #2 suggested a “puff of smoke” when enemies were defeated.
+- Playtester #1 felt the game was too easy.
+- Both playtesters communicated while playing.
+- Sometimes one would ask another for help with a swarm of enemies.
+- However, no communication about specific skill combinations actually took place. This could come with more experience with the game, but unknown for now.
+
+#### SESSION 2: Date: 22/7/2023
+
+Playtester hosted the lobby and played together with a dev. The dev gave minimal insight regarding HOW to play the characters,  but would still communicate stuff happening in game.
+ 
+**Playtester #3 description:**<br>
+Avid watcher of game playthroughs, familiar with many genres of games.
+Experience with top down MOBAs.
+Experience with co-op games like Overcooked.
+
+**Observations:**<br>
+
+- Felt the game was way too hard
+- Game dragged on for a really long time and enemies piled up fast.
+- Increased intervals and decreased wave counts for earliest waves.
+- Preemptively reduced enemy counts across the board.
+- Swarmer enemies being introduced in the first stage is quite jarring for new players.
+- Removed all “fast” enemies from the first stage.
+- Boss was too easy and dies too quickly, felt the stages were harder than the boss.
+- Increased boss health, attack count, attack frequency.
+- Lack of healing felt quite unforgiving.
+- Changed heal on revive to be 75%.
+- Added healing to Butcher’s taunt.
+
+**Patissier clunky to play, difficult to hit enemies**
+
+- Originally meant to be a character with a unique DoT and run play pattern, but not as obvious to the player.
+- I think it’s good for some characters to be stronger when learnt.
+- Buffed hitboxes of the normal attack at least, as the visuals need to be more forgiving for multiplayer
+
+**Bartender feels strong**
+
+- Good beginner friendly character
+- We want the butcher to feel this way as well, so we buffed his invincibility duration on the taunt and his overall tankiness.
+
+We improved the feedback on buffing and status effect application in general, and the playtester actively tried to buff their ally when playing bartender/butcher.
+Buffing is direct and obvious enough to be actively considered.
+Less direct combos like taunting and AoEs seem to be subconsciously used as well (although this could be a result of playtesters experience with MOBAs)
+
+Appreciated the control mapping.
+Felt the unit guide was ‘cute’.
+
+#### SESSION 3: Date: 23/7/2023
+
+**Playtester #4 description:**<br>
+Experience with games like Vampire Survivors and Hades, well-versed with this genre of games.
+
+**Playtester #5 description:**<br>
+Experience with some FPS games.
+
+**Observations:**<br>
+In general playtester #4 was more comfortable with the controls owing to their experience.
+
+Both playtesters made exclamations about gameplay (sufficiently engaged) and would ask for help dealing with enemies (especially the faster ones in stage 2)
+
+- Players were surprised by the tomatoes and swarmers in stage 2
+- Good difficulty mixup
+- The fast enemies only wave caused a lot of chaos
+- Difficulty curve from stage 1 to 2 is evident
+- Spaghetti monster is sufficiently tanky; the bullet hell attacks force the players to move around
+- Felt it was a bit challenging for melee characters
+- Playtester #4 complained about hitboxes a lot, especially when combined with the multiplayer delay.
+- Altered hitboxes/hurt boxes for more precise dodging and hitreg.
+- Key takeaway is that the player’s spells/attacks should have larger hitboxes than their sprites to give some leeway for multiplayer, and the enemies’ attack hit boxes can be smaller than their sprite suggests to allow for more outplay potential/narrow precise dodging.
+
+Playtester #4 enjoyed the chef the most due to the high damage output and mobility.
+
+Playtester #5 enjoyed the bartender the most due to the ranged attacks.
+
+Character identities seemed sufficiently defined, different playstyles are available to match different player preferences.
+
+**Example questions:**
+
+- Do you have any general thoughts about the game?
+- Which character was your favourite?
+- Which character was your least favourite?
+- Which enemy gave you the most trouble?
+- Did you find the game challenging enough?
+
 <br>
 
 ## Build
