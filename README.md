@@ -1,8 +1,8 @@
 # Mise Fighters
 
 **Mise Fighters is a Local Multiplayer Co-op Hack & Slash RPG.**<br>
-The game lets you play as a chef, a butcher, a bartender or a pattisier on a mission to withstand the fury of vengeful food ingredients that have mysteriously come to life to seek revenge for their cooked brethen.<br>
-While Hack & Slash games often exhibit a gory and intesne atmosphere, Mise Fighters is infused with humour and light-heartedness while maintaining a thrilling action-packed gameplay.<br>
+The game lets you play as a chef, a butcher, a bartender or a pattisier on a mission to withstand the fury of vengeful food ingredients that have mysteriously come to life to seek revenge for their cooked brethren.<br>
+While Hack & Slash games often exhibit a gory and intense atmosphere, Mise Fighters is infused with humour and light-heartedness while maintaining a thrilling action-packed gameplay.<br>
 
 ![poster](docs\images\MiseFighterPoster.png)
 
