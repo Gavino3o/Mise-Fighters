@@ -1,5 +1,10 @@
 # Mise Fighters Game Development Document
 
+**Mise Fighters is a Local Multiplayer Co-op Hack & Slash RPG.**<br>
+The game lets you play as a chef, a butcher, a bartender or a pattisier on a mission to withstand the fury of vengeful food ingredients that have mysteriously come to life to seek revenge for their cooked brethen.<br>
+While Hack & Slash games often exhibit a gory and intesne atmosphere, Mise Fighters is infused with humour and light-heartedness while maintaining a thrilling action-packed gameplay.<br>
+
+
 ## Problem Motivation
 
 Drawing inspiration from beloved hack and slash titles like Hades and Hyper Light Drifter, we set out to create a whimsical online multiplayer cooperative hack and slash experience. Our game introduces a team of a chef, a butcher, a bartender and a pâtissier on a mission to withstand the fury of vengeful food ingredients that have mysteriously come to life. While hack and slash games often exhibit a gory and intense atmosphere, we wanted to infuse our game with humour and light-heartedness while maintaining a thrilling action-packed gameplay.
@@ -53,3 +58,105 @@ Enemy waves have different enemy amounts and enemy variety, and are designed to 
 
 The game will have different stages for the players to fend off the horde in. The environment can pose an added challenge to the players by virtue of both restricting the space available to kite enemies around the arena as well as obstacles that can hinder/slow movement.
 
+#### Stages
+
+1. **The Restaurant**
+   - In this stage there should not be any stage hazards. This stage is designed to have large area for ease of movement.
+   - Some tables and chairs are present to obstruct movement of both players and enemies. It also includes an accessible kitchen and toilet area for players to explore.
+2. **Market Area**
+   - A colourful market area with various obstacles to obstruct movement or allow for kiting. This stage includes new enemy variants that will keep the players on their toes.
+3. **Basement**
+   - Final face off against the boss monster, in an arena stage. This stage includes a large open space for players to move around and dodge the bosses attacks.
+
+
+### User Interface (UI)
+
+The in game overlay will provide key information to the player while also being as unobtrusive as possible.
+
+### Music/SFX
+
+The game will consist of captivating audio throughout. Players are able to enjoy background music in menus and in game accompanied by fun sound effects for characters, enemies and environments. The audio of this game aims to enhance the player experience.
+
+## User Stories
+
+1. As a player, I want to access the main menu to start or join a multiplayer game, adjust settings, and navigate the game options easily.
+2. As a player, I want to host a multiplayer game so that I can invite friends or other players to join and play together.
+3. As a player, I want to enter the character select scene after joining or hosting a multiplayer game, where I can choose a unique character to play.
+4. As a player, I want to see information about each character, including their abilities, strengths, and weaknesses, to make an informed decision during character selection.
+5. As a player, I want to face waves of enemies, challenging my skills and teamwork with other players.
+6. As a player, I want to survive against increasingly difficult waves of enemies by utilising my character's skills and discovering powerful skill combinations.
+7. As a player, I want the option to restart the game if all players die, allowing us to make a fresh attempt to overcome the challenges.
+8. As a player, I want to be able to exit the game midway, ensuring that I can easily return to the main menu or exit the game entirely.
+
+## Design
+
+### Technologies Used
+
+- Unity: Engine used to develop the game.
+- FishNet: Networking solution for Unity that we used to implement multiplayer functionality.
+- C#: Main scripting language used for development.
+- Aseprite: Used for sprites and animations for Units, Environments and VFX.
+- Clip Studio Paint: Used for splash art and concept art for the game.
+- GitHub: Version control and collaboration.
+
+
+### Overall Design
+
+![OverallDesign](images\Overall_Design.png)
+
+### Characters
+
+![CharacterScripts](images\CharacterScriptDiagram.png)
+
+- Unit - contains information (Stats, StatusEffects) about units in the game and implements methods for units to interact via the combat system. (Taking damage, being afflicted by Statuses)
+- Player - contains information about the player and a reference to their controlled character.
+- Character - contains references to all components, as well as basic information about the character.
+- InputCharacter - wrapper class around player inputs calculating and containing information used by other character components.
+- MoveCharacter - movement script for character.
+- AttackCharacter - character automatically attacks at intervals determined by their AttackSpeed.
+- CastCharacter - abstract class outlining universal spellcasting behaviour. (spell cool-downs, spell information etc.)
+- CastCharacter - concrete classes containing the specific implementation for each character’s unique skill set.
+- AnimatorCharacter - controls what animations are playing for each character.
+
+### Managers/UI
+
+![ManagerUI](images\ManagerScriptDiagram.png)
+
+- GameManager - singleton in charge of scene changes and keeping references to all connected players. Handles the lives total as well.
+- UIManager - singleton with functionality to change UI screens that can be used from other classes.
+- MainMenu - Main Menu screen with host, join and quit buttons.
+- CharacterSelect - Character select lobby.
+- GameInfo - UI overlay when in game with information like health and skill cooldowns.
+- ReadyScreen - Screen overlay when the current stage is clear and awaiting transition to the next level.
+- AwaitingRespawn - Screen overlay when downed and awaiting help from an ally.
+
+### Combat Scripts implementing Combat System above
+
+- SpellData - contains information like spell name, description, cool-down, damage to be used by CastCharacter classes.
+- StatusEffectData - contains information about the buffs and de buffs associated with a status effect to be used by Unit classes when being afflicted.
+- Damager - inflicts damage on collision with a Character or Enemy.
+- Lifetime - server side coroutine to despawn objects after a set time.
+
+### Enemy System
+
+![EnemySystemDiagram](images/EnemyScriptDiagram.png)
+
+- EnemyMovement - A controller to decide which enemy movement algorithms to use
+- EnemyAI - Contains information about enemy max health, enemy death event and controls enemy movement and player targetter
+- PlayerTargetter - Stores information on the current player targeted for movement and attack.
+- Projectiles - Scripts regarding behaviour of projectiles spawned by enemies to be attached to projectile prefabs.
+
+![EnemyWaveDiagram](images/EnemyWaveDiagram.png)
+
+- EnemySpawner - Spawns enemies type according to EnemySpawnerData injected.
+- EnemySpawnerData - Contains information such as enemy prefabs, max enemy to spawn and spawn locations
+- EnemyManager - Singleton managing and storing references and counts of active enemies currently in the wave
+- WaveManager - Singleton managing wave information, enemy spawners and enemy boss information that are injected using WaveData.
+- WaveData - Scriptable Object containing information regarding waves such as wave delays, spawners involved.
+
+### Audio System
+
+![AudioScriptDiagram](images/AudioScriptDiagram.png)
+
+- AudioManager - Contains a list of all sound clips and audio sources to control the playing/synchronisation of game sounds.
+- AudioMixers - Allows playing of multiple clips simultaneously.
